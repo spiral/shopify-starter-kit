@@ -2,25 +2,25 @@
 
 ### Repo features:
 
--[ ] folders structure
+- [ ] folders structure
 
--[ ] single code style
+- [ ] single code style
 
--[ ] processing files
+- [ ] processing files
 
--[ ] building assets
+- [ ] building assets
 
--[ ] start dev server
+- [ ] start dev server
 
 
 
 ### Repo automation:
 
--[ ] crating components
+- [ ] crating components
 
--[ ] watching files
+- [ ] watching files
 
--[ ] git release automation 
+- [ ] git release automation 
 
 etc.
 
