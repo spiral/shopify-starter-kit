@@ -9,7 +9,6 @@ Dev technologies and tools
 - Webpack
 - Scss
 - Jest
-- Super strict typescript
 - Lint code with eslint
 - Auto formatting code with Prettier
 - Git hooks with husky
