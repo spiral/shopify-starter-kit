@@ -18,6 +18,8 @@
 
 - [ ] crating components
 
+- [ ] updating components
+
 - [ ] watching files
 
 - [ ] git release automation 
