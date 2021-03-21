@@ -1,0 +1,26 @@
+{
+  "name": "shopify-front-boilerplate",
+  "version": "0.0.1",
+  "description": "Boilerplate for the large Shopify repo",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kreezag/shopify-front-boilerplate.git"
+  },
+  "keywords": [
+    "Shopify",
+    "Boilerplate",
+    "TypeScript",
+    "Codestyle",
+    "Scss"
+  ],
+  "author": "Kreezag",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kreezag/shopify-front-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Kreezag/shopify-front-boilerplate#readme"
+}
