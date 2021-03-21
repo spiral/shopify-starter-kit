@@ -21,6 +21,8 @@
 - [ ] updating components
 
 - [ ] watching files
+  
+- [ ] files checking 
 
 - [ ] git release automation 
 
