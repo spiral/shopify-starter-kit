@@ -1,5 +1,12 @@
 <div class="page_initial"
      data-template="page_initial"
 >
-    <!-- page_initial -->
+    <h1>{{ page.title }}</h1>
+
+    {% comment %}
+    Regular page content goes here.
+    {% endcomment %}
+    <p>
+        {{ page.content }}
+    </p>
 </div>
