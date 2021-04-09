@@ -1,30 +1,32 @@
 # Repository features and goals
 
-### Repo features:
+### Features:
 
-- [ ] folders structure
+- [ ] File Structure
 
-- [ ] single code style
+- [ ] Single Code Style
 
-- [ ] processing files
+- [ ] Scripts and Styles Processing
 
-- [ ] building assets
+- [ ] Assets Building 
 
-- [ ] start dev server
+- [ ] Dev Server
 
 
 
-### Repo automation:
+### Automation:
 
-- [ ] crating components
+- [ ] Add Components
 
-- [ ] updating components
+- [ ] Change/Move Components
 
-- [ ] watching files
+- [ ] Runtime Processing files
   
-- [ ] files checking 
+- [ ] Files Checking 
 
-- [ ] git release automation 
+- [ ] Git Release Automation
+
+- [ ] Git Flow Checkers
 
 etc.
 
