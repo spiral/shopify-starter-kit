@@ -2,13 +2,17 @@
 
 ### Features:
 
-- [ ] File Structure
+- [X] File Structure
 
-- [ ] Single Code Style
+- [ ] Single Code Style linting
 
-- [ ] Scripts and Styles Processing
+- [X] Scripts and Styles Processing
 
-- [ ] Assets Building 
+- [ ] JS transpiling
+
+- [ ] Assets Building
+
+- [ ] Compress images
 
 - [ ] Dev Server
 
