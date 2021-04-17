@@ -13,7 +13,7 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new CopyPlugin({
       patterns: [
-        // 'theme',
+        'theme',
         {
           from: `src/pages/*/*.liquid`,
           to: path.resolve(__dirname,`dist/templates/page.[name][ext]`)
