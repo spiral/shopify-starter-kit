@@ -28,6 +28,16 @@
 
 - [ ] Git Flow Checkers
 
+
+
+### Site load time optimisation
+
+- [ ] Loading required styles
+
+- [ ] Styles prefetch
+
+- [ ] Scripts prefetch
+
 etc.
 
 
