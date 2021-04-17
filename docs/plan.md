@@ -8,7 +8,7 @@
 
 - [X] Scripts and Styles Processing
 
-- [ ] JS transpiling
+- [X] JS transpiling
 
 - [ ] Assets Building
 
@@ -36,7 +36,7 @@
 
 ### Site load time optimisation
 
-- [ ] Loading required styles
+- [X] Loading required styles
 
 - [ ] Styles prefetch
 
