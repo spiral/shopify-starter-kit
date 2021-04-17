@@ -13,13 +13,17 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new CopyPlugin({
       patterns: [
-        'theme',
+        // 'theme',
         {
           from: `src/pages/*/*.liquid`,
           to: path.resolve(__dirname,`dist/templates/page.[name][ext]`)
         },
         {
-          from: `src/pages/common/**/*.liquid`,
+          from: `src/pages/*/*/*.liquid`,
+          to: path.resolve(__dirname, `dist/sections/[name][ext]`)
+        },
+        {
+          from: `src/snippets/*/*.liquid`,
           to: path.resolve(__dirname, `dist/snippets/[name][ext]`)
         },
       ],
