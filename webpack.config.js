@@ -2,30 +2,57 @@ const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const fs = require('fs')
 
 
+const getFolders = (path) => fs.readdirSync(path, { withFileTypes: true })
+  .filter(dirent => dirent.isDirectory())
+  .map((dirent) => dirent.name)
+
+
+const mkSnippetsEntryPoints = () => {
+  getFolders('src/pages')
+    .filter(name => name !== 'common')
+    .reduce((res, name) => ({
+      ...res,
+      [name]: path.resolve(__dirname, 'src/pages', `${name}/${name}.js`)
+    }), {})
+}
 
 const mkSectionsEntryPoints = () => {
-  return {
-    'page_initial_section': path.resolve(__dirname, 'src/pages/page_initial/page_initial_section/page_initial_section.js'),
-    'common_section': path.resolve(__dirname, 'src/pages/common/common_section/common_section.js'),
+  const resultEntries = {}
 
-  }
+  getFolders('src/pages')
+    .forEach((folderName) => {
+      getFolders(`src/pages/${folderName}`)
+        .forEach((subFolder) => {
+          const fileName = subFolder // The file must have the same name as its component
+          const filePath = path.resolve(__dirname, 'src/pages', `${folderName}/${subFolder}/${fileName}.js`)
+
+          if (fs.existsSync(filePath)) {
+            resultEntries[fileName] = filePath
+          }
+        })
+    })
+
+  return resultEntries
 }
 
-const mkPagesEntryPoints = () => {
-  return {
-    'page_initial': path.resolve(__dirname, 'src/pages/page_initial/page_initial.js'),
-  }
-}
 
-const config = {
+const mkPagesEntryPoints = () =>
+  getFolders('src/pages')
+    .filter(name => name !== 'common')
+    .reduce((res, name) => ({
+      ...res,
+      [name]: path.resolve(__dirname, 'src/pages', `${name}/${name}.js`)
+    }), {})
 
-}
+
 module.exports = {
   entry: {
+    ...mkSnippetsEntryPoints(),
+    ...mkSectionsEntryPoints(),
     ...mkPagesEntryPoints(),
-    ...mkSectionsEntryPoints()
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
