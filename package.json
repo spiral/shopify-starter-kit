@@ -22,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/Kreezag/shopify-front-boilerplate/issues"
   },
-  "homepage": "https://github.com/Kreezag/shopify-front-boilerplate#readme"
+  "homepage": "https://github.com/Kreezag/shopify-front-boilerplate#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^8.1.1",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  }
 }
