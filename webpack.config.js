@@ -10,24 +10,15 @@ const getFolders = (path) => fs.readdirSync(path, { withFileTypes: true })
   .map((dirent) => dirent.name)
 
 
-const mkSnippetsEntryPoints = () => {
-  getFolders('src/pages')
-    .filter(name => name !== 'common')
-    .reduce((res, name) => ({
-      ...res,
-      [name]: path.resolve(__dirname, 'src/pages', `${name}/${name}.js`)
-    }), {})
-}
-
-const mkSectionsEntryPoints = () => {
+const mkSectionsEntryPoints = (templatePath) => {
   const resultEntries = {}
 
-  getFolders('src/pages')
+  getFolders(templatePath)
     .forEach((folderName) => {
-      getFolders(`src/pages/${folderName}`)
+      getFolders(`${templatePath}/${folderName}`)
         .forEach((subFolder) => {
           const fileName = subFolder // The file must have the same name as its component
-          const filePath = path.resolve(__dirname, 'src/pages', `${folderName}/${subFolder}/${fileName}.js`)
+          const filePath = path.resolve(__dirname, templatePath, `${folderName}/${subFolder}/${fileName}.js`)
 
           if (fs.existsSync(filePath)) {
             resultEntries[fileName] = filePath
@@ -39,20 +30,19 @@ const mkSectionsEntryPoints = () => {
 }
 
 
-const mkPagesEntryPoints = () =>
-  getFolders('src/pages')
+const mkTemplateEntryPoints = (templatePath) =>
+  getFolders(templatePath)
     .filter(name => name !== 'common')
     .reduce((res, name) => ({
       ...res,
-      [name]: path.resolve(__dirname, 'src/pages', `${name}/${name}.js`)
+      [name]: path.resolve(__dirname, templatePath, `${name}/${name}.js`)
     }), {})
 
 
 module.exports = {
   entry: {
-    ...mkSnippetsEntryPoints(),
-    ...mkSectionsEntryPoints(),
-    ...mkPagesEntryPoints(),
+    ...mkSectionsEntryPoints('src/pages'),
+    ...mkTemplateEntryPoints('src/pages'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
