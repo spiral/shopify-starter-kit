@@ -39,6 +39,22 @@ const mkTemplateEntryPoints = (templatePath) =>
     }), {})
 
 
+const mkTemplateCopy = (templatePath) => {
+  const templatePrefix = templatePath.replace('src/', '').replace('/', '-')
+
+  return {
+    from: `${templatePath}/*/*.liquid`,
+    to: path.resolve(__dirname,`dist/templates/${templatePrefix}.[name][ext]`)
+  }
+}
+
+
+const mkSectionCopy = (templatePath) => ({
+  from: `${templatePath}/*/*/*.liquid`,
+  to: path.resolve(__dirname, `dist/sections/[name][ext]`)
+})
+
+
 module.exports = {
   entry: {
     ...mkSectionsEntryPoints('src/pages'),
@@ -78,14 +94,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         'theme',
-        {
-          from: `src/pages/*/*.liquid`,
-          to: path.resolve(__dirname,`dist/templates/page.[name][ext]`)
-        },
-        {
-          from: `src/pages/*/*/*.liquid`,
-          to: path.resolve(__dirname, `dist/sections/[name][ext]`)
-        },
+        mkTemplateCopy('src/pages'),
+        mkSectionCopy('src/pages'),
         {
           from: `src/snippets/*/*.liquid`,
           to: path.resolve(__dirname, `dist/snippets/[name][ext]`)
