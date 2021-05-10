@@ -39,14 +39,10 @@ const mkTemplateEntryPoints = (templatePath) =>
     }), {})
 
 
-const mkTemplateCopy = (templatePath) => {
-  const templatePrefix = templatePath.replace('src/', '').replace('/', '-')
-
-  return {
-    from: `${templatePath}/*/*.liquid`,
-    to: path.resolve(__dirname,`dist/templates/${templatePrefix}.[name][ext]`)
-  }
-}
+const mkTemplateCopy = (templatePath) => ({
+  from: `${templatePath}/*/*.liquid`,
+  to: path.resolve(__dirname,`dist/templates/[name][ext]`)
+})
 
 
 const mkSectionCopy = (templatePath) => ({
