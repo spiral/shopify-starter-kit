@@ -5,7 +5,6 @@ Repository makes it easier to work with the distribution of files in the project
 
 
 Dev technologies and tools
-- TypeScript
 - Webpack
 - Scss
 - Jest
