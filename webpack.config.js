@@ -89,7 +89,10 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new CopyPlugin({
       patterns: [
-        'theme',
+        {
+          from: `theme`,
+          to: path.resolve(__dirname, `dist`)
+        },
         mkTemplateCopy('src/pages'),
         mkSectionCopy('src/pages'),
         {
