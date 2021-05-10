@@ -61,6 +61,7 @@ module.exports = {
     filename: "assets/[name].js",
     clean: true,
   },
+  mode: 'production',
   module: {
     rules: [
       {
