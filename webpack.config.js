@@ -99,6 +99,10 @@ module.exports = {
           from: `src/snippets/*/*.liquid`,
           to: path.resolve(__dirname, `dist/snippets/[name][ext]`)
         },
+        {
+          from: `src/layout/*.liquid`,
+          to: path.resolve(__dirname, `dist/layout/[name][ext]`)
+        },
       ],
     }),
     new MiniCssExtractPlugin({
