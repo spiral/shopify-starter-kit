@@ -10,7 +10,7 @@
 
 - [X] JS transpiling
 
-- [ ] Assets Building
+- [X] Assets Building
 
 - [ ] Compress images
 
