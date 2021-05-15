@@ -1,2 +1,1 @@
-import './page_example.scss'
-
+import "./page_example.scss";

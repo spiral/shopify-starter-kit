@@ -1,1 +1,1 @@
-import './common_example_section.scss'
+import "./common_example_section.scss";

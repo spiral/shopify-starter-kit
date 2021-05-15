@@ -4,7 +4,7 @@
 
 - [X] File Structure
 
-- [ ] Single Code Style linting
+- [X] Single Code Style linting
 
 - [X] Scripts and Styles Processing
 
