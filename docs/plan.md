@@ -16,6 +16,8 @@
 
 - [ ] Dev Server
 
+- [ ] Implements shopify theme-kit
+
 
 
 ### Automation:
