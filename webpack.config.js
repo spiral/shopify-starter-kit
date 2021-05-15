@@ -1,78 +1,40 @@
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const fs = require('fs')
-
-
-const getFolders = (path) => fs.readdirSync(path, { withFileTypes: true })
-  .filter(dirent => dirent.isDirectory())
-  .map((dirent) => dirent.name)
-
-
-const mkSectionsEntryPoints = (templatePath) => {
-  const resultEntries = {}
-
-  getFolders(templatePath)
-    .forEach((folderName) => {
-      getFolders(`${templatePath}/${folderName}`)
-        .forEach((subFolder) => {
-          const fileName = subFolder // The file must have the same name as its component
-          const filePath = path.resolve(__dirname, templatePath, `${folderName}/${subFolder}/${fileName}.js`)
-
-          if (fs.existsSync(filePath)) {
-            resultEntries[fileName] = filePath
-          }
-        })
-    })
-
-  return resultEntries
-}
-
-
-const mkTemplateEntryPoints = (templatePath) =>
-  getFolders(templatePath)
-    .filter(name => name !== 'common')
-    .reduce((res, name) => ({
-      ...res,
-      [name]: path.resolve(__dirname, templatePath, `${name}/${name}.js`)
-    }), {})
-
-
-const mkTemplateCopy = (templatePath) => ({
-  from: `${templatePath}/*/*.liquid`,
-  to: path.resolve(__dirname,`dist/templates/[name][ext]`)
-})
-
-
-const mkSectionCopy = (templatePath) => ({
-  from: `${templatePath}/*/*/*.liquid`,
-  to: path.resolve(__dirname, `dist/sections/[name][ext]`)
-})
+const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const {
+  mkSectionsEntryPoints,
+  mkTemplateEntryPoints,
+  mkJsEntryPoints,
+  mkTemplateCopyPlugin,
+  mkSectionCopyPlugin,
+} = require("./webpack-helpers.js");
 
 
 module.exports = {
   entry: {
-    ...mkSectionsEntryPoints('src/pages'),
-    ...mkTemplateEntryPoints('src/pages'),
+    ...mkSectionsEntryPoints("src/pages"),
+    ...mkTemplateEntryPoints("src/pages"),
+    ...mkJsEntryPoints("src/assets"),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, "dist"),
     filename: "assets/[name].js",
     clean: true,
   },
-  mode: 'production',
+  mode: "production",
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
       {
         test: /\.s[ac]ss$/i,
@@ -91,23 +53,23 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: `theme`,
-          to: path.resolve(__dirname, `dist`)
+          from: path.resolve(__dirname, `theme`),
+          to: path.resolve(__dirname, `dist`),
         },
-        mkTemplateCopy('src/pages'),
-        mkSectionCopy('src/pages'),
+        mkTemplateCopyPlugin("src/pages"),
+        mkSectionCopyPlugin("src/pages"),
         {
           from: `src/snippets/*/*.liquid`,
-          to: path.resolve(__dirname, `dist/snippets/[name][ext]`)
+          to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
         },
         {
           from: `src/layout/*.liquid`,
-          to: path.resolve(__dirname, `dist/layout/[name][ext]`)
+          to: path.resolve(__dirname, `dist/layout/[name][ext]`),
         },
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].css'
+      filename: "assets/[name].css",
     }),
   ],
 };
