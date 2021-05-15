@@ -1,6 +1,7 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
+const ImageminWebpackPlugin = require("imagemin-webpack-plugin").default;
+const RemoveWebpackPlugin = require("remove-files-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {
@@ -10,7 +11,6 @@ const {
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,
 } = require("./webpack-helpers.js");
-
 
 module.exports = {
   entry: {
@@ -46,6 +46,10 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
@@ -55,6 +59,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, `theme`),
           to: path.resolve(__dirname, `dist`),
+        },
+        {
+          from: path.resolve(__dirname, `src/assets`),
+          to: path.resolve(__dirname, `dist/assets`),
         },
         mkTemplateCopyPlugin("src/pages"),
         mkSectionCopyPlugin("src/pages"),
@@ -68,6 +76,7 @@ module.exports = {
         },
       ],
     }),
+    new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     new MiniCssExtractPlugin({
       filename: "assets/[name].css",
     }),
@@ -75,14 +84,14 @@ module.exports = {
       after: {
         test: [
           {
-            folder: 'dist',
+            folder: "dist",
             method: (absoluteItemPath) => {
-              return new RegExp(/\.md$/, 'm').test(absoluteItemPath);
+              return new RegExp(/\.md$/, "m").test(absoluteItemPath);
             },
-            recursive: true
-          }
-        ]
-      }
-    })
+            recursive: true,
+          },
+        ],
+      },
+    }),
   ],
 };

@@ -51,6 +51,7 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
+    "imagemin-webpack-plugin": "^2.4.2",
     "remove-files-webpack-plugin": "^1.4.4"
   }
 }
