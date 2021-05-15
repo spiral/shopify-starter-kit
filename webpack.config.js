@@ -1,6 +1,6 @@
-const fs = require("fs");
 const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {
@@ -50,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new CopyPlugin({
+    new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, `theme`),
@@ -71,5 +71,18 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "assets/[name].css",
     }),
+    new RemoveWebpackPlugin({
+      after: {
+        test: [
+          {
+            folder: 'dist',
+            method: (absoluteItemPath) => {
+              return new RegExp(/\.md$/, 'm').test(absoluteItemPath);
+            },
+            recursive: true
+          }
+        ]
+      }
+    })
   ],
 };
