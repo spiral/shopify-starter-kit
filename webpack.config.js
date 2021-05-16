@@ -70,10 +70,6 @@ module.exports = {
           from: `src/snippets/*/*.liquid`,
           to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
         },
-        {
-          from: `src/layout/*.liquid`,
-          to: path.resolve(__dirname, `dist/layout/[name][ext]`),
-        },
       ],
     }),
     new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
