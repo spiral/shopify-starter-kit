@@ -41,7 +41,7 @@ production:
 ```
 
 
-##[Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
+## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
 
 Do not forget to check theme ids before launching theme kit watcher!
 Watch starts a process that will watch the directory for changes and upload them to Shopify
