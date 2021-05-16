@@ -6,7 +6,9 @@
   "scripts": {
     "test": "test",
     "lint": "npx eslint ./src",
-    "lint:fix": "npx eslint ./src --fix"
+    "lint:fix": "npx eslint ./src --fix",
+    "deploy": "npm run lint && shopify-themekit replace --env development",
+    "deploy:prod": "npm run lint && shopify-themekit replace --env production"
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
+    "@shopify/themekit": "^1.1.7",
     "imagemin-webpack-plugin": "^2.4.2",
     "remove-files-webpack-plugin": "^1.4.4"
   }

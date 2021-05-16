@@ -1,0 +1,15 @@
+development:
+  store: [your-store].myshopify.com
+  password: [your-api-password]
+  theme_id: "[your-theme-id]"
+  proxy: http://localhost:3000
+production:
+  store: [your-store].myshopify.com
+  password: [your-api-password]
+  theme_id: "[your-theme-id]"
+  timeout: 60s
+  readonly: true
+test:
+  store: [your-store].myshopify.com
+  password: [your-api-password]
+  theme_id: "[your-theme-id]"

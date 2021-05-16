@@ -66,3 +66,7 @@ yarn.lock
 #############
 *.swp
 *.swo
+
+
+# Project Files #
+config.yml
