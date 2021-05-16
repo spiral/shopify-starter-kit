@@ -42,11 +42,13 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^1.4.1",
     "postcss": "^8.2.10",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.3.0",
+    "remove-files-webpack-plugin": "^1.4.4",
     "sass": "^1.32.10",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
@@ -54,8 +56,6 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "@shopify/themekit": "^1.1.7",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "remove-files-webpack-plugin": "^1.4.4"
+    "@shopify/themekit": "^1.1.7"
   }
 }
