@@ -12,14 +12,15 @@
 
 - [x] Assets Building
 
-- [X] Implements shopify theme-kit
+- [x] Implements shopify theme-kit
+
+- [x] Jest test environment
+  
+- [ ] Run Lint and Format code on pre-commit
   
 - [ ] Compress images
 
 - [ ] Dev Server
-  
-
-- [x] Jest test environment
 
 
 ### Automation:
