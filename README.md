@@ -54,3 +54,5 @@ Install frontend dependencies using npm install
 ### Project Features: [features.md](./docs/features.md)
 
 ### Project implementation plan: [plan.md](./docs/plan.md)
+
+### How to use existed theme: [theme.md](./docs/theme.md)
