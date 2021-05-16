@@ -5,10 +5,12 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",
+    "theme": "npx shopify-themekit deploy --env development",
+    "theme:prod": "npx shopify-themekit deploy --env production",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix",
-    "deploy": "npm run lint && shopify-themekit replace --env development",
-    "deploy:prod": "npm run lint && npx shopify-themekit replace --env production"
+    "deploy": "npm run lint && npm run theme",
+    "deploy:prod": "npm run lint && npm run theme:prod"
   },
   "repository": {
     "type": "git",
