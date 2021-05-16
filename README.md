@@ -48,3 +48,9 @@ Watch starts a process that will watch the directory for changes and upload them
 
 ### Starting Up
 Install frontend dependencies using npm install
+
+# Project documentation:
+
+### Project Features: [features.md](./docs/features.md)
+
+### Project implementation plan: [plan.md](./docs/plan.md)
