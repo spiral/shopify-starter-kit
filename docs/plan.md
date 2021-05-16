@@ -12,11 +12,12 @@
 
 - [x] Assets Building
 
+- [X] Implements shopify theme-kit
+  
 - [ ] Compress images
 
 - [ ] Dev Server
-
-- [ ] Implements shopify theme-kit
+  
 
 - [x] Jest test environment
 
