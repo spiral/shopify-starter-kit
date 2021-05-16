@@ -4,11 +4,11 @@
   "description": "Boilerplate for the large Shopify repo",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix",
     "deploy": "npm run lint && shopify-themekit replace --env development",
-    "deploy:prod": "npm run lint && shopify-themekit replace --env production"
+    "deploy:prod": "npm run lint && npx shopify-themekit replace --env production"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^26.6.3",
     "mini-css-extract-plugin": "^1.4.1",
     "postcss": "^8.2.10",
     "postcss-loader": "^5.2.0",

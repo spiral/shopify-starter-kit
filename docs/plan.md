@@ -2,15 +2,15 @@
 
 ### Features:
 
-- [X] File Structure
+- [x] File Structure
 
-- [X] Single Code Style linting
+- [x] Single Code Style linting
 
-- [X] Scripts and Styles Processing
+- [x] Scripts and Styles Processing
 
-- [X] JS transpiling
+- [x] JS transpiling
 
-- [X] Assets Building
+- [x] Assets Building
 
 - [ ] Compress images
 
@@ -18,6 +18,7 @@
 
 - [ ] Implements shopify theme-kit
 
+- [x] Jest test environment
 
 
 ### Automation:
@@ -27,27 +28,18 @@
 - [ ] Change/Move Components
 
 - [ ] Runtime Processing files
-  
-- [ ] Files Checking 
+- [ ] Files Checking
 
 - [ ] Git Release Automation
 
 - [ ] Git Flow Checkers
 
-
-
 ### Site load time optimisation
 
-- [X] Loading required styles
+- [x] Loading required styles
 
 - [ ] Styles prefetch
 
 - [ ] Scripts prefetch
 
 etc.
-
-
-
-
-
-
