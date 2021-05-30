@@ -9,7 +9,7 @@
 - [x] Assets Building
 - [x] Implements shopify theme-kit
 - [x] Jest test environment
-- [ ] Run Lint and Format code on pre-commit
+- [x] Run Lint and Format code on pre-commit
 - [ ] Compress images
 - [ ] Dev Server
 
