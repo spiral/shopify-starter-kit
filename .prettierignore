@@ -1,0 +1,5 @@
+# Ignore artifacts:
+dist
+
+# Ignore Assets files:
+theme/

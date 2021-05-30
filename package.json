@@ -11,7 +11,8 @@
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix",
     "deploy": "npm run build && npm run theme",
-    "deploy:prod": "npm run build && npm run theme:prod"
+    "deploy:prod": "npm run build && npm run theme:prod",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -48,12 +49,14 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^1.4.1",
     "postcss": "^8.2.10",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
     "remove-files-webpack-plugin": "^1.4.4",
     "sass": "^1.32.10",
     "sass-loader": "^11.0.1",
@@ -63,5 +66,10 @@
   },
   "dependencies": {
     "@shopify/themekit": "^1.1.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx pretty-quick --staged --ignore-path=./.prettierignore"
+    }
   }
 }
