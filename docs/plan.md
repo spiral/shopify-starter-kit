@@ -22,7 +22,7 @@
 - [ ] Git Release Automation
 - [ ] Git Flow Checkers
 
-### Site load time optimisation
+### Pages load time optimisation
 
 - [x] Loading required styles
 - [ ] Styles prefetch
