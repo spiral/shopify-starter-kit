@@ -12,6 +12,9 @@ const {
   mkSectionCopyPlugin,
 } = require("./webpack-helpers.js");
 
+
+const copySkipPatterns = [/\.css.liquid$/, /\.js\.liquid$/, /\.js\.map$/];
+
 module.exports = {
   entry: {
     ...mkSectionsEntryPoints("src/pages"),
@@ -58,6 +61,13 @@ module.exports = {
         {
           from: path.resolve(__dirname, `theme`),
           to: path.resolve(__dirname, `dist`),
+          filter: (resourcePath) => {
+            return !copySkipPatterns.reduce(
+              (res, pattern) =>
+                res || pattern.test(path.parse(resourcePath).base),
+              false
+            );
+          },
         },
         {
           from: path.resolve(__dirname, `src/assets`),
