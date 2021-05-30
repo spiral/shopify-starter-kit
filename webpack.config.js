@@ -91,7 +91,7 @@ module.exports = {
           {
             folder: "dist",
             method: (absoluteItemPath) => {
-              return new RegExp(/\.md$/, "m").test(absoluteItemPath);
+              return (/\.md$/m).test(absoluteItemPath);
             },
             recursive: true,
           },
