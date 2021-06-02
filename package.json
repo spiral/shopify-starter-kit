@@ -27,16 +27,13 @@
     "url": "git+https://github.com/Kreezag/shopify-front-boilerplate.git"
   },
   "keywords": [
-    "Shopify",
     "Boilerplate",
-    "Shopify Theme Kit",
     "Codestyle",
-    "Prettier",
-    "Eslint",
-    "Scss",
-    "Postcss",
     "Jest",
-    "Webpack"
+    "Shopify",
+    "Shopify Theme Kit",
+    "Scss"
+    "Webpack",
   ],
   "author": "Kreezag",
   "license": "MIT",
