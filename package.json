@@ -14,8 +14,8 @@
     "theme:deploy:prod": "shopify-themekit deploy --env production",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "deploy": "npm run build && npm run theme:deploy",
-    "deploy:prod": "npm run build && npm run theme:deploy:prod",
+    "deploy": "npm run lint && npm run build && npm run theme:deploy",
+    "deploy:prod": "npm run lint && npm run build && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
     "start:prod": "concurrently \"npm run watch\" && \"npm run theme:watch:prod\""
   },
