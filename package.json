@@ -11,8 +11,7 @@
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint ./src --fix",
     "deploy": "npm run build && npm run theme",
-    "deploy:prod": "npm run build && npm run theme:prod",
-    "prepare": "husky install"
+    "deploy:prod": "npm run build && npm run theme:prod"
   },
   "repository": {
     "type": "git",
