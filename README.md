@@ -8,10 +8,17 @@ Dev technologies and tools
 - Webpack
 - Scss
 - Jest
-- Lint code with eslint
+- Lint code with eslint*
 - Auto formatting code with Prettier
 - Git hooks with husky
- 
+- Shopify-themekit*
+
+*Need to install shopify-themekit and eslint global 
+
+## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
+
+Do not forget to check theme ids before launching theme kit watcher!
+Watch starts a process that will watch the directory for changes and upload them to Shopify
 
 ## config.yml
 
@@ -40,14 +47,9 @@ production:
   theme_id: "[your-theme-id]"
 ```
 
-
-## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
-
-Do not forget to check theme ids before launching theme kit watcher!
-Watch starts a process that will watch the directory for changes and upload them to Shopify
-
-### Starting Up
+# Starting Up
 Install frontend dependencies using npm install
+
 
 # Project documentation:
 
