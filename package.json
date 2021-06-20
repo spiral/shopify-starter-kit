@@ -16,8 +16,8 @@
     "lint:fix": "eslint ./src --fix",
     "deploy": "npm run build && npm run theme:deploy",
     "deploy:prod": "npm run build && npm run theme:deploy:prod",
-    "start": "npm run watch && npm run theme:watch",
-    "start:prod": "npm run watch && npm run theme:watch:prod"
+    "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
+    "start:prod": "concurrently \"npm run watch\" && \"npm run theme:watch:prod\""
   },
   "repository": {
     "type": "git",
@@ -73,7 +73,8 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "@shopify/themekit": "^1.1.7"
+    "@shopify/themekit": "^1.1.7",
+    "concurrently": "^6.2.0"
   },
   "husky": {
     "hooks": {
