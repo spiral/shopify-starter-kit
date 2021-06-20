@@ -4,14 +4,20 @@
   "description": "Boilerplate for the large Shopify repo",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --progress",
+    "watch": "webpack --watch --progress",
     "test": "jest",
-    "theme": "npx shopify-themekit deploy --env development",
-    "theme:prod": "npx shopify-themekit deploy --env production",
-    "lint": "npx eslint ./src",
-    "lint:fix": "npx eslint ./src --fix",
-    "deploy": "npm run build && npm run theme",
-    "deploy:prod": "npm run build && npm run theme:prod"
+    "theme": "shopify-themekit",
+    "theme:watch": "shopify-themekit watch --allow-live --env development",
+    "theme:watch:prod": "shopify-themekit watch --allow-live --env production",
+    "theme:deploy": "shopify-themekit deploy --env development",
+    "theme:deploy:prod": "shopify-themekit deploy --env production",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "deploy": "npm run build && npm run theme:deploy",
+    "deploy:prod": "npm run build && npm run theme:deploy:prod",
+    "start": "npm run watch && npm run theme:watch",
+    "start:prod": "npm run watch && npm run theme:watch:prod"
   },
   "repository": {
     "type": "git",
