@@ -21,11 +21,14 @@
   "keywords": [
     "Shopify",
     "Boilerplate",
-    "Codestyle",
-    "Jest",
-    "Webpack",
     "Shopify Theme Kit",
-    "Scss"
+    "Codestyle",
+    "Prettier",
+    "Eslint",
+    "Scss",
+    "Postcss",
+    "Jest",
+    "Webpack"
   ],
   "author": "Kreezag",
   "license": "MIT",
