@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "@shopify/themekit": "^1.1.7",
+    "autoprefixer": "^10.2.6",
     "concurrently": "^6.2.0"
   },
   "husky": {
