@@ -19,7 +19,8 @@
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
-    "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\""
+    "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\"",
+    "pre-commit": "npm run lint:fix && lint-staged"
   },
   "repository": {
     "type": "git",
@@ -54,19 +55,23 @@
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.2",
-    "eslint": "^7.26.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^26.6.3",
+    "lint-staged": "^11.0.0",
     "mini-css-extract-plugin": "^1.4.1",
     "postcss": "^8.2.10",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.3.0",
-    "pretty-quick": "^3.1.0",
+    "pretty-quick": "^3.1.1",
     "remove-files-webpack-plugin": "^1.4.4",
     "sass": "^1.32.10",
     "sass-loader": "^11.0.1",
@@ -79,9 +84,7 @@
     "autoprefixer": "^10.2.6",
     "concurrently": "^6.2.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx pretty-quick --staged --ignore-path=./.prettierignore"
-    }
+  "lint-staged": {
+    "*.js": "npx eslint --fix"
   }
 }

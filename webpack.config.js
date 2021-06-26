@@ -1,9 +1,9 @@
-const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const ImageminWebpackPlugin = require("imagemin-webpack-plugin").default;
-const RemoveWebpackPlugin = require("remove-files-webpack-plugin");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
   mkSectionsEntryPoints,
   mkTemplateEntryPoints,
@@ -11,31 +11,30 @@ const {
   mkJsEntryPoints,
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,
-} = require("./webpack-helpers.js");
-
+} = require('./webpack-helpers');
 
 const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 
 const config = {
   entry: {
-    ...mkSectionsEntryPoints("src/pages"),
-    ...mkTemplateEntryPoints("src/pages"),
-    ...mkJsEntryPoints("src/assets"),
+    ...mkSectionsEntryPoints('src/pages'),
+    ...mkTemplateEntryPoints('src/pages'),
+    ...mkJsEntryPoints('src/assets'),
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "assets/[name].js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'assets/[name].js',
   },
-  mode: "production",
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },
@@ -43,14 +42,14 @@ const config = {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
@@ -68,44 +67,42 @@ const config = {
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
           filter: (resourcePath) => {
-            const fileBase = String(path.parse(resourcePath).base)
-    
-            return !jsFilesPatterns.some((pattern) => fileBase.match(pattern))
+            const fileBase = String(path.parse(resourcePath).base);
+
+            return !jsFilesPatterns.some((pattern) => fileBase.match(pattern));
           },
         },
-        mkTemplateCopyPlugin("src/pages"),
-        mkSectionCopyPlugin("src/pages"),
-        mkSnippetCopyPlugin("src/snippets"),
+        mkTemplateCopyPlugin('src/pages'),
+        mkSectionCopyPlugin('src/pages'),
+        mkSnippetCopyPlugin('src/snippets'),
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: "assets/[name].css",
+      filename: 'assets/[name].css',
     }),
     new RemoveWebpackPlugin({
       after: {
         test: [
           {
-            folder: "dist",
-            method: (absoluteItemPath) => {
-              return (/\.md$/m).test(absoluteItemPath);
-            },
+            folder: 'dist',
+            method: (absoluteItemPath) => /\.md$/m.test(absoluteItemPath),
             recursive: true,
           },
         ],
       },
     }),
-  ]
-}
+  ],
+};
 
 module.exports = (env, argv) => {
-  if (argv.mode === "production") {
+  if (argv.mode === 'production') {
     config.plugins.push(
-      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
-    )
-  
-    config.optimization.minimize = true
+      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
+    );
+
+    config.optimization.minimize = true;
     config.devtool = 'source-map';
   }
-  
-  return config
+
+  return config;
 };

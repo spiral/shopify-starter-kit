@@ -1,16 +1,16 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
-const getDirNames = (path) =>
+const getDirNames = (_path) =>
   fs
-    .readdirSync(path, { withFileTypes: true })
+    .readdirSync(_path, { withFileTypes: true })
     .filter(Boolean)
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
 
-const getFilesNames = (path) =>
+const getFilesNames = (_path) =>
   fs
-    .readdirSync(path, { withFileTypes: true })
+    .readdirSync(_path, { withFileTypes: true })
     .filter(Boolean)
     .filter((dirent) => dirent.isFile())
     .map((dirent) => dirent.name);
@@ -24,25 +24,26 @@ const mkSectionsEntryPoints = (templatePath) => {
       getDirNames(`${templatePath}/${folderName}`)
         .filter(Boolean)
         .forEach((subFolder) => {
-          const fileName = subFolder; // The file should have the same name as its component
+          // The file should have the same name as its component
+          const fileName = subFolder;
           const filePath = path.resolve(
             __dirname,
             templatePath,
             `${folderName}/${subFolder}/${fileName}.js`
           );
-    
+
           if (fs.existsSync(filePath)) {
             resultEntries[fileName] = filePath;
           }
         });
     });
-  
+
   return resultEntries;
 };
 
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
-    .filter((name) => name !== "common")
+    .filter((name) => name !== 'common')
     .reduce(
       (res, name) => ({
         ...res,
@@ -55,7 +56,7 @@ const mkJsEntryPoints = (templatePath) => {
   const simpleFilesEntry = getFilesNames(templatePath).reduce(
     (res, name) => ({
       ...res,
-      ...(path.parse(name).ext === ".js"
+      ...(path.parse(name).ext === '.js'
         ? {
             [path.parse(name).name]: path.resolve(
               __dirname,
@@ -75,7 +76,7 @@ const mkJsEntryPoints = (templatePath) => {
     }),
     {}
   );
-  
+
   return {
     ...simpleFilesEntry,
     ...nestedFilesEntry,
@@ -87,7 +88,7 @@ const mkTemplateCopyPlugin = (templatePath) => ({
   to: path.resolve(__dirname, `dist/templates/[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
-    ignore: ['.gitkeep']
+    ignore: ['.gitkeep'],
   },
 });
 
@@ -96,7 +97,7 @@ const mkSnippetCopyPlugin = (templatePath) => ({
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
-    ignore: ['.gitkeep']
+    ignore: ['.gitkeep'],
   },
 });
 
@@ -105,7 +106,7 @@ const mkSectionCopyPlugin = (templatePath) => ({
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
-    ignore: ['.gitkeep']
+    ignore: ['.gitkeep'],
   },
 });
 
