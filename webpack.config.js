@@ -15,7 +15,7 @@ const {
 
 const copySkipPatterns = [/\.css.liquid$/, /\.js\.liquid$/, /\.js\.map$/];
 
-module.exports = {
+const config = {
   entry: {
     ...mkSectionsEntryPoints("src/pages"),
     ...mkTemplateEntryPoints("src/pages"),
@@ -81,7 +81,6 @@ module.exports = {
         },
       ],
     }),
-    new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     new MiniCssExtractPlugin({
       filename: "assets/[name].css",
     }),
@@ -98,5 +97,19 @@ module.exports = {
         ],
       },
     }),
-  ],
+  ]
+}
+
+module.exports = (env, argv) => {
+  if (argv.mode === "production") {
+    config.plugins.push(
+      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+    )
+  }
+  
+  if (argv.mode !== 'production') {
+    config.devtool = 'source-map';
+  }
+  
+  return config
 };

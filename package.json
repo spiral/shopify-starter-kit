@@ -5,7 +5,9 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --progress",
+    "build:prod": "webpack --progress --mode=\"production\"",
     "watch": "webpack --watch --progress",
+    "watch:prod": "webpack --watch --progress --mode=\"production\"",
     "test": "jest",
     "theme": "shopify-themekit",
     "theme:watch": "shopify-themekit watch --allow-live --env development",
@@ -15,9 +17,9 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
-    "deploy:prod": "npm run lint && npm run build && npm run theme:deploy:prod",
+    "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
-    "start:prod": "concurrently \"npm run watch\" && \"npm run theme:watch:prod\""
+    "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\""
   },
   "repository": {
     "type": "git",
