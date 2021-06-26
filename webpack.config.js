@@ -13,7 +13,8 @@ const {
 } = require("./webpack-helpers.js");
 
 
-const copySkipPatterns = [/\.css.liquid$/, /\.js\.liquid$/, /\.js\.map$/];
+const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
+const markdownFilesPatterns = [/\.md$/m];
 
 const config = {
   entry: {
@@ -61,17 +62,15 @@ const config = {
         {
           from: path.resolve(__dirname, `theme`),
           to: path.resolve(__dirname, `dist`),
-          filter: (resourcePath) => {
-            return !copySkipPatterns.reduce(
-              (res, pattern) =>
-                res || pattern.test(path.parse(resourcePath).base),
-              false
-            );
-          },
         },
         {
           from: path.resolve(__dirname, `src/assets`),
           to: path.resolve(__dirname, `dist/assets`),
+          filter: (resourcePath) => {
+            const fileBase = String(path.parse(resourcePath).base)
+    
+            return jsFilesPatterns.some((pattern) => fileBase.match(pattern))
+          },
         },
         mkTemplateCopyPlugin("src/pages"),
         mkSectionCopyPlugin("src/pages"),
@@ -90,7 +89,7 @@ const config = {
           {
             folder: "dist",
             method: (absoluteItemPath) => {
-              return (/\.md$/m).test(absoluteItemPath);
+              return markdownFilesPatterns.some((pattern) => absoluteItemPath.match(pattern))
             },
             recursive: true,
           },
