@@ -14,8 +14,8 @@
     "theme:watch:prod": "shopify-themekit watch --allow-live --env production",
     "theme:deploy": "shopify-themekit deploy --env development",
     "theme:deploy:prod": "shopify-themekit deploy --env production",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
+    "lint": "npx eslint ./src && npx stylelint ./src",
+    "lint:fix": "npx eslint ./src --fix && npx stylelint ./src --fix",
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
@@ -62,8 +62,6 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^26.6.3",
     "lint-staged": "^11.0.0",
@@ -76,13 +74,18 @@
     "sass": "^1.32.10",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
     "@shopify/themekit": "^1.1.7",
     "autoprefixer": "^10.2.6",
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.2.0",
+    "eslint-plugin-react": "^7.24.0",
+    "stylelint-scss": "^3.19.0"
   },
   "lint-staged": {
     "*.js": "npx eslint --fix"
