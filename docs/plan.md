@@ -10,15 +10,15 @@
 - [x] Implements shopify theme-kit
 - [x] Jest test environment
 - [x] Run Lint and Format code on pre-commit
-- [ ] Compress images
+- [x] Compress images
 - [ ] Dev Server
 
 ### Automation:
 
 - [ ] Add Components
 - [ ] Change/Move Components
-- [ ] Runtime Processing files
-- [ ] Files Checking
+- [x] Runtime Processing files
+- [x] Files Checking
 - [ ] Git Release Automation
 - [ ] Git Flow Checkers
 
