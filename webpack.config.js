@@ -14,7 +14,6 @@ const {
 
 
 const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
-const markdownFilesPatterns = [/\.md$/m];
 
 const config = {
   entry: {
@@ -42,7 +41,6 @@ const config = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
@@ -69,7 +67,7 @@ const config = {
           filter: (resourcePath) => {
             const fileBase = String(path.parse(resourcePath).base)
     
-            return jsFilesPatterns.some((pattern) => fileBase.match(pattern))
+            return !jsFilesPatterns.some((pattern) => fileBase.match(pattern))
           },
         },
         mkTemplateCopyPlugin("src/pages"),
@@ -89,7 +87,7 @@ const config = {
           {
             folder: "dist",
             method: (absoluteItemPath) => {
-              return markdownFilesPatterns.some((pattern) => absoluteItemPath.match(pattern))
+              return (/\.md$/m).test(absoluteItemPath);
             },
             recursive: true,
           },

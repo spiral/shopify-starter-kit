@@ -69,7 +69,7 @@ const mkJsEntryPoints = (templatePath) => {
     }),
     {}
   );
-
+  
   return {
     ...simpleFilesEntry,
     ...nestedFilesEntry,
