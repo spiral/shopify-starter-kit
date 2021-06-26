@@ -61,6 +61,7 @@ const config = {
         {
           from: path.resolve(__dirname, `theme`),
           to: path.resolve(__dirname, `dist`),
+          noErrorOnMissing: true,
         },
         {
           from: path.resolve(__dirname, `src/assets`),
