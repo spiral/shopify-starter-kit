@@ -104,9 +104,8 @@ module.exports = (env, argv) => {
     config.plugins.push(
       new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     )
-  }
   
-  if (argv.mode !== 'production') {
+    config.optimization.minimize = true
     config.devtool = 'source-map';
   }
   
