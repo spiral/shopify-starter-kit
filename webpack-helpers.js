@@ -86,18 +86,27 @@ const mkTemplateCopyPlugin = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/templates/[name][ext]`),
   noErrorOnMissing: true,
+  globOptions: {
+    ignore: ['.gitkeep']
+  },
 });
 
 const mkSnippetCopyPlugin = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
+  globOptions: {
+    ignore: ['.gitkeep']
+  },
 });
 
 const mkSectionCopyPlugin = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
+  globOptions: {
+    ignore: ['.gitkeep']
+  },
 });
 
 module.exports = {
