@@ -4,33 +4,39 @@ const fs = require("fs");
 const getDirNames = (path) =>
   fs
     .readdirSync(path, { withFileTypes: true })
+    .filter(Boolean)
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
 
 const getFilesNames = (path) =>
   fs
     .readdirSync(path, { withFileTypes: true })
+    .filter(Boolean)
     .filter((dirent) => dirent.isFile())
     .map((dirent) => dirent.name);
 
 const mkSectionsEntryPoints = (templatePath) => {
   const resultEntries = {};
 
-  getDirNames(templatePath).forEach((folderName) => {
-    getDirNames(`${templatePath}/${folderName}`).forEach((subFolder) => {
-      const fileName = subFolder; // The file should have the same name as its component
-      const filePath = path.resolve(
-        __dirname,
-        templatePath,
-        `${folderName}/${subFolder}/${fileName}.js`
-      );
-
-      if (fs.existsSync(filePath)) {
-        resultEntries[fileName] = filePath;
-      }
+  getDirNames(templatePath)
+    .filter(Boolean)
+    .forEach((folderName) => {
+      getDirNames(`${templatePath}/${folderName}`)
+        .filter(Boolean)
+        .forEach((subFolder) => {
+          const fileName = subFolder; // The file should have the same name as its component
+          const filePath = path.resolve(
+            __dirname,
+            templatePath,
+            `${folderName}/${subFolder}/${fileName}.js`
+          );
+    
+          if (fs.existsSync(filePath)) {
+            resultEntries[fileName] = filePath;
+          }
+        });
     });
-  });
-
+  
   return resultEntries;
 };
 
@@ -79,16 +85,25 @@ const mkJsEntryPoints = (templatePath) => {
 const mkTemplateCopyPlugin = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/templates/[name][ext]`),
+  noErrorOnMissing: true,
+});
+
+const mkSnippetCopyPlugin = (templatePath) => ({
+  from: `${templatePath}/*/*.liquid`,
+  to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
+  noErrorOnMissing: true,
 });
 
 const mkSectionCopyPlugin = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
+  noErrorOnMissing: true,
 });
 
 module.exports = {
   mkSectionsEntryPoints,
   mkTemplateEntryPoints,
+  mkSnippetCopyPlugin,
   mkJsEntryPoints,
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,

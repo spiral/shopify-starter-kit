@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {
   mkSectionsEntryPoints,
   mkTemplateEntryPoints,
+  mkSnippetCopyPlugin,
   mkJsEntryPoints,
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,
@@ -64,6 +65,7 @@ const config = {
         {
           from: path.resolve(__dirname, `src/assets`),
           to: path.resolve(__dirname, `dist/assets`),
+          noErrorOnMissing: true,
           filter: (resourcePath) => {
             const fileBase = String(path.parse(resourcePath).base)
     
@@ -72,10 +74,7 @@ const config = {
         },
         mkTemplateCopyPlugin("src/pages"),
         mkSectionCopyPlugin("src/pages"),
-        {
-          from: `src/snippets/*/*.liquid`,
-          to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
-        },
+        mkSnippetCopyPlugin("src/snippets"),
       ],
     }),
     new MiniCssExtractPlugin({
