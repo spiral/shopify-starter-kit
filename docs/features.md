@@ -3,29 +3,29 @@
 
 ### STRUCTURE CONTRACT
 ```
-.
-src
+/src
  ├── assets
+ |    └── index.js
  ├── pages
  |    ├── common
- |    |    └── common_section_name
- |    |        ├── common_section_name.js
- |    |        ├── common_section_name.liquid
- |    |        └── common_section_name.scss
- |    └── named_page
- |          ├── section_name
- |          |    ├── section_name.js
- |          |    ├── section_name.liquid
- |          |    └── section_name.scss
- |          ├── named_page.js
- |          ├── named_page.liquid
- |          └── named_page.scss
+ |    |    └── common-section-name
+ |    |         ├── common-section-name.js
+ |    |         ├── common-section-name.liquid
+ |    |         └── common-section-name.scss
+ |    └── prefix_page-name
+ |         ├── section-name
+ |         |    ├── section-name.js
+ |         |    ├── section-name.liquid
+ |         |    └── section-name.scss
+ |         ├── prefix.page-name.js
+ |         ├── prefix.page-name.liquid
+ |         └── prefix.page-name.scss
  ├── scripts
  └── snippets
-      └── snippet_name
-           ├── section_name.js
-           ├── section_name.luqiid
-           └── section_name.scss
+      └── snippet-name
+           ├── section-name.js
+           ├── section-name.luqiid
+           └── section-name.scss
 ```
 
 ### Description: // TODO
