@@ -20,6 +20,7 @@
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
     "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\"",
+    "gen": "yo ./generator",
     "pre-commit": "npm run lint:fix && lint-staged"
   },
   "repository": {
@@ -27,15 +28,12 @@
     "url": "git+https://github.com/Kreezag/shopify-front-boilerplate.git"
   },
   "keywords": [
-    "Shopify",
     "Boilerplate",
-    "Shopify Theme Kit",
     "Codestyle",
-    "Prettier",
-    "Eslint",
-    "Scss",
-    "Postcss",
     "Jest",
+    "Shopify",
+    "Shopify Theme Kit",
+    "Scss",
     "Webpack"
   ],
   "author": "Kreezag",
@@ -65,6 +63,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "gulp-rename": "1.2.2",
     "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^26.6.3",
     "lint-staged": "^11.0.0",
@@ -85,7 +84,9 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "@shopify/themekit": "^1.1.7"
+    "@shopify/themekit": "^1.1.7",
+    "lodash": "^4.17.21",
+    "yo": "^4.2.0"
   },
   "lint-staged": {
     "*.js": "npx eslint --fix"

@@ -1,0 +1,4 @@
+<% if (sectionName) { %>@import './<%= sectionName %>/<%= sectionName %>.scss';
+
+<% } %>.<%= className %> {
+}
