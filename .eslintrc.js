@@ -15,4 +15,5 @@ module.exports = {
     'newline-after-var': ['error', 'always'],
     'no-console': ['error', { allow: ['warn', 'error'] }],
   },
+  ignorePatterns: ['generator/templates'],
 };
