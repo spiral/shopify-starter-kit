@@ -6,5 +6,5 @@
 <div class="<%= className %>"
      data-template="<%= className %>"
 >
-  {% section '<%= sectionName %>' %}
+  <% if (sectionName) { %>{% section '<%= sectionName %>' %}<% } %>
 </div>

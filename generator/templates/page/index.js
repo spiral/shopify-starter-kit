@@ -1,2 +1,2 @@
 import './<%= name %>.scss';
-import './<%= sectionName %>/<%= sectionName %>';
+<% if (sectionName) { %>import './<%= sectionName %>/<%= sectionName %>';<% } %>

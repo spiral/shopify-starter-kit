@@ -73,6 +73,15 @@ module.exports = class extends Generator {
           return answers.component === 'page';
         },
       },
+      {
+        type: 'confirm',
+        name: 'has_hero_section',
+        message: 'Do you want to add hero section?',
+        when(answers) {
+          return answers.component === 'page';
+        },
+        default: true,
+      },
     ]);
   }
 
@@ -100,7 +109,11 @@ module.exports = class extends Generator {
     }
 
     if (self.answers.component === 'page') {
-      this.createPage(self.answers.name, self.answers.page_prefix);
+      this.createPage(
+        self.answers.name,
+        self.answers.page_prefix,
+        self.answers.has_hero_section
+      );
     }
   }
 
@@ -131,7 +144,7 @@ module.exports = class extends Generator {
     }
   }
 
-  async createPage(name, prefix) {
+  async createPage(name, prefix, hasHeroSection) {
     const self = this;
 
     const prefixedName = `${prefix}_${name}`;
@@ -143,11 +156,13 @@ module.exports = class extends Generator {
         {
           name: `${prefix}.${name}`,
           className: prefixedName,
-          sectionName: `${name}-hero`,
+          sectionName: hasHeroSection ? `${name}-hero` : null,
         }
       );
 
-      this.createSection(`${name}-hero`, prefixedName);
+      if (hasHeroSection) {
+        this.createSection(`${name}-hero`, prefixedName);
+      }
     }
   }
 

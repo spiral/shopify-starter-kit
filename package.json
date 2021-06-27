@@ -20,6 +20,7 @@
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\"",
     "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\"",
+    "gen": "yo ./generator",
     "pre-commit": "npm run lint:fix && lint-staged"
   },
   "repository": {
