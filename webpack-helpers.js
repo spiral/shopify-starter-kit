@@ -117,4 +117,5 @@ module.exports = {
   mkJsEntryPoints,
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,
+  getDirNames,
 };

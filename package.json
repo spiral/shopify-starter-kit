@@ -84,6 +84,7 @@
   },
   "dependencies": {
     "@shopify/themekit": "^1.1.7",
+    "lodash": "^4.17.21",
     "yo": "^4.2.0"
   },
   "lint-staged": {
