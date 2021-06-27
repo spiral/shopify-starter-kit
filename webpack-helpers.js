@@ -44,13 +44,18 @@ const mkSectionsEntryPoints = (templatePath) => {
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
-    .reduce(
-      (res, name) => ({
+    .reduce((res, name) => {
+      const fileName = name.replace(/_/, '.');
+
+      return {
         ...res,
-        [name]: path.resolve(__dirname, templatePath, `${name}/${name}.js`),
-      }),
-      {}
-    );
+        [fileName]: path.resolve(
+          __dirname,
+          templatePath,
+          `${name}/${fileName}.js`
+        ),
+      };
+    }, {});
 
 const mkJsEntryPoints = (templatePath) => {
   const simpleFilesEntry = getFilesNames(templatePath).reduce(
