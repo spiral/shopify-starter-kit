@@ -15,7 +15,7 @@
 
 ### Automation:
 
-- [ ] Add Components
+- [x] Add Components
 - [ ] Change/Move Components
 - [x] Runtime Processing files
 - [x] Files Checking
