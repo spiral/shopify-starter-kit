@@ -12,6 +12,7 @@
 - [x] Run Lint and Format code on pre-commit
 - [x] Compress images
 - [ ] Dev Server
+- [ ] File structure and build flow for customers templates
 
 ### Automation:
 
@@ -27,5 +28,7 @@
 - [x] Loading required styles
 - [ ] Styles prefetch
 - [ ] Scripts prefetch
+
+
 
 etc.
