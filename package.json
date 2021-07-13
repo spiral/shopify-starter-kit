@@ -81,12 +81,13 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0",
     "webpack": "^5.33.2",
-    "webpack-cli": "^4.6.0"
+    "webpack-cli": "^4.6.0",
+    "yeoman-generator": "^5.4.0",
+    "yo": "^4.2.0"
   },
   "dependencies": {
     "@shopify/themekit": "^1.1.7",
-    "lodash": "^4.17.21",
-    "yo": "^4.2.0"
+    "lodash": "^4.17.21"
   },
   "lint-staged": {
     "*.js": "npx eslint --fix"

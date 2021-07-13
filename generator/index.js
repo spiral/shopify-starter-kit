@@ -2,8 +2,9 @@
 const { startCase, toLower } = require('lodash');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const rename = require('gulp-rename');
-const Generator = require('yeoman-generator');
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const Generator = require('yeoman-generator');
 const { getDirNames } = require('../webpack-helpers');
 
 module.exports = class extends Generator {
@@ -88,7 +89,7 @@ module.exports = class extends Generator {
   async writing() {
     const self = this;
 
-    self.registerTransformStream(
+    self.queueTransformStream(
       rename((_path) => {
         const lastName = path.basename(_path.dirname);
 
