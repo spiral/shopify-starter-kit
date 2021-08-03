@@ -17,7 +17,7 @@ const getFilesNames = (_path) =>
 
 const mkSectionsEntryPoints = (templatePath) => {
   const resultEntries = {};
-
+  
   getDirNames(templatePath)
     .filter(Boolean)
     .forEach((folderName) => {
@@ -31,13 +31,13 @@ const mkSectionsEntryPoints = (templatePath) => {
             templatePath,
             `${folderName}/${subFolder}/${fileName}.js`
           );
-
+          
           if (fs.existsSync(filePath)) {
             resultEntries[fileName] = filePath;
           }
         });
     });
-
+  
   return resultEntries;
 };
 
@@ -46,7 +46,7 @@ const mkTemplateEntryPoints = (templatePath) =>
     .filter((name) => name !== 'common')
     .reduce((res, name) => {
       const fileName = name.replace(/_/, '.');
-
+      
       return {
         ...res,
         [fileName]: path.resolve(
@@ -63,17 +63,17 @@ const mkJsEntryPoints = (templatePath) => {
       ...res,
       ...(path.parse(name).ext === '.js'
         ? {
-            [path.parse(name).name]: path.resolve(
-              __dirname,
-              templatePath,
-              name
-            ),
-          }
+          [path.parse(name).name]: path.resolve(
+            __dirname,
+            templatePath,
+            name
+          ),
+        }
         : null),
     }),
     {}
   );
-
+  
   const nestedFilesEntry = getDirNames(templatePath).reduce(
     (res, name) => ({
       ...res,
@@ -81,7 +81,7 @@ const mkJsEntryPoints = (templatePath) => {
     }),
     {}
   );
-
+  
   return {
     ...simpleFilesEntry,
     ...nestedFilesEntry,
