@@ -2,9 +2,9 @@
 const { startCase, toLower } = require('lodash');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const rename = require('gulp-rename');
-const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const Generator = require('yeoman-generator');
+const path = require('path');
 const { getDirNames } = require('../webpack-helpers');
 
 module.exports = class extends Generator {
