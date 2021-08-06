@@ -5,7 +5,6 @@ const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
-  mkSectionsEntryPoints,
   mkTemplateEntryPoints,
   mkSnippetCopyPlugin,
   mkJsEntryPoints,
@@ -17,7 +16,6 @@ const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 
 const config = {
   entry: {
-    ...mkSectionsEntryPoints('src/pages'),
     ...mkTemplateEntryPoints('src/pages'),
     ...mkJsEntryPoints('src/assets'),
   },
@@ -39,7 +37,7 @@ const config = {
         },
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(sass|scss|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -60,6 +58,11 @@ const config = {
         {
           from: path.resolve(__dirname, `theme`),
           to: path.resolve(__dirname, `dist`),
+          noErrorOnMissing: true,
+        },
+        {
+          from: path.resolve(__dirname, `src/layout`),
+          to: path.resolve(__dirname, `dist/layout`),
           noErrorOnMissing: true,
         },
         {

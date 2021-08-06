@@ -14,7 +14,7 @@ config/shopify.yml
 npm-debug.log
 .env.local
 .env
-.husky
+.eslintcache
 
 # Compiled source #
 ###################

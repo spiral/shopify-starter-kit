@@ -1,0 +1,15 @@
+# Ignore liquid templates:
+*.liquid
+
+# Other files:
+*.otf
+*.png
+*.jpg
+*.woff
+*.woff2
+*.ttf
+*.json
+*.eot
+
+# Ignore node_modules
+node_modules/**

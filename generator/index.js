@@ -2,9 +2,9 @@
 const { startCase, toLower } = require('lodash');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const rename = require('gulp-rename');
-const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const Generator = require('yeoman-generator');
+const path = require('path');
 const { getDirNames } = require('../webpack-helpers');
 
 module.exports = class extends Generator {
@@ -148,21 +148,18 @@ module.exports = class extends Generator {
   async createPage(name, prefix, hasHeroSection) {
     const self = this;
 
-    const prefixedName = `${prefix}_${name}`;
+    const pageName = `${prefix}-${name}`;
+    const fileName = `${prefix}.${name}`;
 
     if (name) {
-      self.fs.copyTpl(
-        self.templatePath('page'),
-        `./src/pages/${prefixedName}`,
-        {
-          name: `${prefix}.${name}`,
-          className: prefixedName,
-          sectionName: hasHeroSection ? `${name}-hero` : null,
-        }
-      );
+      self.fs.copyTpl(self.templatePath('page'), `./src/pages/${fileName}`, {
+        name: `${fileName}`,
+        className: pageName,
+        sectionName: hasHeroSection ? `${pageName}-hero` : null,
+      });
 
       if (hasHeroSection) {
-        this.createSection(`${name}-hero`, prefixedName);
+        this.createSection(`${pageName}-hero`, fileName);
       }
     }
   }

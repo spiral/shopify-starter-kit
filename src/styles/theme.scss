@@ -1,0 +1,50 @@
+@charset 'UTF-8';
+
+/**
+ * [replace with theme name] | Built with Slate
+ */
+@import '~normalize.css/normalize';
+
+// Settings
+@import './variables';
+
+// Tools
+@import './tools/mixins';
+
+// Core
+@import './core/forms';
+@import './core/helpers';
+@import './core/layout';
+@import './core/media';
+@import './core/responsive-tables';
+@import './core/rte';
+@import './core/typography';
+
+// Components
+@import './components/buttons';
+@import './components/hero-banner';
+@import './components/placeholders';
+@import './components/address-forms';
+
+// Common Sections
+@import '../pages/common/blog-posts/blog-posts';
+@import '../pages/common/collection-list/collection-list';
+@import '../pages/common/featured-collection/featured-collection';
+@import '../pages/common/featured-product/featured-product';
+@import '../pages/common/image-with-text/image-with-text';
+@import '../pages/common/header/header';
+@import '../pages/common/footer/footer';
+@import '../pages/common/product/product';
+@import '../pages/common/newsletter/newsletter';
+@import '../pages/common/rich-text/rich-text';
+
+// Snippets
+@import '../snippets/icons/icons';
+@import '../snippets/social-sharing/social-sharing';
+@import '../snippets/no-blocks/no-blocks';
+@import '../snippets/pagination/pagination';
+@import '../snippets/responsive-image/responsive-images';
+
+// Templates
+@import './templates/gift_card';
+@import './templates/product';

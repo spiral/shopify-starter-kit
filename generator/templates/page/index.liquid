@@ -1,10 +1,7 @@
 {{ '<%= name %>.js' | asset_url | script_tag }}
-<style type="text/css">
-  @import url("{{ '<%= name %>.css' | asset_url }}");
-</style>
 
 <div class="<%= className %>"
-     data-template="<%= className %>"
+     data-template="<%= name %>"
 >
   <% if (sectionName) { %>{% section '<%= sectionName %>' %}<% } %>
 </div>

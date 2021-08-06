@@ -25,10 +25,15 @@
 
 ### Pages load time optimisation
 
-- [x] Loading required styles
+- [ ] Loading required styles
+- [x] Loading required scripts
 - [ ] Styles prefetch
 - [ ] Scripts prefetch
 
+### Research and develop
 
+- [ ] Update build and file procession for customer templates
+- [ ] Optimize loading styles for the page
+- [ ] Update file structure for templates
 
 etc.
