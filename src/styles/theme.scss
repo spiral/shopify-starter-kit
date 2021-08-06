@@ -23,7 +23,6 @@
 // Components
 @import './components/buttons';
 @import './components/hero-banner';
-@import './components/icons';
 @import './components/placeholders';
 @import './components/responsive-images';
 @import './components/address-forms';
@@ -39,6 +38,9 @@
 @import '../pages/common/product/product';
 @import '../pages/common/newsletter/newsletter';
 @import '../pages/common/rich-text/rich-text';
+
+// Snippets
+@import '../snippets/icons/icons';
 
 // Templates
 @import './templates/gift_card';
