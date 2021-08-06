@@ -8,7 +8,9 @@
     "order/properties-alphabetical-order": true,
     "order/order": ["custom-properties", "declarations"],
     "max-empty-lines": 2,
-    "unit-allowed-list": ["em", "rem", "%", "s"],
-    "color-hex-case": ["lower", { "message": "Lowercase letters are easier to distinguish from numbers" }]
+    "unit-allowed-list": ["px","em", "rem", "%", "s", "deg"],
+    "color-hex-case": ["lower", { "message": "Lowercase letters are easier to distinguish from numbers" }],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   }
 }

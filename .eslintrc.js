@@ -14,6 +14,11 @@ module.exports = {
     'max-len': ['error', { code: 80 }],
     'newline-after-var': ['error', 'always'],
     'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-use-before-define': [
+      'error',
+      { functions: false, variables: true, classes: true },
+    ],
+    'import/prefer-default-export': 'off',
   },
-  ignorePatterns: ['generator/templates'],
+  ignorePatterns: ['generator/templates', 'src/scripts/domPolyfills'],
 };
