@@ -24,7 +24,6 @@
 @import './components/buttons';
 @import './components/hero-banner';
 @import './components/placeholders';
-@import './components/responsive-images';
 @import './components/address-forms';
 
 // Common Sections
@@ -41,6 +40,10 @@
 
 // Snippets
 @import '../snippets/icons/icons';
+@import '../snippets/social-sharing/social-sharing';
+@import '../snippets/no-blocks/no-blocks';
+@import '../snippets/pagination/pagination';
+@import '../snippets/responsive-image/responsive-images';
 
 // Templates
 @import './templates/gift_card';

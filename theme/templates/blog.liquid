@@ -90,7 +90,9 @@
   {% endfor %}
 
   {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
+    {% include 'pagination' with
+      paginate: paginate
+    %}
   {% endif %}
 
 {% endpaginate %}

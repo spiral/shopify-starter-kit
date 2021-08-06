@@ -69,7 +69,11 @@
 {%- endcapture -%}
 {%- assign image_widths = image_widths | strip -%}
 
-<div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+<div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}"
+     data-image-id="{{ image.id }}"
+     class="responsive-image {{ wrapper_class }}"
+     {{ wrapper_attributes }}
+>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image lazyload {{ image_class }}"
     src="{{ image | img_url: '300x' }}"
