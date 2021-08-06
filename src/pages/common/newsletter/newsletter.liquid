@@ -6,7 +6,9 @@
   - Heading: title of the newsletter section
   - Subheading: description of the newsletter section
 {%- endcomment -%}
-<section>
+<section class="newsletter"
+         data-section="newsletter"
+>
   {% if section.settings.section_title != blank %}
     <label for="Email">{{ section.settings.section_title | escape }}</label>
   {% endif %}

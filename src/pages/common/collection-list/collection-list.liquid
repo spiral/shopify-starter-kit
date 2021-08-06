@@ -6,7 +6,9 @@
   - Heading: title of the collection list section
   - Collection
 {%- endcomment -%}
-<section class="collection-list">
+<section class="collection-list"
+         data-section="collection-list"
+>
   {% if section.settings.title != blank %}
     <h2 class="collection-list__title">{{ section.settings.title | escape }}</h2>
   {% endif %}

@@ -1,4 +1,7 @@
-<section data-section-id="{{ section.id }}" data-section-type="product">
+<section class="product"
+         data-section-id="{{ section.id }}"
+         data-section="product"
+>
 
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
@@ -24,8 +27,15 @@
     <ul>
       {% for image in product.images %}
         <li>
-          <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
-            <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+          <a href="{{ image.src | img_url: '480x480' }}"
+             data-thumbnail-id="{{ image.id }}"
+             data-product-single-thumbnail
+             {% if featured_image == image %}aria-current="true"{% endif %}
+          >
+            <img class="product-single__thumbnail-image"
+                 src="{{ image.src | img_url: '160x160' }}"
+                 alt="{{ image.alt | escape }}"
+            >
           </a>
         </li>
       {% endfor %}

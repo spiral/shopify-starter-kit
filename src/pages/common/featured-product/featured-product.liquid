@@ -7,10 +7,10 @@
   {%- assign onboarding_title = 'homepage.onboarding.product_title' | t -%}
 {% endif %}
 
-<div data-section-id="{{ section.id }}" data-section-type="product">
-
-
-
+<div class="featured-product"
+     data-section-id="{{ section.id }}"
+     data-section="featured-product"
+>
   {% for image in product.images %}
     {% capture wrapper_class %}
       {%- unless featured_image == image -%}

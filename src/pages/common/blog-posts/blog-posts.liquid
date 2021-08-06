@@ -11,7 +11,9 @@
   - Show author
   - Show date
 {%- endcomment -%}
-<section>
+<section class="blog-post"
+         data-section="blog-post"
+>
   {% if section.settings.title != blank %}
     <h2>{{ section.settings.title | escape }}</h2>
   {% endif %}
@@ -23,7 +25,7 @@
     as a list of content items. Non-visual users will expect lists of content
     to appear in a list structure, allowing for easier understanding and navigation of list items.
   {%- endcomment -%}
-  <ul class="blog-post">
+  <ul class="blog-post__in">
     {% for article in blog.articles limit: section.settings.post_limit %}
       <li class="blog-post__item">
         {%- comment -%}

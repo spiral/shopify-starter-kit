@@ -8,7 +8,9 @@
   Theme Store optional settings
   - Heading: title of the featured collection section
 {%- endcomment -%}
-<section class="featured-collection">
+<section class="featured-collection"
+         data-section="featured-collection"
+>
   {% if section.settings.title != blank %}
     <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
   {% endif %}
@@ -16,7 +18,7 @@
   {%- assign collection = collections[section.settings.collection] -%}
 
   {% for product in collection.products limit: 6 %}
-    <a href="{{ product.url | within: collection }}" class="featured-collection-item">
+    <a href="{{ product.url | within: collection }}" class="featured-collection__item">
       {% if product.featured_image != blank %}
         <div class="featured-collection__image">
           {% include 'responsive-image' with
@@ -49,7 +51,7 @@
     </a>
   {% else %}
     {% for i in (1..6) %}
-      <a href="#" class="featured-collection-item">
+      <a href="#" class="featured-collection__item">
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
 

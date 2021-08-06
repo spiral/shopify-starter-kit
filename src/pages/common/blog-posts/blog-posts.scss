@@ -1,4 +1,8 @@
 .blog-post {
+  display: block;
+}
+
+.blog-post__in {
   display: flex;
   flex-wrap: wrap;
   list-style: none;

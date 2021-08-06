@@ -6,7 +6,9 @@
   - Heading: title of the rich text section
   - Text: description of the rich text section
 {%- endcomment -%}
-<section>
+<section class="rich-text"
+         data-section="rich-text"
+>
   {%- if section.settings.title != blank -%}
     <h2>{{ section.settings.title | escape }}</h2>
   {%- endif -%}
