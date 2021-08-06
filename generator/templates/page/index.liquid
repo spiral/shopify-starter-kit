@@ -1,7 +1,7 @@
 {{ '<%= name %>.js' | asset_url | script_tag }}
 
 <div class="<%= className %>"
-     data-template="<%= className %>"
+     data-template="<%= name %>"
 >
   <% if (sectionName) { %>{% section '<%= sectionName %>' %}<% } %>
 </div>

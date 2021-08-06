@@ -5,7 +5,6 @@ const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
-  mkSectionsEntryPoints,
   mkTemplateEntryPoints,
   mkSnippetCopyPlugin,
   mkJsEntryPoints,
@@ -17,7 +16,6 @@ const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 
 const config = {
   entry: {
-    ...mkSectionsEntryPoints('src/pages'),
     ...mkTemplateEntryPoints('src/pages'),
     ...mkJsEntryPoints('src/assets'),
   },
@@ -73,7 +71,7 @@ const config = {
           noErrorOnMissing: true,
           filter: (resourcePath) => {
             const fileBase = String(path.parse(resourcePath).base);
-            
+
             return !jsFilesPatterns.some((pattern) => fileBase.match(pattern));
           },
         },
@@ -104,10 +102,10 @@ module.exports = (env, argv) => {
     config.plugins.push(
       new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
     );
-    
+
     config.optimization.minimize = true;
     config.devtool = 'source-map';
   }
-  
+
   return config;
 };
