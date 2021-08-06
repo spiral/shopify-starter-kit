@@ -86,8 +86,17 @@
     "yo": "^4.2.0"
   },
   "dependencies": {
-    "@shopify/themekit": "^1.1.7",
-    "lodash": "^4.17.21"
+    "@shopify/theme-a11y": "^4.1.1",
+    "@shopify/theme-addresses": "^4.1.1",
+    "@shopify/theme-cart": "^4.1.1",
+    "@shopify/theme-currency": "^4.1.1",
+    "@shopify/theme-product": "^4.1.1",
+    "@shopify/theme-product-form": "^4.1.1",
+    "@shopify/theme-sections": "^4.1.1",
+    "@shopify/themekit": "^1.1.9",
+    "lazysizes": "^5.3.2",
+    "lodash": "^4.17.21",
+    "normalize.css": "^8.0.1"
   },
   "lint-staged": {
     "*.js": "npx eslint --fix"
