@@ -1,0 +1,54 @@
+@include at-query($small) {
+  .responsive-table {
+    width: 100%;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+    }
+
+    // IE9 table layout fixes
+    tr,
+    td {
+      clear: both;
+      float: left;
+      width: 100%;
+    }
+
+    th,
+    td {
+      display: block;
+      margin: 0;
+      padding: $grid-gutter / 2;
+      text-align: right;
+    }
+
+    td::before {
+      content: attr(data-label);
+      float: left;
+      padding-right: 10px;
+      text-align: center;
+    }
+  }
+
+  // Add a keyline between rows
+  .responsive-table-row + .responsive-table-row,
+  tfoot > .responsive-table-row:first-child {
+    margin-top: 10px;
+    padding-top: $grid-gutter / 2;
+    position: relative;
+
+    &::after {
+      border-bottom: 1px solid $color-border;
+      content: '';
+      display: block;
+      left: $grid-gutter / 2;
+      position: absolute;
+      right: $grid-gutter / 2;
+      top: 0;
+    }
+  }
+}

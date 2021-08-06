@@ -1,0 +1,32 @@
+.placeholder-svg {
+  background-color: $placeholder-color-background;
+  border: 1px solid $placeholder-color-foreground;
+  display: block;
+  fill: $placeholder-color-foreground;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.placeholder-svg--small {
+  width: 480px;
+}
+
+.placeholder-noblocks {
+  padding: 40px;
+  text-align: center;
+}
+
+// Mimic a background image by wrapping the placeholder svg with this class
+.placeholder-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  .icon {
+    border: 0;
+  }
+}
