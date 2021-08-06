@@ -14,7 +14,6 @@ config/shopify.yml
 npm-debug.log
 .env.local
 .env
-.husky
 
 # Compiled source #
 ###################
