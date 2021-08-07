@@ -1,7 +1,7 @@
 {
   "name": "shopify-starter-kit",
   "version": "0.0.1",
-  "description": "Boilerplate for the large Shopify repo",
+  "description": "Shopify store development starter kit",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --progress",
