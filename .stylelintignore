@@ -11,5 +11,6 @@
 *.json
 *.eot
 
-# Ignore node_modules
+# Ignore app folders
 node_modules/**
+generator/**
