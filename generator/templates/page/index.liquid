@@ -1,5 +1,9 @@
 {{ '<%= name %>.js' | asset_url | script_tag }}
 
+<style>
+  {% render '<%= name %>.css' %}
+</style>
+
 <div class="<%= className %>"
      data-template="<%= name %>"
 >
