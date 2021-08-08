@@ -13,6 +13,7 @@
 - [x] Compress images
 - [ ] Dev Server
 - [ ] File structure and build flow for customers templates
+- [ ] Download existed Shopify Store into theme folder
 
 ### Automation:
 
