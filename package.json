@@ -84,7 +84,7 @@
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
     "yeoman-generator": "^5.4.0",
-    "yo": "^4.2.0"
+    "yo": "^4.3.0"
   },
   "dependencies": {
     "@shopify/theme-a11y": "^4.1.1",

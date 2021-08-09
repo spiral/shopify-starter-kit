@@ -81,7 +81,10 @@ const config = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].css',
+      filename: ({ chunk: { name } }) =>
+        name.includes('theme')
+          ? `assets/${name}.css`
+          : `snippets/${name}.css.liquid`,
     }),
     new RemoveWebpackPlugin({
       after: {

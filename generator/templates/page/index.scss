@@ -1,4 +1,13 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
 <% if (sectionName) { %>@import './<%= sectionName %>/<%= sectionName %>.scss';
 
+
 <% } %>.<%= className %> {
+  display: block;
 }
