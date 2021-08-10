@@ -5,9 +5,8 @@
 @import '../../styles/mixins';
 
 // Sections
-<% if (sectionName) { %>@import './<%= sectionName %>/<%= sectionName %>.scss';
+@import "./product/product";
 
-
-<% } %>.<%= className %> {
+.product {
   display: block;
 }

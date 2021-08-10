@@ -1,13 +1,23 @@
-{% section 'product' %}
+{{ 'product.js' | asset_url | script_tag }}
 
-<script type="application/ld+json">
+<style>
+  {% render 'product.css' %}
+</style>
+
+<div class="product"
+     data-template="product"
+>
+  {% section 'product' %}
+</div>
+
+  <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
   "@type": "Product",
   "name": "{{ product.title | escape }}",
   "url": "{{ shop.url }}{{ product.url }}",
   {% if product.featured_image %}
-    {% assign image_size = product.featured_image.width | append: 'x' %}
+  {% assign image_size = product.featured_image.width | append: 'x' %}
     "image": [
       "https:{{ product.featured_image.src | img_url: image_size }}"
     ],
@@ -36,8 +46,8 @@
                 {% assign variant_image_size = variant.image.width | append: 'x' %}
                 "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
               {% endif %}
-              {% if variant.title != blank %}
-                "name" : "{{ variant.title | escape }}",
+                {% if variant.title != blank %}
+              "name" : "{{ variant.title | escape }}",
               {% endif %}
               {% if variant.sku != blank %}
                 "sku": "{{ variant.sku }}",

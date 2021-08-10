@@ -1,0 +1,11 @@
+{{ 'index.js' | asset_url | script_tag }}
+
+<style>
+  {% render 'index.css' %}
+</style>
+
+<div class="index"
+     data-template="index"
+>
+  {{ content_for_index }}
+</div>
