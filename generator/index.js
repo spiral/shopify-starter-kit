@@ -16,7 +16,7 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'component',
         message: 'Who do you want to generate?',
-        choices: ['snippet', 'section', 'page'],
+        choices: ['snippet', 'section', 'template'],
         default: 'snippet',
       },
       {
@@ -30,7 +30,7 @@ module.exports = class extends Generator {
       },
       {
         type: 'list',
-        name: 'page',
+        name: 'template',
         message: 'Please select section destination?',
         choices: getDirNames('./src/pages'),
         when(answers) {
@@ -49,8 +49,8 @@ module.exports = class extends Generator {
       },
       {
         type: 'list',
-        name: 'page_prefix',
-        message: 'Choose page prefix',
+        name: 'template_prefix',
+        message: 'Choose template prefix',
         choices: [
           'article',
           'blog',
@@ -61,17 +61,17 @@ module.exports = class extends Generator {
           'search',
         ],
         when(answers) {
-          return answers.component === 'page';
+          return answers.component === 'template';
         },
-        default: 'page',
+        default: 'template',
       },
       {
         type: 'input',
         name: 'name',
-        message: 'Enter your page name',
+        message: 'Enter your template suffix',
         default: '',
         when(answers) {
-          return answers.component === 'page';
+          return answers.component === 'template';
         },
       },
       {
@@ -79,7 +79,7 @@ module.exports = class extends Generator {
         name: 'has_hero_section',
         message: 'Do you want to add hero section?',
         when(answers) {
-          return answers.component === 'page';
+          return answers.component === 'template';
         },
         default: true,
       },
@@ -106,13 +106,13 @@ module.exports = class extends Generator {
     }
 
     if (self.answers.component === 'section') {
-      this.createSection(self.answers.name, self.answers.page);
+      this.createSection(self.answers.name, self.answers.template);
     }
 
-    if (self.answers.component === 'page') {
-      this.createPage(
+    if (self.answers.component === 'template') {
+      this.createTemplate(
         self.answers.name,
-        self.answers.page_prefix,
+        self.answers.template_prefix,
         self.answers.has_hero_section
       );
     }
@@ -130,13 +130,13 @@ module.exports = class extends Generator {
     }
   }
 
-  async createSection(name, page = 'common') {
+  async createSection(name, template = 'common') {
     const self = this;
 
     if (name) {
       self.fs.copyTpl(
         self.templatePath('section'),
-        self.destinationPath(`./src/pages/${page}/${name}`),
+        self.destinationPath(`./src/pages/${template}/${name}`),
         {
           name,
           schemaName: startCase(toLower(name)),
@@ -145,18 +145,22 @@ module.exports = class extends Generator {
     }
   }
 
-  async createPage(name, prefix, hasHeroSection) {
+  async createTemplate(name, prefix, hasHeroSection) {
     const self = this;
 
-    const pageName = `${prefix}-${name}`;
-    const fileName = `${prefix}.${name}`;
+    const pageName = name ? `${prefix}-${name}` : prefix;
+    const fileName = name ? `${prefix}.${name}` : prefix;
 
-    if (name) {
-      self.fs.copyTpl(self.templatePath('page'), `./src/pages/${fileName}`, {
-        name: `${fileName}`,
-        className: pageName,
-        sectionName: hasHeroSection ? `${pageName}-hero` : null,
-      });
+    if (fileName) {
+      self.fs.copyTpl(
+        self.templatePath('template'),
+        `./src/pages/${fileName}`,
+        {
+          name: `${fileName}`,
+          className: pageName,
+          sectionName: hasHeroSection ? `${pageName}-hero` : null,
+        }
+      );
 
       if (hasHeroSection) {
         this.createSection(`${pageName}-hero`, fileName);
