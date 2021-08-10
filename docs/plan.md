@@ -35,6 +35,6 @@
 
 - [ ] Update build and file procession for customer templates
 - [x] Optimize loading styles for the pages
-- [ ] Update file structure for templates
+- [ ] Update file structure for customer templates
 
 etc.
