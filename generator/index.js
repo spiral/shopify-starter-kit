@@ -52,23 +52,28 @@ module.exports = class extends Generator {
         name: 'template_prefix',
         message: 'Choose template prefix',
         choices: [
+          '404',
           'article',
           'blog',
           'cart',
           'collection',
+          'gift_card',
+          'list-collections',
+          'index',
           'page',
+          'password',
           'product',
           'search',
         ],
         when(answers) {
           return answers.component === 'template';
         },
-        default: 'template',
+        default: 'page',
       },
       {
         type: 'input',
         name: 'name',
-        message: 'Enter your template suffix',
+        message: 'Enter your template name',
         default: '',
         when(answers) {
           return answers.component === 'template';
@@ -81,7 +86,7 @@ module.exports = class extends Generator {
         when(answers) {
           return answers.component === 'template';
         },
-        default: true,
+        default: false,
       },
     ]);
   }
@@ -94,10 +99,7 @@ module.exports = class extends Generator {
         const lastName = path.basename(_path.dirname);
 
         // eslint-disable-next-line no-param-reassign
-        _path.basename = _path.basename.replace(
-          /(index)/g,
-          lastName.split('_').join('.')
-        );
+        _path.basename = _path.basename.replace(/(index)/g, lastName);
       })
     );
 
