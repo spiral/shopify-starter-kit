@@ -34,7 +34,7 @@
 ### Research and develop
 
 - [ ] Update build and file procession for customer templates
-- [ ] Optimize loading styles for the page
+- [x] Optimize loading styles for the pages
 - [ ] Update file structure for templates
 
 etc.
