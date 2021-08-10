@@ -1,3 +1,9 @@
+{{ 'article.js' | asset_url | script_tag }}
+
+<style>
+  {% render 'article.css' %}
+</style>
+
 {%- comment -%}
   In order to avoid showing "success" message when we post comments
   with invalid format (eg. blank fields), we added logic to make sure it doesn't show.
@@ -32,16 +38,20 @@
   {%- endunless -%}
 {%- endif -%}
 
-<article role="article">
+
+<article role="article"
+         class="article"
+         data-template="article"
+>
 
   {% if article.image %}
-    <div class="hero-banner hero-banner--article lazyload"
+    <div class="article__hero-banner lazyload"
          data-bgset="{% render 'responsive-bg-image', image: article.image %}"
     ></div>
 
     <noscript>
       {%- assign image_size = article.image.width | append: 'x' -%}
-      <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
+      <div class="article__hero-banner" style="background-image: {{ article.image | img_url: image_size }}"></div>
     </noscript>
   {% endif %}
 
@@ -74,51 +84,51 @@
 
     {% paginate article.comments by 5 %}
 
-    <div id="comments">
-      {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
-        <p class="form-success">
-          {% if blog.moderated? and comment.status != 'published' %}
-            {{ 'blogs.comments.success_moderated' | t }}
-          {% else %}
-            {{ 'blogs.comments.success' | t }}
-          {% endif %}
-        </p>
-      {% endif %}
-
-      {% if number_of_comments > 0 %}
-        <ul>
-          {% comment %}
-            Display comment from URL parameters if it is waiting moderation
-            We added "comment.id" check to make sure we don't display markup if there are form errors
-          {% endcomment %}
-          {% if comment and comment.status != 'published' and comment.id != blank %}
-            <li id="{{ comment.id }}">
-              <div class="rte">
-                {{ comment.content }}
-              </div>
-              {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-              <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
-            </li>
-          {% endif %}
-
-          {% for comment in article.comments %}
-            <li id="{{ comment.id }}">
-              <div class="rte">
-                {{ comment.content }}
-              </div>
-              {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-              <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
-            </li>
-          {% endfor %}
-        </ul>
-
-        {% if paginate.pages > 1 %}
-          {% include 'pagination' with
-            paginate: paginate
-          %}
+      <div id="comments">
+        {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
+          <p class="form-success">
+            {% if blog.moderated? and comment.status != 'published' %}
+              {{ 'blogs.comments.success_moderated' | t }}
+            {% else %}
+              {{ 'blogs.comments.success' | t }}
+            {% endif %}
+          </p>
         {% endif %}
-      {% endif %}
-    </div>
+
+        {% if number_of_comments > 0 %}
+          <ul>
+            {% comment %}
+              Display comment from URL parameters if it is waiting moderation
+              We added "comment.id" check to make sure we don't display markup if there are form errors
+            {% endcomment %}
+            {% if comment and comment.status != 'published' and comment.id != blank %}
+              <li id="{{ comment.id }}">
+                <div class="rte">
+                  {{ comment.content }}
+                </div>
+                {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+              </li>
+            {% endif %}
+
+            {% for comment in article.comments %}
+              <li id="{{ comment.id }}">
+                <div class="rte">
+                  {{ comment.content }}
+                </div>
+                {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' with
+              paginate: paginate
+            %}
+          {% endif %}
+        {% endif %}
+      </div>
 
     {% endpaginate %}
 
@@ -187,7 +197,7 @@
     "description": "{{ article.excerpt | strip_html }}",
   {% endif %}
   {% if article.image %}
-    {% assign image_size = article.image.width | append: 'x' %}
+{% assign image_size = article.image.width | append: 'x' %}
     "image": [
       "https:{{ article | img_url: image_size }}"
     ],
@@ -201,7 +211,7 @@
   "publisher": {
     "@type": "Organization",
     {% if settings.share_image %}
-      {% assign image_size = settings.share_image.width | append: 'x' %}
+{% assign image_size = settings.share_image.width | append: 'x' %}
       "logo": {
         "@type": "ImageObject",
         "height": "{{ settings.share_image.height }}",
@@ -209,7 +219,7 @@
         "width": "{{ settings.share_image.width }}"
       },
     {% elsif article.image %}
-      {% assign image_size = article.image.width | append: 'x' %}
+{% assign image_size = article.image.width | append: 'x' %}
       "logo": {
         "@type": "ImageObject",
         "height": "{{ article.image.height }}",
