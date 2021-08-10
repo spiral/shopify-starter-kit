@@ -1,0 +1,1 @@
+import './list-collections.scss';
