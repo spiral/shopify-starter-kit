@@ -10,9 +10,14 @@ const {
   mkJsEntryPoints,
   mkTemplateCopyPlugin,
   mkSectionCopyPlugin,
+  getDirNames,
 } = require('./webpack-helpers');
 
 const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
+
+const SRC_TEMPLATES_LIST = getDirNames('src/pages').filter(
+  (dieName) => dieName !== 'common'
+);
 
 const config = {
   entry: {
@@ -82,9 +87,9 @@ const config = {
     }),
     new MiniCssExtractPlugin({
       filename: ({ chunk: { name } }) =>
-        name.includes('theme')
-          ? `assets/${name}.css`
-          : `snippets/${name}.css.liquid`,
+        SRC_TEMPLATES_LIST.includes(name)
+          ? `snippets/${name}.css.liquid`
+          : `assets/${name}.css`,
     }),
     new RemoveWebpackPlugin({
       after: {
