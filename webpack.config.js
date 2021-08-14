@@ -17,6 +17,7 @@ const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 const config = {
   entry: {
     ...mkTemplateEntryPoints('src/templates'),
+    ...mkTemplateEntryPoints('src/customers'),
     ...mkJsEntryPoints('src/assets'),
   },
   output: {

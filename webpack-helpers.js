@@ -93,14 +93,18 @@ const mkJsEntryPoints = (templatePath) => {
 };
 
 const mkTemplateCopyPlugin = (templatePath) => {
-  const destPath =
-    templatePath.split('/').pop() === 'customers'
-      ? 'customers/[name][ext]'
-      : '[name][ext]';
+  const calcOutput = (fileName) => {
+    const destPath =
+      path.dirname(fileName).split('/').pop() === 'customers'
+        ? 'customers/[name][ext]'
+        : '[name][ext]';
+
+    return path.resolve(__dirname, `dist/templates/${destPath}`);
+  };
 
   return {
     from: `${templatePath}/*/*.liquid`,
-    to: path.resolve(__dirname, `dist/templates/${destPath}`),
+    to: ({ absoluteFilename }) => calcOutput(absoluteFilename),
     noErrorOnMissing: true,
     globOptions: {
       ignore: ['.gitkeep'],
