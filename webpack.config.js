@@ -16,7 +16,7 @@ const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 
 const config = {
   entry: {
-    ...mkTemplateEntryPoints('src/pages'),
+    ...mkTemplateEntryPoints('src/templates'),
     ...mkJsEntryPoints('src/assets'),
   },
   output: {
@@ -75,9 +75,9 @@ const config = {
             return !jsFilesPatterns.some((pattern) => fileBase.match(pattern));
           },
         },
-        mkTemplateCopyPlugin('src/pages'),
+        mkTemplateCopyPlugin('src/templates'),
         mkTemplateCopyPlugin('src/customers'),
-        mkSectionCopyPlugin('src/pages'),
+        mkSectionCopyPlugin('src/templates'),
         mkSnippetCopyPlugin('src/snippets'),
       ],
     }),
