@@ -77,7 +77,7 @@ const config = {
           },
         },
         mkTemplateCopyPlugin('src/templates'),
-        mkTemplateCopyPlugin('src/customers'),
+        mkTemplateCopyPlugin('src/customers', '/customers/'),
         mkSectionCopyPlugin('src/templates'),
         mkSnippetCopyPlugin('src/snippets'),
       ],
