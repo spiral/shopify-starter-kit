@@ -26,7 +26,7 @@
 
 ### Pages load time optimisation
 
-- [ ] Loading required styles
+- [x] Loading required styles
 - [x] Loading required scripts
 - [ ] Styles prefetch
 - [ ] Scripts prefetch
@@ -35,6 +35,6 @@
 
 - [ ] Update build and file procession for customer templates
 - [x] Optimize loading styles for the pages
-- [ ] Update file structure for customer templates
+- [x] Update file structure for customer templates
 
 etc.
