@@ -1,4 +1,5 @@
-import QRCode from 'qrcode';
+import { toCanvas as qrToCanvas } from 'qrcode';
+import './gift_card.scss';
 
 /**
  * Gift Card Template Script
@@ -15,7 +16,7 @@ const selectors = {
 
 // This is the QR code that allows customers to use at a POS
 document.querySelectorAll(selectors.qrCodeCanvas).forEach((element) => {
-  QRCode.toCanvas(element, element.dataset.identifier);
+  qrToCanvas(element, element.dataset.identifier);
 });
 
 document.querySelectorAll(selectors.printButton).forEach((element) => {

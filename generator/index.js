@@ -32,7 +32,7 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'template',
         message: 'Please select section destination?',
-        choices: getDirNames('./src/pages'),
+        choices: getDirNames('./src/templates'),
         when(answers) {
           return answers.component === 'section';
         },
@@ -49,7 +49,7 @@ module.exports = class extends Generator {
       },
       {
         type: 'list',
-        name: 'template_prefix',
+        name: 'template_name',
         message: 'Choose template prefix',
         choices: [
           '404',
@@ -114,7 +114,7 @@ module.exports = class extends Generator {
     if (self.answers.component === 'template') {
       this.createTemplate(
         self.answers.name,
-        self.answers.template_prefix,
+        self.answers.template_name,
         self.answers.has_hero_section
       );
     }
@@ -138,7 +138,7 @@ module.exports = class extends Generator {
     if (name) {
       self.fs.copyTpl(
         self.templatePath('section'),
-        self.destinationPath(`./src/pages/${template}/${name}`),
+        self.destinationPath(`./src/templates/${template}/${name}`),
         {
           name,
           schemaName: startCase(toLower(name)),
@@ -156,7 +156,7 @@ module.exports = class extends Generator {
     if (fileName) {
       self.fs.copyTpl(
         self.templatePath('template'),
-        `./src/pages/${fileName}`,
+        `./src/templates/${fileName}`,
         {
           name: `${fileName}`,
           className: pageName,

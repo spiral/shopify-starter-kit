@@ -24,14 +24,14 @@
 @import './components/address-forms';
 
 // Common Sections
-@import '../pages/common/collection-list/collection-list';
-@import '../pages/common/featured-collection/featured-collection';
-@import '../pages/common/featured-product/featured-product';
-@import '../pages/common/image-with-text/image-with-text';
-@import '../pages/common/header/header';
-@import '../pages/common/footer/footer';
-@import '../pages/common/newsletter/newsletter';
-@import '../pages/common/rich-text/rich-text';
+@import '../templates/common/collection-list/collection-list';
+@import '../templates/common/featured-collection/featured-collection';
+@import '../templates/common/featured-product/featured-product';
+@import '../templates/common/image-with-text/image-with-text';
+@import '../templates/common/header/header';
+@import '../templates/common/footer/footer';
+@import '../templates/common/newsletter/newsletter';
+@import '../templates/common/rich-text/rich-text';
 
 // Snippets
 @import '../snippets/icons/icons';

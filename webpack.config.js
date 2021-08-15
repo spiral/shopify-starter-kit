@@ -21,7 +21,8 @@ const SRC_TEMPLATES_LIST = getDirNames('src/pages').filter(
 
 const config = {
   entry: {
-    ...mkTemplateEntryPoints('src/pages'),
+    ...mkTemplateEntryPoints('src/templates'),
+    ...mkTemplateEntryPoints('src/customers'),
     ...mkJsEntryPoints('src/assets'),
   },
   output: {
@@ -80,8 +81,9 @@ const config = {
             return !jsFilesPatterns.some((pattern) => fileBase.match(pattern));
           },
         },
-        mkTemplateCopyPlugin('src/pages'),
-        mkSectionCopyPlugin('src/pages'),
+        mkTemplateCopyPlugin('src/templates'),
+        mkTemplateCopyPlugin('src/customers', '/customers/'),
+        mkSectionCopyPlugin('src/templates'),
         mkSnippetCopyPlugin('src/snippets'),
       ],
     }),

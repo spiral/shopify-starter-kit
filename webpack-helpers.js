@@ -44,13 +44,22 @@ const mkSectionsEntryPoints = (templatePath) => {
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
-    .reduce(
-      (res, name) => ({
+    .reduce((res, name) => {
+      const filePath = path.resolve(
+        __dirname,
+        templatePath,
+        `${name}/${name}.js`
+      );
+
+      if (!fs.existsSync(filePath)) {
+        return res;
+      }
+
+      return {
         ...res,
-        [name]: path.resolve(__dirname, templatePath, `${name}/${name}.js`),
-      }),
-      {}
-    );
+        [name]: filePath,
+      };
+    }, {});
 
 const mkJsEntryPoints = (templatePath) => {
   const simpleFilesEntry = getFilesNames(templatePath).reduce(
@@ -83,9 +92,9 @@ const mkJsEntryPoints = (templatePath) => {
   };
 };
 
-const mkTemplateCopyPlugin = (templatePath) => ({
+const mkTemplateCopyPlugin = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
-  to: path.resolve(__dirname, `dist/templates/[name][ext]`),
+  to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
     ignore: ['.gitkeep'],
