@@ -14,6 +14,7 @@
 - [ ] Dev Server
 - [x] File structure and build flow for customers templates
 - [ ] Download existed Shopify Store into theme folder
+- [ ] Create yeoman generator for starter-kit files 
 
 ### Automation:
 
