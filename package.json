@@ -1,7 +1,7 @@
 {
   "name": "shopify-starter-kit",
   "version": "0.0.1",
-  "description": "Shopify store development starter kit",
+  "description": "Starter theme and environment for the largest Shopify stores.",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --progress",
