@@ -1,7 +1,7 @@
 # shopify-starter-kit
 
-Boilerplate for the large Shopify repository. 
-Repository makes it easier to work with the distribution of files in the project and automates some tasks
+Starter theme and environment for the largest Shopify stores. 
+Repository makes it easier to work with the distribution of files in the project and automates some tasks.
 
 
 Dev technologies and tools
