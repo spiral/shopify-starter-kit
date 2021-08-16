@@ -12,7 +12,7 @@
 - [x] Run Lint and Format code on pre-commit
 - [x] Compress images
 - [ ] Dev Server
-- [ ] File structure and build flow for customers templates
+- [x] File structure and build flow for customers templates
 - [ ] Download existed Shopify Store into theme folder
 
 ### Automation:
@@ -30,11 +30,5 @@
 - [x] Loading required scripts
 - [ ] Styles prefetch
 - [ ] Scripts prefetch
-
-### Research and develop
-
-- [ ] Update build and file procession for customer templates
-- [x] Optimize loading styles for the pages
-- [x] Update file structure for customer templates
 
 etc.
