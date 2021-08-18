@@ -53,8 +53,117 @@ Install frontend dependencies using npm install
 
 # Project documentation:
 
-### Project Features: [features.md](./docs/features.md)
+---
 
-### Project implementation plan: [plan.md](./docs/plan.md)
+### THEME
 
-### How to use existed theme: [theme.md](./theme/theme.md)
+---
+
+### FILE STRUCTURE CONTRACT
+
+```
+/src
+ ├── assets
+ |    └── index.js
+ ├── customers
+ |    └── customer-template
+ |         ├── section-name
+ |         |    ├── section-name.js
+ |         |    ├── section-name.liquid
+ |         |    └── section-name.scss
+ |         ├── customer-template.js
+ |         ├── customer-template.liquid
+ |         └── customer-template.scss
+ ├── templates
+ |    ├── common
+ |    |    └── common-section-name
+ |    |         ├── common-section-name.js
+ |    |         ├── common-section-name.liquid
+ |    |         └── common-section-name.scss
+ |    └── template-name
+ |         ├── section-name
+ |         |    ├── section-name.js
+ |         |    ├── section-name.liquid
+ |         |    └── section-name.scss
+ |         ├── template-name.js
+ |         ├── template-name.liquid
+ |         └── template-name.scss
+ ├── scripts
+ └── snippets
+      └── snippet-name
+           ├── snippet-name.js
+           ├── snippet-name.luqiid
+           └── snippet-name.scss
+/theme
+```
+
+
+- ./src/assets: // TODO
+- ./src/customers: // TODO
+- ./src/templates: // TODO
+- ./src/snippets: // TODO
+- ./theme: // TODO
+
+### theme
+
+This folder is intended for keeping files of an existing Shopify store.
+
+This project makes it possible to switch to a new code structure not immediately and allows using the capabilities of the boilerplate in part.
+
+---
+
+
+### Create component
+// TODO
+
+
+### Build theme
+// TODO
+
+
+### Deploy theme
+// TODO
+
+
+---
+
+## Project features implementation plan: 
+
+
+#### Features:
+
+- [x] File Structure
+- [x] Single Code Style linting
+- [x] Scripts and Styles Processing
+- [x] JS transpiling
+- [x] Assets Building
+- [x] Implements shopify theme-kit
+- [x] Jest test environment
+- [x] Run Lint and Format code on pre-commit
+- [x] Compress images
+- [ ] Dev Server
+- [x] File structure and build flow for customers templates
+- [ ] Download existed Shopify Store into theme folder
+- [ ] Create yeoman generator for starter-kit files
+
+---
+#### Automation:
+
+- [x] Add Components
+- [ ] Change/Move Components
+- [x] Runtime Processing files
+- [x] Files Checking
+- [ ] Git Release Automation
+- [ ] Git Flow Checkers
+
+---
+#### Pages load time optimisation
+
+- [x] Loading required styles
+- [x] Loading required scripts
+- [ ] Styles prefetch
+- [ ] Scripts prefetch
+
+etc.
+
+---
