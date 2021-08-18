@@ -39,7 +39,8 @@
 
 ### Description: // TODO
 - Assets: // TODO
-- Pages: // TODO
+- Customers: // TODO
+- Templates: // TODO
 - Scripts: // TODO
 - Snippets: // TODO
 
