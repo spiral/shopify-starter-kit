@@ -12,33 +12,31 @@ import { formatMoney } from '@shopify/theme-currency';
 import { register } from '@shopify/theme-sections';
 import { forceFocus } from '@shopify/theme-a11y';
 
-const classes = {
-  hide: 'hide',
-};
-
-const keyboardKeys = {
+const KEYBOARD_KEY_CODES = {
   ENTER: 13,
 };
 
-const selectors = {
-  submitButton: '[data-submit-button]',
-  submitButtonText: '[data-submit-button-text]',
-  comparePrice: '[data-compare-price]',
-  comparePriceText: '[data-compare-text]',
-  priceWrapper: '[data-price-wrapper]',
-  imageWrapper: '[data-product-image-wrapper]',
-  visibleImageWrapper: `[data-product-image-wrapper]:not(.${classes.hide})`,
-  imageWrapperById: (id) => `${selectors.imageWrapper}[data-image-id='${id}']`,
-  productForm: '[data-product-form]',
-  productPrice: '[data-product-price]',
-  thumbnail: '[data-product-single-thumbnail]',
-  thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
-  thumbnailActive: '[data-product-single-thumbnail][aria-current]',
-};
+const CLASS_HIDE = 'hide';
+
+const SUBMIT_BUTTON_SELECTOR = '[data-submit-button]';
+const SUBMIT_BUTTON_TEXT_SELECTOR = '[data-submit-button-text]';
+const COMPARE_PRICE_SELECTOR = '[data-compare-price]';
+const COMPARE_TEXT_SELECTOR = '[data-compare-text]';
+const PRICE_WRAPPER_SELECTOR = '[data-price-wrapper]';
+const PRODUCT_IMAGE_WRAPPER_SELECTOR = '[data-product-image-wrapper]';
+const PRODUCT_VISIBLE_IMAGE_WRAPPER_SELECTOR = `[data-product-image-wrapper]:not(.${CLASS_HIDE})`; // eslint-disable-line max-len
+const PRODUCT_FORM_SELECTOR = `[data-product-form]`;
+const PRODUCT_PRICE_SELECTOR = `[data-product-price]`;
+const PRODUCT_THUMBNAIL_SELECTOR = `[data-product-single-thumbnail]`;
+const PRODUCT_ACTIVE_THUMBNAIL_SELECTOR = `[data-product-single-thumbnail][aria-current]`; // eslint-disable-line max-len
+
+const calcImageWrapperSelectorById = (id) =>
+  `${PRODUCT_IMAGE_WRAPPER_SELECTOR}[data-image-id='${id}']`;
+const calcThumbnailSelectorById = (id) => `[data-thumbnail-id='${id}']`;
 
 register('product', {
   async onLoad() {
-    const productFormElement = document.querySelector(selectors.productForm);
+    const productFormElement = document.querySelector(PRODUCT_FORM_SELECTOR);
 
     this.product = await this.getProductJson(
       productFormElement.dataset.productHandle
@@ -76,7 +74,7 @@ register('product', {
   },
 
   onThumbnailClick(event) {
-    const thumbnail = event.target.closest(selectors.thumbnail);
+    const thumbnail = event.target.closest(PRODUCT_THUMBNAIL_SELECTOR);
 
     if (!thumbnail) {
       return;
@@ -90,23 +88,23 @@ register('product', {
 
   onThumbnailKeyup(event) {
     if (
-      event.keyCode !== keyboardKeys.ENTER ||
-      !event.target.closest(selectors.thumbnail)
+      event.keyCode !== KEYBOARD_KEY_CODES.ENTER ||
+      !event.target.closest(PRODUCT_THUMBNAIL_SELECTOR)
     ) {
       return;
     }
 
     const visibleFeaturedImageWrapper = this.container.querySelector(
-      selectors.visibleImageWrapper
+      PRODUCT_VISIBLE_IMAGE_WRAPPER_SELECTOR
     );
 
     forceFocus(visibleFeaturedImageWrapper);
   },
 
   renderSubmitButton(variant) {
-    const submitButton = this.container.querySelector(selectors.submitButton);
+    const submitButton = this.container.querySelector(SUBMIT_BUTTON_SELECTOR);
     const submitButtonText = this.container.querySelector(
-      selectors.submitButtonText
+      SUBMIT_BUTTON_TEXT_SELECTOR
     );
 
     if (!variant) {
@@ -131,12 +129,12 @@ register('product', {
   },
 
   renderPrice(variant) {
-    const priceElement = this.container.querySelector(selectors.productPrice);
+    const priceElement = this.container.querySelector(PRODUCT_PRICE_SELECTOR);
     const priceWrapperElement = this.container.querySelector(
-      selectors.priceWrapper
+      PRICE_WRAPPER_SELECTOR
     );
 
-    priceWrapperElement.classList.toggle(classes.hide, !variant);
+    priceWrapperElement.classList.toggle(CLASS_HIDE, !variant);
 
     if (variant) {
       priceElement.innerText = formatMoney(
@@ -152,10 +150,10 @@ register('product', {
     }
 
     const comparePriceElement = this.container.querySelector(
-      selectors.comparePrice
+      COMPARE_PRICE_SELECTOR
     );
     const compareTextElement = this.container.querySelector(
-      selectors.comparePriceText
+      COMPARE_TEXT_SELECTOR
     );
 
     if (!comparePriceElement || !compareTextElement) {
@@ -167,21 +165,21 @@ register('product', {
         variant.compare_at_price,
         window.theme.moneyFormat
       );
-      compareTextElement.classList.remove(classes.hide);
-      comparePriceElement.classList.remove(classes.hide);
+      compareTextElement.classList.remove(CLASS_HIDE);
+      comparePriceElement.classList.remove(CLASS_HIDE);
     } else {
       comparePriceElement.innerText = '';
-      compareTextElement.classList.add(classes.hide);
-      comparePriceElement.classList.add(classes.hide);
+      compareTextElement.classList.add(CLASS_HIDE);
+      comparePriceElement.classList.add(CLASS_HIDE);
     }
   },
 
   renderActiveThumbnail(id) {
     const activeThumbnail = this.container.querySelector(
-      selectors.thumbnailById(id)
+      calcThumbnailSelectorById(id)
     );
     const inactiveThumbnail = this.container.querySelector(
-      selectors.thumbnailActive
+      PRODUCT_ACTIVE_THUMBNAIL_SELECTOR
     );
 
     if (activeThumbnail === inactiveThumbnail) {
@@ -194,14 +192,14 @@ register('product', {
 
   renderFeaturedImage(id) {
     const activeImage = this.container.querySelector(
-      selectors.visibleImageWrapper
+      PRODUCT_IMAGE_WRAPPER_SELECTOR
     );
     const inactiveImage = this.container.querySelector(
-      selectors.imageWrapperById(id)
+      calcImageWrapperSelectorById(id)
     );
 
-    activeImage.classList.add(classes.hide);
-    inactiveImage.classList.remove(classes.hide);
+    activeImage.classList.add(CLASS_HIDE);
+    inactiveImage.classList.remove(CLASS_HIDE);
   },
 
   updateBrowserHistory(variant) {

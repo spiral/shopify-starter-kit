@@ -10,21 +10,21 @@
 
 import { AddressForm } from '@shopify/theme-addresses';
 
-const selectors = {
-  addressContainer: '[data-address]',
-  addressFields: '[data-address-fields]',
-  addressToggle: '[data-address-toggle]',
-  addressForm: '[data-address-form]',
-  addressDeleteForm: '[data-address-delete-form]',
-};
+
+const ADDRESS_CONTAINER_SELECTOR = '[data-address]';
+const ADDRESS_FIELDS_SELECTOR = '[data-address-fields]';
+const ADDRESS_TOGGLE_SELECTOR = '[data-address-toggle]';
+const ADDRESS_FORM_SELECTOR = '[data-address-form]';
+const ADDRESS_DELETE_FORM_SELECTOR = '[data-address-delete-form]';
+
 const hideClass = 'hide';
 
 function initializeAddressForm(container) {
-  const addressFields = container.querySelector(selectors.addressFields);
-  const addressForm = container.querySelector(selectors.addressForm);
-  const deleteForm = container.querySelector(selectors.addressDeleteForm);
+  const addressFields = container.querySelector(ADDRESS_FIELDS_SELECTOR);
+  const addressForm = container.querySelector(ADDRESS_FORM_SELECTOR);
+  const deleteForm = container.querySelector(ADDRESS_DELETE_FORM_SELECTOR);
 
-  container.querySelectorAll(selectors.addressToggle).forEach((button) => {
+  container.querySelectorAll(ADDRESS_TOGGLE_SELECTOR).forEach((button) => {
     button.addEventListener('click', () => {
       addressForm.classList.toggle(hideClass);
     });
@@ -47,7 +47,7 @@ function initializeAddressForm(container) {
   }
 }
 
-const addressForms = document.querySelectorAll(selectors.addressContainer);
+const addressForms = document.querySelectorAll(ADDRESS_CONTAINER_SELECTOR);
 
 if (addressForms.length) {
   addressForms.forEach((addressContainer) => {

@@ -7,13 +7,11 @@
  * @namespace password
  */
 
-const selectors = {
-  recoverPasswordFormTriggers: '[data-recover-toggle]',
-  recoverPasswordForm: '[data-recover-form]',
-  loginForm: '[data-login-form]',
-  formState: '[data-form-state]',
-  resetSuccess: '[data-reset-success]',
-};
+const RECOVER_PASSWORD_FORM_TRIGGERS_SELECTOR = '[data-recover-toggle]';
+const RECOVER_PASSWORD_FORM_SELECTOR = '[data-recover-form]';
+const LOGIN_FORM_SELECTOR = '[data-login-form]';
+const FORM_STATE_SELECTOR = '[data-form-state]';
+const REQUEST_SUCCESS_SELECTOR = '[data-reset-success]';
 
 function onShowHidePasswordForm(evt) {
   evt.preventDefault();
@@ -34,9 +32,9 @@ function checkUrlHash() {
  */
 function toggleRecoverPasswordForm() {
   document
-    .querySelector(selectors.recoverPasswordForm)
+    .querySelector(RECOVER_PASSWORD_FORM_SELECTOR)
     .classList.toggle('hide');
-  document.querySelector(selectors.loginForm).classList.toggle('hide');
+  document.querySelector(LOGIN_FORM_SELECTOR).classList.toggle('hide');
 }
 
 /**
@@ -46,17 +44,17 @@ function resetPasswordSuccess() {
   // check if reset password form was
   // successfully submitted and show success message.
 
-  if (document.querySelector(selectors.formState)) {
-    document.querySelector(selectors.resetSuccess).classList.remove('hide');
+  if (document.querySelector(FORM_STATE_SELECTOR)) {
+    document.querySelector(REQUEST_SUCCESS_SELECTOR).classList.remove('hide');
   }
 }
 
-if (document.querySelector(selectors.recoverPasswordForm)) {
+if (document.querySelector(RECOVER_PASSWORD_FORM_SELECTOR)) {
   checkUrlHash();
   resetPasswordSuccess();
 
   document
-    .querySelectorAll(selectors.recoverPasswordFormTriggers)
+    .querySelectorAll(RECOVER_PASSWORD_FORM_TRIGGERS_SELECTOR)
     .forEach((trigger) => {
       trigger.addEventListener('click', onShowHidePasswordForm);
     });
