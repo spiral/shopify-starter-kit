@@ -170,6 +170,7 @@ This project makes it possible to switch to a new code structure not immediately
 - [ ] Use autoprefixer for styles
 - [ ] Find the possibility to use strong prettier rules for liquid file
 - [ ] Add base vue.js environment
+- [ ] Add webpack analyzer
 
 etc.
 
