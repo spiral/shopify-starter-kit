@@ -14,6 +14,8 @@
     "theme:watch:prod": "shopify-themekit watch --allow-live --env production",
     "theme:deploy": "shopify-themekit deploy --env development",
     "theme:deploy:prod": "shopify-themekit deploy --env production",
+    "theme:download": "shopify-themekit download --env development --dir=theme",
+    "theme:download:prod": "shopify-themekit download --env production --dir=theme",
     "lint": "npx eslint ./src && npx stylelint ./src",
     "lint:fix": "npx eslint ./src --fix && npx stylelint ./src --fix",
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
