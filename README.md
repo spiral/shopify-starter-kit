@@ -143,7 +143,7 @@ This project makes it possible to switch to a new code structure not immediately
 - [x] Compress images
 - [ ] Dev Server
 - [x] File structure and build flow for customers templates
-- [ ] Download existed Shopify Store into theme folder
+- [x] Download existed Shopify Store into theme folder
 - [ ] Create yeoman generator for starter-kit files
 
 ---
