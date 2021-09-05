@@ -112,9 +112,10 @@ const config = {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'production') {
-    config.plugins.push(
-      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
-    );
+    config.plugins = [
+      ...config.plugins,
+      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+    ];
 
     config.optimization.minimize = true;
     config.devtool = 'source-map';

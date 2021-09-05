@@ -15,6 +15,7 @@ npm-debug.log
 .env.local
 .env
 .eslintcache
+.stats*
 
 # Compiled source #
 ###################

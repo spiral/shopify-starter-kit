@@ -5,9 +5,10 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --progress",
-    "build:prod": "webpack --progress --mode=\"production\"",
+    "build:prod": "webpack --progress --mode='production' --profile --json > .stats-bindle.json",
+    "analyze": "webpack-bundle-analyzer .stats-bindle.json",
     "watch": "webpack --watch --progress",
-    "watch:prod": "webpack --watch --progress --mode=\"production\"",
+    "watch:prod": "webpack --watch --progress --mode='production'",
     "test": "jest",
     "theme": "shopify-themekit",
     "theme:watch": "shopify-themekit watch --allow-live --env development",
@@ -84,6 +85,7 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0",
     "webpack": "^5.33.2",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.6.0",
     "yeoman-generator": "^5.4.0",
     "yo": "^4.3.0"
