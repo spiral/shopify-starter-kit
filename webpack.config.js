@@ -29,7 +29,10 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/[name].js',
   },
-  mode: 'production',
+  mode: 'development',
+  optimization: {
+    minimize: false,
+  },
   module: {
     rules: [
       {
@@ -109,9 +112,10 @@ const config = {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'production') {
-    config.plugins.push(
-      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
-    );
+    config.plugins = [
+      ...config.plugins,
+      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+    ];
 
     config.optimization.minimize = true;
     config.devtool = 'source-map';
