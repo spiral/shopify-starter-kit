@@ -29,7 +29,10 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/[name].js',
   },
-  mode: 'production',
+  mode: 'development',
+  optimization: {
+    minimize: false,
+  },
   module: {
     rules: [
       {
