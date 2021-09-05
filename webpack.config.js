@@ -15,7 +15,7 @@ const {
 
 const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
 
-const SRC_TEMPLATES_LIST = getDirNames('src/pages').filter(
+const SRC_TEMPLATES_LIST = getDirNames('src/templates').filter(
   (dieName) => dieName !== 'common'
 );
 
