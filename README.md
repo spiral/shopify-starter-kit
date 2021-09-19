@@ -13,12 +13,12 @@ Dev technologies and tools
 - Git hooks with husky
 - Shopify-themekit*
 
-*Need to install shopify-themekit and eslint global 
+*Need to install shopify-themekit and eslint global.
 
 ## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
 
 Do not forget to check theme ids before launching theme kit watcher!
-Watch starts a process that will watch the directory for changes and upload them to Shopify
+Watch starts a process that will watch the directory for changes and upload them to Shopify.
 
 ## config.yml
 
@@ -48,7 +48,9 @@ production:
 ```
 
 # Starting Up
-Install frontend dependencies using npm install
+Install frontend dependencies using npm install.
+Then you need to create `config.yml` with correct settings and run command `npm run start`, or `npm run start:prod`. 
+After build all changes will be applied into you selected Shopify theme.
 
 
 # Project documentation:
@@ -98,11 +100,11 @@ Install frontend dependencies using npm install
 ```
 
 
-- ./src/assets: // TODO
-- ./src/customers: // TODO
-- ./src/templates: // TODO
-- ./src/snippets: // TODO
-- ./theme: // TODO
+- ./src/assets: // TODO:
+- ./src/customers: // TODO:
+- ./src/templates: // TODO:
+- ./src/snippets: // TODO:
+- ./theme: // TODO:
 
 ### theme
 
@@ -166,7 +168,7 @@ This project makes it possible to switch to a new code structure not immediately
 #### Research and develop
 
 - [ ] Use autoprefixer for styles
-- [ ] Find the possibility to use strong prettier rules for liquid file
+- [ ] Find the possibility to use strong prettier rules for liquid files
 - [ ] Add base vue.js environment
 - [x] Add webpack analyzer
 
