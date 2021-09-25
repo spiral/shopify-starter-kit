@@ -13,7 +13,6 @@ const {
   getDirNames,
 } = require('./webpack-helpers');
 
-const JS_FILES_PATTERN = /\.(js|js\.map)$/m;
 const TEXT_FILES_PATTERN = /\.(md|txt)$/m;
 const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
 
@@ -25,7 +24,6 @@ const config = {
   entry: {
     ...mkTemplateEntryPoints('src/templates'),
     ...mkTemplateEntryPoints('src/customers'),
-    ...mkJsEntryPoints('src/assets'),
     ...mkJsEntryPoints('src/scripts'),
   },
   output: {
@@ -81,11 +79,6 @@ const config = {
           from: path.resolve(__dirname, `src/assets`),
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
-          filter: (resourcePath) => {
-            const fileBase = String(path.parse(resourcePath).base);
-
-            return !JS_FILES_PATTERN.test(fileBase);
-          },
         },
         mkTemplateCopyPlugin('src/templates'),
         mkTemplateCopyPlugin('src/customers', '/customers/'),
