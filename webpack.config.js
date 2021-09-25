@@ -13,7 +13,9 @@ const {
   getDirNames,
 } = require('./webpack-helpers');
 
-const jsFilesPatterns = [/\.js$/, /\.js\.map$/];
+const JS_FILES_PATTERN = /\.(js|js\.map)$/m;
+const TEXT_FILES_PATTERN = /\.(md|txt)$/m;
+const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
 
 const SRC_TEMPLATES_LIST = getDirNames('src/templates').filter(
   (dieName) => dieName !== 'common'
@@ -56,7 +58,7 @@ const config = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: IMAGE_FILES_PATTERN,
         type: 'asset/resource',
       },
     ],
@@ -82,7 +84,7 @@ const config = {
           filter: (resourcePath) => {
             const fileBase = String(path.parse(resourcePath).base);
 
-            return !jsFilesPatterns.some((pattern) => fileBase.match(pattern));
+            return !JS_FILES_PATTERN.test(fileBase);
           },
         },
         mkTemplateCopyPlugin('src/templates'),
@@ -102,7 +104,8 @@ const config = {
         test: [
           {
             folder: 'dist',
-            method: (absoluteItemPath) => /\.md$/m.test(absoluteItemPath),
+            method: (absoluteItemPath) =>
+              TEXT_FILES_PATTERN.test(absoluteItemPath),
             recursive: true,
           },
         ],
@@ -115,7 +118,7 @@ module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     config.plugins = [
       ...config.plugins,
-      new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+      new ImageminWebpackPlugin({ test: IMAGE_FILES_PATTERN }),
     ];
 
     config.optimization.minimize = true;
