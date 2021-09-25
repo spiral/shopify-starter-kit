@@ -5,8 +5,9 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --progress",
-    "build:prod": "webpack --progress --mode='production' --profile --json > .stats-bindle.json",
-    "analyze": "webpack-bundle-analyzer .stats-bindle.json",
+    "build:prod": "webpack --progress --mode='production'",
+    "analyze": "webpack --profile --json > .stats-dev.json && webpack-bundle-analyzer .stats-dev.json",
+    "analyze:prod": "webpack --mode='production' --profile --json > .stats-prod.json && webpack-bundle-analyzer .stats-prod.json",
     "watch": "webpack --watch --progress",
     "watch:prod": "webpack --watch --progress --mode='production'",
     "test": "jest",
