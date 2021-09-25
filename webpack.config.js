@@ -24,6 +24,7 @@ const config = {
     ...mkTemplateEntryPoints('src/templates'),
     ...mkTemplateEntryPoints('src/customers'),
     ...mkJsEntryPoints('src/assets'),
+    ...mkJsEntryPoints('src/scripts'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
