@@ -10,7 +10,6 @@
 
 import { AddressForm } from '@shopify/theme-addresses';
 
-
 const ADDRESS_CONTAINER_SELECTOR = '[data-address]';
 const ADDRESS_FIELDS_SELECTOR = '[data-address-fields]';
 const ADDRESS_TOGGLE_SELECTOR = '[data-address-toggle]';
