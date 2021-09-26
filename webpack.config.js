@@ -89,6 +89,9 @@ const config = {
       ],
     }),
     new MiniCssExtractPlugin({
+      // Creating style snippet for each template and
+      // using snippet as inline styles.
+      // Implements a scoped styles.
       filename: ({ chunk: { name } }) =>
         SRC_TEMPLATES_LIST.includes(name)
           ? `snippets/${name}.css.liquid`
