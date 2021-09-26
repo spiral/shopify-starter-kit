@@ -15,32 +15,6 @@ const getFilesNames = (_path) =>
     .filter((dirent) => dirent.isFile())
     .map((dirent) => dirent.name);
 
-const mkSectionsEntryPoints = (templatePath) => {
-  const resultEntries = {};
-
-  getDirNames(templatePath)
-    .filter(Boolean)
-    .forEach((folderName) => {
-      getDirNames(`${templatePath}/${folderName}`)
-        .filter(Boolean)
-        .forEach((subFolder) => {
-          // The file should have the same name as its component
-          const fileName = subFolder;
-          const filePath = path.resolve(
-            __dirname,
-            templatePath,
-            `${folderName}/${subFolder}/${fileName}.js`
-          );
-
-          if (fs.existsSync(filePath)) {
-            resultEntries[fileName] = filePath;
-          }
-        });
-    });
-
-  return resultEntries;
-};
-
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
@@ -92,7 +66,7 @@ const mkJsEntryPoints = (templatePath) => {
   };
 };
 
-const mkTemplateCopyPlugin = (templatePath, nestedDestPath = '/') => ({
+const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
@@ -101,7 +75,7 @@ const mkTemplateCopyPlugin = (templatePath, nestedDestPath = '/') => ({
   },
 });
 
-const mkSnippetCopyPlugin = (templatePath) => ({
+const mkSnippetCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
@@ -110,7 +84,7 @@ const mkSnippetCopyPlugin = (templatePath) => ({
   },
 });
 
-const mkSectionCopyPlugin = (templatePath) => ({
+const mkSectionCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
@@ -120,11 +94,10 @@ const mkSectionCopyPlugin = (templatePath) => ({
 });
 
 module.exports = {
-  mkSectionsEntryPoints,
   mkTemplateEntryPoints,
-  mkSnippetCopyPlugin,
+  mkSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPlugin,
-  mkSectionCopyPlugin,
+  mkTemplateCopyPluginPattern,
+  mkSectionCopyPluginPattern,
   getDirNames,
 };

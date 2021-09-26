@@ -9,10 +9,10 @@ const SafePostCssParser = require('postcss-safe-parser');
 const Autoprefixer = require('autoprefixer');
 const {
   mkTemplateEntryPoints,
-  mkSnippetCopyPlugin,
+  mkSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPlugin,
-  mkSectionCopyPlugin,
+  mkTemplateCopyPluginPattern,
+  mkSectionCopyPluginPattern,
   getDirNames,
 } = require('./webpack-helpers');
 
@@ -82,10 +82,10 @@ const config = {
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
         },
-        mkTemplateCopyPlugin('src/templates'),
-        mkTemplateCopyPlugin('src/customers', '/customers/'),
-        mkSectionCopyPlugin('src/templates'),
-        mkSnippetCopyPlugin('src/snippets'),
+        mkTemplateCopyPluginPattern('src/templates'),
+        mkTemplateCopyPluginPattern('src/customers', '/customers/'),
+        mkSectionCopyPluginPattern('src/templates'),
+        mkSnippetCopyPluginPattern('src/snippets'),
       ],
     }),
     new MiniCssExtractPlugin({
