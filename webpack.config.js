@@ -4,6 +4,9 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const SafePostCssParser = require('postcss-safe-parser');
+const Autoprefixer = require('autoprefixer');
 const {
   mkTemplateEntryPoints,
   mkSnippetCopyPlugin,
@@ -30,7 +33,6 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/[name].js',
   },
-  mode: 'development',
   optimization: {
     minimize: false,
   },
@@ -104,6 +106,7 @@ const config = {
         ],
       },
     }),
+    Autoprefixer,
   ],
 };
 
@@ -115,6 +118,22 @@ module.exports = (env, argv) => {
     ];
 
     config.optimization.minimize = true;
+    config.optimization.minimizer = [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: SafePostCssParser,
+          map: {
+            // `inline: false` forces the sourcemap to be output into a
+            // separate file
+            inline: false,
+            // `annotation: true` appends the sourceMappingURL to the end of
+            // the css file, helping the browser find the sourcemap
+            annotation: true,
+          },
+        },
+      }),
+    ];
+
     config.devtool = 'source-map';
   }
 

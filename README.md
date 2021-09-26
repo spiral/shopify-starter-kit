@@ -170,15 +170,13 @@ This project makes it possible to switch to a new code structure not immediately
 
 - [x] Loading required styles
 - [x] Loading required scripts
-- [ ] Styles prefetch
 - [ ] Scripts prefetch
 
 ---
 #### Research and develop
 
-- [ ] Use autoprefixer for styles
+- [x] Use autoprefixer for styles
 - [ ] Find the possibility to use strong prettier rules for liquid files
-- [ ] Add base vue.js environment
 - [x] Add webpack analyzer
 
 etc.
