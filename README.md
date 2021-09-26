@@ -57,7 +57,15 @@ After build all changes will be applied into you selected Shopify theme.
 
 ---
 
-### THEME
+### Browser support
+
+// TODO:
+
+---
+
+### Command
+
+// TODO:
 
 ---
 
@@ -104,9 +112,10 @@ After build all changes will be applied into you selected Shopify theme.
 - ./src/customers: // TODO:
 - ./src/templates: // TODO:
 - ./src/snippets: // TODO:
+- ./src/scripts: // TODO:
 - ./theme: // TODO:
 
-### theme
+### Theme
 
 This folder is intended for keeping files of an existing Shopify store.
 
