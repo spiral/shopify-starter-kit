@@ -57,7 +57,15 @@ After build all changes will be applied into you selected Shopify theme.
 
 ---
 
-### THEME
+### Browser support
+
+// TODO:
+
+---
+
+### Command
+
+// TODO:
 
 ---
 
@@ -104,9 +112,10 @@ After build all changes will be applied into you selected Shopify theme.
 - ./src/customers: // TODO:
 - ./src/templates: // TODO:
 - ./src/snippets: // TODO:
+- ./src/scripts: // TODO:
 - ./theme: // TODO:
 
-### theme
+### Theme
 
 This folder is intended for keeping files of an existing Shopify store.
 
@@ -161,15 +170,13 @@ This project makes it possible to switch to a new code structure not immediately
 
 - [x] Loading required styles
 - [x] Loading required scripts
-- [ ] Styles prefetch
 - [ ] Scripts prefetch
 
 ---
 #### Research and develop
 
-- [ ] Use autoprefixer for styles
+- [x] Use autoprefixer for styles
 - [ ] Find the possibility to use strong prettier rules for liquid files
-- [ ] Add base vue.js environment
 - [x] Add webpack analyzer
 
 etc.

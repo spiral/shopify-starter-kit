@@ -4,12 +4,15 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const SafePostCssParser = require('postcss-safe-parser');
+const Autoprefixer = require('autoprefixer');
 const {
   mkTemplateEntryPoints,
-  mkSnippetCopyPlugin,
+  mkSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPlugin,
-  mkSectionCopyPlugin,
+  mkTemplateCopyPluginPattern,
+  mkSectionCopyPluginPattern,
   getDirNames,
 } = require('./webpack-helpers');
 
@@ -30,7 +33,6 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/[name].js',
   },
-  mode: 'development',
   optimization: {
     minimize: false,
   },
@@ -80,13 +82,16 @@ const config = {
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
         },
-        mkTemplateCopyPlugin('src/templates'),
-        mkTemplateCopyPlugin('src/customers', '/customers/'),
-        mkSectionCopyPlugin('src/templates'),
-        mkSnippetCopyPlugin('src/snippets'),
+        mkTemplateCopyPluginPattern('src/templates'),
+        mkTemplateCopyPluginPattern('src/customers', '/customers/'),
+        mkSectionCopyPluginPattern('src/templates'),
+        mkSnippetCopyPluginPattern('src/snippets'),
       ],
     }),
     new MiniCssExtractPlugin({
+      // Creating style snippet for each template and
+      // using snippet as inline styles.
+      // Implements a scoped styles.
       filename: ({ chunk: { name } }) =>
         SRC_TEMPLATES_LIST.includes(name)
           ? `snippets/${name}.css.liquid`
@@ -104,6 +109,7 @@ const config = {
         ],
       },
     }),
+    Autoprefixer,
   ],
 };
 
@@ -115,6 +121,22 @@ module.exports = (env, argv) => {
     ];
 
     config.optimization.minimize = true;
+    config.optimization.minimizer = [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: SafePostCssParser,
+          map: {
+            // `inline: false` forces the sourcemap to be output into a
+            // separate file
+            inline: false,
+            // `annotation: true` appends the sourceMappingURL to the end of
+            // the css file, helping the browser find the sourcemap
+            annotation: true,
+          },
+        },
+      }),
+    ];
+
     config.devtool = 'source-map';
   }
 
