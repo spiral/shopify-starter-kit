@@ -35,8 +35,8 @@ const mkTemplateEntryPoints = (templatePath) =>
       };
     }, {});
 
-const mkJsEntryPoints = (templatePath) => {
-  const simpleFilesEntry = getFilesNames(templatePath).reduce(
+const mkJsEntryPoints = (templatePath) =>
+  getFilesNames(templatePath).reduce(
     (res, name) => ({
       ...res,
       ...(path.parse(name).ext === '.js'
@@ -51,20 +51,6 @@ const mkJsEntryPoints = (templatePath) => {
     }),
     {}
   );
-
-  const nestedFilesEntry = getDirNames(templatePath).reduce(
-    (res, name) => ({
-      ...res,
-      ...mkJsEntryPoints(path.resolve(templatePath, name)),
-    }),
-    {}
-  );
-
-  return {
-    ...simpleFilesEntry,
-    ...nestedFilesEntry,
-  };
-};
 
 const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
