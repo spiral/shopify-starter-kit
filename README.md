@@ -7,7 +7,6 @@ Repository makes it easier to work with the distribution of files in the project
 Dev technologies and tools
 - Webpack
 - Scss
-- Jest
 - Lint code with eslint*
 - Auto formatting code with Prettier
 - Git hooks with husky
@@ -149,7 +148,6 @@ This project makes it possible to switch to a new code structure not immediately
 - [x] JS transpiling
 - [x] Assets Building
 - [x] Implements shopify theme-kit
-- [x] Jest test environment
 - [x] Run Lint and Format code on pre-commit
 - [x] Compress images
 - [ ] Dev Server
