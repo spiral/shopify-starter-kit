@@ -2,18 +2,22 @@ const path = require('path');
 const fs = require('fs');
 
 const getDirNames = (_path) =>
-  fs
-    .readdirSync(_path, { withFileTypes: true })
-    .filter(Boolean)
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+  !fs.existsSync(_path)
+    ? []
+    : fs
+        .readdirSync(_path, { withFileTypes: true })
+        .filter(Boolean)
+        .filter((dirent) => dirent.isDirectory())
+        .map((dirent) => dirent.name);
 
 const getFilesNames = (_path) =>
-  fs
-    .readdirSync(_path, { withFileTypes: true })
-    .filter(Boolean)
-    .filter((dirent) => dirent.isFile())
-    .map((dirent) => dirent.name);
+  !fs.existsSync(_path)
+    ? []
+    : fs
+        .readdirSync(_path, { withFileTypes: true })
+        .filter(Boolean)
+        .filter((dirent) => dirent.isFile())
+        .map((dirent) => dirent.name);
 
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
