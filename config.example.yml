@@ -2,7 +2,6 @@ development:
   store: [your-store].myshopify.com
   password: [your-api-password]
   theme_id: "[your-theme-id]"
-  proxy: http://localhost:3000
   directory: dist/
 
 production:
