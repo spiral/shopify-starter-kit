@@ -3,6 +3,7 @@ development:
   password: [your-api-password]
   theme_id: "[your-theme-id]"
   proxy: http://localhost:3000
+  directory: dist/
 
 production:
   store: [your-store].myshopify.com
@@ -10,8 +11,10 @@ production:
   theme_id: "[your-theme-id]"
   timeout: 60s
   readonly: true
+  directory: dist/
 
 test:
   store: [your-store].myshopify.com
   password: [your-api-password]
   theme_id: "[your-theme-id]"
+  directory: dist/
