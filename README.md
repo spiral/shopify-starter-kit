@@ -28,11 +28,13 @@ Dev technologies and tools
 
 ---
 
-# General info:
+## General info:
+
+// TODO:
 
 ---
 
-# Getting Started
+## Getting Started
 For starting core of project you need to do few simple steps:
 1. Install frontend dependencies using npm or yarn. `npm install`
 2. Then you need to create `config.yml` with correct settings and run command `npm run start`, or `npm run start:prod`.
@@ -46,7 +48,7 @@ After build all changes will be applied into you selected Shopify theme.
 Do not forget to check theme ids before launching theme kit watcher!
 Watch starts a process that will watch the directory for changes and upload them to Shopify.
 
-## config.yml
+#### Configuration for themekit:  config.yml
 
 After cloning the repo, copy `config.example.yml` and rename the copy to `config.yml`.
 `config.yml` should contain production credentials (the current live theme) and development credentials (the current feature theme).
@@ -75,7 +77,7 @@ production:
 
 ---
 
-### Commands
+## Commands
 
 #### Create component
 // TODO
@@ -88,7 +90,7 @@ production:
 #### Deploy theme
 // TODO
 
-#### File Structure Contract
+## File Structure Contract
 
 ```
 /src
@@ -142,7 +144,7 @@ This project makes it possible to switch to a new code structure not immediately
 
 ---
 
-### Browser support
+## Browser support
 // TODO:
 ---
 
