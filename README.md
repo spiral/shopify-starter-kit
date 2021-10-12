@@ -17,14 +17,14 @@ Dev technologies and tools
 ---
 
 ## Table of contents
-* [General info](#project-documentation)
-* [Getting Started](#getting-started)
-* [Shopify Theme Kit](#general-info)
-* [File Structure Contract](#file-tructure-contract)
-* [Automation](#automation)
-* [Commands](#commands)
-* [Browser support](#browser-support)
-* [Features implementation plan](#features-implementation-plan)
+* [General info](#Feneral-Info)
+* [Getting Started](#Getting-Started)
+* [Shopify Theme Kit](#Shopify-Theme-Kit)
+* [File Structure Contract](#File-Structure-Contract)
+* [Automation](#Automation)
+* [Commands](#Commands)
+* [Browser support](#Browser-Support)
+* [Features implementation plan](#Features-Implementation-Plan)
 
 ---
 
