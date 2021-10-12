@@ -17,11 +17,10 @@ Dev technologies and tools
 ---
 
 ## Table of contents
-* [General info](#Feneral-Info)
+* [General info](#General-Info)
 * [Getting Started](#Getting-Started)
 * [Shopify Theme Kit](#Shopify-Theme-Kit)
 * [File Structure Contract](#File-Structure-Contract)
-* [Automation](#Automation)
 * [Commands](#Commands)
 * [Browser support](#Browser-Support)
 * [Features implementation plan](#Features-Implementation-Plan)
@@ -135,6 +134,8 @@ production:
 - ./src/snippets: // TODO:
 - ./src/scripts: // TODO:
 - ./theme: // TODO:
+
+---
 
 ### Theme
 
