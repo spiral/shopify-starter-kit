@@ -5,14 +5,15 @@ Repository makes it easier to work with the distribution of files in the project
 
 
 Dev technologies and tools
+- Node.js
 - Webpack
 - Scss
-- Lint code with eslint*
-- Auto formatting code with Prettier
+- Stylelint/Eslint*
+- Prettier
 - Git hooks with husky
-- Shopify-themekit*
+- Shopify-themekit
 
-*Need to install shopify-themekit and eslint global.
+---
 
 ## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
 
@@ -122,7 +123,6 @@ This project makes it possible to switch to a new code structure not immediately
 
 ---
 
-
 ### Create component
 // TODO
 
@@ -133,7 +133,6 @@ This project makes it possible to switch to a new code structure not immediately
 
 ### Deploy theme
 // TODO
-
 
 ---
 
@@ -178,5 +177,3 @@ This project makes it possible to switch to a new code structure not immediately
 - [x] Add webpack analyzer
 
 etc.
-
----
