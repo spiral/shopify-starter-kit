@@ -19,42 +19,39 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
+const mkJsEntryPoints = (templatePath, filterCb = null) =>
+  getFilesNames(templatePath).reduce((res, name) => {
+    const isFileJs = path.parse(name).ext === '.js';
+    const isRelatedFile = filterCb ? filterCb(name) : true;
+
+    if (!isFileJs || !isRelatedFile) {
+      return res;
+    }
+
+    return {
+      ...res,
+      [path.parse(name).name]: path.resolve(__dirname, templatePath, name),
+    };
+  }, {});
+
 const mkTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
-    .reduce((res, name) => {
-      const filePath = path.resolve(
-        __dirname,
-        templatePath,
-        `${name}/${name}.js`
+    .reduce((res, dirName) => {
+      const templateEntries = mkJsEntryPoints(
+        path.resolve(templatePath, dirName),
+        (name) => name.includes(dirName)
       );
 
-      if (!fs.existsSync(filePath)) {
+      if (!templateEntries) {
         return res;
       }
 
       return {
         ...res,
-        [name]: filePath,
+        ...templateEntries,
       };
     }, {});
-
-const mkJsEntryPoints = (templatePath) =>
-  getFilesNames(templatePath).reduce(
-    (res, name) => ({
-      ...res,
-      ...(path.parse(name).ext === '.js'
-        ? {
-            [path.parse(name).name]: path.resolve(
-              __dirname,
-              templatePath,
-              name
-            ),
-          }
-        : null),
-    }),
-    {}
-  );
 
 const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
