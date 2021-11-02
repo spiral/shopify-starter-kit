@@ -1,7 +1,8 @@
 # shopify-starter-kit
 
-Starter theme and environment for the largest Shopify stores. 
+Starter theme and environment for the largest Shopify stores.
 Repository makes it easier to work with the distribution of files in the project and automates some tasks.
+Starter-kit based on Shopify Theme Kit and inspired by Shopify Slate and popular front-end frameworks (React, Vue).
 
 
 Dev technologies and tools
@@ -11,7 +12,7 @@ Dev technologies and tools
 - Stylelint/Eslint*
 - Prettier
 - Git hooks with husky
-- Shopify-themekit
+- Shopify Theme Kit
 
 ---
 
@@ -136,44 +137,11 @@ This project makes it possible to switch to a new code structure not immediately
 
 ---
 
-## Project features implementation plan: 
+#Contributing
+For help on setting up the repo locally, building, testing, and contributing please see CONTRIBUTING.md.
 
+#Code of Conduct
+All developers who wish to contribute through code or issues, take a look at the [Code of Conduct](https://github.com/spiral/shopify-starter-kit/blob/master/CODE_OF_CONDUCT).
 
-#### Features:
-
-- [x] File Structure
-- [x] Single Code Style linting
-- [x] Scripts and Styles Processing
-- [x] JS transpiling
-- [x] Assets Building
-- [x] Implements shopify theme-kit
-- [x] Run Lint and Format code on pre-commit
-- [x] Compress images
-- [ ] Dev Server
-- [x] File structure and build flow for customers templates
-- [x] Download existed Shopify Store into theme folder
-
----
-#### Automation:
-
-- [x] Add Components
-- [ ] Change/Move Components
-- [x] Runtime Processing files
-- [x] Files Checking
-- [ ] Git Release Automation
-
----
-#### Pages load time optimisation
-
-- [x] Loading required styles
-- [x] Loading required scripts
-- [ ] Scripts prefetch
-
----
-#### Research and develop
-
-- [x] Use autoprefixer for styles
-- [ ] Find the possibility to use strong prettier rules for liquid files
-- [x] Add webpack analyzer
-
-etc.
+#License
+Copyright (c) 2021 SpiralScout. See [LICENSE](https://github.com/spiral/shopify-starter-kit/blob/master/LICENSE) for further details.
