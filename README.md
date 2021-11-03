@@ -16,12 +16,38 @@ Dev technologies and tools
 
 ---
 
+## Table of contents
+* [General info](#General-Info)
+* [Getting Started](#Getting-Started)
+* [Shopify Theme Kit](#Shopify-Theme-Kit)
+* [File Structure Contract](#File-Structure-Contract)
+* [Commands](#Commands)
+* [Browser support](#Browser-Support)
+* [Features implementation plan](#Features-Implementation-Plan)
+
+---
+
+## General info:
+
+// TODO:
+
+---
+
+## Getting Started
+For starting core of project you need to do few simple steps:
+1. Install frontend dependencies using npm or yarn. `npm install`
+2. Then you need to create `config.yml` with correct settings and run command `npm run start`, or `npm run start:prod`.
+3. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
+
+After build all changes will be applied into you selected Shopify theme.
+
+
 ## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
 
 Do not forget to check theme ids before launching theme kit watcher!
 Watch starts a process that will watch the directory for changes and upload them to Shopify.
 
-## config.yml
+#### Configuration for themekit:  config.yml
 
 After cloning the repo, copy `config.example.yml` and rename the copy to `config.yml`.
 `config.yml` should contain production credentials (the current live theme) and development credentials (the current feature theme).
@@ -48,29 +74,22 @@ production:
   theme_id: "[your-theme-id]"
 ```
 
-# Starting Up
-Install frontend dependencies using npm install.
-Then you need to create `config.yml` with correct settings and run command `npm run start`, or `npm run start:prod`. 
-After build all changes will be applied into you selected Shopify theme.
-
-
-# Project documentation:
-
 ---
 
-### Browser support
+## Commands
 
-// TODO:
+#### Create component
+// TODO
 
----
 
-### Command
+#### Build theme
+// TODO
 
-// TODO:
 
----
+#### Deploy theme
+// TODO
 
-### FILE STRUCTURE CONTRACT
+## File Structure Contract
 
 ```
 /src
@@ -116,6 +135,8 @@ After build all changes will be applied into you selected Shopify theme.
 - ./src/scripts: // TODO:
 - ./theme: // TODO:
 
+---
+
 ### Theme
 
 This folder is intended for keeping files of an existing Shopify store.
@@ -124,17 +145,8 @@ This project makes it possible to switch to a new code structure not immediately
 
 ---
 
-### Create component
-// TODO
-
-
-### Build theme
-// TODO
-
-
-### Deploy theme
-// TODO
-
+## Browser support
+// TODO:
 ---
 
 # Contributing
