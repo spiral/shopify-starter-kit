@@ -22,8 +22,6 @@ Dev technologies and tools
 * [Shopify Theme Kit](#Shopify-Theme-Kit)
 * [File Structure Contract](#File-Structure-Contract)
 * [Commands](#Commands)
-* [Browser support](#Browser-Support)
-* [Features implementation plan](#Features-Implementation-Plan)
 
 ---
 
@@ -143,10 +141,6 @@ This folder is intended for keeping files of an existing Shopify store.
 
 This project makes it possible to switch to a new code structure not immediately and allows using the capabilities of the boilerplate in part.
 
----
-
-## Browser support
-// TODO:
 ---
 
 # Contributing
