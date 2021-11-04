@@ -150,10 +150,10 @@ This project makes it possible to switch to a new code structure not immediately
 ---
 
 # Contributing
-For help on setting up the repo locally, building, testing, and contributing please see CONTRIBUTING.md.
+For help on setting up the repo locally, building, testing, and contributing please see [CONTRIBUTING.md](https://github.com/spiral/shopify-starter-kit/blob/master/CONTRIBUTING.md).
 
 # Code of Conduct
-All developers who wish to contribute through code or issues, take a look at the [Code of Conduct](https://github.com/spiral/shopify-starter-kit/blob/master/CODE_OF_CONDUCT).
+All developers who wish to contribute through code or issues, take a look at the [CODE_OF_CONDUCT.md](https://github.com/spiral/shopify-starter-kit/blob/master/CODE_OF_CONDUCT.md).
 
 # License
 Copyright (c) 2021 SpiralScout. See [LICENSE](https://github.com/spiral/shopify-starter-kit/blob/master/LICENSE) for further details.
