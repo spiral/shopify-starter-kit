@@ -69,6 +69,7 @@ The advanced mode allows you to use all the features of the shopify-starter-kit:
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
 
+All templates in src folder based on shopify starter theme and provide BEM naming methodology.
 Advanced mode supported partial moving to new structure and all files in `./theme` folder will work totally fine.
 `
 NOTE: this mod is only suitable for those stores where no code changes are expected in the admin panel.
@@ -199,6 +200,8 @@ npm run gen
 Customer templates temporally unsupported.
 
 ## File Structure Contract
+This file structure contract is main feature of Shopify-starter-kit. 
+It is used in advanced mode and doesn't support syncing with shopify store.   
 
 ```
 /src
@@ -236,21 +239,24 @@ Customer templates temporally unsupported.
 /theme
 ```
 
+### Folders descriptions:
 
-- ./src/assets: // TODO:
-- ./src/customers: // TODO:
-- ./src/templates: // TODO:
-- ./src/snippets: // TODO:
-- ./src/scripts: // TODO:
-- ./theme: // TODO:
+`./src/assets` - folder for assets. It might be images, fonts, any necessary files for shopify store. 
+By default, files from this folder will be copied to dist without changes.
+In production mode images will be compressed.
 
----
+`./src/customers` - folders for customer templates. Can be empty.
 
-### Theme
+`./src/templates` - include all store pages with necessary styles and scripts. All page should include own sections. 
 
-This folder is intended for keeping files of an existing Shopify store.
+`./src/snippets` - are regular snippets with own styles. Style of each snippet can be included in section, template or theme. By default snippets styles or scripts are unwatched.
 
-This project makes it possible to switch to a new code structure not immediately and allows using the capabilities of the boilerplate in part.
+`./src/scripts` - the main folder functionality. All js files in this folder will be processed with wabpack and placed in `dist/assets`. Can't be empty.
+
+`./theme` - folder for all shopify files, used in base mode. 
+All files from this folder will be copied to dist without changes. 
+It is recommended to use the `npm run gen` command to add new components
+.
 
 ---
 
