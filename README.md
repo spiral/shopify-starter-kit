@@ -5,11 +5,11 @@ Repository makes it easier to work with the distribution of files in the project
 Starter-kit based on Shopify Theme Kit and inspired by Shopify Slate and popular front-end frameworks (React, Vue).
 
 
-Dev technologies and tools
+Dev technologies and tools:
 - Node.js
 - Webpack
 - Scss
-- Stylelint/Eslint*
+- Eslint, Stylelint
 - Prettier
 - Git hooks with husky
 - Shopify Theme Kit
@@ -25,7 +25,7 @@ Dev technologies and tools
 
 ---
 
-## General info:
+## General info
 
 Shopify-starter-kit - it is a tool for comfortable team development of Shopify stores. 
 The main goal of our team was to facilitate the start of new projects. 
@@ -36,8 +36,8 @@ We tried to collect the most important things  in one place -  this is how the s
 Shopify-starter-kit is supported to 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
 
 ### Basic mode
-Basic mode provides a shopify-starter-kit for extending current functionality on the current Shopify stores. 
-For this mode you need to follow a few simple steps:
+Basic Mode provides a shopify starter kit to expand current functionality in current Shopify stores. 
+For using this mode, you need to follow a few simple steps:
 - Clone this repo to own project folder
 - Install dependencies
 - Clean src folder to keep only “scripts” folder
