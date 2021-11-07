@@ -2,7 +2,7 @@
 
 Starter theme and environment for the largest Shopify stores.
 Repository makes it easier to work with the distribution of files in the project and automates some tasks.
-Starter-kit based on Shopify Theme Kit and inspired by Shopify Slate and popular front-end frameworks (React, Vue).
+Starter-kit based on [Shopify Themekit](https://github.com/Shopify/themekit) and inspired by Shopify Slate and popular front-end frameworks (React, Vue).
 
 
 Dev technologies and tools:
@@ -74,7 +74,7 @@ The advanced mode allows you to use all the features of the shopify-starter-kit:
 7. Customized auto-corrections style code at the time of commit creation
 
 All templates in src folder based on shopify starter theme and provide BEM naming methodology.
-Advanced mode supported partial moving to new structure and all files in `./theme` folder will work totally fine.
+Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
 
 ❗**NOTE**: this mod is only suitable for those stores where no code changes are expected in the admin panel.
 In advanced mode, at the moment there is no way to do full syncing with the existing store. 
@@ -262,8 +262,7 @@ In production mode images will be compressed.
 
 `./theme` - folder for all shopify files, used in base mode. 
 All files from this folder will be copied to dist without changes. 
-It is recommended to use the `npm run gen` command to add new components
-.
+It is recommended to use the `npm run gen` command to add new components.
 
 ---
 
