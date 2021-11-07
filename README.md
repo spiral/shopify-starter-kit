@@ -69,6 +69,7 @@ The advanced mode allows you to use all the features of the shopify-starter-kit:
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
 
+Advanced mode supported partial moving to new structure and all files in `./theme` folder will work totally fine.
 `
 NOTE: this mod is only suitable for those stores where no code changes are expected in the admin panel.
 In advanced mode, at the moment there is no way to do full syncronization with the existing store. 
@@ -122,16 +123,80 @@ production:
 
 ## Commands
 
+The Shopify starter kit contains many commands for working on a project. 
+Most of the commands for working with the theme are shortnames for the Shopify-themekit. 
+However, most of it allows you to work with the project itself. Just a few basic commands are described below. 
+A complete list of commands can be found in the `package.json` file.
+
+#### Download
+The commands for download existing shopify stores.
+We have 2 command to download theme:
+
+```bash
+npm run theme:download
+```
+
+or 
+
+```bash
+npm run theme:download:prod
+```
+
+`theme:download` related to development environment part of your config.yml file, 
+`theme:download:prod` related to production part.
+
+#### Start
+Start command will run webpack watcher, themekit deploy watcher and open development store in new browser window.
+By default, this command runs only for development environment. You can modify it own remo after doing clone.
+
+```bash
+npm run start
+```
+---
+#### Build
+Build command prepare all files for deploy. 
+All files will be processed and placed into `./dist` folder.
+Supported development and production modes
+
+```bash
+npm run build
+```
+or
+```bash
+npm run build:prod
+```
+Build command it is shorthand for webpack. 
+By default it starts with a progress flag.
+
+---
+
+#### Deploy
+Command for upload all files from `./dist` folder to shopify store. 
+Based on themekit functionality.
+
+```bash
+npm run deploy
+```
+or
+```bash
+npm run deploy:prod
+```
+
+Deploy command it is shorthand of few base commands: lint, build, and themekit deploy.
+
+
 #### Create component
-// TODO
+The Shopify-starter-kit provides the CLI to creating new entities in own structures.
+CLI based on `yeoman` generator and can be started with the `yo` command. 
+CLI supported to create style, script and liquid files for templates, section, snippets.
+All templates already contain import scripts and styles inside liquid file.
+You can change it in generator folder after clone shopify-starter-kit.
 
+```bash
+npm run gen
+```
 
-#### Build theme
-// TODO
-
-
-#### Deploy theme
-// TODO
+Customer templates temporally unsupported.
 
 ## File Structure Contract
 

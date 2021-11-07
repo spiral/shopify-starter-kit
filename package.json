@@ -25,7 +25,6 @@
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\" \"npm run theme:open\"",
-    "start:prod": "concurrently \"npm run watch:prod\" \"npm run theme:watch:prod\" \"npm run theme:open:prod\"",
     "gen": "yo ./generator",
     "prepare": "husky install"
   },
