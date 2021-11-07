@@ -53,8 +53,8 @@ All new functionality (logic or styles) you can add directly to `./src/folder`.
 After the build they must be processed and placed in `./dist/assets` as build artifacts. 
 We are using webpack: ‘mini-css-extract-plugin’ for build style files, and it should work at this point.
 
-❗**NOTE**: after removilg src folder you must get build error. It happens because webpack look at srctipts in the ./src/scripts folder.
-For fix this problem please open webpcak.config and remove the line with code: "...mkJsEntryPoints('src/scripts')"
+❗**NOTE**: after removing src folder you must get build error. It happens because webpack look at srctipts in the `./src/scripts` folder.
+For fix this problem please open `webpcak.config.js` and remove the line with code: `...mkJsEntryPoints('src/scripts')`.
 
 
 ### Advanced mode
@@ -77,9 +77,8 @@ All templates in src folder based on shopify starter theme and provide BEM namin
 Advanced mode supported partial moving to new structure and all files in `./theme` folder will work totally fine.
 
 ❗**NOTE**: this mod is only suitable for those stores where no code changes are expected in the admin panel.
-In advanced mode, at the moment there is no way to do full syncronization with the existing store. 
+In advanced mode, at the moment there is no way to do full syncing with the existing store. 
 All files downloaded from the existing store will be placed in the theme folder and there will be no replacement in the structure
-
 
 ---
 
@@ -159,7 +158,9 @@ By default, this command runs only for development environment. You can modify i
 ```bash
 npm run start
 ```
+
 ---
+
 #### Build
 Build command prepare all files for deploy. 
 All files will be processed and placed into `./dist` folder.
