@@ -89,10 +89,10 @@ For starting core of project you need to do few simple steps:
 3. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
 
 After build all changes will be applied into you selected Shopify theme.
-Additional info you can find in the [Shopify Themekit](https://shopify.dev/tools/theme-kit) block.
+Additional info you can find in the [Shopify Themekit](#Shopify-Themekit) block.
 
 
-## [Shopify Themekit](https://shopify.dev/tools/theme-kit)
+## [Shopify Themekit](https://github.com/Shopify/themekit)
 
 Do not forget to check theme ids before launching theme kit watcher!
 Watch starts a process that will watch the directory for changes and upload them to Shopify.
