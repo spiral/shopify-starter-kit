@@ -30,7 +30,7 @@ Repository makes it easier to work with the distribution of files in the project
 
 
 
-### General info
+## General info
 
 **Shopify starter kit** - it is a tool for comfortable team development of Shopify stores. 
 The main goal of our team was to facilitate the start of new projects. 
