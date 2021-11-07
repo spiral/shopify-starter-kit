@@ -18,24 +18,28 @@ Dev technologies and tools:
 
 ## Table of contents
 * [General info](#General-Info)
+  - Shopify-starter-kit in [Basic mode](#basic-mode)
+  - Shopify-starter-kit in [Advanced mode](#advanced-mode)
 * [Getting Started](#Getting-Started)
 * [Shopify Theme Kit](#Shopify-Theme-Kit)
+    - [Configuration for themekit](#configuration-for-themekit)
 * [File Structure Contract](#File-Structure-Contract)
+  - [Folders descriptions](#folders-descriptions)
 * [Commands](#Commands)
 
----
 
-## General info
+
+### General info
 
 Shopify-starter-kit - it is a tool for comfortable team development of Shopify stores. 
 The main goal of our team was to facilitate the start of new projects. 
 For us, this means a quick start, the use of latest js standards and the use of  teamwork tools. 
 We tried to collect the most important things  in one place -  this is how the shopify-starter-kit tool turned out.
 
-
 Shopify-starter-kit is supported to 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
 
 ### Basic mode
+
 Basic Mode provides a shopify starter kit to expand current functionality in current Shopify stores. 
 For using this mode, you need to follow a few simple steps:
 - Clone this repo to own project folder
@@ -53,8 +57,8 @@ We are using webpack: ‘mini-css-extract-plugin’ for build style files, and i
 For fix this problem please open webpcak.config and remove the line with code: "...mkJsEntryPoints('src/scripts')"
 
 
-
 ### Advanced mode
+
 Advanced Mode provides a powerful suite for building Shopify stores.
 This mode makes it easier to work with store pages. 
 An advanced file structure allows you to separate the code between pages and load only the necessary functionality on the page, which increases the speed of the site. 
@@ -80,12 +84,14 @@ All files downloaded from the existing store will be placed in the theme folder 
 ---
 
 ## Getting Started
+
 For starting core of project you need to do few simple steps:
 1. Install frontend dependencies using npm or yarn. `npm install`
 2. Then you need to create `config.yml` with correct settings and run command `npm run start`, or `npm run start:prod`.
 3. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
 
 After build all changes will be applied into you selected Shopify theme.
+Additional info you can find in the [Shopify Theme Kit](https://shopify.dev/tools/theme-kit) block.
 
 
 ## [Shopify Theme Kit](https://shopify.dev/tools/theme-kit)
@@ -93,7 +99,7 @@ After build all changes will be applied into you selected Shopify theme.
 Do not forget to check theme ids before launching theme kit watcher!
 Watch starts a process that will watch the directory for changes and upload them to Shopify.
 
-#### Configuration for themekit:  config.yml
+#### Configuration for themekit
 
 After cloning the repo, copy `config.example.yml` and rename the copy to `config.yml`.
 `config.yml` should contain production credentials (the current live theme) and development credentials (the current feature theme).
