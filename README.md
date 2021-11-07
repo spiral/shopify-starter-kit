@@ -27,7 +27,53 @@ Dev technologies and tools
 
 ## General info:
 
-// TODO:
+Shopify-starter-kit - it is a tool for comfortable team development of Shopify stores. 
+The main goal of our team was to facilitate the start of new projects. 
+For us, this means a quick start, the use of latest js standards and the use of  teamwork tools. 
+We tried to collect the most important things  in one place -  this is how the shopify-starter-kit tool turned out.
+
+
+Shopify-starter-kit is supported to 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
+
+### Basic mode
+Basic mode provides a shopify-starter-kit for extending current functionality on the current Shopify stores. 
+For this mode you need to follow a few simple steps:
+- Clone this repo to own project folder
+- Install dependencies
+- Clean src folder to keep only “scripts” folder
+- Set actual data to the config.yml file
+- Download current shopify store with command `npm run download:theme`
+- Then all your store files will be placed into the `./theme` folder and everything is ready to go.
+
+All new functionality (logic or styles) you can add directly to `./src/folder`. 
+After the build they must be processed and placed in `./dist/assets` as build artifacts. 
+We are using webpack: ‘mini-css-extract-plugin’ for build style files, and it should work at this point.
+
+`
+NOTE: after removilg src folder you must get build error. It happens because webpack look at srctipts in the ./src/scripts folder.
+For fix this problem please open webpcak.config and remove the line with code: "...mkJsEntryPoints('src/scripts')"
+`
+
+### Advanced mode
+Advanced Mode provides a powerful suite for building Shopify stores.
+This mode makes it easier to work with store pages. 
+An advanced file structure allows you to separate the code between pages and load only the necessary functionality on the page, which increases the speed of the site. 
+The structure also makes it easier to find and fix problems in the code, which speeds up the work of developers.
+
+The advanced mode allows you to use all the features of the shopify-starter-kit:
+- separation of scripts and styles by pages.
+- Rigid component structure support
+- CLI for generating components of this structure
+- Separation of styles between pages, which allows to optimize loading of styles and scripts, code splitting
+- Using inside styles to speed up page loading
+- Using linting and code styling tools
+- Customized auto-corrections style code at the time of commit creation
+
+`
+NOTE: this mod is only suitable for those stores where no code changes are expected in the admin panel.
+In advanced mode, at the moment there is no way to do full syncronization with the existing store. 
+All files downloaded from the existing store will be placed in the theme folder and there will be no replacement in the structure
+`
 
 ---
 
