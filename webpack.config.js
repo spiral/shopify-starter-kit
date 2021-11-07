@@ -1,7 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const RemoveWebpackPlugin = require('remove-files-webpack-plugin');
+const RemoveFilesWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -97,7 +97,10 @@ const config = {
           ? `snippets/${name}.css.liquid`
           : `assets/${name}.css`,
     }),
-    new RemoveWebpackPlugin({
+    new RemoveFilesWebpackPlugin({
+      before: {
+        include: ['./dist'],
+      },
       after: {
         test: [
           {
