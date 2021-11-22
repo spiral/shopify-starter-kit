@@ -41,7 +41,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'name',
-        message: 'Enter your section name',
+        message: 'Enter your section name (with prefix)',
         when(answers) {
           return answers.component === 'section';
         },
@@ -73,10 +73,12 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'name',
-        message: 'Enter your template name',
-        default: '',
+        message: `Enter your template name (without prefix)`,
         when(answers) {
           return answers.component === 'template';
+        },
+        default(answers) {
+          return `${answers.template_name}.`;
         },
       },
       {
