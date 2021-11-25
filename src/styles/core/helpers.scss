@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .clearfix {
   @include clearfix;
 }
@@ -62,7 +64,7 @@
 
   background-color: $color-body;
   color: $color-body-text;
-  padding: $grid-gutter / 2;
+  padding: math.div($grid-gutter, 2);
   transition: none;
   z-index: 10000;
 }

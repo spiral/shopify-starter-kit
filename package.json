@@ -79,7 +79,7 @@
     "prettier": "^2.3.0",
     "pretty-quick": "^3.1.1",
     "remove-files-webpack-plugin": "^1.4.4",
-    "sass": "^1.32.10",
+    "sass": "^1.43.5",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
