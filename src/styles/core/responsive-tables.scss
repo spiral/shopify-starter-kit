@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @include at-query($small) {
   .responsive-table {
     width: 100%;
@@ -22,7 +24,7 @@
     td {
       display: block;
       margin: 0;
-      padding: $grid-gutter / 2;
+      padding: math.div($grid-gutter, 2);
       text-align: right;
     }
 
@@ -38,16 +40,16 @@
   .responsive-table-row + .responsive-table-row,
   tfoot > .responsive-table-row:first-child {
     margin-top: 10px;
-    padding-top: $grid-gutter / 2;
+    padding-top: math.div($grid-gutter, 2);
     position: relative;
 
     &::after {
       border-bottom: 1px solid $color-border;
       content: '';
       display: block;
-      left: $grid-gutter / 2;
+      left: math.div($grid-gutter, 2);
       position: absolute;
-      right: $grid-gutter / 2;
+      right: math.div($grid-gutter, 2);
       top: 0;
     }
   }
