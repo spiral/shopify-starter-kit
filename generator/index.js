@@ -7,6 +7,25 @@ const Generator = require('yeoman-generator');
 const path = require('path');
 const { getDirNames } = require('../webpack-helpers');
 
+const COMPONENT_TYPES = {
+  SNIPPET: 'snippet',
+  SECTION: 'section',
+  TEMPLATE: 'template',
+  CUSTOMER_TEMPLATE: 'customer',
+};
+
+const COMPONENT_TYPES_ORDER = [
+  COMPONENT_TYPES.SNIPPET,
+  COMPONENT_TYPES.SECTION,
+  COMPONENT_TYPES.TEMPLATE,
+  COMPONENT_TYPES.CUSTOMER_TEMPLATE,
+];
+
+const TEMPLATE_TYPE_OUTPUT_MAP = {
+  [COMPONENT_TYPES.TEMPLATE]: 'templates',
+  [COMPONENT_TYPES.CUSTOMER_TEMPLATE]: 'customers',
+};
+
 module.exports = class extends Generator {
   async prompting() {
     const self = this;
@@ -16,40 +35,60 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'component',
         message: 'Who do you want to generate?',
-        choices: ['snippet', 'section', 'template'],
-        default: 'snippet',
+        choices: COMPONENT_TYPES_ORDER,
+        default: COMPONENT_TYPES.SNIPPET,
       },
       {
         type: 'input',
-        name: 'name',
+        name: 'snippet_name',
         message: 'Enter your snippet name',
         when(answers) {
-          return answers.component === 'snippet';
+          return answers.component === COMPONENT_TYPES.SNIPPET;
         },
         default: '',
       },
       {
         type: 'list',
-        name: 'template',
+        name: 'template_type',
+        message: 'Do you want to add customer section?',
+        choices: [COMPONENT_TYPES.TEMPLATE, COMPONENT_TYPES.CUSTOMER_TEMPLATE],
+        when(answers) {
+          return answers.component === COMPONENT_TYPES.SECTION;
+        },
+        default: COMPONENT_TYPES.TEMPLATE,
+      },
+      {
+        type: 'list',
+        name: 'section_related',
         message: 'Please select section destination?',
         choices: getDirNames('./src/templates'),
         when(answers) {
-          return answers.component === 'section';
+          return answers.template_type === COMPONENT_TYPES.TEMPLATE;
         },
         default: 'common',
       },
       {
+        type: 'list',
+        name: 'section_related',
+        message: 'Please select section destination?',
+        choices: getDirNames('./src/customers'),
+        when(answers) {
+          return answers.template_type === COMPONENT_TYPES.CUSTOMER_TEMPLATE;
+        },
+        default: 'account',
+      },
+      {
         type: 'input',
-        name: 'name',
+        name: 'section_name',
         message: 'Enter your section name (with prefix)',
         when(answers) {
-          return answers.component === 'section';
+          return answers.component === COMPONENT_TYPES.SECTION;
         },
         default: '',
       },
       {
         type: 'list',
-        name: 'template_name',
+        name: 'template_prefix',
         message: 'Choose template prefix',
         choices: [
           '404',
@@ -66,19 +105,40 @@ module.exports = class extends Generator {
           'search',
         ],
         when(answers) {
-          return answers.component === 'template';
+          return answers.component === COMPONENT_TYPES.TEMPLATE;
         },
         default: 'page',
       },
       {
+        type: 'list',
+        name: 'template_prefix',
+        message: 'Choose customer template prefix',
+        choices: [
+          'account',
+          'activate_account',
+          'addresses',
+          'login',
+          'order',
+          'register',
+          'reset_password',
+        ],
+        when(answers) {
+          return answers.component === COMPONENT_TYPES.CUSTOMER_TEMPLATE;
+        },
+        default: '',
+      },
+      {
         type: 'input',
-        name: 'name',
+        name: 'template_name',
         message: `Enter your template name (without prefix)`,
         when(answers) {
-          return answers.component === 'template';
+          return (
+            answers.component === COMPONENT_TYPES.TEMPLATE ||
+            answers.component === COMPONENT_TYPES.CUSTOMER_TEMPLATE
+          );
         },
         default(answers) {
-          return `${answers.template_name}.`;
+          return `${answers.template_prefix}.`;
         },
       },
       {
@@ -86,7 +146,10 @@ module.exports = class extends Generator {
         name: 'has_hero_section',
         message: 'Do you want to add hero section?',
         when(answers) {
-          return answers.component === 'template';
+          return (
+            answers.component === COMPONENT_TYPES.TEMPLATE ||
+            answers.component === COMPONENT_TYPES.CUSTOMER_TEMPLATE
+          );
         },
         default: false,
       },
@@ -105,24 +168,32 @@ module.exports = class extends Generator {
       })
     );
 
-    if (self.answers.component === 'snippet') {
-      this.createSnippet(self.answers.name);
+    if (self.answers.component === COMPONENT_TYPES.SNIPPET) {
+      this.createSnippet({ name: self.answers.snippet_name });
     }
 
-    if (self.answers.component === 'section') {
-      this.createSection(self.answers.name, self.answers.template);
+    if (self.answers.component === COMPONENT_TYPES.SECTION) {
+      this.createSection({
+        name: self.answers.section_name,
+        templateName: self.answers.section_related,
+        templateType: TEMPLATE_TYPE_OUTPUT_MAP[self.answers.template_type],
+      });
     }
 
-    if (self.answers.component === 'template') {
-      this.createTemplate(
-        self.answers.name,
-        self.answers.template_name,
-        self.answers.has_hero_section
-      );
+    if (
+      self.answers.component === COMPONENT_TYPES.TEMPLATE ||
+      self.answers.component === COMPONENT_TYPES.CUSTOMER_TEMPLATE
+    ) {
+      this.createTemplate({
+        name: self.answers.template_name,
+        prefix: self.answers.template_prefix,
+        templateType: TEMPLATE_TYPE_OUTPUT_MAP[self.answers.component],
+        hasHeroSection: self.answers.has_hero_section,
+      });
     }
   }
 
-  async createSnippet(name) {
+  async createSnippet({ name } = {}) {
     const self = this;
 
     if (name) {
@@ -134,13 +205,13 @@ module.exports = class extends Generator {
     }
   }
 
-  async createSection(name, template = 'common') {
+  async createSection({ name, templateName = 'common', templateType } = {}) {
     const self = this;
 
     if (name) {
       self.fs.copyTpl(
         self.templatePath('section'),
-        self.destinationPath(`./src/templates/${template}/${name}`),
+        self.destinationPath(`./src/${templateType}/${templateName}/${name}`),
         {
           name,
           schemaName: startCase(toLower(name)),
@@ -149,32 +220,57 @@ module.exports = class extends Generator {
     }
   }
 
-  async createTemplate(name, prefix, hasHeroSection) {
+  async createTemplate({
+    name,
+    prefix,
+    templateType,
+    hasHeroSection = false,
+  } = {}) {
     const self = this;
 
     const pageName = name ? `${prefix}-${name}` : prefix;
-    const fileName = name ? `${prefix}.${name}` : prefix;
+    const templateName = name ? `${prefix}.${name}` : prefix;
 
-    if (fileName) {
+    const sectionName = hasHeroSection ? `${pageName}-hero` : null;
+
+    if (templateName) {
       self.fs.copyTpl(
         self.templatePath('template'),
-        `./src/templates/${fileName}`,
+        `./src/${templateType}/${templateName}`,
         {
-          name: `${fileName}`,
+          name: `${templateName}`,
           className: pageName,
-          sectionName: hasHeroSection ? `${pageName}-hero` : null,
+          sectionName,
         }
       );
 
-      if (hasHeroSection) {
-        this.createSection(`${pageName}-hero`, fileName);
+      if (sectionName) {
+        this.createSection({
+          name: sectionName,
+          templateName,
+          templateType,
+        });
       }
     }
   }
 
   async end() {
     const self = this;
+    const {
+      snippet_name: snippetName,
+      section_name: sectionName,
+      template_prefix: templatePrefix,
+      template_name: templateName,
+      component,
+    } = self.answers;
 
-    self.log(`creating ${self.answers.component}: ${self.answers.name}`);
+    const COMPONENTS_NAME_MAP = {
+      [COMPONENT_TYPES.SNIPPET]: snippetName,
+      [COMPONENT_TYPES.SECTION]: sectionName,
+      [COMPONENT_TYPES.TEMPLATE]: `${templatePrefix}.${templateName}`,
+      [COMPONENT_TYPES.CUSTOMER_TEMPLATE]: `${templatePrefix}.${templateName}`,
+    };
+
+    self.log(`creating ${component}: ${COMPONENTS_NAME_MAP[component]}`);
   }
 };
