@@ -25,7 +25,8 @@ const SRC_TEMPLATES_LIST = [
 ];
 
 const config = {
-  mode: 'development',
+  mode: 'production',
+  devtool: 'source-map',
   entry: {
     ...mkTemplateEntryPoints('src/templates'),
     ...mkTemplateEntryPoints('src/customers'),
@@ -140,10 +141,6 @@ module.exports = (env, argv) => {
       ...config.plugins,
       new ImageminWebpackPlugin({ test: IMAGE_FILES_PATTERN }),
     ];
-
-    config.optimization.minimize = true;
-
-    config.devtool = 'source-map';
   }
 
   return config;
