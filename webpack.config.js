@@ -25,6 +25,7 @@ const SRC_TEMPLATES_LIST = [
 ];
 
 const config = {
+  mode: 'development',
   entry: {
     ...mkTemplateEntryPoints('src/templates'),
     ...mkTemplateEntryPoints('src/customers'),
@@ -35,7 +36,8 @@ const config = {
     filename: 'assets/[name].js',
   },
   optimization: {
-    minimize: false,
+    noEmitOnErrors: true,
+    minimize: true,
     minimizer: [
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
