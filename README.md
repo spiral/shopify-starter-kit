@@ -228,8 +228,6 @@ You can change it in generator folder after clone **shopify starter kit**.
 npm run gen
 ```
 
-Customer templates temporally unsupported.
-
 
 ## File Structure Contract
 
