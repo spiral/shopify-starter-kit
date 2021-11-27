@@ -7,6 +7,18 @@ const Generator = require('yeoman-generator');
 const path = require('path');
 const { getDirNames } = require('../webpack-helpers');
 
+const COMPONENT_TYPES = {
+  SNIPPET: 'snippet',
+  SECTION: 'section',
+  TEMPLATE: 'template',
+};
+
+const COMPONENT_TYPES_ORDER = [
+  COMPONENT_TYPES.SNIPPET,
+  COMPONENT_TYPES.SECTION,
+  COMPONENT_TYPES.TEMPLATE,
+];
+
 module.exports = class extends Generator {
   async prompting() {
     const self = this;
@@ -16,15 +28,15 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'component',
         message: 'Who do you want to generate?',
-        choices: ['snippet', 'section', 'template'],
-        default: 'snippet',
+        choices: COMPONENT_TYPES_ORDER,
+        default: COMPONENT_TYPES.SNIPPET,
       },
       {
         type: 'input',
         name: 'name',
         message: 'Enter your snippet name',
         when(answers) {
-          return answers.component === 'snippet';
+          return answers.component === COMPONENT_TYPES.SNIPPET;
         },
         default: '',
       },
@@ -34,7 +46,7 @@ module.exports = class extends Generator {
         message: 'Please select section destination?',
         choices: getDirNames('./src/templates'),
         when(answers) {
-          return answers.component === 'section';
+          return answers.component === COMPONENT_TYPES.SECTION;
         },
         default: 'common',
       },
@@ -43,7 +55,7 @@ module.exports = class extends Generator {
         name: 'name',
         message: 'Enter your section name (with prefix)',
         when(answers) {
-          return answers.component === 'section';
+          return answers.component === COMPONENT_TYPES.SECTION;
         },
         default: '',
       },
@@ -66,7 +78,7 @@ module.exports = class extends Generator {
           'search',
         ],
         when(answers) {
-          return answers.component === 'template';
+          return answers.component === COMPONENT_TYPES.TEMPLATE;
         },
         default: 'page',
       },
@@ -75,7 +87,7 @@ module.exports = class extends Generator {
         name: 'name',
         message: `Enter your template name (without prefix)`,
         when(answers) {
-          return answers.component === 'template';
+          return answers.component === COMPONENT_TYPES.TEMPLATE;
         },
         default(answers) {
           return `${answers.template_name}.`;
@@ -86,7 +98,7 @@ module.exports = class extends Generator {
         name: 'has_hero_section',
         message: 'Do you want to add hero section?',
         when(answers) {
-          return answers.component === 'template';
+          return answers.component === COMPONENT_TYPES.TEMPLATE;
         },
         default: false,
       },
@@ -105,15 +117,15 @@ module.exports = class extends Generator {
       })
     );
 
-    if (self.answers.component === 'snippet') {
+    if (self.answers.component === COMPONENT_TYPES.SNIPPET) {
       this.createSnippet(self.answers.name);
     }
 
-    if (self.answers.component === 'section') {
+    if (self.answers.component === COMPONENT_TYPES.SECTION) {
       this.createSection(self.answers.name, self.answers.template);
     }
 
-    if (self.answers.component === 'template') {
+    if (self.answers.component === COMPONENT_TYPES.TEMPLATE) {
       this.createTemplate(
         self.answers.name,
         self.answers.template_name,
