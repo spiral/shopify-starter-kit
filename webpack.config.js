@@ -36,6 +36,21 @@ const config = {
   },
   optimization: {
     minimize: false,
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: SafePostCssParser,
+          map: {
+            // `inline: false` forces the sourcemap to be output into a
+            // separate file
+            inline: false,
+            // `annotation: true` appends the sourceMappingURL to the end of
+            // the css file, helping the browser find the sourcemap
+            annotation: true,
+          },
+        },
+      }),
+    ],
   },
   module: {
     rules: [
@@ -125,21 +140,6 @@ module.exports = (env, argv) => {
     ];
 
     config.optimization.minimize = true;
-    config.optimization.minimizer = [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          parser: SafePostCssParser,
-          map: {
-            // `inline: false` forces the sourcemap to be output into a
-            // separate file
-            inline: false,
-            // `annotation: true` appends the sourceMappingURL to the end of
-            // the css file, helping the browser find the sourcemap
-            annotation: true,
-          },
-        },
-      }),
-    ];
 
     config.devtool = 'source-map';
   }
