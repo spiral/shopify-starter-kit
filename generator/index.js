@@ -169,31 +169,31 @@ module.exports = class extends Generator {
     );
 
     if (self.answers.component === COMPONENT_TYPES.SNIPPET) {
-      this.createSnippet(self.answers.snippet_name);
+      this.createSnippet({ name: self.answers.snippet_name });
     }
 
     if (self.answers.component === COMPONENT_TYPES.SECTION) {
-      this.createSection(
-        self.answers.section_name,
-        self.answers.section_related,
-        TEMPLATE_TYPE_OUTPUT_MAP[self.answers.template_type]
-      );
+      this.createSection({
+        name: self.answers.section_name,
+        templateName: self.answers.section_related,
+        templateType: TEMPLATE_TYPE_OUTPUT_MAP[self.answers.template_type],
+      });
     }
 
     if (
       self.answers.component === COMPONENT_TYPES.TEMPLATE ||
       self.answers.component === COMPONENT_TYPES.CUSTOMER_TEMPLATE
     ) {
-      this.createTemplate(
-        self.answers.template_name,
-        self.answers.template_prefix,
-        TEMPLATE_TYPE_OUTPUT_MAP[self.answers.component],
-        self.answers.has_hero_section
-      );
+      this.createTemplate({
+        name: self.answers.template_name,
+        prefix: self.answers.template_prefix,
+        templateType: TEMPLATE_TYPE_OUTPUT_MAP[self.answers.component],
+        hasHeroSection: self.answers.has_hero_section,
+      });
     }
   }
 
-  async createSnippet(name) {
+  async createSnippet({ name } = {}) {
     const self = this;
 
     if (name) {
@@ -205,7 +205,7 @@ module.exports = class extends Generator {
     }
   }
 
-  async createSection(name, templateName = 'common', templateType) {
+  async createSection({ name, templateName = 'common', templateType } = {}) {
     const self = this;
 
     if (name) {
@@ -220,7 +220,12 @@ module.exports = class extends Generator {
     }
   }
 
-  async createTemplate(name, prefix, templateType, hasHeroSection = false) {
+  async createTemplate({
+    name,
+    prefix,
+    templateType,
+    hasHeroSection = false,
+  } = {}) {
     const self = this;
 
     const pageName = name ? `${prefix}-${name}` : prefix;
@@ -240,7 +245,11 @@ module.exports = class extends Generator {
       );
 
       if (sectionName) {
-        this.createSection(sectionName, templateName, templateType);
+        this.createSection({
+          name: sectionName,
+          templateName,
+          templateType,
+        });
       }
     }
   }
