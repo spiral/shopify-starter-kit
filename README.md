@@ -32,16 +32,16 @@ Repository makes it easier to work with the distribution of files in the project
 
 ## General info
 
-**Shopify starter kit** - it is a tool for comfortable team development of Shopify stores. 
+**Shopify starter kit** is a tool for comfortable team development of Shopify stores. 
 The main goal of our team was to facilitate the start of new projects. 
 For us, this means a quick start, the use of latest js standards and the use of  teamwork tools. 
-We tried to collect the most important things  in one place -  this is how the **Shopify starter kit** tool turned out.
+We tried to collect the most important things  in one place -  this is how the **Shopify starter kit** turned out.
 
 **Shopify starter kit** is supported to 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
 
 ### Basic mode
 
-Basic Mode provides a **Shopify starter kit** to expand current functionality in current Shopify stores. 
+Basic Mode provides a **Shopify starter kit** to expand current functionality for existing Shopify repositories. 
 For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
@@ -52,7 +52,7 @@ For using this mode, you need to follow a few simple steps:
 
 All new functionality (scripts and styles) you can add directly to `./src` folder. 
 After the build they must be processed and placed in `./dist/assets` as build artifacts. 
-We are using webpack: ‘mini-css-extract-plugin’ for build style files, and it should work at this point.
+We are using webpack: `mini-css-extract-plugin` for build style files, and it should work at this point.
 
 ❗**NOTE**: After removing `./src` folder you must get build error. It happens because webpack look at srctipts in the `./src/scripts` folder.
 For fix this problem please open `webpcak.config.js` and remove the line in entry block with code `...mkJsEntryPoints('src/scripts')`.
@@ -86,9 +86,9 @@ All files downloaded from the existing store will be placed in the `./theme` fol
 ## Getting Started
 
 For starting core of project you need to do few simple steps:
-1. Clone this repo
-2. Install dependencies using npm or yarn. `npm install`
-3. Then you need to create `config.yml` with correct settings. Possible copy and rename file `config.example.yml`
+1. Clone this repo,
+2. Install dependencies using npm or yarn. `npm install`,
+3. Then you need to create `config.yml` with correct settings. Possible copy and rename file `config.example.yml`,
 4. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
 
 After build all changes will be applied into you selected Shopify theme.
@@ -107,24 +107,12 @@ After cloning the repo, copy `config.example.yml` and rename the copy to `config
 
 The current feature theme is the developers's own theme. Starting to work on a new feature the developer must change the **development** `theme_id` to the corresponding one every time.
 
-For example:
-
 ```
 development:
   store: [your-store].myshopify.com
   password: [your-api-password]
   theme_id: "[your-theme-id]"
   proxy: http://localhost:3000
-```
-
-The **production (live)** `theme_id` must be changed only after the release.
-For example:
-
-```
-production:
-  store: [your-store].myshopify.com
-  password: [your-api-password]
-  theme_id: "[your-theme-id]"
 ```
 
 ---
@@ -143,6 +131,7 @@ A complete list of commands can be found in the `package.json` file.
 * [Build](#Build)
 * [Deploy](#Deploy)
 * [Create component](#Create-component)
+* [Analyze](#Analyze)
 
 #### Download
 
@@ -193,7 +182,7 @@ npm run build:prod
 ```
 
 Build command it is shorthand for webpack. 
-By default it starts with a progress flag.
+By default it starts with a `--progress` flag.
 
 ---
 
@@ -228,6 +217,23 @@ You can change it in generator folder after clone **shopify starter kit**.
 npm run gen
 ```
 
+
+---
+
+#### Analyze
+It is CLI command for profiling js assets.
+Analyze is the shortcut for who commands: `webpack --profile` and run [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
+You can find more details about profiling in webpack docs [webpack profile](https://webpack.js.org/configuration/other-options/#profile).
+
+```bash
+npm run analyze
+```
+
+or
+
+```bash
+npm run analyze:prod
+```
 
 ## File Structure Contract
 
@@ -278,11 +284,20 @@ In production mode images will be compressed.
 
 `./src/customers` - folders for customer templates. Can be empty.
 
-`./src/templates` - include all store pages with necessary styles and scripts. All page should include own sections. 
+`./src/templates` - include all store pages with necessary styles and scripts.
+All page should include own sections.
+❗**NOTE**: By default, all templates uses scripts as webpack entry point. 
+It isn't well because you can get a lot of empty js assets on build templates without logic.
+If you want to build only styles, you should remove js file from template folder.
+Webpack will watch scss files in template folders as well.
+More details about template entry points you can find in `webpack-helpers` file `makeTemplateEntryPoints` function.
 
-`./src/snippets` - are regular snippets with own styles. Style of each snippet can be included in section, template or theme. By default snippets styles or scripts are unwatched.
+`./src/snippets` - are regular snippets with own styles. 
+Style of each snippet can be included in section, template or theme. 
+By default, snippets styles or scripts are unwatched.
 
-`./src/scripts` - the main folder functionality. All js files in this folder will be processed with wabpack and placed in `./dist/assets`. Can't be empty.
+`./src/scripts` - the main folder functionality. 
+All js files in this folder will be processed with wabpack and placed in `./dist/assets`. Can't be empty.
 
 `./theme` - folder for all shopify files, used in base mode. 
 All files from this folder will be copied to dist without changes. 

@@ -19,41 +19,48 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
-const mkJsEntryPoints = (templatePath, filterCb = null) =>
-  getFilesNames(templatePath).reduce((res, name) => {
-    const isFileJs = path.parse(name).ext === '.js';
-    const isRelatedFile = filterCb ? filterCb(name) : true;
+const makeEntryPointsFactory =
+  (_ext) =>
+  (templatePath, filterCb = null) =>
+    getFilesNames(templatePath).reduce((res, name) => {
+      const isRelatedFile = path.parse(name).ext === _ext;
+      const isFilteredFile = filterCb ? filterCb(name) : true;
 
-    if (!isFileJs || !isRelatedFile) {
-      return res;
-    }
-
-    return {
-      ...res,
-      [path.parse(name).name]: path.resolve(__dirname, templatePath, name),
-    };
-  }, {});
-
-const mkTemplateEntryPoints = (templatePath) =>
-  getDirNames(templatePath)
-    .filter((name) => name !== 'common')
-    .reduce((res, dirName) => {
-      const templateEntries = mkJsEntryPoints(
-        path.resolve(templatePath, dirName),
-        (name) => name.includes(dirName)
-      );
-
-      if (!templateEntries) {
+      if (!isRelatedFile || !isFilteredFile) {
         return res;
       }
 
       return {
         ...res,
-        ...templateEntries,
+        [path.parse(name).name]: path.resolve(__dirname, templatePath, name),
       };
     }, {});
 
-const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
+const mkJsEntryPoints = makeEntryPointsFactory('.js');
+const mkScssEntryPoints = makeEntryPointsFactory('.scss');
+
+const makeTemplateEntryPoints = (templatePath) =>
+  getDirNames(templatePath)
+    .filter((name) => name !== 'common')
+    .reduce((res, dirName) => {
+      const templateJsEntries = mkJsEntryPoints(
+        path.resolve(templatePath, dirName),
+        (name) => name.includes(dirName)
+      );
+
+      const templateScssEntries = mkScssEntryPoints(
+        path.resolve(templatePath, dirName),
+        (name) => name.includes(dirName)
+      );
+
+      return {
+        ...res,
+        ...(templateScssEntries || null),
+        ...(templateJsEntries || null),
+      };
+    }, {});
+
+const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
@@ -62,7 +69,7 @@ const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   },
 });
 
-const mkSnippetCopyPluginPattern = (templatePath) => ({
+const makeSnippetCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
@@ -71,7 +78,7 @@ const mkSnippetCopyPluginPattern = (templatePath) => ({
   },
 });
 
-const mkSectionCopyPluginPattern = (templatePath) => ({
+const makeSectionCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
@@ -81,10 +88,10 @@ const mkSectionCopyPluginPattern = (templatePath) => ({
 });
 
 module.exports = {
-  mkTemplateEntryPoints,
-  mkSnippetCopyPluginPattern,
+  makeTemplateEntryPoints,
+  makeSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPluginPattern,
-  mkSectionCopyPluginPattern,
+  makeTemplateCopyPluginPattern,
+  makeSectionCopyPluginPattern,
   getDirNames,
 };

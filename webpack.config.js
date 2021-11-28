@@ -1,18 +1,21 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const RemoveFilesWebpackPlugin = require('remove-files-webpack-plugin');
-const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const RemoveFilesPlugin = require('remove-files-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
+
 const SafePostCssParser = require('postcss-safe-parser');
 const Autoprefixer = require('autoprefixer');
 const {
-  mkTemplateEntryPoints,
-  mkSnippetCopyPluginPattern,
+  makeTemplateEntryPoints,
+  makeSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPluginPattern,
-  mkSectionCopyPluginPattern,
+  makeTemplateCopyPluginPattern,
+  makeSectionCopyPluginPattern,
   getDirNames,
 } = require('./webpack-helpers');
 
@@ -25,9 +28,11 @@ const SRC_TEMPLATES_LIST = [
 ];
 
 const config = {
+  mode: 'production',
+  devtool: 'source-map',
   entry: {
-    ...mkTemplateEntryPoints('src/templates'),
-    ...mkTemplateEntryPoints('src/customers'),
+    ...makeTemplateEntryPoints('src/templates'),
+    ...makeTemplateEntryPoints('src/customers'),
     ...mkJsEntryPoints('src/scripts'),
   },
   output: {
@@ -35,7 +40,28 @@ const config = {
     filename: 'assets/[name].js',
   },
   optimization: {
+    emitOnErrors: true,
     minimize: false,
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: SafePostCssParser,
+          map: {
+            // `inline: false` forces the sourcemap to be output into a
+            // separate file
+            inline: false,
+            // `annotation: true` appends the sourceMappingURL to the end of
+            // the css file, helping the browser find the sourcemap
+            annotation: true,
+          },
+        },
+      }),
+      new TerserPlugin({
+        terserOptions: {
+          compress: false,
+        },
+      }),
+    ],
   },
   module: {
     rules: [
@@ -66,7 +92,8 @@ const config = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new CopyWebpackPlugin({
+    new RemoveEmptyScriptsPlugin(),
+    new CopyPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, `theme`),
@@ -83,10 +110,10 @@ const config = {
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
         },
-        mkTemplateCopyPluginPattern('src/templates'),
-        mkTemplateCopyPluginPattern('src/customers', '/customers/'),
-        mkSectionCopyPluginPattern('src/templates'),
-        mkSnippetCopyPluginPattern('src/snippets'),
+        makeTemplateCopyPluginPattern('src/templates'),
+        makeTemplateCopyPluginPattern('src/customers', '/customers/'),
+        makeSectionCopyPluginPattern('src/templates'),
+        makeSnippetCopyPluginPattern('src/snippets'),
       ],
     }),
     new MiniCssExtractPlugin({
@@ -98,9 +125,13 @@ const config = {
           ? `snippets/${name}.css.liquid`
           : `assets/${name}.css`,
     }),
-    new RemoveFilesWebpackPlugin({
+    new RemoveFilesPlugin({
       before: {
         include: ['./dist'],
+        log: false,
+        logWarning: true,
+        logError: true,
+        logDebug: false,
       },
       after: {
         test: [
@@ -111,6 +142,10 @@ const config = {
             recursive: true,
           },
         ],
+        log: false,
+        logWarning: false,
+        logError: false,
+        logDebug: false,
       },
     }),
     Autoprefixer,
@@ -121,27 +156,10 @@ module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     config.plugins = [
       ...config.plugins,
-      new ImageminWebpackPlugin({ test: IMAGE_FILES_PATTERN }),
+      new ImageminPlugin({ test: IMAGE_FILES_PATTERN }),
     ];
 
     config.optimization.minimize = true;
-    config.optimization.minimizer = [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          parser: SafePostCssParser,
-          map: {
-            // `inline: false` forces the sourcemap to be output into a
-            // separate file
-            inline: false,
-            // `annotation: true` appends the sourceMappingURL to the end of
-            // the css file, helping the browser find the sourcemap
-            annotation: true,
-          },
-        },
-      }),
-    ];
-
-    config.devtool = 'source-map';
   }
 
   return config;
