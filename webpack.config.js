@@ -40,7 +40,7 @@ const config = {
     filename: 'assets/[name].js',
   },
   optimization: {
-    noEmitOnErrors: true,
+    emitOnErrors: true,
     minimize: false,
     minimizer: [
       new OptimizeCSSAssetsPlugin({
@@ -128,6 +128,10 @@ const config = {
     new RemoveFilesPlugin({
       before: {
         include: ['./dist'],
+        log: false,
+        logWarning: true,
+        logError: true,
+        logDebug: false,
       },
       after: {
         test: [
@@ -138,6 +142,10 @@ const config = {
             recursive: true,
           },
         ],
+        log: false,
+        logWarning: false,
+        logError: false,
+        logDebug: false,
       },
     }),
     Autoprefixer,
