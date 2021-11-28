@@ -278,11 +278,20 @@ In production mode images will be compressed.
 
 `./src/customers` - folders for customer templates. Can be empty.
 
-`./src/templates` - include all store pages with necessary styles and scripts. All page should include own sections. 
+`./src/templates` - include all store pages with necessary styles and scripts.
+All page should include own sections.
+❗**NOTE**: By default, all templates uses scripts as webpack entry point. 
+It isn't well because you can get a lot of empty js assets on build templates without logic.
+If you want to build only templates styles, you should remove js file from folder.
+Webpack will watch scss files in template folders as well.
+More details about template entry points you can find in `webpack-helpers` file `mkTemplateEntryPoints` function.
 
-`./src/snippets` - are regular snippets with own styles. Style of each snippet can be included in section, template or theme. By default snippets styles or scripts are unwatched.
+`./src/snippets` - are regular snippets with own styles. 
+Style of each snippet can be included in section, template or theme. 
+By default, snippets styles or scripts are unwatched.
 
-`./src/scripts` - the main folder functionality. All js files in this folder will be processed with wabpack and placed in `./dist/assets`. Can't be empty.
+`./src/scripts` - the main folder functionality. 
+All js files in this folder will be processed with wabpack and placed in `./dist/assets`. Can't be empty.
 
 `./theme` - folder for all shopify files, used in base mode. 
 All files from this folder will be copied to dist without changes. 
