@@ -5,6 +5,8 @@ const RemoveFilesWebpackPlugin = require('remove-files-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+
 const SafePostCssParser = require('postcss-safe-parser');
 const Autoprefixer = require('autoprefixer');
 const {
@@ -84,6 +86,7 @@ const config = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
+    new RemoveEmptyScriptsPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
