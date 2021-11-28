@@ -143,6 +143,7 @@ A complete list of commands can be found in the `package.json` file.
 * [Build](#Build)
 * [Deploy](#Deploy)
 * [Create component](#Create-component)
+* [Analyze](#Analyze)
 
 #### Download
 
@@ -228,6 +229,23 @@ You can change it in generator folder after clone **shopify starter kit**.
 npm run gen
 ```
 
+
+---
+
+#### Analyze
+It is CLI command for profiling js assets.
+Analyze is the shortcut for who commands: `webpack --profile` and run [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
+You can find more details about profiling in webpack docs [webpack profile](https://webpack.js.org/configuration/other-options/#profile).
+
+```bash
+npm run analyze
+```
+
+or
+
+```bash
+npm run analyze:prod
+```
 
 ## File Structure Contract
 
