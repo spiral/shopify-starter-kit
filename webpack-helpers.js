@@ -19,7 +19,7 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
-const mkEntryPointsFactory =
+const makeEntryPointsFactory =
   (_ext) =>
   (templatePath, filterCb = null) =>
     getFilesNames(templatePath).reduce((res, name) => {
@@ -36,10 +36,10 @@ const mkEntryPointsFactory =
       };
     }, {});
 
-const mkJsEntryPoints = mkEntryPointsFactory('.js');
-const mkScssEntryPoints = mkEntryPointsFactory('.scss');
+const mkJsEntryPoints = makeEntryPointsFactory('.js');
+const mkScssEntryPoints = makeEntryPointsFactory('.scss');
 
-const mkTemplateEntryPoints = (templatePath) =>
+const makeTemplateEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
     .reduce((res, dirName) => {
@@ -60,7 +60,7 @@ const mkTemplateEntryPoints = (templatePath) =>
       };
     }, {});
 
-const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
+const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
@@ -69,7 +69,7 @@ const mkTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   },
 });
 
-const mkSnippetCopyPluginPattern = (templatePath) => ({
+const makeSnippetCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
@@ -78,7 +78,7 @@ const mkSnippetCopyPluginPattern = (templatePath) => ({
   },
 });
 
-const mkSectionCopyPluginPattern = (templatePath) => ({
+const makeSectionCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
@@ -88,10 +88,10 @@ const mkSectionCopyPluginPattern = (templatePath) => ({
 });
 
 module.exports = {
-  mkTemplateEntryPoints,
-  mkSnippetCopyPluginPattern,
+  makeTemplateEntryPoints,
+  makeSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPluginPattern,
-  mkSectionCopyPluginPattern,
+  makeTemplateCopyPluginPattern,
+  makeSectionCopyPluginPattern,
   getDirNames,
 };

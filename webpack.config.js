@@ -1,20 +1,20 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const RemoveFilesWebpackPlugin = require('remove-files-webpack-plugin');
-const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const RemoveFilesPlugin = require('remove-files-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const webpack = require('webpack');
 
 const SafePostCssParser = require('postcss-safe-parser');
 const Autoprefixer = require('autoprefixer');
 const {
-  mkTemplateEntryPoints,
-  mkSnippetCopyPluginPattern,
+  makeTemplateEntryPoints,
+  makeSnippetCopyPluginPattern,
   mkJsEntryPoints,
-  mkTemplateCopyPluginPattern,
-  mkSectionCopyPluginPattern,
+  makeTemplateCopyPluginPattern,
+  makeSectionCopyPluginPattern,
   getDirNames,
 } = require('./webpack-helpers');
 
@@ -30,8 +30,8 @@ const config = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    ...mkTemplateEntryPoints('src/templates'),
-    ...mkTemplateEntryPoints('src/customers'),
+    ...makeTemplateEntryPoints('src/templates'),
+    ...makeTemplateEntryPoints('src/customers'),
     ...mkJsEntryPoints('src/scripts'),
   },
   output: {
@@ -87,7 +87,7 @@ const config = {
   plugins: [
     new webpack.ProgressPlugin(),
     new RemoveEmptyScriptsPlugin(),
-    new CopyWebpackPlugin({
+    new CopyPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, `theme`),
@@ -104,10 +104,10 @@ const config = {
           to: path.resolve(__dirname, `dist/assets`),
           noErrorOnMissing: true,
         },
-        mkTemplateCopyPluginPattern('src/templates'),
-        mkTemplateCopyPluginPattern('src/customers', '/customers/'),
-        mkSectionCopyPluginPattern('src/templates'),
-        mkSnippetCopyPluginPattern('src/snippets'),
+        makeTemplateCopyPluginPattern('src/templates'),
+        makeTemplateCopyPluginPattern('src/customers', '/customers/'),
+        makeSectionCopyPluginPattern('src/templates'),
+        makeSnippetCopyPluginPattern('src/snippets'),
       ],
     }),
     new MiniCssExtractPlugin({
@@ -119,7 +119,7 @@ const config = {
           ? `snippets/${name}.css.liquid`
           : `assets/${name}.css`,
     }),
-    new RemoveFilesWebpackPlugin({
+    new RemoveFilesPlugin({
       before: {
         include: ['./dist'],
       },
@@ -142,7 +142,7 @@ module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     config.plugins = [
       ...config.plugins,
-      new ImageminWebpackPlugin({ test: IMAGE_FILES_PATTERN }),
+      new ImageminPlugin({ test: IMAGE_FILES_PATTERN }),
     ];
   }
 

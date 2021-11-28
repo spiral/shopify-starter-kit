@@ -284,7 +284,7 @@ All page should include own sections.
 It isn't well because you can get a lot of empty js assets on build templates without logic.
 If you want to build only templates styles, you should remove js file from folder.
 Webpack will watch scss files in template folders as well.
-More details about template entry points you can find in `webpack-helpers` file `mkTemplateEntryPoints` function.
+More details about template entry points you can find in `webpack-helpers` file `makeTemplateEntryPoints` function.
 
 `./src/snippets` - are regular snippets with own styles. 
 Style of each snippet can be included in section, template or theme. 
