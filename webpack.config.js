@@ -1,10 +1,11 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const RemoveFilesPlugin = require('remove-files-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const RemoveFilesPlugin = require('remove-files-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const SafePostCssParser = require('postcss-safe-parser');
@@ -40,7 +41,7 @@ const config = {
   },
   optimization: {
     noEmitOnErrors: true,
-    minimize: true,
+    minimize: false,
     minimizer: [
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
@@ -53,6 +54,11 @@ const config = {
             // the css file, helping the browser find the sourcemap
             annotation: true,
           },
+        },
+      }),
+      new TerserPlugin({
+        terserOptions: {
+          compress: false,
         },
       }),
     ],
@@ -144,6 +150,8 @@ module.exports = (env, argv) => {
       ...config.plugins,
       new ImageminPlugin({ test: IMAGE_FILES_PATTERN }),
     ];
+
+    config.optimization.minimize = true;
   }
 
   return config;
