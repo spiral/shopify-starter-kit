@@ -19,9 +19,10 @@ const {
 const TEXT_FILES_PATTERN = /\.(md|txt)$/m;
 const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
 
-const SRC_TEMPLATES_LIST = getDirNames('src/templates').filter(
-  (dieName) => dieName !== 'common'
-);
+const SRC_TEMPLATES_LIST = [
+  ...getDirNames('src/templates').filter((dieName) => dieName !== 'common'),
+  ...getDirNames('src/customers'),
+];
 
 const config = {
   entry: {
