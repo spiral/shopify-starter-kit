@@ -286,6 +286,7 @@ In production mode images will be compressed.
 
 `./src/templates` - include all store pages with necessary styles and scripts.
 All page should include own sections.
+
 ❗**NOTE**: By default, all templates uses scripts as webpack entry point. 
 It isn't well because you can get a lot of empty js assets on build templates without logic.
 If you want to build only styles, you should remove js file from template folder.
