@@ -1,5 +1,4 @@
 import { toCanvas as qrToCanvas } from 'qrcode';
-import './gift_card.scss';
 
 /**
  * Gift Card Template Script

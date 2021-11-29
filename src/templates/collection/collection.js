@@ -1,1 +1,0 @@
-import './collection.scss';
