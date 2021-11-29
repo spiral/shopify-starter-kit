@@ -19,9 +19,9 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
-const makeEntryPointsFactory = (templatePath, _extList = [], filterCb = null) =>
-  getFilesNames(templatePath).reduce((res, name) => {
-    const isRelatedFile = _extList.includes(path.parse(name).ext);
+const makeEntryPointsBySource = (source, extList = [], filterCb = null) =>
+  getFilesNames(source).reduce((res, name) => {
+    const isRelatedFile = extList.includes(path.parse(name).ext);
     const isFilteredFile = filterCb ? filterCb(name) : true;
 
     if (!isRelatedFile || !isFilteredFile) {
@@ -29,28 +29,26 @@ const makeEntryPointsFactory = (templatePath, _extList = [], filterCb = null) =>
     }
 
     const entryKey = path.parse(name).name;
-    const entryFile = path.resolve(__dirname, templatePath, name);
-    const entryValues = [...(res[entryKey] || []), entryFile];
+    const entryFile = path.resolve(__dirname, source, name);
+    const entryFileList = [...(res[entryKey] || []), entryFile];
 
     return {
       ...res,
-      [`${entryKey}`]: entryValues,
+      [`${entryKey}`]: entryFileList,
     };
   }, {});
 
-const makeJsEntryPoints = (sourcePath) =>
-  makeEntryPointsFactory(sourcePath, ['.js']);
+const makeJsEntryPoints = (source) => makeEntryPointsBySource(source, ['.js']);
 
-const makeTemplateEntryPoints = (sourcePath, filterCb) =>
-  makeEntryPointsFactory(sourcePath, ['.js', '.scss'], filterCb);
-
-const makeTemplatesEntryPoints = (templatePath) =>
-  getDirNames(templatePath)
+const makeTemplatesEntryPoints = (templatesSource) =>
+  getDirNames(templatesSource)
     .filter((name) => name !== 'common')
     .reduce((res, dirName) => {
       const templateEntries =
-        makeTemplateEntryPoints(path.resolve(templatePath, dirName), (name) =>
-          name.includes(dirName)
+        makeEntryPointsBySource(
+          path.resolve(templatesSource, dirName),
+          ['.js', '.scss'],
+          (name) => name.includes(dirName)
         ) || {};
 
       return {
