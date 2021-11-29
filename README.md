@@ -55,7 +55,7 @@ After the build they must be processed and placed in `./dist/assets` as build ar
 We are using webpack: `mini-css-extract-plugin` for build style files, and it should work at this point.
 
 ❗**NOTE**: After removing `./src` folder you must get build error. It happens because webpack look at srctipts in the `./src/scripts` folder.
-For fix this problem please open `webpcak.config.js` and remove the line in entry block with code `...mkJsEntryPoints('src/scripts')`.
+For fix this problem please open `webpcak.config.js` and remove the line in entry block with code `...makeJsEntryPoints('src/scripts')`.
 
 
 ### Advanced mode
@@ -290,7 +290,7 @@ All page should include own sections.
 It isn't well because you can get a lot of empty js assets on build templates without logic.
 If you want to build only styles, you should remove js file from template folder.
 Webpack will watch scss files in template folders as well.
-More details about template entry points you can find in `webpack-helpers` file `makeTemplateEntryPoints` function.
+More details about template entry points you can find in `webpack-helpers` file `makeTemplatesEntryPoints` function.
 
 `./src/snippets` - are regular snippets with own styles. 
 Style of each snippet can be included in section, template or theme. 

@@ -11,9 +11,9 @@ const webpack = require('webpack');
 const SafePostCssParser = require('postcss-safe-parser');
 const Autoprefixer = require('autoprefixer');
 const {
-  makeTemplateEntryPoints,
+  makeTemplatesEntryPoints,
   makeSnippetCopyPluginPattern,
-  mkJsEntryPoints,
+  makeJsEntryPoints,
   makeTemplateCopyPluginPattern,
   makeSectionCopyPluginPattern,
   getDirNames,
@@ -31,9 +31,9 @@ const config = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    ...makeTemplateEntryPoints('src/templates'),
-    ...makeTemplateEntryPoints('src/customers'),
-    ...mkJsEntryPoints('src/scripts'),
+    ...makeTemplatesEntryPoints('src/templates'),
+    ...makeTemplatesEntryPoints('src/customers'),
+    ...makeJsEntryPoints('src/scripts'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

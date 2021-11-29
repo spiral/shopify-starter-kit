@@ -19,44 +19,43 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
-const makeEntryPointsFactory =
-  (_ext) =>
-  (templatePath, filterCb = null) =>
-    getFilesNames(templatePath).reduce((res, name) => {
-      const isRelatedFile = path.parse(name).ext === _ext;
-      const isFilteredFile = filterCb ? filterCb(name) : true;
+const makeEntryPointsFactory = (templatePath, _extList = [], filterCb = null) =>
+  getFilesNames(templatePath).reduce((res, name) => {
+    const isRelatedFile = _extList.includes(path.parse(name).ext);
+    const isFilteredFile = filterCb ? filterCb(name) : true;
 
-      if (!isRelatedFile || !isFilteredFile) {
-        return res;
-      }
+    if (!isRelatedFile || !isFilteredFile) {
+      return res;
+    }
 
-      return {
-        ...res,
-        [path.parse(name).name]: path.resolve(__dirname, templatePath, name),
-      };
-    }, {});
+    const entryKey = path.parse(name).name;
+    const entryFile = path.resolve(__dirname, templatePath, name);
+    const entryValues = [...(res[entryKey] || []), entryFile];
 
-const mkJsEntryPoints = makeEntryPointsFactory('.js');
-const mkScssEntryPoints = makeEntryPointsFactory('.scss');
+    return {
+      ...res,
+      [`${entryKey}`]: entryValues,
+    };
+  }, {});
 
-const makeTemplateEntryPoints = (templatePath) =>
+const makeJsEntryPoints = (sourcePath) =>
+  makeEntryPointsFactory(sourcePath, ['.js']);
+
+const makeTemplateEntryPoints = (sourcePath, filterCb) =>
+  makeEntryPointsFactory(sourcePath, ['.js', '.scss'], filterCb);
+
+const makeTemplatesEntryPoints = (templatePath) =>
   getDirNames(templatePath)
     .filter((name) => name !== 'common')
     .reduce((res, dirName) => {
-      const templateJsEntries = mkJsEntryPoints(
-        path.resolve(templatePath, dirName),
-        (name) => name.includes(dirName)
-      );
-
-      const templateScssEntries = mkScssEntryPoints(
-        path.resolve(templatePath, dirName),
-        (name) => name.includes(dirName)
-      );
+      const templateEntries =
+        makeTemplateEntryPoints(path.resolve(templatePath, dirName), (name) =>
+          name.includes(dirName)
+        ) || {};
 
       return {
         ...res,
-        ...(templateScssEntries || null),
-        ...(templateJsEntries || null),
+        ...(templateEntries || null),
       };
     }, {});
 
@@ -88,9 +87,9 @@ const makeSectionCopyPluginPattern = (templatePath) => ({
 });
 
 module.exports = {
-  makeTemplateEntryPoints,
+  makeTemplatesEntryPoints,
   makeSnippetCopyPluginPattern,
-  mkJsEntryPoints,
+  makeJsEntryPoints,
   makeTemplateCopyPluginPattern,
   makeSectionCopyPluginPattern,
   getDirNames,
