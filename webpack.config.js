@@ -29,7 +29,6 @@ const SRC_TEMPLATES_LIST = [
 
 const config = {
   mode: 'production',
-  devtool: 'source-map',
   entry: {
     ...makeTemplatesEntryPoints('src/templates'),
     ...makeTemplatesEntryPoints('src/customers'),
