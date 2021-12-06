@@ -30,12 +30,14 @@ const makeEntryPointsBySource = (source, extList = [], filterCb = null) =>
 
     const entryKey = path.parse(name).name;
     const entryFile = path.resolve(__dirname, source, name);
-    const entryFileList = [...(res[entryKey] || []), entryFile];
 
-    return {
-      ...res,
-      [`${entryKey}`]: entryFileList,
-    };
+    if (Array.isArray(res[entryKey])) {
+      res[entryKey].push(entryFile);
+    } else {
+      res[entryKey] = [entryFile];
+    }
+
+    return res;
   }, {});
 
 const makeJsEntryPoints = (source) => makeEntryPointsBySource(source, ['.js']);
@@ -51,10 +53,11 @@ const makeTemplatesEntryPoints = (templatesSource) =>
           (name) => name.includes(dirName)
         ) || {};
 
-      return {
-        ...res,
-        ...(templateEntries || null),
-      };
+      if (Object.keys(templateEntries).length) {
+        Object.assign(res, templateEntries);
+      }
+
+      return res;
     }, {});
 
 const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
