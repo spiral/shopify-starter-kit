@@ -1,5 +1,3 @@
-{{ 'index.js' | asset_url | script_tag }}
-
 <style>
   {% render 'index.css' %}
 </style>
@@ -9,3 +7,5 @@
 >
   {{ content_for_index }}
 </div>
+
+{{ 'index.js' | asset_url | script_tag }}
