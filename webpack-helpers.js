@@ -61,7 +61,7 @@ const makeTemplatesEntryPoints = (templatesSource) =>
     }, {});
 
 const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
-  from: `${templatePath}/*/*.liquid`,
+  from: `${templatePath}/*/*.{liquid,json}`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
