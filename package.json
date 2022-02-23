@@ -72,7 +72,7 @@
     "lint-staged": "^11.0.0",
     "mini-css-extract-plugin": "^1.4.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "postcss": "^8.2.10",
+    "postcss": "^8.2.13",
     "postcss-loader": "^5.2.0",
     "postcss-safe-parser": "^6.0.0",
     "prettier": "^2.3.0",
