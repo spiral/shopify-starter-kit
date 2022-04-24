@@ -1,0 +1,37 @@
+image: node:14
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - deploy
+
+Test:
+  stage: test
+  only:
+    - merge_requests
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+    - npm run build
+
+#Deploy:
+#  stage: deploy
+#  only:
+#    - development
+#    - master
+#    - merge_requests
+#  before_script:
+#    - npm install
+#  script:
+#    - npm run build
+#    - npx shopify-themekit deploy -p=$THEMEKIT_ACCESS_PASSWORD -s=$SHOPIFY_STORE_NAME -t=$SHOPIFY_THEME_ID -d='dist/' --ignored-file='settings_data.json'
+#  artifacts:
+#    name: "deployed shopify store"
+#    paths:
+#      - dist/
+#
+

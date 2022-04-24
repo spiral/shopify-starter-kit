@@ -13,6 +13,7 @@ Repository makes it easier to work with the distribution of files in the project
 - Eslint, Stylelint
 - Git hooks with prettier + lint-staged
 - Shopify Themekit
+- Github CI / Gitlab CI
 
 ---
 
@@ -73,6 +74,7 @@ The advanced mode allows you to use all features of the **Shopify starter kit**:
 - Placing page styles directly in templates to speed up page loading
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
+- Prepared CI/CD for github and gitlab repos
 
 All templates in `./src` folder based on `shopify starter theme` and provide **BEM** naming methodology (Block, Element, Modifier).
 Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
