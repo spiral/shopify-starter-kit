@@ -76,7 +76,7 @@ The advanced mode allows you to use all features of the **Shopify starter kit**:
 - Customized auto-corrections style code at the time of commit creation
 - Prepared CI/CD for github and gitlab repos
 
-All templates in `./src` folder based on `shopify starter theme` and provide **BEM** naming methodology (Block, Element, Modifier).
+All templates in `./src` folder are based on shopify starter theme and provide **BEM** naming methodology (Block, Element, Modificator).
 Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
 
 ❗**NOTE**: This mod is only suitable for those stores where no code changes are expected in the admin panel.
@@ -139,8 +139,8 @@ A complete list of commands can be found in the `package.json` file.
 
 #### Download
 
-The commands for download existing shopify stores.
-We have 2 command to download theme:
+The commands to download the existed shopify stores.
+We have 2 commands to download theme:
 
 ```bash
 npm run theme:download
@@ -161,7 +161,7 @@ npm run theme:download:prod
 #### Start
 
 Start command will run a webpack watcher, the Themekit deploy watcher and open a development store in new browser window.
-By default, this command runs only for development environment. You can modify it own remo after doing clone.
+By default, this command runs only for development environment.
 
 ```bash
 npm run start
@@ -173,7 +173,7 @@ npm run start
 
 The `build` command prepare all files for deploy. 
 All files will be processed and placed into `./dist` folder.
-This is supported for development and production modes.
+There are supported development and production modes.
 
 ```bash
 npm run build
@@ -185,7 +185,7 @@ or
 npm run build:prod
 ```
 
-The `build` command it is shorthand for `webpack` command. 
+The `build` command is shorthand for `webpack` run script. 
 By default, it starts with a `--progress` flag.
 
 ---
@@ -212,10 +212,10 @@ Deploy command it is shorthand of few base commands: `lint`, `build`, and [Theme
 #### Creating components
 
 The **Shopify starter kit** provides the CLI to creating new entities in own structures.
-CLI based on `yeoman` generator and run by the command `yo`. 
-CLI supports creation of styles, scripts and liquid files for templates, section, snippets.
-All generated templates already contain scripts and styles in liquid file.
-You can expand or change CLI logic in `generator` folder after clone **shopify starter kit**.
+CLI is based on `yeoman` generator and can be started with the `yo` command. 
+CLI is supported to creating style, script and liquid files for templates, section, snippets.
+All templates already used scripts and styles inside the `liquid` files.
+You can expand or change it in the `generator` folder after cloning **shopify starter kit**.
 
 ```bash
 npm run gen
@@ -226,7 +226,7 @@ npm run gen
 
 #### Analyze
 It is CLI command for profiling js assets.
-Analyze is the shortcut for who commands: `webpack --profile` and run [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
+Analyze is the shortcut for two commands: `webpack --profile` and run [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
 You can find more details about profiling in webpack docs [webpack profile](https://webpack.js.org/configuration/other-options/#profile).
 
 ```bash
@@ -241,8 +241,9 @@ npm run analyze:prod
 
 ## File Structure Contract
 
-This file structure contract is main feature of **Shopify starter kit**.
-❗This structure only supports advanced mode. This structure doesn't keep sync with shopify store.   
+The file structure contract is the main feature of **Shopify starter kit**. 
+❗This structure only supports with advanced mode 
+The synchronization between shopify store and file structure doesn't work yet.
 
 ```
 /src
@@ -287,7 +288,7 @@ Please remove this files (and import them into the template) after generation fo
 
 ### Folders descriptions:
 
-`./src/assets` - there is folder for assets. It might contain images, fonts, and necessary files for shopify store.
+`./src/assets` - folder for assets. They might be images, fonts, any necessary files for shopify store. 
 The same as default Shopify assets folder.
 By default, files from this folder will be copied to `dist` without modification.
 In production mode images will be compressed.
@@ -295,11 +296,11 @@ In production mode images will be compressed.
 `./src/customers` - folders for customer templates. Optional.
 
 `./src/templates` - include all store pages with necessary styles and scripts.
-All page should include own sections. 
+Each page should include its own sections. 
 By default, all templates use scripts and styles as webpack entry points.
 
 `./src/snippets` - are regular snippets with own styles. 
-Style of each snippet can be included in section, template or theme. 
+The styles of each snippet can be included in section, template or theme. 
 By default, snippets styles or scripts are unwatched.
 
 `./src/scripts` - the main folder functionality. 
