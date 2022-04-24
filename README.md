@@ -5,7 +5,7 @@ Repository makes it easier to work with the distribution of files in the project
 **Shopify starter kit** based on [Shopify Themekit](https://github.com/Shopify/themekit) and inspired by Shopify [Slate](https://github.com/Shopify/slate) and popular front-end frameworks like a React and Vue.
 
 
-**Shopify starter kit** buildede with using technologies and tools:
+**Shopify starter kit** was builded with using technologies and tools:
 
 - Node.js
 - Webpack
@@ -13,6 +13,7 @@ Repository makes it easier to work with the distribution of files in the project
 - Eslint, Stylelint
 - Git hooks with prettier + lint-staged
 - Shopify Themekit
+- Github CI / Gitlab CI
 
 ---
 
@@ -34,47 +35,48 @@ Repository makes it easier to work with the distribution of files in the project
 
 **Shopify starter kit** is a tool for comfortable team development of Shopify stores. 
 The main goal of our team was to facilitate the start of new projects. 
-For us, this means a quick start, the use of latest js standards and the use of  teamwork tools. 
-We tried to collect the most important things  in one place -  this is how the **Shopify starter kit** turned out.
+For us, this means a quick start, the use of latest js standards and the use of teamwork tools. 
+We tried to collect the most important things in one place - this is how the **Shopify starter kit** turned out.
 
-**Shopify starter kit** is supported to 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
+**Shopify starter kit** support 2 ways to use: [**basic**](#basic-mode) and [**advanced**]((#advanced-mode)) modes.
 
 ### Basic mode
 
-Basic Mode provides a **Shopify starter kit** to expand current functionality for existing Shopify repositories. 
+Basic Mode allows to use a **Shopify starter kit** for existing Shopify repositories. 
 For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
-3. Clean src folder to keep only “scripts” folder
+3. Clean out src folder, only `scripts` folder needs to be keep.
 4. Set actual data to the config.yml file
-5. Download current shopify store with command `npm run download:theme`
-6. Then all your store files will be placed into the `./theme` folder and everything is ready to go.
+5. Download current shopify store with the command `npm run download:theme`
+Then all your store files will be placed into the `./theme` folder and everything is ready to go.
 
 All new functionality (scripts and styles) you can add directly to `./src` folder. 
 After the build they must be processed and placed in `./dist/assets` as build artifacts. 
 We are using webpack: `mini-css-extract-plugin` for build style files, and it should work at this point.
 
-❗**NOTE**: After removing `./src` folder you must get build error. It happens because webpack look at srctipts in the `./src/scripts` folder.
-For fix this problem please open `webpcak.config.js` and remove the line in entry block with code `...makeJsEntryPoints('src/scripts')`.
+❗**NOTE**: If you need to build only js scripts for theme, you don't need to clean up the whole src folder.
+You should keep a `src/scripts`. The files in this folder were processed by linters and builders.
 
 
 ### Advanced mode
 
-Advanced Mode provides a powerful suite for building Shopify stores.
-This mode makes it easier to work with store pages. 
+Advanced Mode provides a powerful set for building Shopify stores.
+This mode makes it easier to work with store pages.
 An advanced file structure allows you to separate the code between pages and load only the necessary functionality on the page, which increases the speed of the site. 
 The structure also makes it easier to find and fix problems in the code, which speeds up the work of developers.
 
-The advanced mode allows you to use all the features of the **Shopify starter kit**:
-- Separation of scripts and styles by pages.
+The advanced mode allows you to use all features of the **Shopify starter kit**:
+- Using the latest JS standard in script files
 - Fixed component structure support
 - CLI for generating components of this structure
-- Separation of styles between pages, which allows to optimize loading of styles and scripts, code splitting
-- Using inside styles to speed up page loading
+- Separation of styles between pages, which allows optimization loading of styles and scripts, code splitting
+- Placing page styles directly in templates to speed up page loading
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
+- Prepared CI/CD for github and gitlab repos
 
-All templates in `./src` folder based on shopify starter theme and provide **BEM** naming methodology (Block, Element, Modificator).
+All templates in `./src` folder based on `shopify starter theme` and provide **BEM** naming methodology (Block, Element, Modifier).
 Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
 
 ❗**NOTE**: This mod is only suitable for those stores where no code changes are expected in the admin panel.
@@ -88,7 +90,7 @@ All files downloaded from the existing store will be placed in the `./theme` fol
 For starting core of project you need to do few simple steps:
 1. Clone this repo,
 2. Install dependencies using npm or yarn. `npm install`,
-3. Then you need to create `config.yml` with correct settings. Possible copy and rename file `config.example.yml`,
+3. Create config file: `config.yml` with correct settings. Can use the `config.example.yml` as example,
 4. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
 
 After build all changes will be applied into you selected Shopify theme.
@@ -97,13 +99,14 @@ Additional information you can find in the [Shopify Themekit](#Shopify-Themekit)
 
 ## [Shopify Themekit](https://github.com/Shopify/themekit)
 
-Do not forget to check theme ids before launching theme kit watcher!
-Watch starts a process that will watch the directory for changes and upload them to Shopify.
+Don't forget to check theme ids before launching theme kit watcher❗
+The command `watch` starts a process that will watch the directory for changes and upload them to Shopify.
 
 #### Configuration for Themekit
 
 After cloning the repo, copy `config.example.yml` and rename the copy to `config.yml`.
-`config.yml` should contain production credentials (the current live theme) and development credentials (the current feature theme).
+The file `config.yml` should contain development credentials (the current feature theme).
+The production credentials (the current live theme) is optional.
 
 The current feature theme is the developers's own theme. Starting to work on a new feature the developer must change the **development** `theme_id` to the corresponding one every time.
 
@@ -112,7 +115,8 @@ development:
   store: [your-store].myshopify.com
   password: [your-api-password]
   theme_id: "[your-theme-id]"
-  proxy: http://localhost:3000
+  ignore_files:
+    - config/settings_data.json
 ```
 
 ---
@@ -120,7 +124,7 @@ development:
 ## Commands
 
 The **Shopify starter kit** contains many commands for working on a project. 
-Most of the commands for working with the theme are shortnames for the Shopify Themekit. 
+Most theme commands are short names for the Shopify [Themekit](https://github.com/Shopify/themekit). 
 However, most of it allows you to work with the project itself. Just a few basic commands are described below. 
 A complete list of commands can be found in the `package.json` file.
 
@@ -150,13 +154,13 @@ npm run theme:download:prod
 
 `theme:download` related to development environment part of your config.yml file, 
 
-`theme:download:prod` related to production part.
+`theme:download:prod` related to production environment.
 
 ---
 
 #### Start
 
-Start command will run webpack watcher, Themekit deploy watcher and open development store in new browser window.
+Start command will run a webpack watcher, the Themekit deploy watcher and open a development store in new browser window.
 By default, this command runs only for development environment. You can modify it own remo after doing clone.
 
 ```bash
@@ -167,9 +171,9 @@ npm run start
 
 #### Build
 
-Build command prepare all files for deploy. 
+The `build` command prepare all files for deploy. 
 All files will be processed and placed into `./dist` folder.
-Supported development and production modes
+This is supported for development and production modes.
 
 ```bash
 npm run build
@@ -181,15 +185,15 @@ or
 npm run build:prod
 ```
 
-Build command it is shorthand for webpack. 
-By default it starts with a `--progress` flag.
+The `build` command it is shorthand for `webpack` command. 
+By default, it starts with a `--progress` flag.
 
 ---
 
 #### Deploy
 
-Command for upload all files from `./dist` folder to shopify store. 
-Based on Themekit functionality.
+Command for uploading all files from `./dist` folder to your shopify store. 
+Based on [Themekit](https://github.com/Shopify/themekit).
 
 ```bash
 npm run deploy
@@ -201,17 +205,17 @@ or
 npm run deploy:prod
 ```
 
-Deploy command it is shorthand of few base commands: lint, build, and Themekit deploy.
+Deploy command it is shorthand of few base commands: `lint`, `build`, and [Themekit](https://github.com/Shopify/themekit) `deploy`.
 
 ---
 
-#### Create component
+#### Creating components
 
 The **Shopify starter kit** provides the CLI to creating new entities in own structures.
-CLI based on `yeoman` generator and can be started with the `yo` command. 
-CLI supported to create style, script and liquid files for templates, section, snippets.
-All templates already contain import scripts and styles inside liquid file.
-You can change it in generator folder after clone **shopify starter kit**.
+CLI based on `yeoman` generator and run by the command `yo`. 
+CLI supports creation of styles, scripts and liquid files for templates, section, snippets.
+All generated templates already contain scripts and styles in liquid file.
+You can expand or change CLI logic in `generator` folder after clone **shopify starter kit**.
 
 ```bash
 npm run gen
@@ -237,8 +241,8 @@ npm run analyze:prod
 
 ## File Structure Contract
 
-This file structure contract is main feature of **Shopify starter kit**. 
-It is used in advanced mode and doesn't support syncing with shopify store.   
+This file structure contract is main feature of **Shopify starter kit**.
+❗This structure only supports advanced mode. This structure doesn't keep sync with shopify store.   
 
 ```
 /src
@@ -276,13 +280,19 @@ It is used in advanced mode and doesn't support syncing with shopify store.
 /theme
 ```
 
+Js files is optional for sections and template. 
+Please remove this files (and import them into the template) after generation for make you codebase smaller.
+
+---
+
 ### Folders descriptions:
 
-`./src/assets` - folder for assets. It might be images, fonts, any necessary files for shopify store. 
-By default, files from this folder will be copied to dist without changes.
+`./src/assets` - there is folder for assets. It might contain images, fonts, and necessary files for shopify store.
+The same as default Shopify assets folder.
+By default, files from this folder will be copied to `dist` without modification.
 In production mode images will be compressed.
 
-`./src/customers` - folders for customer templates. Can be empty.
+`./src/customers` - folders for customer templates. Optional.
 
 `./src/templates` - include all store pages with necessary styles and scripts.
 All page should include own sections. 
