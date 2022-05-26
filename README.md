@@ -90,7 +90,8 @@ All files downloaded from the existing store will be placed in the `./theme` fol
 For starting core of project you need to do few simple steps:
 1. Clone this repo,
 2. Install dependencies using npm or yarn. `npm install`,
-3. Create config file: `config.yml` with correct settings. Can use the `config.example.yml` as example,
+3. 
+config file: `config.yml` with correct settings. Can use the `config.example.yml` as example,
 4. Start you project using npm or yarn `npm run start` or `npm run start:prod`.
 
 After build all changes will be applied into you selected Shopify theme.
@@ -134,7 +135,7 @@ A complete list of commands can be found in the `package.json` file.
 * [Start](#Start)
 * [Build](#Build)
 * [Deploy](#Deploy)
-* [Create component](#Create-component)
+* [Creating components](#Creating components)
 * [Analyze](#Analyze)
 
 #### Download
