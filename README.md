@@ -134,7 +134,7 @@ A complete list of commands can be found in the `package.json` file.
 * [Start](#Start)
 * [Build](#Build)
 * [Deploy](#Deploy)
-* [Create component](#Create-component)
+* [Creating components](#Creating-components)
 * [Analyze](#Analyze)
 
 #### Download
