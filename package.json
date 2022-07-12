@@ -23,8 +23,7 @@
     "lint:fix": "eslint ./src --fix && stylelint ./src --fix",
     "deploy": "npm run lint && npm run build && npm run theme:deploy",
     "deploy:prod": "npm run lint && npm run build:prod && npm run theme:deploy:prod",
-    "zip": "npm run build && npm-build-zip --source=dist/ --destination=dist/",
-    "zip:prod": "npm run build:prod && npm-build-zip --source=dist/ --destination=dist/",
+    "zip": "npm run build:prod && npm-build-zip --source=dist/ --name=dist",
     "start": "concurrently \"npm run watch\" \"npm run theme:watch\" \"npm run theme:open\"",
     "gen": "yo ./generator",
     "prepare": "husky install"
