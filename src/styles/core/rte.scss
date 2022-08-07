@@ -1,5 +1,3 @@
-@use "sass:math";
-
 .rte {
   margin: 0;
 
@@ -13,7 +11,7 @@
 
   ul,
   ol {
-    margin: 0 0 (math.div($grid-gutter, 2)) $grid-gutter;
+    margin: 0 0 ($grid-gutter * 0.5) $grid-gutter;
   }
 
   strong {
