@@ -1,11 +1,11 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 
 // Settings
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
 <% if (sectionName) { %>// Sections
-@import './<%= sectionName %>/<%= sectionName %>';
+@import "./<%= sectionName %>/<%= sectionName %>";
 
 
 <% } %>.<%= className %> {
