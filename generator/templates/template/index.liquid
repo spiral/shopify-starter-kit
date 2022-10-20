@@ -1,5 +1,3 @@
-{{ '<%= name %>.js' | asset_url | script_tag }}
-
 <style>
   {% render '<%= name %>.css' %}
 </style>
@@ -9,3 +7,5 @@
 >
   <% if (sectionName) { %>{% section '<%= sectionName %>' %}<% } %>
 </div>
+
+{{ '<%= name %>.js' | asset_url | script_tag }}

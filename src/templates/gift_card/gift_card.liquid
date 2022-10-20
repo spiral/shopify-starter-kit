@@ -1,7 +1,5 @@
 {% layout 'gift_card' %}
 
-{{ 'gift_card.js' | asset_url | script_tag }}
-
 <style>
   {% render 'gift_card.css' %}
 </style>
@@ -71,3 +69,5 @@
     </button>
   </main>
 </div>
+
+{{ 'gift_card.js' | asset_url | script_tag }}

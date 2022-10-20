@@ -1,5 +1,3 @@
-{{ 'product.js' | asset_url | script_tag }}
-
 <style>
   {% render 'product.css' %}
 </style>
@@ -69,3 +67,5 @@
   {% endif %}
 }
 </script>
+
+{{ 'product.js' | asset_url | script_tag }}

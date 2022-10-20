@@ -5,7 +5,7 @@
 @import '../../styles/mixins';
 
 <% if (sectionName) { %>// Sections
-@import './<%= sectionName %>/<%= sectionName %>.scss';
+@import './<%= sectionName %>/<%= sectionName %>';
 
 
 <% } %>.<%= className %> {

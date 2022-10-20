@@ -19,8 +19,12 @@ const getFilesNames = (_path) =>
         .filter((dirent) => dirent.isFile())
         .map((dirent) => dirent.name);
 
-const makeEntryPointsBySource = (source, extList = [], filterCb = null) =>
-  getFilesNames(source).reduce((res, name) => {
+const makeEntryPointsBySource = (source, extList = [], filterCb = null) => {
+  if (!fs.existsSync(source)) {
+    return {};
+  }
+
+  return getFilesNames(source).reduce((res, name) => {
     const isRelatedFile = extList.includes(path.parse(name).ext);
     const isFilteredFile = filterCb ? filterCb(name) : true;
 
@@ -30,18 +34,25 @@ const makeEntryPointsBySource = (source, extList = [], filterCb = null) =>
 
     const entryKey = path.parse(name).name;
     const entryFile = path.resolve(__dirname, source, name);
-    const entryFileList = [...(res[entryKey] || []), entryFile];
 
-    return {
-      ...res,
-      [`${entryKey}`]: entryFileList,
-    };
+    if (Array.isArray(res[entryKey])) {
+      res[entryKey].push(entryFile);
+    } else {
+      res[entryKey] = [entryFile];
+    }
+
+    return res;
   }, {});
+};
 
 const makeJsEntryPoints = (source) => makeEntryPointsBySource(source, ['.js']);
 
-const makeTemplatesEntryPoints = (templatesSource) =>
-  getDirNames(templatesSource)
+const makeTemplatesEntryPoints = (templatesSource) => {
+  if (!fs.existsSync(templatesSource)) {
+    return {};
+  }
+
+  return getDirNames(templatesSource)
     .filter((name) => name !== 'common')
     .reduce((res, dirName) => {
       const templateEntries =
@@ -51,14 +62,16 @@ const makeTemplatesEntryPoints = (templatesSource) =>
           (name) => name.includes(dirName)
         ) || {};
 
-      return {
-        ...res,
-        ...(templateEntries || null),
-      };
+      if (Object.keys(templateEntries).length) {
+        Object.assign(res, templateEntries);
+      }
+
+      return res;
     }, {});
+};
 
 const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
-  from: `${templatePath}/*/*.liquid`,
+  from: `${templatePath}/*/*.{liquid,json}`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
   globOptions: {
