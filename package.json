@@ -51,7 +51,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
-    "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/runtime": "^7.13.10",
     "autoprefixer": "^10.3.6",
@@ -82,7 +81,6 @@
     "remove-files-webpack-plugin": "^1.4.4",
     "sass": "^1.43.5",
     "sass-loader": "^11.0.1",
-    "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
@@ -98,7 +96,6 @@
   "dependencies": {
     "@shopify/theme-a11y": "^4.1.1",
     "@shopify/theme-addresses": "^4.1.1",
-    "@shopify/theme-cart": "^4.1.1",
     "@shopify/theme-currency": "^4.1.1",
     "@shopify/theme-product": "^4.1.1",
     "@shopify/theme-product-form": "^4.1.1",
