@@ -7,9 +7,10 @@ Repository makes it easier to work with the distribution of files in the project
 
 **Shopify starter kit** was builded with using technologies and tools:
 
-- Node.js
-- Webpack
-- Scss
+- Node.js `^14.15.0`
+- NPM `^7.0.0`
+- Webpack 
+- SASS 
 - Eslint, Stylelint
 - Git hooks with prettier + lint-staged
 - Shopify Themekit
