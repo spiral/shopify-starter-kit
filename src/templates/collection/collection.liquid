@@ -3,8 +3,9 @@
 </style>
 
 {% paginate collection.products by 12 %}
-  <div class="collection"
-       data-template="collection"
+  <div
+    class="collection"
+    data-template="collection"
   >
     <header role="banner">
       <h1>{{ collection.title }}</h1>
@@ -36,7 +37,8 @@
         <div>
           {% if product.featured_image != blank %}
             <a href="{{ product.url | within: collection }}">
-              {% include 'responsive-image' with
+              {%
+                include 'responsive-image' with
                 image: product.featured_image,
                 max_width: 700,
                 max_height: 800
@@ -45,32 +47,35 @@
           {% endif %}
 
           <p>
-            <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+            <a href="{{ product.url | within: collection }}">
+              {{- product.title -}}
+            </a>
           </p>
           <p>
             {% if product.compare_at_price > product.price %}
-
               {% if product.price_varies %}
                 {%- assign sale_price = product.price | money -%}
-                {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                {{
+                  'products.product.on_sale_from_html'
+                  | t: price: sale_price
+                }}
               {% else %}
                 {{ 'products.product.on_sale' | t }}
                 {{ product.price | money }}
               {% endif %}
-
             {% else %}
-
               {% if product.price_varies %}
                 {%- assign price = product.price | money -%}
                 {{ 'products.product.from_text_html' | t: price: price }}
               {% else %}
                 {{ product.price | money }}
               {% endif %}
-
             {% endif %}
 
             {% if product.compare_at_price > product.price %}
-              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <span class="visually-hidden">
+                {{- 'products.product.regular_price' | t -}}
+              </span>
               <s>{{ product.compare_at_price | money }}</s>
             {% endif %}
 
@@ -79,13 +84,19 @@
             {% endunless %}
           </p>
         </div>
-
       {% else %}
-        {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+        {% if collection.handle == 'all'
+          and collection.all_vendors.size == 0
+          and collection.all_types.size == 0
+        %}
           {% for i in (1..8) %}
             <a href="#">
               {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+              {{
+                'product-'
+                | append: current
+                | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small'
+              }}
             </a>
 
             <p>
@@ -99,12 +110,12 @@
         {% else %}
           <p>{{ 'collections.general.no_matches' | t }}</p>
         {% endif %}
-
       {% endfor %}
     </div>
 
     {% if paginate.pages > 1 %}
-      {% include 'pagination' with
+      {%
+        include 'pagination' with
         paginate: paginate
       %}
     {% endif %}
