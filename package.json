@@ -93,6 +93,7 @@
     "yo": "^4.3.0"
   },
   "dependencies": {
+    "@shopify/prettier-plugin-liquid": "^0.4.0",
     "@shopify/theme-a11y": "^4.1.1",
     "@shopify/theme-addresses": "^4.1.1",
     "@shopify/theme-currency": "^4.1.1",
@@ -106,7 +107,8 @@
     "qrcode": "^1.5.1"
   },
   "lint-staged": {
-    "*.{js,css,scss,sass}": "npm run lint:fix",
-    "*.js": "eslint --cache --fix"
+    "*.{js,ts}": "eslint --fix",
+    "*.{css,scss,sass}": "stylelint --fix",
+    "*.{liquid}": "prettier --write"
   }
 }
