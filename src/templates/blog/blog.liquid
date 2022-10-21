@@ -2,14 +2,17 @@
   {% render 'blog.css' %}
 </style>
 
-<div class="blog"
-     data-template="blog"
+<div
+  class="blog"
+  data-template="blog"
 >
   {% paginate blog.articles by 5 %}
     {%- assign blog_title = blog.title -%}
 
     {% if current_tags %}
-      {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
+      {% capture blog_title -%}
+        {{- blog.title | link_to: blog.url }} &mdash; {{ current_tags.first -}}
+      {%- endcapture %}
     {% endif %}
 
     <h1>{{ blog_title }}</h1>
@@ -19,22 +22,18 @@
 
       <ul>
         {% for tag in blog.all_tags %}
-
           {% if current_tags contains tag %}
             <li>{{ tag }}</li>
           {% else %}
             <li>{{ tag | link_to_tag: tag }}</li>
           {% endif %}
-
         {% endfor %}
       </ul>
     {% endif %}
 
-
     {% comment %}
-
-    Article Previews
-    ====================
+      Article Previews
+      ====================
     {% endcomment %}
 
     {% for article in blog.articles %}
@@ -42,15 +41,21 @@
         <a href="{{ article.url }}">{{ article.title }}</a>
       </h3>
 
-      {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+      {% capture date -%}
+        {{- article.published_at | time_tag: format: 'month_day_year' -}}
+      {%- endcapture %}
 
       <p>
-        {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
+        {{
+          'blogs.article.author_on_date_html'
+          | t: author: article.author, date: date
+        }}
       </p>
 
       {% if article.image %}
         <a href="{{ article.url }}">
-          {% include 'responsive-image' with
+          {%
+            include 'responsive-image' with
             image: article.image,
             max_width: 1024,
             max_height: 1024
@@ -73,7 +78,10 @@
           {% if blog.comments_enabled? %}
             <li>
               <a href="{{ article.url }}#comments">
-                {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                {{
+                  'blogs.comments.with_count'
+                  | t: count: article.comments_count
+                }}
               </a>
             </li>
           {% endif %}
@@ -90,16 +98,17 @@
       {% endif %}
 
       <p>
-        <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
+        <a href="{{ article.url }}">
+          {{- 'blogs.article.read_more' | t }} &rarr;</a
+        >
       </p>
-
     {% endfor %}
 
     {% if paginate.pages > 1 %}
-      {% include 'pagination' with
+      {%
+        include 'pagination' with
         paginate: paginate
       %}
     {% endif %}
-
   {% endpaginate %}
 </div>

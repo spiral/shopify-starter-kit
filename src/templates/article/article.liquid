@@ -36,27 +36,37 @@
   {%- endunless -%}
 {%- endif -%}
 
-
-<article role="article"
-         class="article"
-         data-template="article"
+<article
+  role="article"
+  class="article"
+  data-template="article"
 >
-
   {% if article.image %}
-    <div class="article__hero-banner lazyload"
-         data-bgset="{% render 'responsive-bg-image', image: article.image %}"
+    <div
+      class="article__hero-banner lazyload"
+      data-bgset="{% render 'responsive-bg-image', image: article.image %}"
     ></div>
 
     <noscript>
       {%- assign image_size = article.image.width | append: 'x' -%}
-      <div class="article__hero-banner" style="background-image: {{ article.image | img_url: image_size }}"></div>
+      <div
+        class="article__hero-banner"
+        style="background-image: {{ article.image | img_url: image_size }}"
+      ></div>
     </noscript>
   {% endif %}
 
   <header role="banner">
     <h1>{{ article.title }}</h1>
-    {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-    <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+    {% capture date -%}
+      {{- article.published_at | time_tag: format: 'month_day_year' -}}
+    {%- endcapture %}
+    <p>
+      {{
+        'blogs.article.author_on_date_html'
+        | t: author: article.author, date: date
+      }}
+    </p>
   </header>
 
   <div class="rte">
@@ -67,23 +77,31 @@
     <ul>
       {% for tag in article.tags %}
         <li>
-          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+          {%- unless forloop.last %}, {% endunless %}
         </li>
       {% endfor %}
     </ul>
   {% endif %}
 
   {% if settings.social_sharing_blog %}
-    {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+    {% render 'social-sharing',
+      share_title: article.title,
+      share_permalink: article.url,
+      share_image: article.image
+    %}
   {% endif %}
 
   {% if blog.comments_enabled? %}
     <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
 
     {% paginate article.comments by 5 %}
-
       <div id="comments">
-        {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
+        {% if comment
+          and comment.status
+          and comment.id != blank
+          and paginate.current_page == 1
+        %}
           <p class="form-success">
             {% if blog.moderated? and comment.status != 'published' %}
               {{ 'blogs.comments.success_moderated' | t }}
@@ -99,13 +117,26 @@
               Display comment from URL parameters if it is waiting moderation
               We added "comment.id" check to make sure we don't display markup if there are form errors
             {% endcomment %}
-            {% if comment and comment.status != 'published' and comment.id != blank %}
+            {% if comment
+              and comment.status != 'published'
+              and comment.id != blank
+            %}
               <li id="{{ comment.id }}">
                 <div class="rte">
                   {{ comment.content }}
                 </div>
-                {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-                <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+                {% capture date -%}
+                  {{-
+                    comment.created_at
+                    | time_tag: format: 'month_day_year'
+                  -}}
+                {%- endcapture %}
+                <p>
+                  {{
+                    'blogs.article.comment_meta_html'
+                    | t: author: comment.author, date: date
+                  }}
+                </p>
               </li>
             {% endif %}
 
@@ -114,20 +145,30 @@
                 <div class="rte">
                   {{ comment.content }}
                 </div>
-                {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-                <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+                {% capture date -%}
+                  {{-
+                    comment.created_at
+                    | time_tag: format: 'month_day_year'
+                  -}}
+                {%- endcapture %}
+                <p>
+                  {{
+                    'blogs.article.comment_meta_html'
+                    | t: author: comment.author, date: date
+                  }}
+                </p>
               </li>
             {% endfor %}
           </ul>
 
           {% if paginate.pages > 1 %}
-            {% include 'pagination' with
+            {%
+              include 'pagination' with
               paginate: paginate
             %}
           {% endif %}
         {% endif %}
       </div>
-
     {% endpaginate %}
 
     {% form 'new_comment', article %}
@@ -138,26 +179,30 @@
       <label for="CommentAuthor" class="label-hidden">
         {{ 'blogs.comments.name' | t }}
       </label>
-      <input type="text"
-             name="comment[author]"
-             id="CommentAuthor"
-             class="{% if form.errors contains 'author' %}input-error{% endif %}"
-             placeholder="{{ 'blogs.comments.name' | t }}"
-             value="{{ form.author }}"
-             autocapitalize="words">
+      <input
+        type="text"
+        name="comment[author]"
+        id="CommentAuthor"
+        class="{% if form.errors contains 'author' %}input-error{% endif %}"
+        placeholder="{{ 'blogs.comments.name' | t }}"
+        value="{{ form.author }}"
+        autocapitalize="words"
+      >
 
       <label for="CommentEmail" class="label-hidden">
         {{ 'blogs.comments.email' | t }}
       </label>
-      <input type="email"
-             name="comment[email]"
-             id="CommentEmail"
-             class="{% if form.errors contains 'email' %}input-error{% endif %}"
-             placeholder="{{ 'blogs.comments.email' | t }}"
-             value="{{ form.email }}"
-             spellcheck="false"
-             autocomplete="off"
-             autocapitalize="off">
+      <input
+        type="email"
+        name="comment[email]"
+        id="CommentEmail"
+        class="{% if form.errors contains 'email' %}input-error{% endif %}"
+        placeholder="{{ 'blogs.comments.email' | t }}"
+        value="{{ form.email }}"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+      >
 
       <label for="CommentBody" class="label-hidden">
         {{ 'blogs.comments.message' | t }}
@@ -166,7 +211,8 @@
         name="comment[body]"
         id="CommentBody"
         class="{% if form.errors contains 'body' %}input-error{% endif %}"
-        placeholder="{{ 'blogs.comments.message' | t }}">
+        placeholder="{{ 'blogs.comments.message' | t }}"
+      >
         {{- form.body -}}
       </textarea>
 
@@ -174,58 +220,60 @@
         <p>{{ 'blogs.comments.moderated' | t }}</p>
       {% endif %}
 
-      <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
+      <input
+        type="submit"
+        class="button"
+        value="{{ 'blogs.comments.post' | t }}"
+      >
     {% endform %}
-
   {% endif %}
-
 </article>
 
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "articleBody": "{{ article.content | strip_html }}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ shop.url }}{{ page.url }}"
-  },
-  "headline": "{{ article.title }}",
-  {% if article.excerpt != blank %}
-    "description": "{{ article.excerpt | strip_html }}",
-  {% endif %}
-  {% if article.image %}
-{% assign image_size = article.image.width | append: 'x' %}
-    "image": [
-      "https:{{ article | img_url: image_size }}"
-    ],
-  {% endif %}
-  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
-  "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ article.author }}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    {% if settings.share_image %}
-{% assign image_size = settings.share_image.width | append: 'x' %}
-      "logo": {
-        "@type": "ImageObject",
-        "height": "{{ settings.share_image.height }}",
-        "url": "https:{{ settings.share_image | img_url: image_size }}",
-        "width": "{{ settings.share_image.width }}"
-      },
-    {% elsif article.image %}
-{% assign image_size = article.image.width | append: 'x' %}
-      "logo": {
-        "@type": "ImageObject",
-        "height": "{{ article.image.height }}",
-        "url": "https:{{ article.image | img_url: image_size }}",
-        "width": "{{ article.image.width }}"
-      },
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": "{{ article.content | strip_html }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ shop.url }}{{ page.url }}"
+    },
+    "headline": "{{ article.title }}",
+    {% if article.excerpt != blank %}
+      "description": "{{ article.excerpt | strip_html }}",
     {% endif %}
-    "name": "{{ shop.name }}"
+    {% if article.image %}
+  {% assign image_size = article.image.width | append: 'x' %}
+      "image": [
+        "https:{{ article | img_url: image_size }}"
+      ],
+    {% endif %}
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+    "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.author }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+  {% assign image_size = settings.share_image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": "{{ settings.share_image.height }}",
+          "url": "https:{{ settings.share_image | img_url: image_size }}",
+          "width": "{{ settings.share_image.width }}"
+        },
+      {% elsif article.image %}
+  {% assign image_size = article.image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": "{{ article.image.height }}",
+          "url": "https:{{ article.image | img_url: image_size }}",
+          "width": "{{ article.image.width }}"
+        },
+      {% endif %}
+      "name": "{{ shop.name }}"
+    }
   }
-}
 </script>

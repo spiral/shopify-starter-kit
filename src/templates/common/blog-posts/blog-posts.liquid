@@ -11,8 +11,9 @@
   - Show author
   - Show date
 {%- endcomment -%}
-<section class="blog-post"
-         data-section="blog-post"
+<section
+  class="blog-post"
+  data-section="blog-post"
 >
   {% if section.settings.title != blank %}
     <h2>{{ section.settings.title | escape }}</h2>
@@ -35,10 +36,11 @@
         {%- endcomment -%}
         <a href="{{ article.url }}">
           {% if article.image %}
-            {% render 'responsive-image' with
-                image: article.image,
-                max_width: 400,
-                max_height: 400
+            {%
+              render 'responsive-image' with
+              image: article.image,
+              max_width: 400,
+              max_height: 400
             %}
           {% endif %}
           <h3>{{ article.title }}</h3>
@@ -46,7 +48,9 @@
 
         <div>
           {% if section.settings.blog_show_author %}
-            <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+            <span>
+              {{- 'blogs.article.by_author' | t: author: article.author -}}
+            </span>
           {% endif %}
 
           {% if section.settings.blog_show_date %}
@@ -71,12 +75,21 @@
             {%- endcomment -%}
             <ul aria-label="{{ 'blogs.article.tags' | t }}">
               {% for tag in article.tags %}
-                <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+                <li>
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                    {{- tag -}}
+                  </a>
+                </li>
               {% endfor %}
             </ul>
           {% endif %}
 
-          <a href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">{{ 'blogs.article.read_more' | t }}</a>
+          <a
+            href="{{ article.url }}"
+            aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}"
+          >
+            {{- 'blogs.article.read_more' | t -}}
+          </a>
         </div>
       </li>
     {% else %}
@@ -100,51 +113,51 @@
 </section>
 
 {% schema %}
-  {
-    "name": "Blog posts",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Blog posts"
-      },
-      {
-        "id": "blog",
-        "type": "blog",
-        "label": "Blog"
-      },
-      {
-        "type": "range",
-        "id": "post_limit",
-        "label": "Posts",
-        "min": 3,
-        "max": 12,
-        "step": 3,
-        "default": 3
-      },
-      {
-        "type": "checkbox",
-        "id": "blog_show_author",
-        "label": "Show author",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "blog_show_date",
-        "label": "Show date",
-        "default": true
+{
+  "name": "Blog posts",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Blog posts"
+    },
+    {
+      "id": "blog",
+      "type": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Posts",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": "Show date",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog posts",
+      "category": "Blog",
+      "settings": {
+        "blog": "News",
+        "post_limit": 3
       }
-    ],
-    "presets": [
-      {
-        "name": "Blog posts",
-        "category": "Blog",
-        "settings": {
-          "blog": "News",
-          "post_limit": 3
-        }
-      }
-    ]
-  }
+    }
+  ]
+}
 {% endschema %}
