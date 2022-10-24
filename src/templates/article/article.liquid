@@ -163,7 +163,7 @@
 
           {% if paginate.pages > 1 %}
             {%
-              include 'pagination' with
+              render 'pagination' with
               paginate: paginate
             %}
           {% endif %}
