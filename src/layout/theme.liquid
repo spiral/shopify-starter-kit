@@ -26,7 +26,7 @@
       {%- endif -%}
       {%- assign escaped_page_title = page_title | escape -%}
       {%- unless escaped_page_title contains shop.name -%}
-        &ndash; {{ shop.name }}
+        &ndash; {{ shop.name }} &ndash; {{ shop.name }}
       {%- endunless -%}
     {%- endcapture -%}
     <title>{{ seo_title | strip }}</title>
@@ -55,6 +55,8 @@
     {% include 'script-tags', layout: 'theme' %}
 
     {{ content_for_header }}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
   </head>
 
   <body
@@ -72,5 +74,7 @@
     </main>
 
     {% section 'footer' %}
+
+    {{ 'theme.js' | asset_url | script_tag }}
   </body>
 </html>
