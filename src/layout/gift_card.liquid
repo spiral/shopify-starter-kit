@@ -36,11 +36,15 @@
     {% include 'script-tags', layout: 'gift_card' %}
 
     {{ content_for_header }}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
   </head>
 
   <body class="template-giftcard">
     <main role="main" id="MainContent">
       {{ content_for_layout }}
     </main>
+
+    {{ 'theme.js' | asset_url | script_tag }}
   </body>
 </html>
