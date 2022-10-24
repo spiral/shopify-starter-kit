@@ -12,13 +12,15 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-<section class="image-with-text"
-         data-section="image-with-text"
+<section
+  class="image-with-text"
+  data-section="image-with-text"
 >
   {% capture image_layout %}
     <div class="image-with-text__image">
       {% if section.settings.image != blank %}
-        {% render 'responsive-image' with
+        {%
+          render 'responsive-image' with
           image: section.settings.image,
           max_width: 545,
           max_height: 545
@@ -40,7 +42,9 @@
     {% if section.settings.text != blank %}
       <div>{{ section.settings.text }}</div>
     {% endif %}
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+    {% if section.settings.button_label != blank
+      and section.settings.button_link != blank
+    %}
       <a href="{{ section.settings.button_link }}">
         {{ section.settings.button_label | escape }}
       </a>
@@ -53,58 +57,58 @@
 </section>
 
 {% schema %}
-  {
-    "name": "Image with text",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "select",
-        "id": "layout",
-        "label": "Image alignment",
-        "default": "left",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Image with text"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text",
-        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
-      },
-      {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button label"
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Image with text",
-        "category": "Image"
-      }
-    ]
-  }
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Image with text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Image"
+    }
+  ]
+}
 {% endschema %}

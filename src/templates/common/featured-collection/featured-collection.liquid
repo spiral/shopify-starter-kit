@@ -8,20 +8,27 @@
   Theme Store optional settings
   - Heading: title of the featured collection section
 {%- endcomment -%}
-<section class="featured-collection"
-         data-section="featured-collection"
+<section
+  class="featured-collection"
+  data-section="featured-collection"
 >
   {% if section.settings.title != blank %}
-    <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
+    <h2 class="featured-collection__title">
+      {{ section.settings.title | escape }}
+    </h2>
   {% endif %}
 
   {%- assign collection = collections[section.settings.collection] -%}
 
   {% for product in collection.products limit: 6 %}
-    <a href="{{ product.url | within: collection }}" class="featured-collection__item">
+    <a
+      href="{{ product.url | within: collection }}"
+      class="featured-collection__item"
+    >
       {% if product.featured_image != blank %}
         <div class="featured-collection__image">
-          {% render 'responsive-image' with
+          {%
+            render 'responsive-image' with
             image: product.featured_image,
             max_width: 480,
             max_height: 480
@@ -53,7 +60,11 @@
     {% for i in (1..6) %}
       <a href="#" class="featured-collection__item">
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+        {{
+          'product-'
+          | append: current
+          | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small'
+        }}
 
         <p>{{ 'homepage.onboarding.product_title' | t }}</p>
         <p>{{ 1999 | money }}</p>
@@ -63,26 +74,26 @@
 </section>
 
 {% schema %}
-  {
-    "name": "Featured collection",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Featured collection"
-      },
-      {
-        "id": "collection",
-        "type": "collection",
-        "label": "Collection"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Featured collection",
-        "category": "Collection"
-      }
-    ]
-  }
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection",
+      "category": "Collection"
+    }
+  ]
+}
 {% endschema %}

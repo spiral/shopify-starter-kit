@@ -17,11 +17,21 @@
       <tbody>
         {% for order in customer.orders %}
           <tr class="responsive-table-row">
-            <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
-            <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
-            <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
-            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
-            <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+            <td data-label="{{ 'customer.orders.order_number' | t }}">
+              {{ order.name | link_to: order.customer_url }}
+            </td>
+            <td data-label="{{ 'customer.orders.date' | t }}">
+              {{ order.created_at | date: format: 'month_day_year' }}
+            </td>
+            <td data-label="{{ 'customer.orders.payment_status' | t }}">
+              {{ order.financial_status_label }}
+            </td>
+            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+              {{ order.fulfillment_status_label }}
+            </td>
+            <td data-label="{{ 'customer.orders.total' | t }}">
+              {{ order.total_price | money }}
+            </td>
           </tr>
         {% endfor %}
       </tbody>
@@ -31,13 +41,16 @@
   {% endif %}
 
   {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
+    {% render 'pagination' %}
   {% endif %}
-
 {% endpaginate %}
 
 <h2>{{ 'customer.account.details' | t }}</h2>
 
 {{ customer.default_address | format_address }}
 
-<a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+<a href="/account/addresses">
+  {{- 'customer.account.view_addresses' | t }} (
+  {{- customer.addresses_count -}}
+  )</a
+>

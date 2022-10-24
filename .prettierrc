@@ -4,5 +4,12 @@
   "printWidth": 80,
   "singleQuote": true,
   "arrowParens": "always",
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "plugins": ["@shopify/prettier-plugin-liquid"],
+  "overrides": [
+    {
+      "files": "*.liquid",
+      "options": { "printWidth": 80, "singleQuote": false }
+    }
+  ]
 }
