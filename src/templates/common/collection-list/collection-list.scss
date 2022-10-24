@@ -3,6 +3,7 @@
 .collection-list {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
   max-width: $grid-max-width;
 }
 
