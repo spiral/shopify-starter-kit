@@ -14,6 +14,7 @@
     block: block
   %}
 {% endcomment %}
+
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
   assign variants_option1_arr = product.variants | map: 'option1'
@@ -61,7 +62,9 @@
     >
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
-      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+      <span class="visually-hidden">
+        {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+      </span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
