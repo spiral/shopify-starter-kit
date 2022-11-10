@@ -14,9 +14,13 @@
       {%- endif -%}
       <div>
         {%- if settings.show_vendor -%}
-          <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
+          <p class="caption-with-letter-spacing light">
+            {{ item.product.vendor }}
+          </p>
         {%- endif -%}
-        <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
+        <h3 class="cart-notification-product__name h4">
+          {{ item.product.title | escape }}
+        </h3>
         <dl>
           {%- unless item.product.has_only_default_variant -%}
             {%- for option in item.options_with_values -%}
@@ -44,8 +48,10 @@
             {%- endif -%}
           {%- endfor -%}
         </dl>
-        {%- if item.selling_plan_allocation != nil -%}
-          <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- if item.selling_plan_allocation != null -%}
+          <p class="product-option">
+            {{ item.selling_plan_allocation.selling_plan.name }}
+          </p>
         {%- endif -%}
       </div>
     </div>
