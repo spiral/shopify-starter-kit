@@ -12,16 +12,28 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros | strip_html -%}
+    {%- assign formatted_initial_value = gift_card.initial_value
+      | money_without_trailing_zeros
+      | strip_html
+    -%}
 
-    <title>{{ 'gift_cards.issued.title' | t: value: formatted_initial_value, shop: shop.name }}</title>
+    <title>
+      {{
+        'gift_cards.issued.title'
+        | t: value: formatted_initial_value, shop: shop.name
+      }}
+    </title>
 
     <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
 
@@ -86,10 +98,22 @@
     {% endstyle %}
 
     {%- unless settings.type_body_font.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        as="font"
+        href="{{ settings.type_body_font | font_url }}"
+        type="font/woff2"
+        crossorigin
+      >
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      <link
+        rel="preload"
+        as="font"
+        href="{{ settings.type_header_font | font_url }}"
+        type="font/woff2"
+        crossorigin
+      >
     {%- endunless -%}
 
     {{ 'template-giftcard.css' | asset_url | stylesheet_tag }}
@@ -108,25 +132,44 @@
           {% endif %}
         </p>
         {%- if gift_card.enabled == false or gift_card.expired -%}
-          <p class="gift-card__label badge badge--{{ settings.sold_out_badge_color_scheme }}">{{ 'gift_cards.issued.expired' | t }}</p>
+          <p class="gift-card__label badge badge--{{ settings.sold_out_badge_color_scheme }}">
+            {{ 'gift_cards.issued.expired' | t }}
+          </p>
         {%- endif -%}
       </div>
 
       {% if settings.currency_code_enabled %}
-        {%- assign gift_card_balance = gift_card.balance | money_with_currency -%}
+        {%- assign gift_card_balance = gift_card.balance
+          | money_with_currency
+        -%}
       {% else %}
         {%- assign gift_card_balance = gift_card.balance | money -%}
       {% endif %}
       {%- if gift_card.balance != gift_card.initial_value -%}
-        <p class="gift-card__label caption-large">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
+        <p class="gift-card__label caption-large">
+          {{
+            'gift_cards.issued.remaining_html'
+            | t: balance: gift_card_balance
+          }}
+        </p>
       {%- endif -%}
     </header>
 
     <main class="gift-card">
       <div class="gift-card__image-wrapper">
-        <img src="{{ 'gift-card/card.svg' | shopify_asset_url }}" alt="" class="gift-card__image" height="{{ 570 | divided_by: 1.5 }}" width="570" loading="lazy">
+        <img
+          src="{{ 'gift-card/card.svg' | shopify_asset_url }}"
+          alt=""
+          class="gift-card__image"
+          height="{{ 570 | divided_by: 1.5 }}"
+          width="570"
+          loading="lazy"
+        >
       </div>
-      <div class="gift-card__qr-code" data-identifier="{{ gift_card.qr_identifier }}"></div>
+      <div
+        class="gift-card__qr-code"
+        data-identifier="{{ gift_card.qr_identifier }}"
+      ></div>
       <div class="gift-card__information">
         <input
           type="text"
@@ -136,15 +179,27 @@
           readonly
         >
         <div class="gift-card__copy-code">
-          <button class="link gift-card__copy-link">{{ 'gift_cards.issued.copy_code' | t }}</button>
-          <span class="gift-card__copy-success form__message" role="status"></span>
+          <button class="link gift-card__copy-link">
+            {{ 'gift_cards.issued.copy_code' | t }}
+          </button>
+          <span
+            class="gift-card__copy-success form__message"
+            role="status"
+          ></span>
           <template>
-            {%- render 'icon-success' -%}{{ 'gift_cards.issued.copy_code_success' | t }}
+            {%- render 'icon-success' -%}
+            {{ 'gift_cards.issued.copy_code_success' | t }}
           </template>
         </div>
         {%- if gift_card.pass_url -%}
           <a href="{{ gift_card.pass_url }}" class="gift_card__apple-wallet">
-            <img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}" loading="lazy">
+            <img
+              src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
+              width="120"
+              height="40"
+              alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}"
+              loading="lazy"
+            >
           </a>
         {%- endif -%}
         <div class="gift-card__buttons no-print">
@@ -168,7 +223,9 @@
     </main>
 
     <div hidden>
-      <span id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</span>
+      <span id="a11y-new-window-message">
+        {{- 'accessibility.link_messages.new_window' | t -}}
+      </span>
     </div>
   </body>
 </html>
