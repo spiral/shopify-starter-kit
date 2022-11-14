@@ -1,34 +1,46 @@
+// eslint-disable-next-line max-classes-per-file
 class DetailsDisclosure extends HTMLElement {
   constructor() {
     super();
     this.mainDetailsToggle = this.querySelector('details');
-    this.content = this.mainDetailsToggle.querySelector('summary').nextElementSibling;
+    this.content =
+      this.mainDetailsToggle.querySelector('summary').nextElementSibling;
 
-    this.mainDetailsToggle.addEventListener('focusout', this.onFocusOut.bind(this));
+    this.mainDetailsToggle.addEventListener(
+      'focusout',
+      this.onFocusOut.bind(this)
+    );
+
     this.mainDetailsToggle.addEventListener('toggle', this.onToggle.bind(this));
   }
 
   onFocusOut() {
     setTimeout(() => {
-      if (!this.contains(document.activeElement)) this.close();
-    })
+      if (!this.contains(document.activeElement)) {
+        this.close();
+      }
+    });
   }
 
   onToggle() {
     if (!this.animations) this.animations = this.content.getAnimations();
 
     if (this.mainDetailsToggle.hasAttribute('open')) {
-      this.animations.forEach(animation => animation.play());
+      this.animations.forEach((animation) => animation.play());
     } else {
-      this.animations.forEach(animation => animation.cancel());
+      this.animations.forEach((animation) => animation.cancel());
     }
   }
 
   close() {
     this.mainDetailsToggle.removeAttribute('open');
-    this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', false);
+    this.mainDetailsToggle
+      .querySelector('summary')
+      .setAttribute('aria-expanded', 'false');
   }
 }
+
+window.DetailsDisclosure = DetailsDisclosure;
 
 customElements.define('details-disclosure', DetailsDisclosure);
 
@@ -42,8 +54,16 @@ class HeaderMenu extends DetailsDisclosure {
     if (!this.header) return;
     this.header.preventHide = this.mainDetailsToggle.open;
 
-    if (document.documentElement.style.getPropertyValue('--header-bottom-position-desktop') !== '') return;
-    document.documentElement.style.setProperty('--header-bottom-position-desktop', `${Math.floor(this.header.getBoundingClientRect().bottom)}px`);
+    if (
+      document.documentElement.style.getPropertyValue(
+        '--header-bottom-position-desktop'
+      ) !== ''
+    )
+      return;
+    document.documentElement.style.setProperty(
+      '--header-bottom-position-desktop',
+      `${Math.floor(this.header.getBoundingClientRect().bottom)}px`
+    );
   }
 }
 

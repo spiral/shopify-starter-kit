@@ -4,82 +4,106 @@ const selectors = {
   addressContainer: '[data-address]',
   toggleAddressButton: 'button[aria-expanded]',
   cancelAddressButton: 'button[type="reset"]',
-  deleteAddressButton: 'button[data-confirm-message]'
+  deleteAddressButton: 'button[data-confirm-message]',
 };
 
 const attributes = {
   expanded: 'aria-expanded',
-  confirmMessage: 'data-confirm-message'
+  confirmMessage: 'data-confirm-message',
 };
+
+const { Shopify, confirm } = window;
 
 class CustomerAddresses {
   constructor() {
-    this.elements = this._getElements();
-    if (Object.keys(this.elements).length === 0) return;
-    this._setupCountries();
-    this._setupEventListeners();
+    this.elements = this.getElements();
+    if (Object.keys(this.elements).length === 0) {
+      return;
+    }
+    this.setupCountries();
+    this.setupEventListeners();
   }
 
-  _getElements() {
+  static getElements() {
     const container = document.querySelector(selectors.customerAddresses);
-    return container ? {
-      container,
-      addressContainer: container.querySelector(selectors.addressContainer),
-      toggleButtons: document.querySelectorAll(selectors.toggleAddressButton),
-      cancelButtons: container.querySelectorAll(selectors.cancelAddressButton),
-      deleteButtons: container.querySelectorAll(selectors.deleteAddressButton),
-      countrySelects: container.querySelectorAll(selectors.addressCountrySelect)
-    } : {};
+
+    return container
+      ? {
+          container,
+          addressContainer: container.querySelector(selectors.addressContainer),
+          toggleButtons: document.querySelectorAll(
+            selectors.toggleAddressButton
+          ),
+          cancelButtons: container.querySelectorAll(
+            selectors.cancelAddressButton
+          ),
+          deleteButtons: container.querySelectorAll(
+            selectors.deleteAddressButton
+          ),
+          countrySelects: container.querySelectorAll(
+            selectors.addressCountrySelect
+          ),
+        }
+      : {};
   }
 
-  _setupCountries() {
+  setupCountries() {
     if (Shopify && Shopify.CountryProvinceSelector) {
       // eslint-disable-next-line no-new
-      new Shopify.CountryProvinceSelector('AddressCountryNew', 'AddressProvinceNew', {
-        hideElement: 'AddressProvinceContainerNew'
-      });
+      new Shopify.CountryProvinceSelector(
+        'AddressCountryNew',
+        'AddressProvinceNew',
+        {
+          hideElement: 'AddressProvinceContainerNew',
+        }
+      );
       this.elements.countrySelects.forEach((select) => {
-        const formId = select.dataset.formId;
+        const { formId } = select.dataset;
         // eslint-disable-next-line no-new
-        new Shopify.CountryProvinceSelector(`AddressCountry_${formId}`, `AddressProvince_${formId}`, {
-          hideElement: `AddressProvinceContainer_${formId}`
-        });
+
+        Shopify.CountryProvinceSelector(
+          `AddressCountry_${formId}`,
+          `AddressProvince_${formId}`,
+          {
+            hideElement: `AddressProvinceContainer_${formId}`,
+          }
+        );
       });
     }
   }
 
-  _setupEventListeners() {
+  setupEventListeners() {
     this.elements.toggleButtons.forEach((element) => {
-      element.addEventListener('click', this._handleAddEditButtonClick);
+      element.addEventListener('click', this.handleAddEditButtonClick);
     });
     this.elements.cancelButtons.forEach((element) => {
-      element.addEventListener('click', this._handleCancelButtonClick);
+      element.addEventListener('click', this.handleCancelButtonClick);
     });
     this.elements.deleteButtons.forEach((element) => {
-      element.addEventListener('click', this._handleDeleteButtonClick);
+      element.addEventListener('click', this.handleDeleteButtonClick);
     });
   }
 
-  _toggleExpanded(target) {
+  static toggleExpanded(target) {
     target.setAttribute(
       attributes.expanded,
       (target.getAttribute(attributes.expanded) === 'false').toString()
     );
   }
 
-  _handleAddEditButtonClick = ({ currentTarget }) => {
-    this._toggleExpanded(currentTarget);
+  handleAddEditButtonClick({ currentTarget }) {
+    this.toggleExpanded(currentTarget);
   }
 
-  _handleCancelButtonClick = ({ currentTarget }) => {
-    this._toggleExpanded(
+  handleCancelButtonClick({ currentTarget }) {
+    this.toggleExpanded(
       currentTarget
         .closest(selectors.addressContainer)
         .querySelector(`[${attributes.expanded}]`)
-    )
+    );
   }
 
-  _handleDeleteButtonClick = ({ currentTarget }) => {
+  static handleDeleteButtonClick({ currentTarget }) {
     // eslint-disable-next-line no-alert
     if (confirm(currentTarget.getAttribute(attributes.confirmMessage))) {
       Shopify.postLink(currentTarget.dataset.target, {
@@ -88,3 +112,5 @@ class CustomerAddresses {
     }
   }
 }
+
+window.CustomerAddresses = CustomerAddresses;

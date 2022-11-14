@@ -1,9 +1,9 @@
-if (!customElements.get('product-model')) {
-  customElements.define('product-model', class ProductModel extends DeferredMedia {
-    constructor() {
-      super();
-    }
+const { Shopify } = window;
 
+if (!customElements.get('product-model')) {
+  const { DeferredMedia } = window;
+
+  class ProductModel extends DeferredMedia {
     loadContent() {
       super.loadContent();
 
@@ -17,11 +17,17 @@ if (!customElements.get('product-model')) {
     }
 
     setupModelViewerUI(errors) {
-      if (errors) return;
+      if (errors) {
+        return;
+      }
 
-      this.modelViewerUI = new Shopify.ModelViewerUI(this.querySelector('model-viewer'));
+      this.modelViewerUI = new Shopify.ModelViewerUI(
+        this.querySelector('model-viewer')
+      );
     }
-  });
+  }
+
+  customElements.define('product-model', ProductModel);
 }
 
 window.ProductModel = {
@@ -54,5 +60,7 @@ window.ProductModel = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-  if (window.ProductModel) window.ProductModel.loadShopifyXR();
+  if (window.ProductModel) {
+    window.ProductModel.loadShopifyXR();
+  }
 });
