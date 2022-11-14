@@ -5,8 +5,8 @@
 }
 
 .article {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .article.grid__item {
@@ -26,7 +26,7 @@
   word-break: break-word;
 }
 
-.article-card__title a:after {
+.article-card__title a::after {
   bottom: 0;
   content: "";
   height: 100%;
@@ -61,8 +61,8 @@
 }
 
 .article-card__footer {
-  letter-spacing: 0.1rem;
   font-size: 1.4rem;
+  letter-spacing: 0.1rem;
 }
 
 .article-card__footer:not(:last-child) {
@@ -74,8 +74,8 @@
 }
 
 .article-card__excerpt {
-  width: 100%;
   margin-top: 1.2rem;
+  width: 100%;
 }
 
 .article-card__link:not(:only-child) {
@@ -131,7 +131,7 @@
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
   .articles-wrapper.grid {
-    margin: 0 0 5rem 0;
+    margin: 0 0 5rem;
   }
 
   @media screen and (min-width: 750px) {

@@ -1,7 +1,7 @@
 slideshow-component {
-  position: relative;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 @media screen and (max-width: 989px) {
@@ -11,17 +11,16 @@ slideshow-component {
 }
 
 slideshow-component .slideshow.banner {
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 0;
+  flex-flow: row nowrap;
   gap: 0;
+  margin: 0;
 }
 
 .slideshow__slide {
-  padding: 0;
-  position: relative;
   display: flex;
   flex-direction: column;
+  padding: 0;
+  position: relative;
 }
 
 @media screen and (max-width: 749px) {
@@ -50,12 +49,8 @@ slideshow-component .slideshow.banner {
 
 @media screen and (max-width: 749px) {
   slideshow-component.page-width .slideshow__text {
-    border-right: var(--text-boxes-border-width) solid rgba(var(--color-foreground), var(--text-boxes-border-opacity));
-    border-left: var(--text-boxes-border-width) solid rgba(var(--color-foreground), var(--text-boxes-border-opacity));
-  }
-
-  .banner--mobile-bottom .slideshow__text.banner__box {
-    max-width: 100%;
+    border-left: var(--text-boxes-border-width) solid rgb(var(--color-foreground) var(--text-boxes-border-opacity));
+    border-right: var(--text-boxes-border-width) solid rgb(var(--color-foreground) var(--text-boxes-border-opacity));
   }
 
   .banner--mobile-bottom .slideshow__text-wrapper {
@@ -64,6 +59,7 @@ slideshow-component .slideshow.banner {
 
   .banner--mobile-bottom .slideshow__text.banner__box {
     height: 100%;
+    max-width: 100%;
   }
 
   .banner--mobile-bottom .slideshow__text .button {
@@ -106,7 +102,7 @@ slideshow-component .slideshow.banner {
 }
 
 .slideshow__controls {
-  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border: 0.1rem solid rgb(var(--color-foreground) 0.08);
 }
 
 .slideshow__controls--top {
@@ -116,8 +112,8 @@ slideshow-component .slideshow.banner {
 
 @media screen and (max-width: 749px) {
   .slideshow__controls--border-radius-mobile {
-    border-bottom-right-radius: var(--text-boxes-radius);
     border-bottom-left-radius: var(--text-boxes-radius);
+    border-bottom-right-radius: var(--text-boxes-radius);
   }
 }
 
@@ -132,8 +128,8 @@ slideshow-component .slideshow.banner {
 }
 
 slideshow-component:not(.page-width) .slider-buttons {
-  border-right: 0;
   border-left: 0;
+  border-right: 0;
 }
 
 .slideshow__control-wrapper {
@@ -141,12 +137,12 @@ slideshow-component:not(.page-width) .slider-buttons {
 }
 
 .slideshow__autoplay {
-  position: absolute;
-  right: 0;
+  align-items: center;
   border-left: none;
   display: flex;
   justify-content: center;
-  align-items: center;
+  position: absolute;
+  right: 0;
 }
 
 @media screen and (max-width: 749px) {
@@ -157,22 +153,22 @@ slideshow-component:not(.page-width) .slider-buttons {
 
 @media screen and (min-width: 750px) {
   .slideshow__autoplay.slider-button {
-    position: inherit;
+    border-left: 0.1rem solid rgb(var(--color-foreground) 0.08);
     margin-left: 0.6rem;
     padding: 0 0 0 0.6rem;
-    border-left: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    position: inherit;
   }
 }
 
 .slideshow__autoplay .icon.icon-play,
 .slideshow__autoplay .icon.icon-pause {
   display: block;
-  position: absolute;
-  opacity: 1;
-  transform: scale(1);
-  transition: transform 150ms ease, opacity 150ms ease;
-  width: 0.8rem;
   height: 1.2rem;
+  opacity: 1;
+  position: absolute;
+  transform: scale(1);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  width: 0.8rem;
 }
 
 .slideshow__autoplay .icon.icon-play {
@@ -180,7 +176,7 @@ slideshow-component:not(.page-width) .slider-buttons {
 }
 
 .slideshow__autoplay path {
-  fill: rgba(var(--color-foreground), 0.75);
+  fill: rgb(var(--color-foreground) 0.75);
 }
 
 .slideshow__autoplay:hover path {
@@ -189,8 +185,8 @@ slideshow-component:not(.page-width) .slider-buttons {
 
 @media screen and (forced-colors: active) {
   .slideshow__autoplay path,
-  .slideshow__autoplay:hover path{
-    fill: CanvasText;
+  .slideshow__autoplay:hover path {
+    fill: canvastext;
   }
 }
 
@@ -200,7 +196,7 @@ slideshow-component:not(.page-width) .slider-buttons {
 
 .slideshow__autoplay--paused .icon-pause,
 .slideshow__autoplay:not(.slideshow__autoplay--paused) .icon-play {
-  visibility: hidden;
   opacity: 0;
-  transform: scale(.8)
+  transform: scale(0.8);
+  visibility: hidden;
 }

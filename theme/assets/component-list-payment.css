@@ -3,8 +3,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: -0.5rem 0;
-  padding-top: 1rem;
   padding-left: 0;
+  padding-top: 1rem;
 }
 
 @media screen and (min-width: 750px) {

@@ -3,10 +3,10 @@
 }
 
 .list-menu--disclosure {
-  position: absolute;
+  border: 1px solid rgb(var(--color-foreground) 0.2);
   min-width: 100%;
+  position: absolute;
   width: 20rem;
-  border: 1px solid rgba(var(--color-foreground), 0.2);
 }
 
 .list-menu--disclosure:focus {
@@ -25,6 +25,6 @@
 .list-menu--disclosure.localization-selector {
   max-height: 18rem;
   overflow: auto;
-  width: 10rem;
   padding: 0.5rem;
+  width: 10rem;
 }

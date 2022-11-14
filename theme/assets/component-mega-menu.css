@@ -32,7 +32,6 @@
 .mega-menu[open] .mega-menu__content {
   opacity: 1;
   transform: translateY(0);
-
 }
 
 .mega-menu__list {
@@ -43,7 +42,7 @@
 }
 
 .mega-menu__link {
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgb(var(--color-foreground) 0.75);
   display: block;
   font-size: 1.3rem;
   line-height: calc(1 + 0.3 / var(--font-body-scale));
@@ -63,15 +62,15 @@
 }
 
 .header--top-center .mega-menu__list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   column-gap: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .header--top-center .mega-menu__list > li {
-  width: 16%;
   padding-right: 2.4rem;
+  width: 16%;
 }
 
 .mega-menu__link:hover,

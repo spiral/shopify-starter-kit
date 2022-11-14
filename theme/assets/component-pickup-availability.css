@@ -25,7 +25,7 @@ pickup-availability[available] {
 
 .pickup-availability-button {
   background-color: transparent;
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgb(var(--color-foreground) 0.75);
   letter-spacing: 0.06rem;
   padding: 0 0 0.2rem;
   text-align: left;
@@ -42,32 +42,33 @@ pickup-availability[available] {
 
 pickup-availability-drawer {
   background-color: rgb(var(--color-background));
+  border-color: rgb(var(--color-foreground) var(--drawer-border-opacity));
+  border-style: solid;
+  border-width: 0 0 0 var(--drawer-border-width);
+  filter:
+    drop-shadow(
+      var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset)
+      var(--drawer-shadow-blur-radius)
+      rgb(var(--color-shadow) var(--drawer-shadow-opacity))
+    );
   height: 100%;
   opacity: 0;
   overflow-y: auto;
   padding: 2rem;
   position: fixed;
-  top: 0;
   right: 0;
-  z-index: 4;
-  transition: opacity var(--duration-default) ease,
-    transform var(--duration-default) ease;
+  top: 0;
   transform: translateX(100%);
+  transition:
+    opacity var(--duration-default) ease,
+    transform var(--duration-default) ease;
   width: 100%;
-  border-width: 0 0 0 var(--drawer-border-width);
-  border-color: rgba(var(--color-foreground), var(--drawer-border-opacity));
-  border-style: solid;
-  filter: drop-shadow(
-    var(--drawer-shadow-horizontal-offset)
-    var(--drawer-shadow-vertical-offset)
-    var(--drawer-shadow-blur-radius)
-    rgba(var(--color-shadow), var(--drawer-shadow-opacity))
-  );
+  z-index: 4;
 }
 
 pickup-availability-drawer[open] {
-  transform: translateX(0);
   opacity: 1;
+  transform: translateX(0);
 }
 
 @media screen and (min-width: 750px) {
@@ -77,9 +78,9 @@ pickup-availability-drawer[open] {
   }
 
   pickup-availability-drawer[open] {
+    animation: animate-drawer-open var(--duration-default) ease;
     opacity: 1;
     transform: translateX(0);
-    animation: animateDrawerOpen var(--duration-default) ease;
   }
 }
 
@@ -110,7 +111,7 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-drawer-button:hover {
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgb(var(--color-foreground) 0.75);
 }
 
 .pickup-availability-variant {
@@ -125,12 +126,12 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-list__item {
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-bottom: 0.1rem solid rgb(var(--color-foreground) 0.08);
   padding: 2rem 0;
 }
 
 .pickup-availability-list__item:first-child {
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-top: 0.1rem solid rgb(var(--color-foreground) 0.08);
 }
 
 .pickup-availability-list__item > * {
@@ -142,8 +143,8 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-address {
-  font-style: normal;
   font-size: 1.2rem;
+  font-style: normal;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
 }
 
@@ -151,26 +152,28 @@ pickup-availability-drawer[open] {
   margin: 0;
 }
 
-@keyframes animateDrawerOpen {
-  @media screen and (max-width: 749px) {
-    0% {
+@media screen and (max-width: 749px) {
+  @keyframes animate-drawer-open {
+    from {
       opacity: 0;
       transform: translateX(100%);
     }
 
-    100% {
+    to {
       opacity: 1;
       transform: translateX(0);
     }
   }
+}
 
-  @media screen and (min-width: 750px) {
-    0% {
+@media screen and (min-width: 750px) {
+  @keyframes animate-drawer-open {
+    from {
       opacity: 0;
       transform: translateX(100%);
     }
 
-    100% {
+    to {
       opacity: 1;
       transform: translateX(0);
     }

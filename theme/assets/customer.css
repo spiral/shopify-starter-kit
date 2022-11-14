@@ -1,4 +1,5 @@
-.customer:not(.account):not(.order) {
+/* stylelint-disable no-descending-specificity */
+.customer:not(.account, .order) {
   margin: 0 auto;
   max-width: 33.4rem;
   padding-left: 1.5rem;
@@ -7,7 +8,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .customer:not(.account):not(.order) {
+  .customer:not(.account, .order) {
     max-width: 47.8rem;
   }
 }
@@ -27,9 +28,9 @@
 
 .customer ul {
   line-height: calc(1 + 0.6 / var(--font-body-scale));
+  margin-bottom: 4rem;
   padding-left: 4.4rem;
   text-align: left;
-  margin-bottom: 4rem;
 }
 
 .customer ul a {
@@ -37,8 +38,8 @@
 }
 
 .customer strong {
-  font-weight: normal;
   color: rgb(var(--color-foreground));
+  font-weight: normal;
 }
 
 .customer h2.form__message {
@@ -52,7 +53,7 @@
 }
 
 .customer .field {
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 0;
 }
 
 .customer .field:first-of-type {
@@ -61,27 +62,13 @@
 
 /* Customer Table */
 .customer table {
-  table-layout: auto;
+  border-bottom: 0.01rem solid rgb(var(--color-foreground) 0.08);
   border-collapse: collapse;
-  border-bottom: 0.01rem solid rgba(var(--color-foreground), 0.08);
   box-shadow: none;
-  width: 100%;
   font-size: 1.6rem;
   position: relative;
-}
-
-@media screen and (min-width: 750px) {
-  .customer table {
-    border: none;
-    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.08);
-  }
-}
-
-@media screen and (forced-colors: active) {
-  .customer table {
-    border-top: 0.1rem solid transparent;
-    border-bottom: 0.1rem solid transparent;
-  }
+  table-layout: auto;
+  width: 100%;
 }
 
 .customer tbody {
@@ -90,25 +77,10 @@
 
 .customer th,
 .customer td {
+  border: none;
   font-weight: 400;
   line-height: 1;
-  border: none;
   padding: 0;
-}
-
-@media screen and (min-width: 750px) {
-  .customer td {
-    padding-right: 2.2rem;
-  }
-}
-
-.customer tbody td {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.customer td:empty {
-  display: initial;
 }
 
 .customer thead th {
@@ -117,68 +89,31 @@
   text-transform: uppercase;
 }
 
-.customer tbody td:first-of-type {
-  padding-top: 4rem;
+.customer tbody td {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
-@media screen and (min-width: 750px) {
-  .customer th,
-  .customer td:first-of-type {
-    text-align: left;
-    padding-left: 0;
-    padding-right: 2.2rem;
-  }
+.customer td:empty {
+  display: initial;
+}
 
-  .customer thead th,
-  .customer tbody td {
-    padding-top: 2.4rem;
-    padding-bottom: 2.4rem;
-  }
-
-  .customer th:first-of-type,
-  .customer td:first-of-type {
-    padding-left: 2.2rem;
-  }
-
-  .customer tbody td {
-    vertical-align: top;
-  }
-
-  .customer tbody td:first-of-type {
-    padding-top: 2.4rem;
-  }
+.customer tbody td:first-of-type {
+  padding-top: 4rem;
 }
 
 .customer tbody td:last-of-type {
   padding-bottom: 4rem;
 }
 
-@media screen and (min-width: 750px) {
-  .customer tbody td:last-of-type {
-    padding-bottom: 0;
-  }
-}
-
 .customer tbody tr {
-  border-top: 0.01rem solid rgba(var(--color-foreground), 0.08);
-}
-
-@media screen and (min-width: 750px) {
-  .customer tbody tr:first-of-type {
-    border-top: none;
-  }
-}
-
-@media screen and (forced-colors: active) {
-  .customer tbody tr {
-    border-top: 0.1rem solid transparent;
-  }
+  border-top: 0.01rem solid rgb(var(--color-foreground) 0.08);
 }
 
 .customer tfoot td:first-of-type,
 .customer tfoot td {
-  padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
 }
 
 .customer tfoot td:first-of-type {
@@ -189,40 +124,90 @@
   padding-top: 4rem;
 }
 
-@media screen and (min-width: 750px) {
-  .customer tfoot tr:first-of-type td,
-  .customer tfoot tr:first-of-type th {
-    padding-top: 2.4rem;
-  }
-}
-
 .customer tfoot tr:last-of-type td {
   padding-bottom: 4rem;
-}
-
-@media screen and (min-width: 750px) {
-  .customer tfoot tr:last-of-type td,
-  .customer tfoot tr:last-of-type th {
-    padding-bottom: 2.4rem;
-  }
 }
 
 /* works around colspan phantom border issues */
 .customer thead::after,
 .customer tfoot::before {
-  content: ' ';
-  height: 0.1rem;
-  width: 100%;
+  background: rgb(var(--color-foreground) 0.08);
+  content: " ";
   display: block;
-  position: absolute;
+  height: 0.1rem;
   left: 0;
-  background: rgba(var(--color-foreground), 0.08);
+  position: absolute;
+  width: 100%;
 }
 
 @media screen and (forced-colors: active) {
+  .customer table {
+    border-bottom: 0.1rem solid transparent;
+    border-top: 0.1rem solid transparent;
+  }
+
+  .customer tbody tr {
+    border-top: 0.1rem solid transparent;
+  }
+
   .customer thead::after,
   .customer tfoot::before {
-    background: CanvasText;
+    background: canvastext;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .customer table {
+    border: none;
+    box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground) 0.08);
+  }
+
+  .customer td {
+    padding-right: 2.2rem;
+  }
+
+  .customer tbody td {
+    vertical-align: top;
+  }
+
+  .customer thead th,
+  .customer tbody td {
+    padding-bottom: 2.4rem;
+    padding-top: 2.4rem;
+  }
+
+  .customer th,
+  .customer td:first-of-type {
+    padding-left: 0;
+    padding-right: 2.2rem;
+    text-align: left;
+  }
+
+  .customer th:first-of-type,
+  .customer td:first-of-type {
+    padding-left: 2.2rem;
+  }
+
+  .customer tbody td:first-of-type {
+    padding-top: 2.4rem;
+  }
+
+  .customer tbody td:last-of-type {
+    padding-bottom: 0;
+  }
+
+  .customer tbody tr:first-of-type {
+    border-top: none;
+  }
+
+  .customer tfoot tr:first-of-type td,
+  .customer tfoot tr:first-of-type th {
+    padding-top: 2.4rem;
+  }
+
+  .customer tfoot tr:last-of-type td,
+  .customer tfoot tr:last-of-type th {
+    padding-bottom: 2.4rem;
   }
 }
 
@@ -240,18 +225,18 @@
   }
 
   .customer td::before {
-    color: rgba(var(--color-foreground), 0.75);
+    color: rgb(var(--color-foreground) 0.75);
     content: attr(data-label);
+    flex-grow: 1;
     font-size: 1.4rem;
     padding-right: 2rem;
-    text-transform: uppercase;
-    flex-grow: 1;
     text-align: left;
+    text-transform: uppercase;
   }
 
   .customer td:first-of-type {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   .customer tr {
@@ -264,14 +249,14 @@
 
 /* Pagination */
 .customer .pagination {
-  margin-top: 5rem;
   margin-bottom: 7rem;
+  margin-top: 5rem;
 }
 
 @media screen and (min-width: 990px) {
   .customer .pagination {
-    margin-top: 7rem;
     margin-bottom: 10rem;
+    margin-top: 7rem;
   }
 }
 
@@ -292,14 +277,14 @@
 }
 
 .customer .pagination li :first-child {
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  display: inline-flex;
   height: 4rem;
-  width: 100%;
+  justify-content: center;
   padding: 0;
+  position: relative;
   text-decoration: none;
+  width: 100%;
 }
 
 .customer .pagination li :first-child svg {
@@ -317,15 +302,15 @@
 }
 
 .customer .pagination li [aria-current]::after {
-  content: '';
-  display: block;
-  width: 2rem;
-  height: 0.01rem;
-  position: absolute;
+  background-color: currentcolor;
   bottom: 0.08rem;
+  content: "";
+  display: block;
+  height: 0.01rem;
   left: 50%;
+  position: absolute;
   transform: translateX(-50%);
-  background-color: currentColor;
+  width: 2rem;
 }
 
 /* Login */
@@ -335,7 +320,7 @@
   width: fit-content;
 }
 
-.login a[href='#recover'] {
+.login a[href="#recover"] {
   margin-left: 0;
   margin-right: 0;
 }
@@ -349,11 +334,12 @@
 }
 
 .login h3 {
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
   margin-top: 1.5rem;
   text-align: left;
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
 }
 
+/* stylelint-disable-next-line selector-id-pattern */
 #customer_login_guest button {
   margin-top: 0;
 }
@@ -385,17 +371,21 @@
   margin-bottom: 0;
 }
 
-.activate button[name='decline'],
+.activate button[name="decline"],
 .addresses li > button,
 .addresses form button[type] {
-  background-color: rgba(var(--color-background), var(--alpha-button-background));
+  background-color:
+    rgb(
+      var(--color-background)
+      var(--alpha-button-background)
+    );
   color: rgb(var(--color-link));
 }
 
 @media only screen and (min-width: 750px) {
-  .activate button[name='decline'] {
-    margin-top: inherit;
+  .activate button[name="decline"] {
     margin-left: 1rem;
+    margin-top: inherit;
   }
 }
 
@@ -439,8 +429,8 @@
 }
 
 :is(.account, .order) p {
-  margin: 0 0 2rem;
   font-size: 1.6rem;
+  margin: 0 0 2rem;
 }
 
 :is(.account, .order) h1 {
@@ -448,8 +438,8 @@
 }
 
 :is(.account, .order) h2 {
-  margin-top: 4rem;
   margin-bottom: 1rem;
+  margin-top: 4rem;
 }
 
 @media screen and (min-width: 990px) {
@@ -459,14 +449,14 @@
 }
 
 .account h1 + a {
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
 }
 
 .account a svg {
-  width: 1.5rem;
   margin-bottom: -0.03rem;
   margin-right: 1rem;
+  width: 1.5rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -476,21 +466,21 @@
   }
 
   .account table td:first-of-type {
-    padding-top: 1.2rem;
     padding-bottom: 1.2rem;
+    padding-top: 1.2rem;
   }
 }
 
 .account table td:first-of-type a {
+  border: 0.1rem solid transparent;
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-link) 0.2);
+  font-size: 1.2rem;
   padding: 1.1rem 1.5rem;
   text-decoration: none;
-  box-shadow: 0 0 0 0.1rem rgba(var(--color-link), 0.2);
-  border: 0.1rem solid transparent;
-  font-size: 1.2rem;
 }
 
 .account table td:first-of-type a:hover {
-  box-shadow: 0 0 0 0.2rem rgba(var(--color-link), 0.2);
+  box-shadow: 0 0 0 0.2rem rgb(var(--color-link) 0.2);
 }
 
 .order td:first-of-type {
@@ -507,8 +497,8 @@
 .order tfoot tr:last-of-type td,
 .order tfoot tr:last-of-type th {
   font-size: 2.2rem;
-  padding-top: 1.5rem;
   padding-bottom: 4rem;
+  padding-top: 1.5rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -518,7 +508,7 @@
   }
 }
 
-.order tfoot tr:last-of-type td:before {
+.order tfoot tr:last-of-type td::before {
   font-size: 2.2rem;
 }
 
@@ -529,8 +519,8 @@
 }
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p {
-  margin-bottom: 0;
   font-size: 1.4rem;
+  margin-bottom: 0;
 }
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p:last-of-type {
@@ -538,24 +528,24 @@
 }
 
 .order .item-props {
-  font-size: 1.4rem;
-  margin-top: 0.05px;
   display: flex;
   flex-direction: column;
+  font-size: 1.4rem;
+  margin-top: 0.05px;
 }
 
 .order .item-props > span {
-  word-break: break-all;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
+  word-break: break-all;
 }
 
 .order .fulfillment {
-  width: fit-content;
-  border: 0.01rem solid rgba(var(--color-foreground), 0.2);
-  padding: 1rem;
-  margin-top: 1rem;
+  border: 0.01rem solid rgb(var(--color-foreground) 0.2);
   font-size: 1.4rem;
+  margin-top: 1rem;
+  padding: 1rem;
   text-align: left;
+  width: fit-content;
 }
 
 .order .fulfillment a {
@@ -568,9 +558,9 @@
 
 .order .cart-discount {
   display: block;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -580,12 +570,12 @@
 }
 
 .order tbody ul {
-  list-style: none;
   font-size: 1.2rem;
-  text-align: right;
-  padding-left: 0;
-  margin-top: 1rem;
+  list-style: none;
   margin-bottom: 0;
+  margin-top: 1rem;
+  padding-left: 0;
+  text-align: right;
 }
 
 @media screen and (min-width: 750px) {
@@ -599,9 +589,9 @@
 }
 
 .order tbody tr:first-of-type td:first-of-type > div {
+  align-items: flex-end;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 @media screen and (min-width: 750px) {
@@ -621,9 +611,9 @@
 }
 
 .order svg {
-  width: 1.1rem;
   color: rgb(var(--color-base-accent-2));
   margin-right: 0.5rem;
+  width: 1.1rem;
 }
 
 .order dl {
@@ -631,21 +621,21 @@
 }
 
 .order dd {
-  margin-left: 0;
   line-height: calc(1 + 0.3 / var(--font-body-scale));
+  margin-left: 0;
 }
 
 .order dd s {
-  color: rgba(var(--color-foreground), 0.7);
+  color: rgb(var(--color-foreground) 0.7);
 }
 
 .order .unit-price {
+  color: rgb(var(--color-foreground) 0.7);
   font-size: 1.1rem;
   letter-spacing: 0.07rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   margin-top: 0.2rem;
   text-transform: uppercase;
-  color: rgba(var(--color-foreground), 0.7);
 }
 
 .order .regular-price {
@@ -660,7 +650,7 @@
 
 .addresses li > button + button,
 .addresses form button + button {
-  margin-top: 0rem;
+  margin-top: 0;
 }
 
 @media screen and (min-width: 750px) {
@@ -673,8 +663,8 @@
   margin-right: 1rem;
 }
 
-label[for='AddressCountryNew'],
-label[for='AddressProvinceNew'] {
+label[for="AddressCountryNew"],
+label[for="AddressProvinceNew"] {
   display: block;
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
@@ -686,8 +676,8 @@ label[for='AddressProvinceNew'] {
 }
 
 .addresses form > div {
-  width: 100%;
   text-align: left;
+  width: 100%;
 }
 
 .addresses ul {
@@ -700,11 +690,11 @@ li[data-address] {
   margin-top: 5rem;
 }
 
-.addresses [aria-expanded='false'] ~ div[id] {
+.addresses [aria-expanded="false"] ~ div[id] {
   display: none;
 }
 
-.addresses [aria-expanded='true'] ~ div[id] {
+.addresses [aria-expanded="true"] ~ div[id] {
   display: block;
 }
 
@@ -713,9 +703,9 @@ li[data-address] {
 }
 
 li[data-address] > h2 {
-  text-align: center;
   font-size: calc(var(--font-heading-scale) * 1.8rem);
   margin-bottom: 0;
+  text-align: center;
 }
 
 @media only screen and (min-width: 750px) {
@@ -728,9 +718,9 @@ li[data-address] > h2 {
   margin-bottom: 0;
 }
 
-.addresses input[type='checkbox'] {
-  margin-top: 2rem;
+.addresses input[type="checkbox"] {
   margin-left: 0;
+  margin-top: 2rem;
 }
 
 @media only screen and (min-width: 750px) {
