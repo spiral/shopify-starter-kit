@@ -17,9 +17,9 @@
   z-index: 2;
 }
 
-.search__button:not(:focus-visible):not(.focused){
-  box-shadow: inherit;
+.search__button:not(:focus-visible, .focused) {
   background-color: inherit;
+  box-shadow: inherit;
 }
 
 .search__button .icon {
@@ -29,5 +29,5 @@
 
 /* Remove extra spacing for search inputs in Safari */
 input::-webkit-search-decoration {
-  -webkit-appearance: none;
+  appearance: none;
 }

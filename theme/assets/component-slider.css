@@ -1,7 +1,19 @@
+/* stylelint-disable scss/operator-no-newline-after */
+
 slider-component {
-  --desktop-margin-left-first-item: max(5rem, calc((100vw - var(--page-width) + 10rem - var(--grid-desktop-horizontal-spacing)) / 2));
-  position: relative;
+  --desktop-margin-left-first-item:
+    max(
+      5rem,
+      calc(
+        (
+          100vw - var(--page-width) + 10rem -
+          var(--grid-desktop-horizontal-spacing)
+        ) / 2
+      )
+    );
+
   display: block;
+  position: relative;
 }
 
 slider-component.slider-component-full-width {
@@ -28,56 +40,69 @@ slider-component.slider-component-full-width {
 
 .slider__slide {
   --focus-outline-padding: 0.5rem;
-  --shadow-padding-top: calc((var(--shadow-vertical-offset) * -1 + var(--shadow-blur-radius)) * var(--shadow-visible));
-  --shadow-padding-bottom: calc((var(--shadow-vertical-offset) + var(--shadow-blur-radius)) * var(--shadow-visible));
-  scroll-snap-align: start;
+  --shadow-padding-top:
+    calc(
+      (var(--shadow-vertical-offset) * -1 + var(--shadow-blur-radius)) *
+      var(--shadow-visible)
+    );
+  --shadow-padding-bottom:
+    calc(
+      (var(--shadow-vertical-offset) + var(--shadow-blur-radius)) *
+      var(--shadow-visible)
+    );
+
   flex-shrink: 0;
   padding-bottom: 0;
+  scroll-snap-align: start;
 }
 
 @media screen and (max-width: 749px) {
   .slider.slider--mobile {
-    position: relative;
     flex-wrap: inherit;
+    margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    position: relative;
     scroll-behavior: smooth;
     scroll-padding-left: 1.5rem;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
+    scroll-snap-type: x mandatory;
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--mobile:after {
+  .slider--mobile::after {
     content: "";
-    width: 0;
     padding-left: 1.5rem;
+    width: 0;
   }
 
   .slider.slider--mobile .slider__slide {
     margin-bottom: 0;
+    padding-bottom:
+      max(
+        var(--focus-outline-padding),
+        var(--shadow-padding-bottom)
+      );
     padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-    padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
+  }
+
+  .slider.slider--mobile.contains-content-container .slider__slide {
+    --focus-outline-padding: 0;
   }
 
   .slider.slider--mobile.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
-
-  .slider.slider--mobile.contains-content-container .slider__slide {
-    --focus-outline-padding: 0rem;
-  }
 }
 
 @media screen and (min-width: 750px) {
   .slider.slider--tablet-up {
-    position: relative;
     flex-wrap: inherit;
+    -webkit-overflow-scrolling: touch;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    position: relative;
     scroll-behavior: smooth;
     scroll-padding-left: 1rem;
-    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
 
   .slider.slider--tablet-up .slider__slide {
@@ -87,47 +112,51 @@ slider-component.slider-component-full-width {
 
 @media screen and (max-width: 989px) {
   .slider.slider--tablet {
-    position: relative;
     flex-wrap: inherit;
+    margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    position: relative;
     scroll-behavior: smooth;
     scroll-padding-left: 1.5rem;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
+    scroll-snap-type: x mandatory;
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--tablet:after {
+  .slider--tablet::after {
     content: "";
-    width: 0;
-    padding-left: 1.5rem;
     margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
+    padding-left: 1.5rem;
+    width: 0;
   }
 
   .slider.slider--tablet .slider__slide {
     margin-bottom: 0;
+    padding-bottom:
+      max(
+        var(--focus-outline-padding),
+        var(--shadow-padding-bottom)
+      );
     padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-    padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
+  }
+
+  .slider.slider--tablet.contains-content-container .slider__slide {
+    --focus-outline-padding: 0;
   }
 
   .slider.slider--tablet.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
-
-  .slider.slider--tablet.contains-content-container .slider__slide {
-    --focus-outline-padding: 0rem;
-  }
 }
 
 .slider--everywhere {
-  position: relative;
   flex-wrap: inherit;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   margin-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  position: relative;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .slider.slider--everywhere .slider__slide {
@@ -141,28 +170,32 @@ slider-component.slider-component-full-width {
   }
 
   .slider--desktop {
-    position: relative;
     flex-wrap: inherit;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
     margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    position: relative;
+    scroll-behavior: smooth;
     scroll-padding-left: var(--desktop-margin-left-first-item);
+    scroll-snap-type: x mandatory;
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--desktop:after {
+  .slider--desktop::after {
     content: "";
-    width: 0;
-    padding-left: 5rem;
     margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
+    padding-left: 5rem;
+    width: 0;
   }
 
   .slider.slider--desktop .slider__slide {
     margin-bottom: 0;
+    padding-bottom:
+      max(
+        var(--focus-outline-padding),
+        var(--shadow-padding-bottom)
+      );
     padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-    padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
   .slider--desktop .slider__slide:first-child {
@@ -180,36 +213,56 @@ slider-component.slider-component-full-width {
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider-component-full-width .slider--desktop:after {
+  .slider-component-full-width .slider--desktop::after {
     padding-left: 1.5rem;
   }
 
   .slider--desktop.grid--5-col-desktop .grid__item {
-    width: calc( (100% - var(--desktop-margin-left-first-item)) / 5 - var(--grid-desktop-horizontal-spacing) * 2);
+    width:
+      calc(
+        (100% - var(--desktop-margin-left-first-item)) / 5 -
+        var(--grid-desktop-horizontal-spacing) * 2
+      );
   }
 
   .slider--desktop.grid--4-col-desktop .grid__item {
-    width: calc( (100% - var(--desktop-margin-left-first-item)) / 4 - var(--grid-desktop-horizontal-spacing) * 3);
+    width:
+      calc(
+        (100% - var(--desktop-margin-left-first-item)) / 4 -
+        var(--grid-desktop-horizontal-spacing) * 3
+      );
   }
 
   .slider--desktop.grid--3-col-desktop .grid__item {
-    width: calc( (100% - var(--desktop-margin-left-first-item)) / 3 - var(--grid-desktop-horizontal-spacing) * 4);
+    width:
+      calc(
+        (100% - var(--desktop-margin-left-first-item)) / 3 -
+        var(--grid-desktop-horizontal-spacing) * 4
+      );
   }
 
   .slider--desktop.grid--2-col-desktop .grid__item {
-    width: calc( (100% - var(--desktop-margin-left-first-item)) / 2 - var(--grid-desktop-horizontal-spacing) * 5);
+    width:
+      calc(
+        (100% - var(--desktop-margin-left-first-item)) / 2 -
+        var(--grid-desktop-horizontal-spacing) * 5
+      );
   }
 
   .slider--desktop.grid--1-col-desktop .grid__item {
-    width: calc( (100% - var(--desktop-margin-left-first-item)) - var(--grid-desktop-horizontal-spacing) * 9);
+    width:
+      calc(
+        (100% - var(--desktop-margin-left-first-item)) -
+        var(--grid-desktop-horizontal-spacing) * 9
+      );
+  }
+
+  .slider.slider--desktop.contains-content-container .slider__slide {
+    --focus-outline-padding: 0;
   }
 
   .slider.slider--desktop.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
-  }
-
-  .slider.slider--desktop.contains-content-container .slider__slide {
-    --focus-outline-padding: 0rem;
   }
 }
 
@@ -222,15 +275,17 @@ slider-component.slider-component-full-width {
 /* Scrollbar */
 
 .slider {
-  scrollbar-color: rgb(var(--color-foreground)) rgba(var(--color-foreground), 0.04);
   -ms-overflow-style: none;
+  scrollbar-color:
+    rgb(var(--color-foreground))
+    rgb(var(--color-foreground) 0.04);
   scrollbar-width: none;
 }
 
 .slider::-webkit-scrollbar {
+  display: none;
   height: 0.4rem;
   width: 0.4rem;
-  display: none;
 }
 
 .no-js .slider {
@@ -244,12 +299,12 @@ slider-component.slider-component-full-width {
 
 .slider::-webkit-scrollbar-thumb {
   background-color: rgb(var(--color-foreground));
-  border-radius: 0.4rem;
   border: 0;
+  border-radius: 0.4rem;
 }
 
 .slider::-webkit-scrollbar-track {
-  background: rgba(var(--color-foreground), 0.04);
+  background: rgb(var(--color-foreground) 0.04);
   border-radius: 0.4rem;
 }
 
@@ -276,12 +331,13 @@ slider-component.slider-component-full-width {
 }
 
 .slider-counter__link--dots .dot {
-  width: 1rem;
-  height: 1rem;
+  border: 0.1rem solid rgb(var(--color-foreground) 0.5);
   border-radius: 50%;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.5);
-  padding: 0;
   display: block;
+  height: 1rem;
+  padding: 0;
+  transition: transform 0.2s ease-in-out;
+  width: 1rem;
 }
 
 .slider-counter__link--active.slider-counter__link--dots .dot {
@@ -290,47 +346,40 @@ slider-component.slider-component-full-width {
 
 @media screen and (forced-colors: active) {
   .slider-counter__link--active.slider-counter__link--dots .dot {
-    background-color: CanvasText;
+    background-color: canvastext;
   }
 }
 
 .slider-counter__link--dots:not(.slider-counter__link--active):hover .dot {
   border-color: rgb(var(--color-foreground));
-}
-
-.slider-counter__link--dots .dot,
-.slider-counter__link--numbers {
-  transition: transform 0.2s ease-in-out;
-}
-
-.slider-counter__link--active.slider-counter__link--numbers,
-.slider-counter__link--dots:not(.slider-counter__link--active):hover .dot,
-.slider-counter__link--numbers:hover {
   transform: scale(1.1);
 }
 
 .slider-counter__link--numbers {
-  color: rgba(var(--color-foreground), 0.5);
+  color: rgb(var(--color-foreground) 0.5);
   text-decoration: none;
+  transition: transform 0.2s ease-in-out;
 }
 
 .slider-counter__link--numbers:hover {
   color: rgb(var(--color-foreground));
+  transform: scale(1.1);
 }
 
 .slider-counter__link--active.slider-counter__link--numbers {
-  text-decoration: underline;
   color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  transform: scale(1.1);
 }
 
 .slider-buttons {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
 @media screen and (min-width: 990px) {
-  .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
+  .slider:not(.slider--everywhere, .slider--desktop) + .slider-buttons {
     display: none;
   }
 }
@@ -348,15 +397,15 @@ slider-component.slider-component-full-width {
 }
 
 .slider-button {
-  color: rgba(var(--color-foreground), 0.75);
+  align-items: center;
   background: transparent;
   border: none;
+  color: rgb(var(--color-foreground) 0.75);
   cursor: pointer;
-  width: 44px;
-  height: 44px;
   display: flex;
-  align-items: center;
+  height: 44px;
   justify-content: center;
+  width: 44px;
 }
 
 .slider-button:not([disabled]):hover {
@@ -367,17 +416,17 @@ slider-component.slider-component-full-width {
   height: 0.6rem;
 }
 
-.slider-button[disabled] .icon {
-  color: rgba(var(--color-foreground), 0.3);
-  cursor: not-allowed;
-}
-
 .slider-button--next .icon {
   transform: rotate(-90deg);
 }
 
 .slider-button--prev .icon {
   transform: rotate(90deg);
+}
+
+.slider-button[disabled] .icon {
+  color: rgb(var(--color-foreground) 0.3);
+  cursor: not-allowed;
 }
 
 .slider-button--next:not([disabled]):hover .icon {
@@ -387,3 +436,4 @@ slider-component.slider-component-full-width {
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }
+/* stylelint-enable scss/operator-no-newline-after */

@@ -24,15 +24,15 @@
 }
 
 .pagination__item {
+  align-items: center;
   color: rgb(var(--color-foreground));
   display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   height: 4.4rem;
-  width: 100%;
+  justify-content: center;
   padding: 0;
+  position: relative;
   text-decoration: none;
+  width: 100%;
 }
 
 a.pagination__item:hover::after {
@@ -49,14 +49,14 @@ a.pagination__item:hover::after {
 
 .pagination__item--current::after,
 .pagination__item:hover::after {
-  content: '';
-  display: block;
-  width: 2rem;
-  position: absolute;
+  background-color: currentcolor;
   bottom: 8px;
+  content: "";
+  display: block;
   left: 50%;
+  position: absolute;
   transform: translateX(-50%);
-  background-color: currentColor;
+  width: 2rem;
 }
 
 .pagination__item--next .icon {
@@ -64,13 +64,13 @@ a.pagination__item:hover::after {
   transform: rotate(90deg);
 }
 
-.pagination__item--next:hover .icon {
-  transform: rotate(90deg) scale(1.07);
-}
-
 .pagination__item--prev .icon {
   margin-right: -0.2rem;
   transform: rotate(-90deg);
+}
+
+.pagination__item--next:hover .icon {
+  transform: rotate(90deg) scale(1.07);
 }
 
 .pagination__item--prev:hover .icon {

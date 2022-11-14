@@ -1,5 +1,5 @@
 .modal-video {
-  background: rgba(var(--color-foreground), 0.2);
+  background: rgb(var(--color-foreground) 0.2);
   box-sizing: border-box;
   height: 100%;
   left: 0;
@@ -32,9 +32,9 @@
 .modal-video__toggle {
   align-items: center;
   background-color: rgb(var(--color-background));
+  border: 0.1rem solid rgb(var(--color-foreground) 0.1);
   border-radius: 50%;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
-  color: rgba(var(--color-foreground), 0.55);
+  color: rgb(var(--color-foreground) 0.55);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -97,6 +97,6 @@
 }
 
 .modal-video__video iframe {
-  position: static;
   border: 0;
+  position: static;
 }

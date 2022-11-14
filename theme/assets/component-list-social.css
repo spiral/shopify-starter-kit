@@ -17,9 +17,9 @@
 
 .list-social__link {
   align-items: center;
+  color: rgb(var(--color-foreground));
   display: flex;
   padding: 1.3rem;
-  color: rgb(var(--color-foreground));
 }
 
 .list-social__link:hover .icon {
