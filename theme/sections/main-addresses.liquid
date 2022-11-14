@@ -454,7 +454,8 @@
 
 <script>
   window.onload = () => {
-    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+    typeof window.CustomerAddresses !== 'undefined' &&
+      new window.CustomerAddresses();
   };
 </script>
 
