@@ -1,3 +1,5 @@
+const { trapFocus, removeTrapFocus } = window;
+
 class DetailsModal extends HTMLElement {
   constructor() {
     super();
@@ -26,13 +28,21 @@ class DetailsModal extends HTMLElement {
 
   onSummaryClick(event) {
     event.preventDefault();
-    event.target.closest('details').hasAttribute('open')
-      ? this.close()
-      : this.open(event);
+
+    if (event.target.closest('details').hasAttribute('open')) {
+      this.close();
+    } else {
+      this.open(event);
+    }
   }
 
   onBodyClick(event) {
-    if (!this.contains(event.target) || event.target.classList.contains('modal-overlay')) this.close(false);
+    if (
+      !this.contains(event.target) ||
+      event.target.classList.contains('modal-overlay')
+    ) {
+      this.close(false);
+    }
   }
 
   open(event) {
@@ -55,5 +65,7 @@ class DetailsModal extends HTMLElement {
     document.body.classList.remove('overflow-hidden');
   }
 }
+
+window.DetailsModal = DetailsModal;
 
 customElements.define('details-modal', DetailsModal);
