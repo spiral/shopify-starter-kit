@@ -27,24 +27,20 @@ class CustomerAddresses {
   static getElements() {
     const container = document.querySelector(selectors.customerAddresses);
 
-    return container
-      ? {
-          container,
-          addressContainer: container.querySelector(selectors.addressContainer),
-          toggleButtons: document.querySelectorAll(
-            selectors.toggleAddressButton
-          ),
-          cancelButtons: container.querySelectorAll(
-            selectors.cancelAddressButton
-          ),
-          deleteButtons: container.querySelectorAll(
-            selectors.deleteAddressButton
-          ),
-          countrySelects: container.querySelectorAll(
-            selectors.addressCountrySelect
-          ),
-        }
-      : {};
+    if (!container) {
+      return {};
+    }
+
+    return {
+      container,
+      addressContainer: container.querySelector(selectors.addressContainer),
+      toggleButtons: document.querySelectorAll(selectors.toggleAddressButton),
+      cancelButtons: container.querySelectorAll(selectors.cancelAddressButton),
+      deleteButtons: container.querySelectorAll(selectors.deleteAddressButton),
+      countrySelects: container.querySelectorAll(
+        selectors.addressCountrySelect
+      ),
+    };
   }
 
   setupCountries() {
