@@ -5,7 +5,7 @@ Repository makes it easier to work with the distribution of files in the project
 **Shopify starter kit** based on [Shopify Themekit](https://github.com/Shopify/themekit) and inspired by Shopify [Slate](https://github.com/Shopify/slate) and popular front-end frameworks like a React and Vue.
 
 
-**Shopify starter kit** was builded with using technologies and tools:
+**Shopify starter kit** is built with using technologies and tools:
 
 - Node.js `^14.15.0`
 - NPM `^7.0.0`
@@ -43,12 +43,20 @@ We tried to collect the most important things in one place - this is how the **S
 
 ### Basic mode
 
-Basic Mode allows to use a **Shopify starter kit** for existing Shopify repositories. 
+👍 We recommend to use Basic mode for casual projects.
+
+Basic mode if **Shopify starter kit** includes [Dawn](https://github.com/Shopify/dawn) theme by default, 
+but you can use own or current Shopify theme from existing stores. 
+For using external theme you need just replace files from theme folder to necessary theme files. 
+
+If you want to use js and css linters for `./theme` folder, please go to package.json,
+find `deploy` and `deploy:prod` commands and replace `lint` to `lint:all` in related strings.
+
 For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
-3. Clean out src folder, only `scripts` folder needs to be keep.
-4. Set actual data to the config.yml file
+3. Set actual data to the config.yml file
+4. Clean `./theme` folder (if you want to use own shopify theme)
 5. Download current shopify store with the command `npm run download:theme`
 Then all your store files will be placed into the `./theme` folder and everything is ready to go.
 
@@ -64,20 +72,22 @@ You should keep a `src/scripts`. The files in this folder were processed by lint
 
 Advanced Mode provides a powerful set for building Shopify stores.
 This mode makes it easier to work with store pages.
-An advanced file structure allows you to separate the code between pages and load only the necessary functionality on the page, which increases the speed of the site. 
-The structure also makes it easier to find and fix problems in the code, which speeds up the work of developers.
+An advanced file structure allows you to separate the code between pages
+and load only the necessary functionality on the page, which increases the speed of the site. 
+The structure also makes it easier to find and fix problems in the code,
+which speeds up the work of developers.
 
 The advanced mode allows you to use all features of the **Shopify starter kit**:
 - Using the latest JS standard in script files
 - Fixed component structure support
-- CLI for generating components of this structure
+- CLI for generating components
 - Separation of styles between pages, which allows optimization loading of styles and scripts, code splitting
 - Placing page styles directly in templates to speed up page loading
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
 - Prepared CI/CD for github and gitlab repos
 
-All templates in `./src` folder are based on shopify starter theme and provide **BEM** naming methodology (Block, Element, Modificator).
+All templates in `./src` folder are based on shopify starter theme and provide **BEM** naming methodology (Block, Element, Modifier).
 Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
 
 ❗**NOTE**: This mod is only suitable for those stores where no code changes are expected in the admin panel.
@@ -243,7 +253,9 @@ npm run analyze:prod
 ## File Structure Contract
 
 The file structure contract is the main feature of **Shopify starter kit**. 
-❗This structure only supports with advanced mode 
+
+❗This structure only supports with advanced mode.
+
 The synchronization between shopify store and file structure doesn't work yet.
 
 ```
