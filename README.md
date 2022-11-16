@@ -5,7 +5,7 @@ Repository makes it easier to work with the distribution of files in the project
 **Shopify starter kit** based on [Shopify Themekit](https://github.com/Shopify/themekit) and inspired by Shopify [Slate](https://github.com/Shopify/slate) and popular front-end frameworks like a React and Vue.
 
 
-**Shopify starter kit** was builded with using technologies and tools:
+**Shopify starter kit** is built with using technologies and tools:
 
 - Node.js `^14.15.0`
 - NPM `^7.0.0`
@@ -43,18 +43,27 @@ We tried to collect the most important things in one place - this is how the **S
 
 ### Basic mode
 
-Basic Mode allows to use a **Shopify starter kit** for existing Shopify repositories. 
+
+👍 We recommend to use Basic mode for casual projects.
+
+Basic mode of **Shopify starter kit** includes [Dawn](https://github.com/Shopify/dawn) theme by default, 
+but you can use any of Shopify themes from your own stores. 
+For custom theme you need just replace files from theme folder to the theme files. 
+
+If you want to use js and css linters for `./theme` folder, please go to package.json,
+find `deploy` and `deploy:prod` commands and replace `lint` to `lint:all` in related strings.
+
 For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
-3. Clean out src folder, only `scripts` folder needs to be keep.
-4. Set actual data to the config.yml file
-5. Download current shopify store with the command `npm run download:theme`
+3. Set actual data to the config.yml file
+4. Clean `./theme` folder (if you want to use own Shopify theme)
+5. Download current Shopify store with the command `npm run download:theme`
 Then all your store files will be placed into the `./theme` folder and everything is ready to go.
 
 All new functionality (scripts and styles) you can add directly to `./src` folder. 
 After the build they must be processed and placed in `./dist/assets` as build artifacts. 
-We are using webpack: `mini-css-extract-plugin` for build style files, and it should work at this point.
+We are using webpack: `mini-css-extract-plugin` for build style files, and it should work for you.
 
 ❗**NOTE**: If you need to build only js scripts for theme, you don't need to clean up the whole src folder.
 You should keep a `src/scripts`. The files in this folder were processed by linters and builders.
@@ -64,20 +73,22 @@ You should keep a `src/scripts`. The files in this folder were processed by lint
 
 Advanced Mode provides a powerful set for building Shopify stores.
 This mode makes it easier to work with store pages.
-An advanced file structure allows you to separate the code between pages and load only the necessary functionality on the page, which increases the speed of the site. 
-The structure also makes it easier to find and fix problems in the code, which speeds up the work of developers.
+An advanced file structure allows you to separate the code between pages
+and load only the necessary functionality on the page, which increases the speed of the site. 
+The structure also makes it easier to find and fix problems in the code,
+which speeds up the work of developers.
 
 The advanced mode allows you to use all features of the **Shopify starter kit**:
 - Using the latest JS standard in script files
 - Fixed component structure support
-- CLI for generating components of this structure
+- CLI for generating components
 - Separation of styles between pages, which allows optimization loading of styles and scripts, code splitting
 - Placing page styles directly in templates to speed up page loading
 - Using linting and code styling tools
 - Customized auto-corrections style code at the time of commit creation
 - Prepared CI/CD for github and gitlab repos
 
-All templates in `./src` folder are based on shopify starter theme and provide **BEM** naming methodology (Block, Element, Modificator).
+All templates in `./src` folder are based on Shopify starter theme and provide **BEM** naming methodology (Block, Element, Modifier).
 Advanced mode supports partial relocation to the new structure and all files in `./theme` folder will work fine.
 
 ❗**NOTE**: This mod is only suitable for those stores where no code changes are expected in the admin panel.
@@ -140,7 +151,7 @@ A complete list of commands can be found in the `package.json` file.
 
 #### Download
 
-The commands to download the existed shopify stores.
+The commands to download the existed Shopify stores.
 We have 2 commands to download theme:
 
 ```bash
@@ -193,7 +204,7 @@ By default, it starts with a `--progress` flag.
 
 #### Deploy
 
-Command for uploading all files from `./dist` folder to your shopify store. 
+Command for uploading all files from `./dist` folder to your Shopify store. 
 Based on [Themekit](https://github.com/Shopify/themekit).
 
 ```bash
@@ -216,7 +227,7 @@ The **Shopify starter kit** provides the CLI to creating new entities in own str
 CLI is based on `yeoman` generator and can be started with the `yo` command. 
 CLI is supported to creating style, script and liquid files for templates, section, snippets.
 All templates already used scripts and styles inside the `liquid` files.
-You can expand or change it in the `generator` folder after cloning **shopify starter kit**.
+You can expand or change it in the `generator` folder after cloning **Shopify starter kit**.
 
 ```bash
 npm run gen
@@ -243,8 +254,9 @@ npm run analyze:prod
 ## File Structure Contract
 
 The file structure contract is the main feature of **Shopify starter kit**. 
-❗This structure only supports with advanced mode 
-The synchronization between shopify store and file structure doesn't work yet.
+
+❗This structure only supports with advanced mode.
+The synchronization between Shopify store and file structure doesn't work yet.
 
 ```
 /src
@@ -289,7 +301,7 @@ Please remove this files (and import them into the template) after generation fo
 
 ### Folders descriptions:
 
-`./src/assets` - folder for assets. They might be images, fonts, any necessary files for shopify store. 
+`./src/assets` - folder for assets. They might be images, fonts, any necessary files for Shopify store. 
 The same as default Shopify assets folder.
 By default, files from this folder will be copied to `dist` without modification.
 In production mode images will be compressed.
@@ -308,7 +320,7 @@ By default, snippets styles or scripts are unwatched.
 All js files in this folder will be processed with wabpack and placed in `./dist/assets`. 
 Can't be empty.
 
-`./theme` - folder for all shopify files, used in base mode. 
+`./theme` - folder for all Shopify files, used in base mode. 
 All files from this folder will be copied to dist without changes. 
 It is recommended to use the `npm run gen` command to add new components.
 
