@@ -4,6 +4,8 @@
      data-template="<%= name %>"
 >
   <% if (sectionName) { %>{% section '<%= sectionName %>' %}<% } %>
+
+  Hello! I'm a new template "<%= name %>"!
 </div>
 
 {{ '<%= name %>.js' | asset_url | script_tag }}
