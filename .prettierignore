@@ -6,3 +6,7 @@ theme/
 
 # Ignore node_modules
 node_modules/**
+
+
+# Ignore generator
+generator/
