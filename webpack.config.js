@@ -16,16 +16,10 @@ const {
   makeJsEntryPoints,
   makeTemplateCopyPluginPattern,
   makeSectionCopyPluginPattern,
-  getDirNames,
 } = require('./webpack-helpers');
 
 const TEXT_FILES_PATTERN = /\.(md|txt)$/m;
 const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
-
-const SRC_TEMPLATES_LIST = [
-  ...getDirNames('src/templates').filter((dieName) => dieName !== 'common'),
-  ...getDirNames('src/customers'),
-];
 
 const config = {
   mode: 'production',
@@ -116,13 +110,7 @@ const config = {
       ],
     }),
     new MiniCssExtractPlugin({
-      // Creating style snippet for each template and
-      // using snippet as inline styles.
-      // Implements a scoped styles.
-      filename: ({ chunk: { name } }) =>
-        SRC_TEMPLATES_LIST.includes(name)
-          ? `snippets/${name}.css.liquid`
-          : `assets/${name}.css`,
+      filename: ({ chunk: { name } }) => `assets/${name}.css`,
     }),
     new RemoveFilesPlugin({
       before: {
