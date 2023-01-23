@@ -11,6 +11,8 @@ stages:
 Test:
   stage: test
   only:
+    - development
+    - master
     - merge_requests
   before_script:
     - npm install
