@@ -99,7 +99,6 @@
     "yo": "^4.3.0"
   },
   "dependencies": {
-    "@rollup/plugin-multi-entry": "^6.0.0",
     "@rollup/plugin-terser": "^0.4.0",
     "@shopify/prettier-plugin-liquid": "^0.4.0",
     "@shopify/theme-a11y": "^4.1.1",
