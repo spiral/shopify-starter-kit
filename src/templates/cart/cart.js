@@ -1,3 +1,4 @@
+import './cart.scss';
 import { GoogleAnalytics } from '../../scripts/analytics/index';
 
 const checkoutForm = document.querySelector('[data-template="cart"] form');

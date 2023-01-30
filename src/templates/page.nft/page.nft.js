@@ -1,3 +1,4 @@
+import './page.nft.scss';
 import throttle from 'lodash/throttle';
 import { initVideoOverlay } from '../../snippets/site-overlay/site-overlay';
 

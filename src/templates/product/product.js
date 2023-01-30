@@ -1,3 +1,4 @@
+import './product.scss';
 import { runProductBase } from '../../snippets/product-base/product-base';
 import { runProductMultipage } from '../../snippets/product-multipage/product-multipage';
 import {
@@ -19,6 +20,7 @@ const initProductVariantContent = () => {
 };
 
 const createVariantIdOptionStringsMap = () => {
+  // eslint-disable-next-line no-unsafe-optional-chaining
   const { options = [], variants = {} } = window?.productConfig;
 
   const result = {};
