@@ -2,7 +2,7 @@
 dist
 
 # Ignore Assets files:
-# theme/
+theme/
 
 # Ignore node_modules
 node_modules/**

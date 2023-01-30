@@ -20,5 +20,5 @@
     ],
     "import/prefer-default-export": "off"
   },
-  "ignorePatterns": ["generator/templates", "src/scripts/domPolyfills"]
+  "ignorePatterns": ["generator/templates", "src/scripts/domPolyfills", "theme/"]
 }

@@ -51,9 +51,6 @@ Basic mode of **Shopify starter kit** include only theme folder by default.
 For using this mode you need just copy theme of Shopify site (or just download it) to the theme folder.
 Theme folder support standard [shopify directory structure](https://shopify.dev/themes/architecture#directory-structure-and-component-types).
 
-If you want to use js and css linters for `./theme` folder, please go to package.json,
-find `deploy` and `deploy:prod` commands and replace `lint` to `lint:all` in related strings.
-
 For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
