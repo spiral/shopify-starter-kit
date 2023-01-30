@@ -1,4 +1,5 @@
 import sass from 'rollup-plugin-sass';
+import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -17,6 +18,7 @@ const postcssPluginsSet = makeTemplatesInputs('src/templates').scss.map(
   }
 );
 
+
 export default {
   input: [
     ...makeTemplatesInputs('src/templates').js,
@@ -26,6 +28,17 @@ export default {
     dir: 'dist/assets',
   },
   plugins: [
+    copy({
+      targets: [
+        {src: `theme/*`, dest: `dist`},
+        {src: 'src/layout', dest: `dist/layout`},
+        {src: 'src/assets', dest: `dist/assets`},
+        {src: 'src/templates/*/*.{liquid,json}', dest: `dist/templates`},
+        {src: 'src/customers/*/*.liquid', dest: `dist/templates/customers`},
+        {src: 'src/templates/*/*/*.liquid', dest: `dist/sections`},
+        {src: 'src/snippets/*/*.liquid', dest: `dist/snippets`},
+      ]
+    }),
     ...postcssPluginsSet,
     sass(),
     commonjs({
