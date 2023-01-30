@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "build": "rollup --config",
-    "build:prod": "rollup --config --mode='production'",
+    "build:prod": "rollup --config BUILD:production",
     "analyze": "webpack --profile --json > .stats-dev.json && webpack-bundle-analyzer .stats-dev.json",
     "analyze:prod": "webpack --mode='production' --profile --json > .stats-prod.json && webpack-bundle-analyzer .stats-prod.json",
-    "watch": "webpack --watch",
-    "watch:prod": "webpack --watch --mode='production'",
+    "watch": "rollup -c -w",
+    "watch:prod": "rollup -c -w BUILD:production",
     "test": "npm run lint",
     "theme:open": "shopify-themekit open --env=development",
     "theme:open:prod": "shopify-themekit open --env=production",
@@ -83,6 +83,9 @@
     "remove-files-webpack-plugin": "^1.5.0",
     "rollup": "^3.12.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-sass": "^1.12.17",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
@@ -111,13 +114,11 @@
     "lazysizes": "^5.3.2",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
-    "qrcode": "^1.5.1",
-    "rollup-plugin-copy": "^3.4.0",
-    "rollup-plugin-postcss": "^4.0.2"
+    "qrcode": "^1.5.1"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --fix",
     "*.{css,scss,sass}": "stylelint --fix",
-    "*.{liquid}": "prettier --write"
+    "*.liquid": "prettier --write"
   }
 }

@@ -2,6 +2,7 @@ import sass from 'rollup-plugin-sass';
 import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
+import delete_ from 'rollup-plugin-delete';
 import commonjs from 'rollup-plugin-commonjs';
 import { makeJsInputs, makeTemplatesInputs } from './rollup-helpers.js';
 import path from 'path';
@@ -19,6 +20,7 @@ const postcssPluginsSet = makeTemplatesInputs('src/templates').scss.map(
 );
 
 
+// TODO: install babel, imagemin, css minifier, js minifier, remove empty files
 export default {
   input: [
     ...makeTemplatesInputs('src/templates').js,
@@ -45,5 +47,8 @@ export default {
       include: 'node_modules/**',
     }),
     resolve(),
+    delete_({
+      targets: 'dist/*'
+    })
   ],
 };
