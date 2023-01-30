@@ -46,9 +46,9 @@ We tried to collect the most important things in one place - this is how the **S
 
 👍 We recommend to use Basic mode for casual projects.
 
-Basic mode of **Shopify starter kit** includes [Dawn](https://github.com/Shopify/dawn) theme by default, 
-but you can use any of Shopify themes from your own stores. 
-For custom theme you need just replace files from theme folder to the theme files. 
+Basic mode of **Shopify starter kit** include only theme folder by default.
+For using this mode you need just copy theme of Shopify site (or just download it) to the theme folder.
+Theme folder support standard [shopify directory structure](https://shopify.dev/themes/architecture#directory-structure-and-component-types).
 
 If you want to use js and css linters for `./theme` folder, please go to package.json,
 find `deploy` and `deploy:prod` commands and replace `lint` to `lint:all` in related strings.
@@ -57,12 +57,12 @@ For using this mode, you need to follow a few simple steps:
 1. Clone this repo to own project folder
 2. Install dependencies
 3. Set actual data to the config.yml file
-4. Clean `./theme` folder (if you want to use own Shopify theme)
+4. Open `./theme` folder
 5. Download current Shopify store with the command `npm run download:theme`
 Then all your store files will be placed into the `./theme` folder and everything is ready to go.
 
 All new functionality (scripts and styles) you can add directly to `./src` folder. 
-After the build they must be processed and placed in `./dist/assets` as build artifacts. 
+After the build they must be processed and moved to `./dist/assets` folder as build artifacts. 
 We are using webpack: `mini-css-extract-plugin` for build style files, and it should work for you.
 
 ❗**NOTE**: If you need to build only js scripts for theme, you don't need to clean up the whole src folder.
