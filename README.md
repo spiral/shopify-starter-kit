@@ -3,6 +3,7 @@
 **Shopify starter kit** is the starter theme and development environment for the largest Shopify stores.
 Repository makes it easier to work with the distribution of files in the project and automates some tasks.
 **Shopify starter kit** based on [Shopify Themekit](https://github.com/Shopify/themekit) and inspired by Shopify [Slate](https://github.com/Shopify/slate) and popular front-end frameworks like a React and Vue.
+**Shopify starter kit** supports all feature of [Shopify Online Store 2.0](https://shopify.dev/themes/os20)!
 
 
 **Shopify starter kit** is built with using technologies and tools:
