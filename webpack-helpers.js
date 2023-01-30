@@ -74,27 +74,18 @@ const makeTemplateCopyPluginPattern = (templatePath, nestedDestPath = '/') => ({
   from: `${templatePath}/*/*.{liquid,json}`,
   to: path.resolve(__dirname, `dist/templates${nestedDestPath}[name][ext]`),
   noErrorOnMissing: true,
-  globOptions: {
-    ignore: ['.gitkeep'],
-  },
 });
 
 const makeSnippetCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*.liquid`,
   to: path.resolve(__dirname, `dist/snippets/[name][ext]`),
   noErrorOnMissing: true,
-  globOptions: {
-    ignore: ['.gitkeep'],
-  },
 });
 
 const makeSectionCopyPluginPattern = (templatePath) => ({
   from: `${templatePath}/*/*/*.liquid`,
   to: path.resolve(__dirname, `dist/sections/[name][ext]`),
   noErrorOnMissing: true,
-  globOptions: {
-    ignore: ['.gitkeep'],
-  },
 });
 
 module.exports = {

@@ -18,7 +18,7 @@ const {
   makeSectionCopyPluginPattern,
 } = require('./webpack-helpers');
 
-const TEXT_FILES_PATTERN = /\.(md|txt)$/m;
+const TEXT_FILES_PATTERN = /\.(md|txt|gitkeep)$/m;
 const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
 
 const config = {
