@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+//sections
+@import './page-styles-guide-typography/page-styles-guide-typography';
+@import './page-styles-guide-components/page-styles-guide-components';
+
+.page-styles-guide {
+  display: block;
+}

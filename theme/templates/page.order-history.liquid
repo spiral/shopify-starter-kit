@@ -1,0 +1,67 @@
+<div
+  class="account"
+  data-template="page.order-history"
+>
+  <div class="account__aside">
+    {% render 'customers-aside' %}
+  </div>
+
+  <section class="account__body">
+    {% render 'customers-header', title: 'Order History' %}
+
+    {% if customer.orders.size != 0 %}
+      <div class="account__product-orders">
+        {% for order in customer.orders %}
+          {% assign line_item = order.line_items | first %}
+
+          <div class="account__product-order">
+            <a
+              href="{{ order.customer_url }}"
+              class="account__product-order-image"
+            >
+              {% render 'lazy-image', image: line_item.image %}
+            </a>
+
+            <div class="account__product-order-info-wr">
+              <div class="account__product-order-info">
+                <span class="account__product-order-info-date">
+                  {{ order.created_at | date: '%d %B %Y' }}
+                </span>
+
+                <span class="account__product-order-info-quantity">
+                  {% assign productsQuantity = order.line_items | size %}
+                  {{ productsQuantity }}
+
+                  {% if productsQuantity > 1 %}
+                    items
+                  {% else %}
+                    item
+                  {% endif %}
+                </span>
+
+                <span class="account__product-order-info-price">
+                  {{ order.total_price | money }}
+                </span>
+              </div>
+
+              <a
+                class="account__product-order-info-tracking"
+                href="{{ line_item.fulfillment.tracking_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Track your order
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="account__product-orders account__product-orders--placeholder">
+        You have not placed any orders yet.
+      </p>
+    {% endif %}
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

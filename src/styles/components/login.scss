@@ -1,0 +1,149 @@
+.login {
+  align-items: flex-start;
+  column-gap: 64px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: spacing() * 2;
+  max-width: $grid-widescreen;
+  padding: spacing() * 3;
+
+
+  @include media-query($medium-down) {
+    margin-bottom: spacing() * 3;
+    padding: spacing() * 3 spacing() * 2;
+  }
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    margin: 0 auto spacing();
+    padding: spacing() * 2 spacing();
+  }
+}
+
+.login__title-wr {
+  width: 35%;
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.login__title {
+  @include text-title-1();
+
+  margin: 0;
+  width: 50%;
+
+  @include media-query($small-down) {
+    margin: 0 0 spacing() * 2;
+    width: 100%;
+  }
+}
+
+.login__header {
+  border-bottom: 1px solid $colorGray1;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin-top: 24px;
+  }
+}
+
+.login__header-tabs {
+  column-gap: 16px;
+  display: flex;
+  width: 100%;
+}
+
+.login__header-tab {
+  @include text-title-2();
+
+  border-bottom: 3px solid $colorText;
+  padding-bottom: 26px;
+  text-decoration: unset;
+
+  &[data-active="false"] {
+    border-bottom: unset;
+    color: $colorDisabled;
+
+    &:hover {
+      color: initial;
+    }
+  }
+}
+
+.login__container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 30%;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing() * 1.5;
+    width: 100%;
+  }
+}
+
+.login__login {
+  margin-top: 52px;
+}
+
+.login__form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.login__form-errors {
+  @include form-message($colorError);
+
+  display: block;
+  margin-bottom: 30px;
+  padding: 20px;
+  width: 100%;
+}
+
+.login__form-label {
+  @include form-field();
+
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.login__form-button {
+  @include button-transparent();
+
+  display: block;
+  margin: 0 0 spacing() * 1.5;
+  max-width: 300px;
+
+  @include media-query($small-down) {
+    margin: spacing() * 1.5 auto;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.login__form-link-wr {
+  display: block;
+  width: 100%;
+}
+
+.login__form-link {
+  @include link-sm();
+}
+
+.login__recover {
+  display: none;
+  margin-top: 52px;
+}
+
+.login__recover-header {
+  @include text-title-3();
+
+  margin-top: 0;
+}
+
+.login__recover-content {
+  display: block;
+}

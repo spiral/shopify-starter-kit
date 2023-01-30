@@ -1,0 +1,65 @@
+<header
+  class="customers-header"
+  data-snippet="customers-header"
+>
+  <div class="customers-header__top">
+    {% if title != blank %}
+      <a
+        class="customers-header__top-back"
+        href="{% if back_link_url %}{{ back_link_url | prepend: shop.secure_url }}{% else %}{{ shop.secure_url }}/account{% endif %}"
+      >
+        {% render 'icon-arrow' %}
+      </a>
+
+      <h1 class="
+          customers-header__top-title
+          customers-header__top-title--desktop
+        ">
+        {{ title }}
+      </h1>
+
+      <h1 class="
+          customers-header__top-title
+          customers-header__top-title--mobile
+        ">
+        Welcome, {{ customer.first_name }}
+      </h1>
+    {% else %}
+      <h1 class="customers-header__top-title">
+        Welcome, {{ customer.first_name }}
+      </h1>
+    {% endif %}
+  </div>
+
+  <nav
+    class="customers-header__nav splide"
+    data-account-mobile-slider
+  >
+    <div class="customers-header__nav-links splide__track">
+      <ul class="splide__list">
+        {% for link in linklists[settings.account_linklist].links %}
+          {% if link.url contains '/logout' and customer == blank %}
+            {% continue %}
+          {% endif %}
+
+          <li class="splide__slide">
+            <a
+              class="
+                customers-header__nav-link
+                {% if link.active %}
+                  customers-header__nav-link--active
+                {% endif %}
+              "
+              href="{{ link.url }}"
+              {% if link.active %}
+                data-link-active="{{ forloop.index }}"
+              {% endif %}
+            >
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,51 @@
+<section
+  class="page-about-us-story"
+  data-section="page-about-us-story"
+>
+  <div class="page-about-us-story__header">
+    <div class="page-about-us-story__header-subtitle">01</div>
+
+    <div class="page-about-us-story__header-title">
+      {{ section.settings.title }}
+    </div>
+  </div>
+
+  <div class="page-about-us-story__body">
+    <div class="page-about-us-story__body-image">
+      {% render 'lazy-image', image: section.settings.image %}
+    </div>
+
+    <div class="page-about-us-story__body-text">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Allyson Felix created a brand to embody her values, after her previous sponsor didn’t value her."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ]
+}
+{% endschema %}

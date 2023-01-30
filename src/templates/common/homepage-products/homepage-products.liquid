@@ -1,0 +1,83 @@
+<section
+  class="homepage-products"
+  data-section="homepage-products"
+>
+  <div class="homepage-products__header">
+    <div class="homepage-products__header-title">
+      {{ section.settings.title }}
+    </div>
+
+    <div class="homepage-products__header-subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+  </div>
+
+  <div class="homepage-products__list">
+    {% for block in section.blocks %}
+      <div class="homepage-products__item">
+        <div class="homepage-products__item-image">
+          {%
+            render 'lazy-image' with
+            image: block.settings.image,
+            alt: block.settings.featured_product.title
+          %}
+        </div>
+
+        <a
+          class="homepage-products__item-button"
+          href="{{ block.settings.link | replace: shop.url, shop.secure_url }}"
+        >
+          {{ block.settings.link_text }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Products",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Homepage Product",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Products",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,52 @@
+.media {
+  display: block;
+}
+
+.media__item {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.media__item--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.media__item--video {
+  object-fit: cover;
+}
+
+.media__item--visible {
+  display: block;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.media__item-vimeo {
+  height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%; // NOTE: hardcoded for iframe
+  position: relative;
+
+  iframe,
+  object,
+  embed {
+    border: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,149 @@
+<section
+  class="homepage-hero-favorite"
+  data-section="homepage-hero-favorite"
+>
+  <div class="homepage-hero-favorite__in">
+    <div class="homepage-hero-favorite__bg">
+      {% render 'lazy-image', image: section.settings.back_image %}
+    </div>
+
+    <div class="homepage-hero-favorite__bg homepage-hero-favorite__bg--mobile">
+      {% render 'lazy-image', image: section.settings.back_image_mobile %}
+    </div>
+
+    <div class="homepage-hero-favorite__content-wr">
+      <div class="homepage-hero-favorite__content">
+        {% if section.settings.subtitle != blank %}
+          <div class="homepage-hero-favorite__content-subtitle">
+            {{ section.settings.subtitle }}
+          </div>
+        {% endif %}
+
+        <div class="homepage-hero-favorite__content-title">
+          {{ section.settings.title }}
+        </div>
+
+        <a
+          href="{{ section.settings.link_url }}"
+          class="
+            homepage-hero-favorite__control
+            {% if section.settings.button_type != 'default' %}
+              homepage-hero-favorite__control--{{ section.settings.button_type }}
+            {% endif %}
+          "
+          {% if section.settings.is_link_new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="open {{ section.settings.link_text }} in new window"
+          {% endif %}
+        >
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="{{ section.settings.link_url }}"
+    class="
+      homepage-hero-favorite__control homepage-hero-favorite__control--mobile
+      {% if section.settings.button_type_mobile != 'default' %}
+        homepage-hero-favorite__control--{{ section.settings.button_type_mobile }}
+      {% endif %}
+    "
+    {% if section.settings.is_link_new_tab %}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="open {{ section.settings.link_text }} in new window"
+    {% endif %}
+  >
+    {{ section.settings.link_text }}
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Hero Favorite",
+  "settings": [
+    {
+      "id": "back_image",
+      "type": "image_picker",
+      "label": "Back Image"
+    },
+    {
+      "id": "back_image_mobile",
+      "type": "image_picker",
+      "label": "Back Image mobile"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "Oprah’s Favorite Things 2021"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Saysh One Holiday Restock"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "id": "link_url",
+      "type": "url",
+      "label": "Link Url"
+    },
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "Button Type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "fill-white",
+          "label": "Fill white"
+        }
+      ],
+      "default": "fill-white"
+    },
+    {
+      "type": "select",
+      "id": "button_type_mobile",
+      "label": "Mobile Button Type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "fill-white",
+          "label": "Fill white"
+        }
+      ],
+      "default": "fill-white"
+    },
+    {
+      "id": "link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

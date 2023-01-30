@@ -1,0 +1,160 @@
+.page-styles-guide-components {
+  display: block;
+}
+
+.page-styles-guide-components__container {
+  margin: auto;
+  max-width: 1300px;
+}
+
+.page-styles-guide-components__item {
+  padding: 30px;
+}
+
+.page-styles-guide-components__item-description {
+  border: 1px solid rgb(213, 52, 52);
+  margin-bottom: 20px;
+  padding: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  i {
+    display: block;
+    font-size: 12px;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+
+  ul,
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.page-styles-guide-components-title {
+  @include text-title-1($colorMuted);
+
+  text-align: center;
+
+  span {
+    color: rgb(213, 52, 52);
+    font-weight: 600;
+  }
+}
+
+.page-styles-guide-components-buttons {
+  background-color: rgb(244, 244, 244);
+  display: flex;
+  padding: 30px;
+
+  button {
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.page-styles-guide-components-buttons-transparent {
+  @include button-transparent();
+}
+
+.page-styles-guide-components-buttons-fill {
+  @include button();
+}
+
+.page-styles-guide-components-links__description {
+  font-weight: 500;
+  margin: 0;
+}
+
+.page-styles-guide-components-links__list {
+  margin-top: 10px;
+}
+
+.page-styles-guide-components-links__link-text {
+  @include link-text();
+}
+
+.page-styles-guide-components-links__link-underline-sm {
+  @include link-sm();
+}
+
+.page-styles-guide-components-links__link-underline {
+  @include link();
+}
+
+.page-styles-guide-components-links__text {
+  @include text-content();
+
+  a {
+    @include link-base(inherit);
+  }
+}
+
+.page-styles-guide-components-links__text-sm {
+  @include text-content-sm();
+
+  a {
+    @include link-base(inherit, inherit);
+  }
+}
+
+.page-styles-guide-components__form-fieldset {
+  border: none;
+  margin: 30px 0;
+
+  h3 {
+    @include text-title-2($colorText);
+
+    margin: 0 0 20px 0;
+  }
+
+  h4 {
+    @include text-title-3($colorText);
+
+    margin: 0 0 5px 0;
+  }
+}
+
+.page-styles-guide-components__form-label {
+  @include form-field();
+
+  margin-bottom: 30px;
+}
+
+.page-styles-guide-components__form-checkbox {
+  @include form-control-checkbox();
+}
+
+.page-styles-guide-components__form-btn {
+  @include button-transparent();
+
+  margin-top: 50px;
+}
+
+.page-styles-guide-components__form-radio {
+  display: block;
+  margin: 20px 0;
+}
+
+.page-styles-guide-components__form-radio__label {
+  @include form-control-radio();
+
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

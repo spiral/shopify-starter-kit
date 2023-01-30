@@ -1,0 +1,88 @@
+@charset 'UTF-8';
+
+// Settings
+@import "../../styles/config";
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.gift_card-header {
+  text-align: center;
+}
+
+.gift_card {
+  margin: 0 auto;
+  max-width: $width-site;
+  padding: spacing() * 2;
+  text-align: center;
+}
+
+.gift_card__title {
+  font-size: rem(50px);
+}
+
+.gift_card__subtitle {
+  font-size: rem(36px);
+}
+
+.gift_card__code {
+  display: block;
+  margin-bottom: spacing();
+}
+
+.gift_card__instruction {
+  margin-bottom: spacing();
+
+  @include media-query($medium-up) {
+    margin-bottom: spacing() * 2;
+  }
+}
+
+.gift_card__btn {
+  margin-bottom: spacing() * 2;
+
+  @include media-query($medium-up) {
+    margin-bottom: spacing() * 3;
+  }
+}
+
+
+.gift_card-qr {
+  margin-bottom: spacing() * 2;
+
+  @include media-query($medium-up) {
+    margin-bottom: spacing() * 4;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.apple-wallet-image {
+  display: block;
+  margin: 0 auto;
+}
+
+/* ================ Print gift_card Styles ================ */
+@media print {
+  @page {
+    margin: 0.5cm; // stylelint-disable-line unit-allowed-list
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  html,
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .print-gift_card,
+  .apple-wallet {
+    display: none;
+  }
+}

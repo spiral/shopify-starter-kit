@@ -1,0 +1,41 @@
+@mixin page-support-contact-accordion__container () {
+  border-top: 1px solid $colorText;
+  display: block;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  @include media-query($medium-up) {
+    border-width: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: rem($grid-widescreen);
+    padding-bottom: 46px;
+    padding-top: 30px;
+  }
+}
+
+@mixin page-support-contact-accordion__title () {
+  @include text-title-1();
+
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding-right: 24px;
+  width: 100%;
+
+  @include media-query($medium-up) {
+    margin-bottom: 0;
+    width: 226px;
+  }
+}
+
+@mixin page-support-contact-accordion__list () {
+  padding-right: 0;
+  width: 100%;
+
+  @include media-query($medium-up) {
+    padding-right: 110px;
+    width: 57%;
+  }
+}

@@ -1,0 +1,23 @@
+.page-stocklist-hero {
+  display: block;
+}
+
+.page-stocklist-hero__image {
+  display: block;
+  margin-bottom: 60px;
+  margin-top: 46px;
+
+  @include media-query($small-down) {
+    display: none;
+    margin-bottom: 26px;
+    margin-top: 24px;
+  }
+}
+
+.page-stocklist-hero__image--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}

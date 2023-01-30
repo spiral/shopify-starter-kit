@@ -1,0 +1,48 @@
+.page-saysh-products {
+  display: block;
+  padding: 200px 182px 284px;
+
+  @include media-query($small-down) {
+    padding: 50px 16px;
+  }
+}
+
+.page-saysh-products__items {
+  column-gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  max-width: 1080px;
+  row-gap: 80px;
+
+  @include media-query($small-down) {
+    grid-template-columns: 1fr;
+    row-gap: 50px;
+  }
+}
+
+.page-saysh-products__item {
+  width: 100%;
+}
+
+.page-saysh-products__item-image {
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.page-saysh-products__item-image--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.page-saysh-products__item-button {
+  @include button-reset-styles();
+  @include button-transparent();
+
+  margin-top: 30px;
+  width: 100%;
+}

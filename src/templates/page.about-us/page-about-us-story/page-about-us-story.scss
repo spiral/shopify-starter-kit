@@ -1,0 +1,92 @@
+.page-about-us-story {
+  display: block;
+  margin: 0 auto;
+  max-width: $grid-widescreen;
+  padding: 150px 0 214px;
+
+  @include media-query($large-down) {
+    margin: 0 80px 0;
+  }
+
+  @include media-query($small-down) {
+    margin: 0;
+    padding: 50px 16px;
+  }
+}
+
+.page-about-us-story__header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-about-us-story__header-subtitle {
+  @include text-title-4();
+}
+
+.page-about-us-story__header-title {
+  @include title-h3();
+
+  margin: 20px auto 0;
+  max-width: $grid-large;
+  padding: 0 4%;
+  text-align: center;
+
+  @include media-query($small-down) {
+    @include title-h5();
+
+    margin-top: 6px;
+    max-width: unset;
+    padding: 0;
+    width: 90%;
+  }
+}
+
+.page-about-us-story__body {
+  column-gap: 40px;
+  display: flex;
+  margin: 164px 0 0;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+}
+
+.page-about-us-story__body-image {
+  margin-left: 164px;
+  padding-left: 12px;
+  width: 37%;
+
+  @include media-query($large-down) {
+    margin: 0;
+  }
+
+  @include media-query($small-down) {
+    margin-bottom: 50px;
+    max-width: unset;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.page-about-us-story__body-text {
+  max-width: $grid-small;
+  padding-right: 30px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    max-width: unset;
+    padding: 0;
+  }
+
+  p {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+

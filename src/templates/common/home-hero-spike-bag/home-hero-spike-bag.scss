@@ -1,0 +1,157 @@
+.home-hero-spike-bag {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.home-hero-spike-bag__in {
+  position: relative;
+  z-index: 0;
+}
+
+.home-hero-spike-bag__images {
+  width: 50%;
+  z-index: 0;
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.home-hero-spike-bag__bg {
+  max-height: 700px;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+
+  @include media-query($small-down) {
+    display: none;
+    max-height: 500px;
+  }
+
+  img {
+    max-height: 700px;
+    object-fit: cover;
+
+    @include media-query($small-down) {
+      max-height: 500px;
+    }
+  }
+}
+
+.home-hero-spike-bag__bg--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.home-hero-spike-bag__content-wr {
+  align-items: center;
+  align-self: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: -5%;
+  position: absolute;
+  right: 50%;
+  text-align: center;
+  top: 0;
+  z-index: 0;
+
+  @include media-query($small-down) {
+    align-items: start;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+.home-hero-spike-bag__content {
+  color: white;
+  margin: auto auto auto;
+  max-width: 500px;
+  padding: spacing() 0;
+
+  @include media-query($small-down) {
+    margin: 50px auto 0;
+    max-width: 310px;
+    padding: 0;
+  }
+}
+
+.home-hero-spike-bag__content-subtitle {
+  font-size: 14px;
+  margin-bottom: spacing() * 2;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing();
+  }
+}
+
+.home-hero-spike-bag__content-title {
+  display: block;
+  font-family: font-family(header);
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+
+  @include media-query($medium-down) {
+    font-size: 55px;
+  }
+
+  @include media-query($small-down) {
+    display: none;
+    font-size: 44px;
+    line-height: 50px;
+    margin: 30px;
+  }
+}
+
+.home-hero-spike-bag__content-title--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.home-hero-spike-bag__control {
+  @include button-transparent();
+
+  display: inline-block;
+  margin: spacing() * 2.5 auto 0;
+  text-align: center;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.home-hero-spike-bag__control--mobile {
+  display: none;
+  margin: 0 auto 0;
+  position: relative;
+  z-index: $zIndexNormal;
+
+  @include media-query($small-down) {
+    display: inline-block;
+  }
+}
+
+.home-hero-spike-bag__control--white {
+  @include button ();
+}
+
+.home-hero-spike-bag__control--fill-white {
+  @include button ();
+}

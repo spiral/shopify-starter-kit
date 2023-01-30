@@ -1,0 +1,120 @@
+<section
+  class="restock"
+  data-section="restock"
+>
+  <div class="restock__in">
+    <div class="restock__content">
+      <span class="restock__subtitle">
+        {{ section.settings.subtitle }}
+      </span>
+
+      <h1 class="restock__title">
+        {{ section.settings.title | newline_to_br }}
+      </h1>
+
+      <p class="restock__text">
+        {{ section.settings.text | newline_to_br }}
+      </p>
+
+      {% if section.settings.action_button_url != blank and section.settings.action_button_text != blank %}
+        <a
+          href="{{ section.settings.action_button_url }}"
+          class="
+            restock__button
+            {% if section.settings.button_type != 'default' %}
+              restock__button--{{ section.settings.action_button_type }}
+            {% endif %}
+          "
+          {% if section.settings.is_link_new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="open {{ section.settings.action_button_text }} in new window"
+          {% endif %}
+        >
+          {{ section.settings.action_button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="restock__bg">
+      {%
+        render 'lazy-image' with
+        image: section.settings.bg_image
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Restock",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "March 2022"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Saysh One Restock"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The Saysh One restock is coming soon. For the first time since Summer ‘21, we’ll be bringing back our signature lifestyle sneaker. Sign up for notifications below. "
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "url",
+      "id": "action_button_url",
+      "label": "Action Button Url"
+    },
+    {
+      "type": "text",
+      "id": "action_button_text",
+      "label": "Action Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "action_button_type",
+      "label": "Button Type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "fill-white",
+          "label": "Fill white"
+        }
+      ],
+      "default": "fill-white"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Restock",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

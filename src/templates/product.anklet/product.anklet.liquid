@@ -1,0 +1,27 @@
+<style>
+  {% render 'product.anklet.css' %}
+</style>
+
+{% render 'product-feed-config' %}
+{% render 'product-data-config' %}
+
+<div
+  class="product-anklet"
+  data-template="product.anklet"
+>
+  <div class="product-anklet__product-base">
+    {% render 'product-base' %}
+  </div>
+
+  {% section 'product-banner' %}
+
+  {% section 'product-anklet-collab' %}
+
+  {% section 'product-anklet-info' %}
+
+  <div class="product-anklet__sep"></div>
+
+  {% section 'product-anklet-vision' %}
+</div>
+
+{{ 'product.anklet.js' | asset_url | script_tag }}

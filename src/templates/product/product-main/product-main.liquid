@@ -1,0 +1,44 @@
+<style>
+  {% render 'product.css' %}
+</style>
+
+{% render 'product-feed-config' %}
+{% render 'product-data-config' %}
+
+<section
+  class="product-main"
+  data-section="product-main"
+>
+  {% if section.settings.is_multipage_product %}
+    {% render 'product-multipage', blocks: section.blocks %}
+  {% elsif section.settings.is_alternative_layout or template.suffix contains 'alt' %}
+    {% render 'product-base-alt', blocks: section.blocks %}
+  {% else %}
+    {% render 'product-base', blocks: section.blocks %}
+  {% endif %}
+</section>
+
+{{ 'product.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Product Main",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_alternative_layout",
+      "label": "Enable Alternative layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_multipage_product",
+      "label": "Enable layout for multipage Product"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

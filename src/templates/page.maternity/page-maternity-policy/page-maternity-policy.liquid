@@ -1,0 +1,91 @@
+<section
+  class="page-maternity-policy"
+  data-section="page-maternity-policy"
+>
+  <div class="page-maternity-policy__in">
+    <div class="page-maternity-policy__media">
+      <div class="page-maternity-policy__media-desktop">
+        {% render 'lazy-image', image: section.settings.hero_image_desktop %}
+      </div>
+
+      <div class="page-maternity-policy__media-mobile">
+        {% render 'lazy-image', image: section.settings.hero_image_mobile %}
+      </div>
+    </div>
+
+    <div class="page-maternity-policy__text">
+      <span class="page-maternity-policy__text-sign">
+        {{ section.settings.sign }}
+      </span>
+
+      <h2 class="page-maternity-policy__text-title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="page-maternity-policy__text-description">
+        <div class="page-maternity-policy__text-col">
+          {{ section.settings.text_1 }}
+        </div>
+
+        <div class="page-maternity-policy__text-col">
+          {{ section.settings.text_2 }}
+        </div>
+
+        <div class="
+            page-maternity-policy__text-col
+            page-maternity-policy__text-col--mobile
+          ">
+          {{ section.settings.text_mobile }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Policy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sign",
+      "label": "Sign",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Saysh Maternity Returns Policy"
+    },
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Text for desktop col 1",
+      "default": "<p> When women become pregnant, their shoe size often increases by half a size — or more.  And the change tends to be permanent. That can make for an uncomfortable nine month term. Women have shouldered the cost of that discomfort for too long. Saysh was founded in response to inequality in the world of athletics. </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Text for desktop col 2",
+      "default": "<p> But you do not have to be a seven-time Olympic champion, like our founder Allyson Felix, to feel the persistent legacy of inequality women deal with today.That is why, for every Saysh One customer that becomes an expectant mother, you can contact us directly at maternity.returns@saysh.com, and we will send you a free, fresh pair of Saysh One sneakers in your new size.</p> "
+    },
+    {
+      "type": "richtext",
+      "id": "text_mobile",
+      "label": "Text for mobile",
+      "default": "<p> When women become pregnant, their shoe size often increases by half a size — or more.  And the change tends to be permanent. That can make for an uncomfortable nine month term. Women have shouldered the cost of that discomfort for too long. Saysh was founded in response to inequality in the world of athletics. But you do not have to be a seven-time Olympic champion, like our founder Allyson Felix, to feel the persistent legacy of inequality women deal with today.That is why, for every Saysh One customer that becomes an expectant mother, you can contact us directly at maternity.returns@saysh.com, and we will send you a free, fresh pair of Saysh One sneakers in your new size. </p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_desktop",
+      "label": "Hero image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero image mobile"
+    }
+  ]
+}
+{% endschema %}

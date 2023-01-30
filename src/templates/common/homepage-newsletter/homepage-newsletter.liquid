@@ -1,0 +1,43 @@
+<section class="homepage-newsletter">
+  <div class="homepage-newsletter__content">
+    {% if section.settings.title != blank %}
+      <h2 class="homepage-newsletter__title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="homepage-newsletter__text">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+    <div class="homepage-newsletter__form">
+      {% render 'newsletter-form' %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Body Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

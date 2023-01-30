@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js"
+      lang="{{ shop.locale }}"
+>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon"
+          href="{{ settings.favicon | img_url: '32x32' }}"
+          type="image/png"
+    >
+  {% endif %}
+
+  {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
+  {%- assign formatted_initial_value_stripped = formatted_initial_value | strip_html -%}
+
+  <title>
+    {{ 'gift_cards.issued.title' | t: value: formatted_initial_value_stripped, shop: shop.name }}
+  </title>
+
+  <meta name="description"
+        content="{{ 'gift_cards.issued.subtext' | t }}"
+  >
+
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+  <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}"
+          defer="defer"
+  ></script>
+
+  <script src="{{ 'vendor.js' | asset_url }}"
+          defer="defer"
+  ></script>
+
+  <script src="{{ 'helpers.js' | asset_url }}"
+          defer="defer"
+  ></script>
+
+  <script src="{{ 'theme.js' | asset_url }}"
+          defer="defer"
+  ></script>
+
+  <script src="{{ 'gift_card.js' | asset_url }}"
+          defer="defer"
+  ></script>
+
+  {{ 'common.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-327969422');
+
+    {% if customer != blank  and customer.id != blank %}
+      window.dataLayer.push({
+        event: 'logged_in',
+        user_id: '{{ customer.id }}',
+      });
+
+    console.info(`dataLayer last event: ${
+      JSON.stringify(window.dataLayer[window.dataLayer.length - 1])
+    }`);
+
+    {% endif %}
+  </script>
+
+  <!-- Roku tracking pixel -->
+  <script>
+    !function(e,t,o,a,n,c,s,i){var r=window.kochava=window.kochava||[];if(r.loaded)window.console&&console.error&&console.error("Kochava snippet already included");
+    else{r.loaded=!0,r.methods=["page","identify","activity","conversion","init","submitCookieId","getCookieId","getMAID","getKochavaId"],stub=function(e){return function(){var t=Array.prototype.slice.call(arguments);
+      return t.unshift(e),"function"==typeof r.push&&r.push(t),r}};
+      for(var d=0;d<r.methods.length;d++){var u=r.methods[d];r[u]=stub(u)}r.init((new Date).getTime(),e,n,c,s,i),function(){var e=document.createElement("script");
+        e.type="text/javascript",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"assets.kochava.com/kochava.js/"+t+"/kochava.min.js",a||(e.src=e.src+"?c="+Math.random());
+        var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(e,o)}(),o&&null!=e&&""!=e&&r.page()}}("kosaysh-jcl7z03","v2.2",true,false,true,true,null,false);
+  </script>
+  <!-- END Roku tracking pixel -->
+</head>
+
+<body class="template-gift_card">
+  {% render 'cart-drawer' %}
+  {% section 'mobile-nav-drawer' %}
+
+  <div id="page-container"
+       class="page-container drawer-page-content"
+  >
+    {% section 'header' %}
+
+    <main role="main"
+          id="MainContent"
+          class="header__padding"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'cookie-bar' %}
+    {% section 'footer' %}
+  </div>
+
+  {{ 'common.js' | asset_url | script_tag }}
+</body>
+</html>

@@ -1,0 +1,149 @@
+<section class="faq-hero">
+  {% if section.settings.image %}
+    <div class="faq-hero__image desktop">
+      {% render 'lazy-image', image: section.settings.image %}
+    </div>
+
+    {% if section.settings.image_mobile %}
+      <div class="faq-hero__image mobile">
+        {% render 'lazy-image', image: section.settings.image_mobile %}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <div class="faq-hero__overlay">
+    <div class="faq-hero__contents"
+         style="color: {{ section.settings.contents_color }};"
+    >
+      <h1 class="faq-hero__title">
+        {{ section.settings.title }}
+      </h1>
+
+      <p class="faq-hero__text">
+        {{ section.settings.text }}
+      </p>
+
+      <div class="faq-hero__buttons">
+        {% if section.settings.button_text_1 != blank %}
+          <a class="faq-hero__button
+                    {% if section.settings.button_type_1 != 'default' %}
+                      faq-hero__button--{{ section.settings.button_type_1 }}
+                    {% endif %}"
+             href="{{ section.settings.button_url_1 }}"
+             target="_blank"
+             rel="noreferrer noopener"
+          >
+            {{ section.settings.button_text_1 }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_text_2 != blank %}
+          <a class="faq-hero__button
+                    {% if section.settings.button_type_2 != 'default' %}
+                      faq-hero__button--{{ section.settings.button_type_2 }}
+                    {% endif %}"
+             href="{{ section.settings.button_url_2 }}"
+             target="_blank"
+             rel="noreferrer noopener"
+          >
+            {{ section.settings.button_text_2 }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)"
+      },
+      {
+        "type": "color",
+        "id": "contents_color",
+        "label": "Contents Color",
+        "default": "#fff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "select",
+        "id": "button_type_1",
+        "label": "Button Type 1",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "fill-white",
+            "label": "Fill white"
+          }
+        ],
+        "default": "fill-white"
+      },
+      {
+        "type": "text",
+        "id": "button_text_1",
+        "label": "Button Text 1"
+      },
+      {
+        "type": "url",
+        "id": "button_url_1",
+        "label": "Button URL 1"
+      },
+      {
+        "type": "select",
+        "id": "button_type_2",
+        "label": "Button Type 2",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "fill-white",
+            "label": "Fill white"
+          }
+        ],
+        "default": "white"
+      },
+      {
+        "type": "text",
+        "id": "button_text_2",
+        "label": "Button Text 2"
+      },
+      {
+        "type": "url",
+        "id": "button_url_2",
+        "label": "Button URL 2"
+      }
+    ]
+  }
+{% endschema %}

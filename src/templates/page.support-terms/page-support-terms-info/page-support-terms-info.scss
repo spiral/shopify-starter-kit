@@ -1,0 +1,95 @@
+.page-support-terms-info {
+  display: block;
+}
+
+.page-support-terms-info__item-wr {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @include media-query($medium-up) {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+.page-support-terms-info__item {
+  border-top: 2px solid $colorText;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: $page-support-container-width;
+  padding: 10px 0 20px;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    padding: 30px 0 120px;
+  }
+
+  .page-support-terms-info__item-wr:last-child & {
+    padding-bottom: 106px;
+
+    @include media-query($medium-up) {
+      padding-bottom: 46px;
+    }
+  }
+}
+
+.page-support-terms-info__item-titles {
+  @include f-col(1, 0);
+
+  margin-bottom: 20px;
+
+  @include media-query($medium-up) {
+    @include f-col(0.43, 0);
+
+    margin-bottom: 0;
+    padding-right: 26px;
+  }
+
+  @include media-query($large-up) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.page-support-terms-info__item-title {
+  @include text-title-1();
+  @include page-support-wrap();
+
+  margin: 0 0 5px 0;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-query($large-up) {
+    width: 38%;
+    word-wrap: break-word;
+  }
+}
+
+.page-support-terms-info__item-content {
+  @include page-support-text();
+
+  display: block;
+  max-width: 100%;
+
+  @include media-query($medium-up) {
+    display: block;
+    max-width: 636px;
+  }
+
+  ul {
+    margin-top: 0;
+  }
+
+  // NOTE: used inside a .page-support-terms-info__item-content
+  .small-width {
+    max-width: 100%;
+
+    @include media-query($medium-up) {
+      max-width: 536px;
+    }
+  }
+}

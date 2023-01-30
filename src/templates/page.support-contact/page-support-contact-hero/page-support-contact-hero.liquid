@@ -1,0 +1,35 @@
+<section
+  class="page-support-contact-hero"
+  data-section="page-support-contact-hero"
+>
+  <div class="page-support-contact-hero__container">
+    <h2 class="page-support-contact-hero__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="page-support-contact-hero__content">
+      <div class="page-support-contact-hero__text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Support Contact Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "text"
+    }
+  ]
+}
+{% endschema %}

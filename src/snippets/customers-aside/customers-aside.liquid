@@ -1,0 +1,26 @@
+<aside
+  class="customers-aside"
+  data-snippet="customers-aside"
+>
+  <h1 class="customers-aside__title">
+    My
+    <br>
+    Account
+  </h1>
+
+  <nav class="customers-aside__links">
+    {% for link in linklists[settings.account_linklist].links %}
+      <a
+        class="
+          customers-aside__link
+          {% if link.active %}
+            customers-aside__link--active
+          {% endif %}
+        "
+        href="{{ link.url }}"
+      >
+        {{ link.title }}
+      </a>
+    {% endfor %}
+  </nav>
+</aside>

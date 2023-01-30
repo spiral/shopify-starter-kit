@@ -1,0 +1,39 @@
+<div
+  class="newsletter-form"
+  data-snippet="newsletter-form"
+>
+  {% form 'contact', class: 'newsletter-form__form', action: "//manage.kmail-lists.com/subscriptions/subscribe", method: "POST" %}
+    <input
+      type="hidden"
+      name="g"
+      value="Y5Fwkt"
+    >
+
+    {% if form.posted_successfully? %}
+      {{ 'contact.form.post_success' | t }}
+    {% endif %}
+
+    {{ form.errors | default_errors }}
+
+    <input
+      class="newsletter-form__input"
+      type="email"
+      autocomplete="off"
+      id="k_id_email"
+      name="email"
+      autocorrect="off"
+      autocapitalize="off"
+      value="{% if form.email %}{{ form.email }}{% endif %}"
+      placeholder="Enter your email"
+    >
+
+    <label class="newsletter-form__label">Email</label>
+
+    <button
+      class="newsletter-form__btn"
+      type="submit"
+    >
+      Subscribe
+    </button>
+  {% endform %}
+</div>

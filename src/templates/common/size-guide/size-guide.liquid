@@ -1,0 +1,35 @@
+<section
+  class="size-guide"
+  data-section="size-guide"
+>
+  {% if product.title == 'Saysh Two' %}
+    {% assign _size_guide_info = section.settings.saysh_two_info %}
+  {% else %}
+    {% assign _size_guide_info = section.settings.default_info %}
+  {% endif %}
+
+  {%
+    render 'size-guide-drawer' with
+    size_guide_info: _size_guide_info
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "Size Guide",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "default_info",
+      "label": "Saysh One Size guide info",
+      "default": "<p>Saysh One runs small and has a more narrow fit. We'd suggest you size up 1/2 a size.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "saysh_two_info",
+      "label": "Saysh Two Size guide info",
+      "default": "<p>Saysh Two runs small and has a more narrow fit. We'd suggest you size up 1/2 a size.</p>"
+    }
+  ]
+}
+{% endschema %}

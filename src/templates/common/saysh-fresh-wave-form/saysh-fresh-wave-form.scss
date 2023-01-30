@@ -1,0 +1,230 @@
+.saysh-fresh-wave-form {
+  background: $colorGray2;
+  overflow: hidden;
+}
+
+.saysh-fresh-wave-form__in {
+  @include f-row(0);
+
+  @include media-query($medium-up) {
+    flex-wrap: nowrap;
+  }
+}
+
+.saysh-fresh-wave-form__image {
+  @include f-col(0.49, 0);
+
+  @include media-query($medium-down) {
+    @include f-col(1/2, 0);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+  }
+
+  > .ratio-box {
+    display: flex;
+    height: 100%;
+
+    @include media-query($small-down) {
+      min-height: 500px;
+    }
+  }
+
+  img {
+    object-fit: cover;
+
+    @include media-query($small-down) {
+      min-height: 500px;
+    }
+  }
+}
+
+.saysh-fresh-wave-form__content {
+  @include f-col(0.44, 0);
+
+  align-self: center;
+  font-size: 13px;
+  height: 100%;
+  line-height: 1.25;
+  margin-left: 70px;
+  max-width: 493px;
+  padding: 90px 40px 70px;
+
+  @include media-query($medium-down) {
+    @include f-col(1/2, 0);
+
+    margin: 0;
+    padding: 40px;
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+
+    max-width: none;
+    padding: 30px 16px 28px;
+  }
+}
+
+.saysh-fresh-wave-form__title {
+  @include title-h3();
+
+  margin: 0 0 20px;
+
+  @include media-query($small-down) {
+    @include title-h4();
+  }
+}
+
+.saysh-fresh-wave-form__text {
+  @include text-content();
+
+  margin: 0 0 14px;
+
+  @include media-query($small-down) {
+    margin-bottom: 0;
+  }
+}
+
+.saysh-fresh-wave-form__text > p {
+  margin: 0;
+}
+
+.saysh-fresh-wave-form__form {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input + div {
+    display: block;
+    padding: 0 !important;
+
+    &::before {
+      color: $colorMuted;
+      font-weight: 300;
+      left: 0;
+      opacity: 1;
+      position: absolute;
+      top: -30px;
+      transform: translateY(-50%);
+      transition: opacity 0.1s ease-in;
+      z-index: -1 !important;
+    }
+
+    .kl-private-reset-css-Xuajs1 {
+      background-color: transparent !important;
+      position: static !important;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] [placeholder="Name"] + div {
+    &::before {
+      content: 'Name';
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] [placeholder="E-mail"] + div {
+    &::before {
+      content: 'E-mail';
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] [placeholder="Phone Number"] + div {
+    &::before {
+      content: 'Phone Number';
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:focus + div,
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:active + div {
+    &::before {
+      font-size: 12px;
+      top: -40px;
+      transform: translateY(-50%);
+      transition: top 0.1s ease-in;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input {
+    height: 60px !important;
+    padding-bottom: 8px !important;
+    padding-top: 22px !important;
+    position: relative !important;
+    z-index: 10 !important;
+
+    @include placeholder {
+      color: transparent !important;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:not(:placeholder-shown) + div {
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input[aria-invalid="true"] + div {
+    &::before {
+      color: $error;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:hover {
+    border-bottom: 1px solid $colorBlueHover !important;
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:focus,
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input:active {
+    border-bottom: 1px solid $colorBlueActive !important;
+    box-shadow: 0 1px 0 $colorBlueActive !important;
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input[aria-invalid="true"] {
+    border-bottom: 0.5px solid $error !important;
+    color: $error !important;
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input[aria-invalid="true"]:hover {
+    border-bottom: 1px solid $error !important;
+    color: $error !important;
+  }
+
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input[aria-invalid="true"]:focus,
+  .klaviyo-form [data-testid="form-row"] [data-testid="form-component"] input[aria-invalid="true"]:active {
+    border-bottom: 1px solid $error !important;
+    box-shadow: 0 1px 0 $error !important;
+    color: $error !important;
+  }
+
+  .klaviyo-form [data-testid="form-row"]:nth-child(4) [data-testid="form-component"] {
+    padding: 44px 0 24px !important;
+
+    @include media-query($small-down) {
+      padding: 34px 0 24px !important;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] .go3295373554 {
+    border: none !important;
+    box-shadow: none !important;
+
+    &::before {
+      display: none !important;
+    }
+
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .klaviyo-form [data-testid="form-row"] span {
+    &.kl-private-reset-css-Xuajs1 {
+      color: $colorText !important;
+      font-family: font-family(body) !important;
+      font-size: 11px !important;
+      font-weight: 300 !important;
+      margin-top: 4px !important;
+      padding: 0 !important;
+    }
+  }
+}

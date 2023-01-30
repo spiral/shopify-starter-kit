@@ -1,0 +1,43 @@
+@import '../../../snippets/newsletter-form/newsletter-form';
+
+.homepage-newsletter {
+  background: $whiteShade2;
+  padding: spacing() * 5 spacing() * 3;
+  text-align: center;
+
+  @include media-query($small-down) {
+    padding: spacing() * 3.5 spacing() * 1.5;
+  }
+}
+
+.homepage-newsletter__content {
+  margin-left: auto;
+  max-width: 424px;
+  text-align: left;
+
+  @include media-query($medium-down) {
+    max-width: 50%;
+  }
+
+  @include media-query($small-down) {
+    margin: 0;
+    max-width: none;
+  }
+}
+
+.homepage-newsletter__title {
+  font-size: 36px;
+  line-height: 1;
+  margin: 0;
+  margin-bottom: spacing();
+}
+
+.homepage-newsletter__text {
+  font-size: 14px;
+  line-height: 1.25;
+  margin-bottom: spacing() * 2;
+}
+
+.homepage-newsletter__form {
+  width: 100%;
+}

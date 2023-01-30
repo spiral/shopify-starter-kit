@@ -1,0 +1,99 @@
+.saysh-collective-form {
+  background: #ecebe7;
+  overflow: hidden;
+}
+
+.saysh-collective-form__in {
+  @include f-row(0);
+
+  @include media-query($small-down) {
+    padding: 0 20px 50px;
+  }
+}
+
+.saysh-collective-form__image {
+  @include f-col(0.515, 0); //used for accurate block width according the design
+
+  > .ratio-box {
+    display: flex;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  @include media-query($medium-down) {
+    @include f-col(1/2, 0);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+
+    > .ratio-box {
+      min-height: 500px;
+    }
+
+    img {
+      min-height: 500px;
+    }
+  }
+}
+
+.saysh-collective-form__content {
+  @include f-col(0.44, 0);
+
+  align-self: center;
+  font-size: 13px;
+  height: 100%;
+  line-height: 1.25;
+  max-width: 567px;
+  padding: 109px 40px 68px 114px;
+
+  @include media-query($medium-down) {
+    @include f-col(1/2, 0);
+
+    padding: 40px;
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+
+    max-width: none;
+    order: -1;
+    padding: 50px 0 0;
+  }
+}
+
+.saysh-collective-form__subtitle {
+  @include text-title-3();
+
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.saysh-collective-form__title {
+  @include title-h4();
+
+  margin: 0 0 24px;
+
+  @include media-query($medium-up) {
+    margin-bottom: 30px;
+  }
+}
+
+.saysh-collective-form__text {
+  font-size: inherit;
+  margin: 0 0 10px;
+}
+
+.saysh-collective-form__form {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin-bottom: 10px;
+  }
+}
+

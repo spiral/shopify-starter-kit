@@ -1,0 +1,122 @@
+.page-support-privacy-info {
+  display: block;
+}
+
+.page-support-privacy-info__item-wr {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  &:last-child {
+    margin-bottom: 76px;
+  }
+
+  @include media-query($medium-up) {
+    padding-left: 64px;
+    padding-right: 64px;
+
+    &:last-child {
+      margin-bottom: 57px;
+    }
+  }
+}
+
+.page-support-privacy-info__item {
+  border-top: 1px solid $colorText;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: $page-support-container-width;
+  padding: 10px 0 25px;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    padding: 30px 0 46px;
+  }
+
+  .page-support-privacy-info__item-wr:first-child & {
+    @include media-query($medium-up) {
+      margin-top: 30px;
+    }
+  }
+}
+
+.page-support-privacy-info__item--border-bold {
+  border-width: 2px;
+  margin-top: 40px;
+
+  @include media-query($medium-up) {
+    margin-top: 74px;
+  }
+}
+
+.page-support-privacy-info__item-titles {
+  @include f-col(1, 0);
+
+  margin-bottom: 20px;
+
+  @include media-query($medium-up) {
+    @include f-col(0.43, 0);
+
+    margin-bottom: 0;
+    padding-right: 26px;
+  }
+
+  @include media-query($large-up) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.page-support-privacy-info__item-title {
+  @include text-title-1();
+  @include page-support-wrap();
+
+  margin: 0 0 5px 0;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-query($large-up) {
+    width: 38%;
+    word-wrap: break-word;
+  }
+}
+
+.page-support-privacy-info__item-title--right {
+  margin-left: auto;
+}
+
+.page-support-privacy-info__item-title--left {
+  margin-right: auto;
+}
+
+.page-support-privacy-info__item-content {
+  @include page-support-text();
+  @include f-col(1, 0);
+
+  display: block;
+
+  @include media-query($medium-up) {
+    @include f-col(0.57, 0);
+
+    display: block;
+  }
+
+  @include media-query($large-up) {
+    padding-right: 211px;
+  }
+
+  ul {
+    margin-top: 0;
+
+    strong {
+      font-weight: 400;
+    }
+
+    li strong:first-child {
+      margin: 0;
+    }
+  }
+}

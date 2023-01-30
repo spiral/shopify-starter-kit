@@ -1,0 +1,35 @@
+<style>
+  {% render 'page.nft.css' %}
+
+  .video-mask {
+      -webkit-mask-image:url({{ 'mask.png' | asset_url }});
+      -webkit-mask-position:center center;
+      -webkit-mask-repeat:no-repeat;
+      -webkit-mask-size:cover;
+
+      mask-image:url({{ 'mask.png' | asset_url }});
+      mask-position:center center;
+      mask-repeat:no-repeat;
+      mask-size:cover;
+  }
+</style>
+
+<div
+  class="page-nft"
+  data-template="page.nft"
+>
+  {% section 'nft-hero' %}
+
+  {% section 'nft-auction' %}
+
+  {% section 'nft-preview' %}
+
+  {% section 'nft-paragraphs' %}
+</div>
+
+{{ 'page.nft.js' | asset_url | script_tag }}
+
+{% comment %} * NOTE: need to keep the order * {% endcomment %}
+{{ 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js' | script_tag }}
+
+{{ 'page.nft.auction.js' | asset_url | script_tag }}

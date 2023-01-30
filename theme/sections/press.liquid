@@ -1,0 +1,313 @@
+<section class="press">
+  <div class="press-hero">
+    {% if section.settings.image %}
+      <div class="press-hero__image desktop">
+        {% render 'lazy-image', image: section.settings.image %}
+      </div>
+
+      {% if section.settings.image_mobile %}
+        <div class="press-hero__image mobile">
+          {% render 'lazy-image', image: section.settings.image_mobile, padding_top: 85, img_classes: "press-mobile-img" %}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    <div class="press-hero__overlay">
+      <div class="press-hero__contents"
+           style="color: {{ section.settings.contents_color }};"
+      >
+        <h1 class="press-hero__title">
+          {{ section.settings.title }}
+        </h1>
+
+        <p class="press-hero__text">
+          {{ section.settings.text }}
+        </p>
+
+        <div class="press-hero__buttons">
+          {% if section.settings.button_text_1 != blank %}
+            <a class="press-hero__button
+                     {% if section.settings.button_type_1 != 'default' %}
+                       press-hero__button--{{ section.settings.button_type_1 }}
+                     {% endif %}"
+               href="{{ section.settings.button_url_1 }}"
+               target="_blank"
+               rel="noreferrer noopener"
+            >
+              {{ section.settings.button_text_1 }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.button_text_2 != blank %}
+            <a class="press-hero__button
+                      {% if section.settings.button_type_2 != 'default' %}
+                        press-hero__button--{{ section.settings.button_type_2 }}
+                      {% endif %}"
+               href="{{ section.settings.button_url_2 }}"
+               target="_blank"
+               rel="noreferrer noopener"
+            >
+              {{ section.settings.button_text_2 }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="press-container">
+    <div class="press__featured">
+      <h1 class="press-title">
+        Featured Press
+      </h1>
+
+      <div class="press-featured__items">
+        {% for block in section.blocks %}
+          {% if block.type == 'featured' %}
+            <div class="press-featured__article">
+              {% if block.settings.logo != blank %}
+                <div class="press-featured__img-container">
+                  <div class="press-featured__article-img"
+                       style="max-width: {{ block.settings.logo_width }}px;"
+                  >
+                    {% render 'lazy-image', image: block.settings.logo %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.date != blank %}
+                <p class="press-featured__date">
+                  {{ block.settings.date }}
+                </p>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <p class="press-featured__title">
+                  {{ block.settings.title }}
+                </p>
+              {% endif %}
+
+              {% if block.settings.snippet != blank %}
+                <p class="press-featured__snippet">
+                  {{ block.settings.snippet }}
+                </p>
+              {% endif %}
+
+              {% if block.settings.link != blank %}
+                <a class="press-featured__link"
+                   href="{{ block.settings.link }}"
+                   target="_blank"
+                >
+                  View Full Article
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="press__recent">
+      <h1 class="press-title">
+        Recent Press
+      </h1>
+
+      <div class="press-recent__items">
+        {% for block in section.blocks %}
+          {% if block.type == 'recent' %}
+            <a class="press-recent__item"
+               href="{{ block.settings.link }}"
+               target="_blank"
+            >
+              {% if block.settings.title != blank %}
+                <p class="press-recent__title">
+                  {{ block.settings.title }}
+                </p>
+              {% endif %}
+
+              <div class="press-recent__info">
+                {% if block.settings.company != blank %}
+                  <span class="press-recent__info-company">
+                    {{ block.settings.company }}
+                  </span>
+                {% endif %}
+
+                {% if block.settings.date != blank %}
+                  <span class="press-recent__info-date">
+                    {{ block.settings.date }}
+                  </span>
+                {% endif %}
+              </div>
+
+              {% if block.settings.link != blank %}
+                <div class="press-recent__icon"></div>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Press",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)"
+      },
+      {
+        "type": "color",
+        "id": "contents_color",
+        "label": "Contents Color",
+        "default": "#fff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "select",
+        "id": "button_type_1",
+        "label": "Button Type 1",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "fill-white",
+            "label": "Fill white"
+          }
+        ],
+        "default": "fill-white"
+      },
+      {
+        "type": "text",
+        "id": "button_text_1",
+        "label": "Button Text 1"
+      },
+      {
+        "type": "url",
+        "id": "button_url_1",
+        "label": "Button URL 1"
+      },
+      {
+        "type": "select",
+        "id": "button_type_2",
+        "label": "Button Type 2",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "fill-white",
+            "label": "Fill white"
+          }
+        ],
+        "default": "white"
+      },
+      {
+        "type": "text",
+        "id": "button_text_2",
+        "label": "Button Text 2"
+      },
+      {
+        "type": "url",
+        "id": "button_url_2",
+        "label": "Button URL 2"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Featured Press",
+        "type": "featured",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Copmany Logo"
+          },
+          {
+            "type": "number",
+            "id": "logo_width",
+            "label": "Company Logo Max Width"
+          },
+          {
+            "type": "text",
+            "id": "date",
+            "label": "Article Publish Date"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Article Title"
+          },
+          {
+            "type": "textarea",
+            "id": "snippet",
+            "label": "Article Snippet"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Article Link"
+          }
+        ]
+      },
+      {
+        "name": "Recent Press",
+        "type": "recent",
+        "settings": [
+          {
+            "type": "text",
+            "id": "company",
+            "label": "Company Name"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Article Title"
+          },
+          {
+            "type": "text",
+            "id": "date",
+            "label": "Article Publish Date"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Article Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,181 @@
+<header
+  class="header"
+  data-section="header"
+>
+  <div class="header__main">
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        {% for link in linklists[section.settings.linklist].links %}
+          {% if link.links.size > 0 %}
+            <li class="header__nav-item">
+              <button
+                class="header__nav-item-link"
+                data-header-submenu-id="{{ forloop.index0 }}"
+                data-header-nav-item
+              >
+                {{ link.title }}
+              </button>
+            </li>
+          {% else %}
+            <li class="header__nav-item">
+              <a
+                class="header__nav-item-link"
+                href="{{ link.url }}"
+                {% if link.url contains "//" %}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                {% endif %}
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header__main-logo">
+      <a
+        class="header__main-logo-in"
+        href="{{ shop.secure_url }}"
+      >
+        {%
+          render 'lazy-image' with
+          image: settings.site_logo
+        %}
+      </a>
+    </div>
+
+    <div class="header__main-links">
+      <div class="header__main-link-wr">
+        <a
+          class="header__main-link"
+          href="{{ shop.secure_url }}/account"
+        >
+          ACCOUNT
+        </a>
+      </div>
+
+      <div
+        class="header__main-link-wr"
+        data-bag-count="{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}"
+      >
+        <button
+          class="header__main-link"
+          role="button"
+          data-drawer-open-cart
+        >
+          MY&nbsp;BAG&nbsp;
+
+          <span js-bag-count> ({{ cart.item_count }}) </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {% for link in linklists[section.settings.linklist].links %}
+    {% if link.links.size > 0 %}
+      <div
+        class="header__submenu"
+        data-header-submenu-id="{{ forloop.index0 }}"
+        data-header-submenu
+      >
+        <ul class="header__submenu-list">
+          {% for child_link in link.links %}
+            <li class="header__submenu-item">
+              <a
+                class="
+                  header__submenu-item-link
+                  {% if child_link.active %}
+                    header__submenu-item-link--active
+                  {% endif %}
+                "
+                href="{{ child_link.url }}"
+                {% if child_link.url contains "//" %}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                {% endif %}
+              >
+                {{ child_link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="header__mobile">
+    <div class="header__mobile-logo">
+      <a
+        class="header__mobile-logo-in"
+        href="{{ shop.secure_url }}"
+      >
+        {%
+          render 'lazy-image' with
+          image: settings.site_logo
+        %}
+      </a>
+    </div>
+
+    <div class="header__mobile-nav">
+      <button
+        class="header__mobile-nav-hamburger"
+        role="button"
+        data-drawer-open-nav
+      >
+        <div class="header__hamburger">
+          <span
+            class="header__hamburger-line header__hamburger-line--one"
+          ></span>
+
+          <span
+            class="header__hamburger-line header__hamburger-line--two"
+          ></span>
+
+          <span
+            class="header__hamburger-line header__hamburger-line--three"
+          ></span>
+        </div>
+      </button>
+
+      <div class="header__mobile-nav-left">
+        <a
+          class="header__mobile-nav-left-account"
+          href="{{ shop.secure_url }}/account"
+        >
+          <img
+            src="{{ 'account-icon.svg' | asset_url }}"
+            alt="Account icon"
+          >
+        </a>
+
+        <button
+          class="header__mobile-nav-cart"
+          role="button"
+          data-drawer-open-cart
+          data-bag-count="{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}"
+        >
+          <img
+            src="{{ 'bag-icon.svg' | asset_url }}"
+            alt="Bag card icon"
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "linklist",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

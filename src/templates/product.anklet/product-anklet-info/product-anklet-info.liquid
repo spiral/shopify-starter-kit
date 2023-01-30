@@ -1,0 +1,93 @@
+<section
+  class="product-anklet-info"
+  data-section="product-anklet-info"
+>
+  <div class="product-anklet-info__in">
+    <div class="product-anklet-info__images-wr">
+      <div class="product-anklet-info__images">
+        <div class="product-anklet-info__image">
+          {% render 'lazy-image', image: section.settings.image_1 %}
+        </div>
+
+        <div class="product-anklet-info__image">
+          {% render 'lazy-image', image: section.settings.image_2 %}
+        </div>
+      </div>
+    </div>
+
+    <div class="product-anklet-info__content">
+      <div class="product-anklet-info__content-title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="product-anklet-info__content-in">
+        {% if section.settings.text != blank %}
+          <div class="product-anklet-info__content-text">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.link != blank and section.settings.link_text != blank %}
+          <a
+            class="product-anklet-info__content-text-link"
+            href="{{ section.settings.link }}"
+            {% if section.settings.is_link_new_tab %}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="open {{ section.settings.link_text }} in new window"
+            {% endif %}
+          >
+            {{ section.settings.link_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Anklet Info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "02"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text content",
+      "default": "Hailing from NY, but residing in LA, Sydney’s brand is similarly purpose driven, black-owned, and change focused; and we’re proud to partner with Sydney to offer our community this limited run of jewelry that have been crafted to beautifully compliment with the Saysh One sneaker’s silhouette."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Read more about Sydney’s story and her designs here."
+    },
+    {
+      "type": "checkbox",
+      "id": "is_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Section Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Section Image 2"
+    }
+  ]
+}
+{% endschema %}

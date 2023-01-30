@@ -1,0 +1,14 @@
+@import "../../../snippets/media/media";
+
+.medial-link {
+  display: block;
+}
+
+.medial-link__in {
+  display: block;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

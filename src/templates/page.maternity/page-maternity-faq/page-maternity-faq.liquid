@@ -1,0 +1,51 @@
+<section
+  class="page-maternity-faq"
+  data-section="page-maternity-faq"
+>
+  <div class="page-maternity-faq__in">
+    <div class="page-maternity-faq__content">
+      <h2 class="page-maternity-faq__content-title">
+        {{ section.settings.title }}
+      </h2>
+    </div>
+
+    <div class="page-maternity-faq__questions">
+      {%
+        render 'accordion' with
+        blocks: section.blocks
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Welcome to our store"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Accorion item",
+      "type": "panel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

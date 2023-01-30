@@ -1,0 +1,61 @@
+<section
+  class="page-support-privacy-hero"
+  data-section="page-support-privacy-hero"
+>
+  <div class="page-support-privacy-hero__in">
+    <div class="page-support-privacy-hero__media">
+      <h2 class="page-support-privacy-hero__media-title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="page-support-privacy-hero__media-img">
+        {% render 'lazy-image', image: section.settings.image %}
+      </div>
+    </div>
+
+    <div class="page-support-privacy-hero__content">
+      <h3 class="page-support-privacy-hero__content-title">
+        {{ section.settings.title_2 }}
+      </h3>
+
+      <div class="page-support-privacy-hero__content-text">
+        {{ section.settings.text }}
+      </div>
+
+      <div class="page-support-privacy-hero__content-media">
+        {% render 'lazy-image', image: section.settings.image %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Support Privacy Hero",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "textarea",
+      "id": "title_2",
+      "label": "Second title",
+      "default": "When you visit the Site (Saysh.com) or any related Saysh website, including any social media platform used by Saysh (collectively the Sites(s)), we may collect certain information about your device, your  interaction with the Site, and information necessary to process your purchases and/or otherwise interact with the website and any Saysh related programs such as the Saysh Collective membership program."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "We may also collect additional information if you contact us for customer support. In this Privacy Policy, we refer to any information that can uniquely identify an individual (including the information below) as “Personal Information.” See the list below for more information about what Personal Information we collect and why."
+    }
+  ]
+}
+{% endschema %}

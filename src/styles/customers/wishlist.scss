@@ -1,0 +1,42 @@
+.account-wish__text {
+  @include title-h3();
+
+  text-align: center;
+
+  @include media-query($tablet) {
+    text-align: left;
+  }
+}
+
+.account-wish__btn-wr {
+  display: flex;
+
+  @include media-query($tablet) {
+    display: block;
+  }
+}
+
+.account-wish__btn {
+  margin: spacing() / 2 auto 0;
+  max-width: none;
+  padding-inline: spacing();
+
+  @include media-query($tablet) {
+    padding-inline: spacing() * 2;
+    width: auto;
+  }
+}
+
+.account-wish__btn-text--desktop {
+  display: none;
+
+  @include media-query($tablet) {
+    display: block;
+  }
+}
+
+.account-wish__btn-text--mobile {
+  @include media-query($tablet) {
+    display: none;
+  }
+}

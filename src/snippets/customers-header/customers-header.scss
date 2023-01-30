@@ -1,0 +1,126 @@
+.customers-header {
+  display: block;
+}
+
+.customers-header__top {
+  align-items: center;
+  border-bottom: 1px solid $colorText;
+  border-top: 3px solid $colorMuted;
+  column-gap: 16px;
+  display: flex;
+  padding: 48px 0;
+}
+
+.customers-header__top-back {
+  transform: rotate(180deg);
+
+  @include media-query($small-down) {
+    display: none;
+  }
+
+  .icon-arrow {
+    height: 24px;
+    width: 24px;
+
+    &:hover {
+      fill: $colorBlueHover;
+    }
+
+    &:active {
+      fill: $colorBlueActive;
+    }
+  }
+}
+
+.customers-header__top-title {
+  @include text-title-1();
+
+  margin: 0;
+  width: 100%;
+}
+
+.customers-header__top-title--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.customers-header__top-title--desktop {
+  display: block;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.customers-header__nav {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.customers-header__nav--slider-arrows {
+  position: absolute;
+  width: 100%;
+}
+
+.customers-header__nav--slider-arrow {
+  background-color: transparent;
+  border-radius: 0;
+  height: 46px;
+  opacity: 1;
+  pointer-events: none;
+  transform: unset;
+  width: 60px;
+
+  &.splide__arrow--prev {
+    background: linear-gradient(90deg, $colorWhite 72.41%, rgba(255, 255, 255, 0) 109.18%);
+    display: flex;
+    justify-content: flex-start;
+    left: -36px;
+  }
+
+  &.splide__arrow--next {
+    background: linear-gradient(270deg, $colorWhite 72.41%, rgba(255, 255, 255, 0) 109.18%);
+    display: flex;
+    justify-content: flex-end;
+    right: -36px;
+  }
+
+  &[disabled] {
+    display: none;
+  }
+
+  svg {
+    height: initial;
+    width: initial;
+  }
+}
+
+.customers-header__nav-links {
+  border-bottom: 1px solid $colorText;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  padding-bottom: 24px;
+  padding-right: 74px;
+  row-gap: 16px;
+}
+
+.customers-header__nav-link {
+  @include link-text();
+
+  font-size: 18px;
+
+  @include media-query($small-down) {
+    min-width: fit-content;
+  }
+}
+
+.customers-header__nav-link--active {
+  font-weight: 500;
+}

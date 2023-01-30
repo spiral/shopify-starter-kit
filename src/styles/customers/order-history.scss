@@ -1,0 +1,67 @@
+.account__product-orders {
+  column-gap: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 48px;
+  row-gap: 36px;
+
+  @include media-query($small-down) {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+    row-gap: 40px;
+  }
+}
+
+.account__product-orders--placeholder {
+  @include text-content();
+
+  grid-template-columns: 1fr;
+}
+
+.account__product-order {
+  width: 100%;
+}
+
+.account__product-order-image {
+  width: 100%;
+
+  img {
+    height: 100%;
+    width: inherit;
+  }
+}
+
+.account__product-order-info-wr {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.account__product-order-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.account__product-order-info-date {
+  @include text-title-4();
+}
+
+.account__product-order-info-quantity {
+  @include text-title-4($colorMuted);
+
+  margin-bottom: 16px;
+}
+
+.account__product-order-info-price {
+  @include text-content-sm();
+
+  @include media-query($small-down) {
+    font-size: 11px;
+  }
+}
+
+.account__product-order-info-tracking {
+  @include link-sm();
+
+  line-height: 1.4;
+}

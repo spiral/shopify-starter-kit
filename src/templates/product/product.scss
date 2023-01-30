@@ -1,0 +1,45 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import "./product-main/product-main";
+@import "./product-variant-content/product-variant-content";
+@import "./product-look-book/product-look-book";
+
+// Snippets
+@import '../../snippets/product-base/product-base';
+@import '../../snippets/product-multipage/product-multipage';
+
+.product {
+  display: block;
+}
+
+.product__main {
+  margin-bottom: 100px;
+
+  @include media-query($small-down) {
+    margin-bottom: 0;
+  }
+}
+
+[data-template='product.gift-card'] {
+  .product-base__product {
+    padding-top: spacing() * 3.5;
+
+    @include media-query($small-down) {
+      padding-top: spacing() * 2.5;
+    }
+  }
+
+  .product-base__product-title {
+    max-width: 250px;
+  }
+
+  .product-base__product-klarna {
+    display: none;
+  }
+}

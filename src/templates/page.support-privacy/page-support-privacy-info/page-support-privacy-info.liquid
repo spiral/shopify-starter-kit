@@ -1,0 +1,82 @@
+<section
+  class="page-support-privacy-info"
+  data-section="page-support-privacy-info"
+>
+  {% for block in section.blocks %}
+    {% if block.settings.is_border_bold %}
+      {% assign item_mod = 'page-support-privacy-info__item--border-bold' %}
+    {% else %}
+      {% assign item_mod = '' %}
+    {% endif %}
+
+    <div
+      class="page-support-privacy-info__item-wr"
+      id="{{ block.settings.id }}"
+    >
+      <div class="page-support-privacy-info__item {{ item_mod }}">
+        <div class="page-support-privacy-info__item-titles">
+          {% if block.settings.title != blank %}
+            <h3 class="
+                page-support-privacy-info__item-title
+                page-support-privacy-info__item-title--left
+              ">
+              {{ block.settings.title }}
+            </h3>
+          {% endif %}
+
+          {% if block.settings.title_2 != blank %}
+            <h2 class="
+                page-support-privacy-info__item-title
+                page-support-privacy-info__item-title--right
+              ">
+              {{ block.settings.title_2 }}
+            </h2>
+          {% endif %}
+        </div>
+
+        <div class="page-support-privacy-info__item-content">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Page Support Privacy Info",
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "Types",
+      "settings": [
+        {
+          "type": "text",
+          "id": "id",
+          "label": "Id for block"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title 2"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_border_bold",
+          "label": "Bold border"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

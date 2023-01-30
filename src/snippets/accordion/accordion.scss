@@ -1,0 +1,78 @@
+.accordion__answer {
+  @include text-content($colorMuted);
+
+  padding-right: 30px;
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    @include link(inherit);
+  }
+}
+
+.accordion__item {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-query($medium-up) {
+    margin-bottom: 20px;
+  }
+}
+
+.accordion__question {
+  @include text-content();
+
+  margin: 0;
+  padding-right: 10px;
+}
+
+.accordion__btn {
+  @include button-reset-styles();
+
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+
+  &[aria-expanded="true"] {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.accordion__minus {
+  @include text-content();
+
+  display: none;
+  text-align: center;
+  width: 20px;
+
+  [aria-expanded="true"] & {
+    display: block;
+  }
+}
+
+.accordion__plus {
+  @include text-content();
+
+  display: block;
+  text-align: center;
+  width: 20px;
+
+  [aria-expanded="true"] & {
+    display: none;
+  }
+}
+

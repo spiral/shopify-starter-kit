@@ -1,0 +1,53 @@
+<section
+  class="product-cart"
+  data-section="product-cart"
+>
+  <div class="product-cart__container">
+    <div class="product-cart__number">
+      {{ section.settings.number }}
+    </div>
+  </div>
+
+  <div class="product-cart__desktop">
+    {%
+      render 'lazy-image' with
+      image: section.settings.image
+    %}
+  </div>
+
+  <div class="product-cart__mobile">
+    {%
+      render 'lazy-image' with
+      image: section.settings.image_mob
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Cart",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add image for desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mob",
+      "label": "Add image for mobile"
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Product number"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

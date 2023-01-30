@@ -1,0 +1,51 @@
+<section
+  class="page-maternity-media"
+  data-section="page-maternity-media"
+>
+  <div class="page-maternity-media__in">
+    <h2 class="page-maternity-media__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="page-maternity-media__text">
+      {{ section.settings.text }}
+    </div>
+  </div>
+
+  <div class="page-maternity-media__media">
+    {%
+      render 'media' with
+      video_iframe_url: section.settings.video_src,
+      cover_image: section.settings.image
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Media",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Allyson Felix Talks at TED"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "video_src",
+      "label": "Video Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,220 @@
+.page-support-contact-inquiries {
+  @include page-support-space();
+
+  [data-hidden='true'] {
+    display: none;
+  }
+}
+
+.page-support-contact-inquiries__container {
+  border-top: 2px solid $colorText;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding-bottom: 50px;
+  padding-top: 10px;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    max-width: rem($grid-widescreen);
+    padding-bottom: 80px;
+    padding-top: 30px;
+  }
+}
+
+.page-support-contact-inquiries__title {
+  @include text-title-1();
+
+  margin: 0 0 18px 0;
+  width: 43%;
+
+  @include media-query($medium-up) {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+
+.page-support-contact-inquiries__form-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-support-contact-inquiries__form-label {
+  @include form-field();
+
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page-support-contact-inquiries__form-upload-label {
+  @include text-content-sm($colorMuted);
+}
+
+.page-support-contact-inquiries__form-upload-label--sm {
+  font-size: 11px;
+  padding-bottom: 6px;
+}
+
+label[data-support-contact-inquiries-file-control] {
+  max-width: 275px;
+  position: relative;
+
+  div[data-error] {
+    @include form-error-text();
+  }
+
+  &[data-validation-styles='error'] > div[data-error] {
+    color: $colorError;
+  }
+
+  &[data-validation-styles='success'] > div[data-error] {
+    color: $colorSuccess;
+  }
+
+  > span {
+    @include form-label();
+
+    align-items: center;
+    bottom: 0;
+    color: $colorText;
+    display: flex;
+    height: $sizeControl;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  &[data-validation-styles='error'] > span {
+    color: $colorError;
+  }
+
+  &[data-validation-styles='success'] > span {
+    color: $colorSuccess;
+  }
+
+  [type='file'] {
+    background: transparent;
+    border: 0.5px solid $colorGray1;
+    color: transparent;
+    cursor: pointer;
+    height: $sizeControl;
+    margin: 0;
+    position: relative;
+    resize: none;
+    text-indent: -999em;
+    transition: all ease-in-out 0.2s;
+    width: 100%;
+
+    &::-webkit-file-upload-button {
+      border: 0;
+      font-size: 0;
+      height: 0;
+      margin: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0;
+      width: 0;
+    }
+  }
+
+  [type='file'][disabled] {
+    border: 0.5px solid $colorGray1;
+    pointer-events: none;
+  }
+
+  @mixin typeFileValidation($color) {
+    border: 0.5px solid $color;
+
+    &:not([disabled]):hover,
+    &:not([disabled])[data-drop-file='true'] {
+      border: 1px solid $color;
+    }
+
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      border: 1px solid $color;
+      box-shadow: 0 0 0 1px $color inset;
+    }
+  }
+
+  &[data-validation-styles='success'] > [type='file'] {
+    @include typeFileValidation($colorSuccess);
+  }
+
+  &[data-validation-styles='error'] > [type='file'] {
+    @include typeFileValidation($colorError);
+  }
+
+  [type='file']:not([disabled]):hover,
+  [type='file']:not([disabled])[data-drop-file='true'] {
+    border: 1px solid $colorBlueHover;
+  }
+
+  [type='file']:not([disabled]):focus,
+  [type='file']:not([disabled]):active {
+    border: 1px solid $colorBlueActive;
+    box-shadow: 0 0 0 1px $colorBlueActive inset;
+    outline: none;
+  }
+}
+
+div[data-support-contact-inquiries-file-control-message] {
+  @include text-content-sm();
+
+  p {
+    margin: 4px 0 0;
+  }
+}
+
+.page-support-contact-inquiries__form-btn {
+  @include button-transparent();
+
+  margin-top: 50px;
+  width: 100%;
+
+  @include media-query($small-up) {
+    width: auto;
+  }
+}
+
+.page-support-contact-inquiries__forms-wr {
+  width: 100%;
+
+  @include media-query($medium-up) {
+    width: 57%;
+  }
+
+  @include media-query($large-up) {
+    padding-right: 110px;
+  }
+}
+
+.page-support-contact-inquiries__form {
+  display: block;
+}
+
+.page-support-contact-inquiries__form-status-wr {
+  padding-bottom: 50px; // NOTE: for support design styles
+
+  &[data-page-support-contact-inquiries-form-success="true"] {
+    padding-bottom: 0;
+  }
+}
+
+.page-support-contact-inquiries__form-status {
+  @include form-message($colorSuccess);
+
+  display: none;
+  margin-top: 20px;
+
+  [data-page-support-contact-inquiries-form-success="true"] > & {
+    display: block;
+  }
+}

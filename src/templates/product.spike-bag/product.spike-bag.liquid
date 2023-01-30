@@ -1,0 +1,37 @@
+<style>
+  {% render 'product.spike-bag.css' %}
+</style>
+
+{% render 'product-feed-config' %}
+{% render 'product-data-config' %}
+
+<div
+  class="product-spike-bag"
+  data-template="product.spike-bug"
+>
+  <div class="product-spike-bag__product-base">
+    {% render 'product-base' %}
+  </div>
+
+  {% section 'product-spike-bag-details' %}
+
+  <div
+    class="product-spike-bag__separator product-spike-bag__separator--large"
+  ></div>
+
+  {% section 'product-spike-bag-reveal' %}
+
+  <div class="product-spike-bag__separator"></div>
+
+  {% section 'product-spike-bag-one' %}
+
+  <div
+    class="product-spike-bag__separator product-spike-bag__separator--large"
+  ></div>
+
+  {% section 'product-spike-bag-two' %}
+
+  <div class="product-spike-bag__separator"></div>
+</div>
+
+{{ 'product.spike-bag.js' | asset_url | script_tag }}

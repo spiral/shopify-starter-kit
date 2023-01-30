@@ -1,0 +1,18 @@
+<!-- TODO: remove duplicated sections form this template -->
+<style>
+  {% render 'page.support-contact.css' %}
+</style>
+
+<div
+  class="page-support-contact"
+  data-template="page.support-contact"
+>
+  {% section 'page-support-contact-hero' %}
+  {% section 'page-support-contact-information' %}
+  {% section 'page-support-contact-accordion-0' %}
+  {% comment %}{% section 'page-support-contact-accordion-1' %}{% endcomment %}
+  {% section 'page-support-contact-accordion-2' %}
+  {% section 'page-support-contact-inquiries' %}
+</div>
+
+{{ 'page.support-contact.js' | asset_url | script_tag }}

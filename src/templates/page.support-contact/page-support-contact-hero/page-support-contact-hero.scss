@@ -1,0 +1,48 @@
+.page-support-contact-hero {
+  padding: 24px 16px 52px;
+
+  @include media-query($medium-up) {
+    padding: 25px 60px 125px;
+  }
+}
+
+.page-support-contact-hero__container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    max-width: rem($grid-widescreen);
+  }
+}
+
+.page-support-contact-hero__title {
+  @include text-title-1();
+
+  margin: 0 0 18px 0;
+  width: 43%;
+
+  @include media-query($medium-up) {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+
+.page-support-contact-hero__content {
+  width: 100%;
+
+  @include media-query($medium-up) {
+    width: 33%;
+  }
+}
+
+.page-support-contact-hero__text {
+  @include text-content();
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

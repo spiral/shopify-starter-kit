@@ -1,0 +1,56 @@
+<section
+  class="page-maternity-steps"
+  data-section="page-maternity-steps"
+>
+  <div class="page-maternity-steps__in">
+    <h2 class="page-maternity-steps__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <ul class="page-maternity-steps__list">
+      {% for block in section.blocks %}
+        <li class="page-maternity-steps__list-item">
+          <h3 class="page-maternity-steps__list-num">
+            {{ block.settings.number }}
+          </h3>
+
+          <div class="page-maternity-steps__list-text">
+            {{ block.settings.text }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Steps",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How it works"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Add steps",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

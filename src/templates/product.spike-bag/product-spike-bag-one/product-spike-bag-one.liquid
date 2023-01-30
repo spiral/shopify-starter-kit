@@ -1,0 +1,136 @@
+<section
+  class="product-spike-bag-one"
+  data-section="product-spike-bag-one"
+>
+  <div class="product-spike-bag-one__main">
+    <div class="product-spike-bag-one__main-images-wr">
+      <div
+        class="product-spike-bag-one__main-images"
+        data-product-spike-bag-one-main-images
+      >
+        {%
+          render 'lazy-image' with
+          image: section.settings.cover
+        %}
+
+        {%
+          render 'lazy-image' with
+          image: section.settings.cover_hover
+        %}
+      </div>
+    </div>
+
+    <div class="product-spike-bag-one__main-content">
+      <div class="product-spike-bag-one__main-content-title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="product-spike-bag-one__main-content-text-wr">
+        <div class="product-spike-bag-one__main-content-text">
+          {{ section.settings.description }}
+        </div>
+
+        {% if section.settings.author != blank %}
+          <div class="product-spike-bag-one__main-content-author">
+            <div class="product-spike-bag-one__main-content-author-name">
+              {{ section.settings.author }}
+            </div>
+
+            {% if section.settings.author_sign %}
+              <div class="product-spike-bag-one__main-content-author-sign">
+                {% render 'lazy-image', image: section.settings.author_sign %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="product-spike-bag-one__images">
+    {% if section.settings.product_image_1 %}
+      <div class="product-spike-bag-one__image">
+        {% render 'lazy-image', image: section.settings.product_image_1 %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.product_image_2 %}
+      <div class="product-spike-bag-one__image">
+        {% render 'lazy-image', image: section.settings.product_image_2 %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.product_image_3 %}
+      <div class="product-spike-bag-one__image">
+        {% render 'lazy-image', image: section.settings.product_image_3 %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.product_image_4 %}
+      <div class="product-spike-bag-one__image">
+        {% render 'lazy-image', image: section.settings.product_image_4 %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spike Section One",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "01"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover",
+      "label": "Cover image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_hover",
+      "label": "Cover image with hover"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The original illustration, created by our designer Élan Hawkins, was inspired by Allyson’s motivation to compete in her fifth Olympic Games on behalf of the USA, but mostly on behalf of her daughter, Cammy. The Summer Games was Allyson’s first as a mother, where she could use her platform to continue to advocate for maternal health and equality. Titled “To Make You Proud”, the illustration celebrates the bond between Allyson and her daughter in a fantastical style that pays homage to Japanese Anime, grounding the art in the location of Allyson’s final Olympic Games in Tokyo."
+    },
+    {
+      "type": "richtext",
+      "id": "author",
+      "label": "Author",
+      "default": "<p>Élan Hawkins,<br /> Saysh Product Designer</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_sign",
+      "label": "Author sign"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_1",
+      "label": "Product image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_2",
+      "label": "Product image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_3",
+      "label": "Product image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_4",
+      "label": "Product image 4"
+    }
+  ]
+}
+{% endschema %}

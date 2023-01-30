@@ -1,0 +1,48 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Snippets
+@import '../../snippets/product-base/product-base';
+
+// Sections
+@import './product-spike-bag-details/product-spike-bag-details';
+@import './product-spike-bag-reveal/product-spike-bag-reveal';
+@import './product-spike-bag-one/product-spike-bag-one';
+@import './product-spike-bag-two/product-spike-bag-two';
+
+.product-spike-bag {
+  font-family: font-family(body);
+}
+
+.product-spike-bag__product-base {
+  margin-bottom: 60px;
+
+  @include media-query($small-down) {
+    margin-bottom: 32px;
+  }
+}
+
+.product-spike-bag__separator {
+  display: block;
+  margin-bottom: 100px;
+
+  @include media-query($small-down) {
+    margin-bottom: 50px;
+  }
+}
+
+.product-spike-bag__separator--large {
+  @include separator($colorDisabled, 60px, 60px);
+
+  margin-top: 100px;
+
+  @include media-query($small-down) {
+    @include separator($colorDisabled, 30px, 30px);
+
+    margin-top: 50px;
+  }
+}

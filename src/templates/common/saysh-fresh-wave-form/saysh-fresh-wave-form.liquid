@@ -1,0 +1,59 @@
+<section
+  class="saysh-fresh-wave-form"
+  data-section="saysh-fresh-wave-form"
+>
+  <div class="saysh-fresh-wave-form__in">
+    <div class="saysh-fresh-wave-form__image">
+      {%
+        render 'lazy-image' with
+        image: section.settings.image,
+        padding_top: 0
+      %}
+    </div>
+
+    <div class="saysh-fresh-wave-form__content">
+      <h2 class="saysh-fresh-wave-form__title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="saysh-fresh-wave-form__text">
+        {{ section.settings.content }}
+      </div>
+
+      <div class="saysh-fresh-wave-form__form">
+        {% render 'saysh-collective-klaviyo-form' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Saysh Fresh Wave Form",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "A Fresh Wave of Saysh One"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>This summer we’ll be releasing new colorways of Saysh One to commemorate Allyson Felix’s final season. Don’t hesitate to get yours, these colors will be out of stock faster than Allyson out of the starting blocks. Sign up below to follow the journey, hear the stories, and receive updates on all the new product launches.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Wave Form",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

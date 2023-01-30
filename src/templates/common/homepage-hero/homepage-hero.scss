@@ -1,0 +1,41 @@
+.homepage-hero {
+  @include display-flexbox();
+}
+
+.homepage-hero__video,
+.homepage-hero__image {
+  width: 100%;
+}
+
+.homepage-hero__video--mobile {
+  @include media-query($tablet) {
+    display: none;
+  }
+}
+
+.homepage-hero__video--desktop {
+  display: none;
+
+  @include media-query($tablet) {
+    display: block;
+  }
+}
+
+.homepage-hero__embed-container {
+  height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  iframe,
+  object,
+  embed {
+    border: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

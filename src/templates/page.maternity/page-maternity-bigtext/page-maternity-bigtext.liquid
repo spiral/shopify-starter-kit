@@ -1,0 +1,41 @@
+<section
+  class="page-maternity-bigtext"
+  data-section="page-maternity-bigtext"
+>
+  <div class="page-maternity-bigtext__media">
+    <div class="page-maternity-bigtext__media-desktop">
+      {% render 'lazy-image', image: section.settings.image_desktop %}
+    </div>
+
+    <div class="page-maternity-bigtext__media-mobile">
+      {% render 'lazy-image', image: section.settings.image_mobile %}
+    </div>
+  </div>
+
+  <div class="page-maternity-bigtext__content">
+    <p class="page-maternity-bigtext__content-title">
+      THAT'S THE PR<span>O</span>MISE OF <span>O</span>UR
+      <span class="big"> Saysh </span> MATERNITY RETURNS P<span>O</span>LICY.
+      IT'S A HEALTHY BREAK FROM THE PAST, TO CREATE A M<span>O</span>RE
+      <span>EQUITABLE</span> FUTURE.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Bigtext",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    }
+  ]
+}
+{% endschema %}

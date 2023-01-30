@@ -1,0 +1,152 @@
+<div
+  class="account"
+  data-template="customers/account"
+>
+  <div class="account__aside">
+    {% render 'customers-aside' %}
+  </div>
+
+  <section class="account__body">
+    {% render 'customers-header' %}
+
+    <div class="account__home">
+      <div class="account__home-buttons">
+        <a
+          class="account__home-button"
+          href="{{ shop.secure_url }}/pages/contact"
+        >
+          <div class="account__home-button-text">
+            Contact
+
+            <br>
+
+            Support
+          </div>
+        </a>
+
+        {% if customer.orders != blank %}
+          {% assign lastOrder = customer.orders | first %}
+          {% assign lineItem = lastOrder.line_items | first %}
+          <a
+            class="account__home-button"
+            href="{{ lineItem.fulfillment.tracking_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="account__home-button-text">
+              Track
+
+              <br>
+
+              Your Order
+            </div>
+          </a>
+        {% endif %}
+
+        <a
+          class="account__home-button"
+          href="{{ settings.return_link }}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="account__home-button-text">
+            Start a
+
+            <br>
+
+            Return
+          </div>
+        </a>
+
+        <a
+          class="account__home-button"
+          href="#"
+        >
+          <div class="account__home-button-text">
+            Change Email
+
+            <br>
+
+            Subscriptions
+          </div>
+        </a>
+      </div>
+
+      <div class="account__home-header">Personal Information</div>
+
+      <form
+        class="account__home-form"
+        method="PUT"
+      >
+        <label class="account__home-form-label">
+          <input
+            class="account__home-form-input"
+            type="text"
+            name=""
+            value="{{ customer.first_name }}"
+            readonly
+          >
+
+          <span> First Name </span>
+        </label>
+
+        <label class="account__home-form-label">
+          <input
+            class="account__home-form-input"
+            type="text"
+            name=""
+            id="customerLastName"
+            value="{{ customer.last_name }}"
+            readonly
+          >
+
+          <span> Last Name </span>
+        </label>
+
+        <label class="account__home-form-label">
+          <input
+            class="account__home-form-input"
+            type="email"
+            name=""
+            id="customerEmail"
+            value="{{ customer.email }}"
+            readonly
+          >
+
+          <span> Email Address </span>
+        </label>
+      </form>
+
+      <div class="account__home-password-recover">
+        <div class="account__home-password-recover-header">Change Password</div>
+
+        {% form 'recover_customer_password', class: 'account__home-password-recover-form', id: 'recover_customer_password', return_to: '/account' %}
+          <input
+            class="visually-hidden"
+            type="email"
+            name="email"
+            value="{{ customer.email }}"
+          >
+
+          <button
+            class="account__home-password-recover-button"
+            type="submit"
+          >
+            Email Me Password Reset
+          </button>
+        {% endform %}
+      </div>
+
+      <div
+        class="account__home-password-recover-status-wr"
+        data-account-password-recover-success
+      >
+        <div class="account__home-password-recover-status">
+          Thank you. An email has been sent to your inbox.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

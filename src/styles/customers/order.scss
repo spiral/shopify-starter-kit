@@ -1,0 +1,218 @@
+.account__order {
+  display: block;
+}
+
+.account__order-header {
+  display: none;
+
+  @include media-query($small-down) {
+    border-bottom: 1px solid $colorText;
+    column-gap: 16px;
+    display: flex;
+    padding-bottom: 24px;
+    padding-top: 24px;
+  }
+}
+
+.account__order-header-back {
+  display: none;
+  transform: rotate(180deg);
+
+  @include media-query($small-down) {
+    display: block;
+  }
+
+  .icon-arrow {
+    height: 24px;
+    width: 24px;
+
+    &:hover {
+      fill: $colorBlueHover;
+    }
+
+    &:active {
+      fill: $colorBlueActive;
+    }
+  }
+}
+
+.account__order-header-title {
+  @include text-title-2();
+
+  margin: 0;
+}
+
+.account__order-info {
+  border-bottom: 1px solid $colorText;
+  display: flex;
+  padding: 56px 0;
+  width: 100%;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    row-gap: 24px;
+  }
+}
+
+.account__order-info-block {
+  width: 50%;
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.account__order-info-block-line {
+  @include text-title-3();
+
+  margin-bottom: 0;
+}
+
+.account__order-info-block-line-detail {
+  @include text-content();
+}
+
+.account__order-info-links {
+  column-gap: 16px;
+  display: flex;
+  margin-top: 10px;
+}
+
+.account__order-info-link {
+  @include link-sm();
+
+  line-height: 1.4;
+}
+
+
+.account__order-addresses {
+  border-bottom: 1px solid $colorText;
+  display: flex;
+  padding: 56px 0;
+  width: 100%;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    row-gap: 48px;
+  }
+}
+
+.account__order-address {
+  width: 50%;
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.account__order-address-title {
+  @include text-title-3();
+
+  margin: 0;
+}
+
+.account__order-address-name {
+  @include text-title-2();
+
+  margin: 24px 0;
+}
+
+.account__order-address-detail {
+  @include text-title-2();
+
+  margin: 0;
+}
+
+.account__order-products {
+  border-bottom: 1px solid $colorText;
+  padding: 56px 0;
+
+  @include media-query($small-down) {
+    padding-bottom: 36px;
+  }
+}
+
+.account__order-products-title {
+  @include text-title-3();
+
+  margin-bottom: 24px;
+}
+
+.account__order-product {
+  column-gap: 52px;
+  display: flex;
+  margin-bottom: 36px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    column-gap: 16px;
+  }
+}
+
+.account__order-product-block {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.account__order-product-block-in {
+  margin-top: 36px;
+
+  @include media-query($small-down) {
+    margin-top: 0;
+  }
+}
+
+.account__order-product-image {
+  max-width: 422px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.account__order-product-title {
+  @include text-title-2();
+
+  border-bottom: 2px solid $colorText;
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+}
+
+.account__order-product-detail {
+  @include text-title-3();
+
+  margin: 0 0 2px;
+}
+
+.account__order-product-detail-value {
+  @include text-content-sm();
+}
+
+.account__order-product-price {
+  @include text-title-3();
+
+  margin-top: 14px;
+}
+
+.account__order-total {
+  display: block;
+}
+
+.account__order-total-details {
+  @include text-content($colorMuted);
+
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  &:last-child {
+    @include text-title-3();
+
+    margin-top: 16px;
+  }
+}
+
+.account__order-total-detail {
+  margin: 0;
+}
+

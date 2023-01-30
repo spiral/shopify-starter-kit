@@ -1,0 +1,77 @@
+<section
+  class="product-video"
+  data-section="product-video"
+>
+  <div class="product-video__head-wr">
+    <div class="product-video__head">
+      <span class="product-video__head-text">
+        {{ section.settings.product_num }}
+      </span>
+
+      <span class="product-video__head-text">
+        {{ section.settings.product_type }}
+      </span>
+    </div>
+  </div>
+
+  <div class="product-video__body">
+    {%
+      render 'media',
+      video_url: section.settings.video_url,
+      video_mobile_url: section.settings.video_url_mobile,
+      cover_image: section.settings.video_cover,
+      cover_image_mobile: section.settings.video_cover_mobile,
+      main_video_attrs: section.settings.video_attr,
+      mobile_video_attrs: section.settings.video_attr_mobile,
+      video_type: 'mp4'
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_num",
+      "label": "Product number"
+    },
+    {
+      "type": "text",
+      "id": "product_type",
+      "label": "Product type"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_cover",
+      "label": "Video cover"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video url link"
+    },
+    {
+      "type": "url",
+      "id": "video_url_mobile",
+      "label": "Video url link (Mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_cover_mobile",
+      "label": "Mobile video cover"
+    },
+    {
+      "type": "text",
+      "id": "video_attr",
+      "label": "Video attributes"
+    },
+    {
+      "type": "text",
+      "id": "video_attr_mobile",
+      "label": "Video attributes for mobile"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,161 @@
+<section class="nft_preview">
+  <div {%
+      render 'lazy-background-image' with
+      image: section.settings.back_image,
+      img_classes: 'nft_preview__in',
+    %}>
+    <div class="nft_preview__description">
+      <div class="nft_preview__description-caption">
+        <h2 class="nft_preview__description-caption-header">
+          The Saysh 0.07 Spike
+        </h2>
+
+        <p class="nft_preview__description-caption-text">
+          The Saysh 0.07 Spike is designed from the sole up for Allyson Felix.
+          It is a bespoke racing spike of the highest of caliber, weighing in at
+          a breezy 3.9oz. The upper is made from a single piece of knit monomesh
+          with precisely engineered reinforcement along with optimally located
+          cushioning elements in the heel. It features a injection molded PEBAX
+          plate with optimal rigidity, precise secondary traction elements, and
+          insert molded primary spikes. The racing spikes were designed by
+          Natalie Candrian and Michael Friton. Mike Friton also co-developed and
+          constructed track spikes for Olympians including Mary Decker Slaney,
+          and Kory Tarpenning, and Michael Johnson’s iconic “Gold Spike” for the
+          1996 Summer Games in Atlanta. The spikes were co-developed by Tiffany
+          Beers and Larry Eisenbach, and hand crafted and assembled in the
+          United States at Friton Design in Portland, Oregon.
+        </p>
+      </div>
+
+      <div class="nft_preview__description-img">
+        {%
+          render 'lazy-image' with
+          image: section.settings.top_image,
+        %}
+      </div>
+    </div>
+
+    <div class="nft_preview__story">
+      <div
+        class="nft_preview__story-caption"
+        data-move-on-scroll-target
+      >
+        <p class="nft_preview__story-caption-text">The</p>
+
+        <div
+          class="nft_preview__story-caption-image"
+          data-move-on-scroll="600"
+        >
+          {%
+            render 'lazy-image' with
+            image: section.settings.middle_image,
+          %}
+        </div>
+
+        <p class="nft_preview__story-caption-text">&nbsp;full story</p>
+      </div>
+
+      <div class="nft_preview__story-row">
+        <p class="nft_preview__story-col">
+          Allyson Felix is a one of one athlete. This summer Allyson broke Carl
+          Lewis’ long held record to become the most decorated track and field
+          Olympian in American history.
+          <br>
+          <br>
+          To celebrate her final solo race on August 6th, Saysh created a
+          custom, one of one pair of racing spikes – the “Saysh 0.07 Spike”. No
+          athlete has ever competed in the Olympic games in footwear from their
+          own brand.
+          <br>
+          <br>
+          To further mark the occasion, Saysh commissioned a one of one piece of
+          digital art, to be minted as an NFT, from the renowned Hong Kong based
+          studio MMM.
+          <br>
+          <br>
+          This October, the artwork was exhibited at the world-famous Saatchi
+          Gallery in London, Kensington. This will be the only time the art will
+          be publicly exhibited.
+        </p>
+
+        <p class="nft_preview__story-col">
+          Saysh is now auctioning the NFT, which will act as a redeemable token
+          to acquire the Olympic race-worn spikes.
+          <br>
+          <br>
+          All proceeds will go to charity. Saysh is partnering with the Women’s
+          Sports Foundation, specifically Athleta’s Power of She Fund: Child
+          Care Grant, which funds child care for women that are current and
+          aspiring athletes. All of this builds towards Saysh's vision: a future
+          where inequality is undermined by female creatively and athleticism.
+          <br>
+          <br>
+          In bidding, your generosity will ensure fewer women have to choose
+          between being a professional athlete and being a mother.
+        </p>
+      </div>
+
+      <div class="nft_preview__story-row">
+        <div class="nft_preview__story-col">
+          <div class="nft_preview__story-image-small">
+            {%
+              render 'lazy-image' with
+              image: section.settings.logo_story_image,
+            %}
+          </div>
+        </div>
+
+        <div class="nft_preview__story-col">
+          <div class="nft_preview__story-image-large">
+            {%
+              render 'lazy-image' with
+              image: section.settings.bottom_story_image,
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nft_preview__clouds">
+    <img src="{{ section.settings.clouds_image | img_url : 'master'}}">
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NFT preview",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_image",
+      "label": "Top image"
+    },
+    {
+      "type": "image_picker",
+      "id": "middle_image",
+      "label": "Middle image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_story_image",
+      "label": "Bottom story image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_story_image",
+      "label": "Bottom story logo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "clouds_image",
+      "label": "Clouds image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,186 @@
+<div
+  class="customers-address-modal-new"
+  data-snippet="customers-address-modal-new"
+  data-modal="customers-address-modal-new"
+>
+  <header class="customers-address-modal-new__header">
+    <button
+      class="customers-address-modal-new__header-cancel"
+      type="button"
+      data-modal-close="customers-address-modal-new"
+    >
+      {% render 'icon-close' %}
+    </button>
+
+    <h2 class="customers-address-modal-new__header-title">Add New Address</h2>
+  </header>
+
+  <div class="customers-address-modal-new__body">
+    {% form 'customer_address', customer.new_address %}
+      <div class="customers-address-modal-new__body-inputs">
+        <label class="customers-address-modal-new__body-label">
+          <input
+            class="customers-address-modal-new__body-input"
+            type="text"
+            placeholder="{{ 'customer.addresses.first_name' | t }}"
+            name="address[first_name]"
+            value="{{ form.first_name }}"
+            autocapitalize="words"
+          >
+
+          <span>
+            {{ 'customer.addresses.first_name' | t }}
+          </span>
+        </label>
+
+        <label class="customers-address-modal-new__body-label">
+          <input
+            class="customers-address-modal-new__body-input"
+            type="text"
+            placeholder="{{ 'customer.addresses.last_name' | t }}"
+            name="address[last_name]"
+            value="{{ form.last_name }}"
+            autocapitalize="words"
+          >
+
+          <span>
+            {{ 'customer.addresses.last_name' | t }}
+          </span>
+        </label>
+      </div>
+
+      <label class="customers-address-modal-new__body-label">
+        <input
+          class="customers-address-modal-new__body-input"
+          type="text"
+          name="address[address1]"
+          value="{{ form.address1 }}"
+          autocapitalize="words"
+          placeholder="{{ 'customer.addresses.address1' | t }}"
+        >
+
+        <span>
+          {{ 'customer.addresses.address1' | t }}
+        </span>
+      </label>
+
+      <label class="customers-address-modal-new__body-label">
+        <input
+          class="customers-address-modal-new__body-input"
+          type="text"
+          placeholder="{{ 'customer.addresses.address2' | t }}"
+          name="address[address2]"
+          value="{{ form.address2 }}"
+          autocapitalize="words"
+        >
+
+        <span>
+          {{ 'customer.addresses.address2' | t }}
+        </span>
+      </label>
+
+      <label class="customers-address-modal-new__body-label">
+        <input
+          class="customers-address-modal-new__body-input"
+          type="text"
+          placeholder="{{ 'customer.addresses.city' | t }}"
+          name="address[city]"
+          value="{{ form.city }}"
+          autocapitalize="words"
+        >
+
+        <span>
+          <span data-adapt-for="AddressCountryNew" data-adapt-value="0">
+            {{- 'customer.addresses.city' | t -}}
+          </span>
+
+          <span
+            data-adapt-for="AddressCountryNew"
+            data-adapt-value="1"
+          >
+            {{- 'customer.addresses.municipality' | t -}}
+          </span>
+        </span>
+      </label>
+
+      <label class="customers-address-modal-new__body-label">
+        <select
+          class="customers-address-modal-new__body-input"
+          name="address[country]"
+          id="AddressCountryNew"
+          data-default="{{ form.country }}"
+        >
+          {{ country_option_tags }}
+        </select>
+
+        <span>
+          {{ 'customer.addresses.country' | t }}
+        </span>
+      </label>
+
+      <div id="AddressProvinceContainerNew">
+        <label class="customers-address-modal-new__body-label">
+          <!--
+            NOTE: options will be added by Shopify method, wrong accessibility might be caused
+          -->
+          <select
+            class="customers-address-modal-new__body-input"
+            name="address[province]"
+            id="AddressProvinceNew"
+            data-default="{{ form.province }}"
+          ></select>
+
+          <span>
+            <span data-adapt-for="AddressCountryNew" data-adapt-value="0">
+              {{- 'customer.addresses.state' | t -}}
+            </span>
+
+            <span
+              data-adapt-for="AddressCountryNew"
+              data-adapt-value="1"
+            >
+              {{- 'customer.addresses.province' | t -}}
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <label class="customers-address-modal-new__body-label">
+        <input
+          class="customers-address-modal-new__body-input"
+          type="text"
+          placeholder=" {{ 'customer.addresses.zip' | t }}"
+          name="address[zip]"
+          value="{{ form.zip }}"
+          autocapitalize="characters"
+        >
+
+        <span>
+          <span data-adapt-for="AddressCountryNew" data-adapt-value="0">
+            {{- 'customer.addresses.zip' | t -}}
+          </span>
+
+          <span
+            data-adapt-for="AddressCountryNew"
+            data-adapt-value="1"
+          >
+            {{- 'customer.addresses.postal_code' | t -}}
+          </span>
+        </span>
+      </label>
+
+      <div class="customers-address-modal-new__body-buttons">
+        <button
+          class="customers-address-modal-new__body-button"
+          type="submit"
+        >
+          Save
+
+          <span>
+            {% render 'icon-arrow' %}
+          </span>
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</div>

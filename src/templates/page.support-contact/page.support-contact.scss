@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+// Settings
+@import "../../styles/config";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+// Mixins
+@import "common";
+
+// Sections
+@import "./page-support-contact-hero/page-support-contact-hero";
+@import "./page-support-contact-information/page-support-contact-information";
+@import "./page-support-contact-accordion-0/page-support-contact-accordion-0";
+@import "./page-support-contact-accordion-1/page-support-contact-accordion-1";
+@import "./page-support-contact-accordion-2/page-support-contact-accordion-2";
+@import "./page-support-contact-inquiries/page-support-contact-inquiries";
+
+// Snippets
+@import "../../snippets/accordion/accordion";
+
+.page-support-contact {
+  display: block;
+}

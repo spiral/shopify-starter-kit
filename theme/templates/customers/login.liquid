@@ -1,0 +1,165 @@
+<section
+  class="login"
+  data-template="customers/login"
+>
+  <div class="login__title-wr">
+    <h1 class="login__title">Account Login</h1>
+  </div>
+
+  <div class="login__container">
+    <div class="login__header">
+      <div class="login__header-tabs">
+        <a
+          class="login__header-tab"
+          href="{{ shop.secure_url }}/account/login"
+          data-active="true"
+        >
+          Sign In
+        </a>
+
+        <a
+          class="login__header-tab"
+          href="{{ shop.secure_url }}/account/register"
+          data-active="false"
+        >
+          Join Us
+        </a>
+      </div>
+    </div>
+
+    <div class="login__login">
+      {% form 'customer_login', class: 'login__form' %}
+        {% if form.errors %}
+          <div class="login__form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+          data-email-error="Email is invalid"
+        >
+          <input
+            type="email"
+            name="customer[email]"
+            placeholder="Email address *"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            autofocus
+            data-field
+          >
+
+          <span> Email address * </span>
+        </label>
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+        >
+          <input
+            type="password"
+            name="customer[password]"
+            placeholder="Password *"
+            data-field
+          >
+
+          <span> Password * </span>
+
+          <button type="button">
+            <span class="visually-hidden"> Show/Hide password button </span>
+          </button>
+
+          <div data-error=""></div>
+        </label>
+
+        <button
+          type="submit"
+          class="login__form-button"
+        >
+          Login
+        </button>
+
+        <div class="login__form-link-wr">
+          <a
+            class="login__form-link"
+            href="#recover"
+            js-show-recover
+          >
+            Lost your password?
+          </a>
+        </div>
+      {% endform %}
+    </div>
+
+    <div class="login__recover">
+      <h2 class="login__recover-header">Reset Password</h2>
+
+      <p class="login__recover-content">
+        Please enter your email address below. You will receive a link to reset
+        your password.
+      </p>
+
+      {% form 'recover_customer_password', class: 'login__form', id: 'customer_recover' %}
+        {% if form.errors %}
+          <div class="login__form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <label
+          for="RecoverEmail"
+          class="label-hidden"
+        >
+          {{ 'customer.recover_password.email' | t }}
+        </label>
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+          data-email-error="Email is invalid"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="{{ 'customer.recover_password.email' | t }}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            data-field
+          >
+
+          <span>
+            {{ 'customer.recover_password.email' | t }}
+          </span>
+        </label>
+
+        <button
+          type="submit"
+          class="login__form-button"
+        >
+          Submit
+        </button>
+
+        <div class="login__form-link-wr">
+          <button
+            type="button"
+            class="login__form-link"
+            js-hide-recover
+          >
+            Cancel
+          </button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{{ 'customers.js' | asset_url | script_tag }}

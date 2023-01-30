@@ -1,0 +1,38 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Snippets
+@import '../../snippets/product-base/product-base';
+
+// Sections
+@import './product-anklet-hero/product-anklet-hero';
+@import './product-anklet-collab/product-anklet-collab.scss';
+@import './product-anklet-info/product-anklet-info.scss';
+@import './product-anklet-vision/product-anklet-vision.scss';
+
+.product-anklet {
+  display: block;
+  font-family: font-family(body);
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+.product-anklet__product-base {
+  margin-bottom: 60px;
+
+  @include media-query($small-down) {
+    margin-bottom: 32px;
+  }
+
+  .product-base__product-klaviyo-trigger {
+    display: none !important;
+  }
+}
+
+.product-anklet__sep {
+  @include separator($colorDisabled, 4%, 4%);
+}

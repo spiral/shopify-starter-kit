@@ -1,0 +1,75 @@
+<script>
+  window.productConfig = {{ product | json }};
+  window.productConfig.relatedProducts = {};
+
+  {% assign p_meta = product.metafields.store %}
+
+  window.productConfig.metafields = {};
+  window.productConfig.metafields.optionsValuesMap = {% if p_meta.color_values != blank %}{{- p_meta.color_values -}}{% else %}null{% endif %};
+  window.productConfig.metafields.customOptionsConfig = {% if p_meta.custom_options != blank %}{{- p_meta.custom_options -}}{% else %}null{% endif %};
+
+  window.productConfig.variants = {};
+
+  {% for variant in product.variants %}
+  {% assign v_meta = variant.metafields.store %}
+
+  window.productConfig.variants['{{ variant.id }}'] = {{ variant | json }};
+  window.productConfig.variants['{{ variant.id }}'].metafields = {};
+  window.productConfig.variants['{{ variant.id }}'].details = `{% if v_meta.details != blank %}{{ v_meta.details | newline_to_br }}{% else %}{{ p_meta.details | newline_to_br }}{% endif %}`;
+  window.productConfig.variants['{{ variant.id }}'].title = `{% if v_meta.title != blank %}{{ v_meta.title | newline_to_br }}{% elsif p_meta.title != blank %}{{ p_meta.title | newline_to_br }}{% else %}{{ product.title | newline_to_br }}{% endif %}`;
+  window.productConfig.variants['{{ variant.id }}'].description = `{% if v_meta.description != blank %}{{ v_meta.description | newline_to_br }}{% elsif p_meta.description != blank %}{{ p_meta.description | newline_to_br }}{% elsif p_meta.is_visible_description == true %}{{ product.description | newline_to_br }}{% else %}{% endif %}`;
+  window.productConfig.variants['{{ variant.id }}'].preOrderText = `{{ p_meta.pre_order_text }}`;
+  {% endfor %}
+
+
+  window.relatedProductsConfig = {};
+
+  {% assign products_collection = p_meta.related_products.value %}
+  window.relatedProductsConfig.title = `{{ products_collection.title }}`;
+  window.relatedProductsConfig.products = {};
+  window.relatedProductsConfig.activeProductId = '{{ product.id }}';
+  window.relatedProductsConfig.productsMeta = {};
+
+  {% for related_product in products_collection.products %}
+    window.relatedProductsConfig.products['{{ related_product.id }}'] = {{ related_product | json }};
+
+    {% assign rp_meta = related_product.metafields.store %}
+    window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].color = `{{ rp_meta.product_color }}`;
+    window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].isSeasonal = Boolean('{{ rp_meta.is_seasonal_color }}');
+
+    window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].productDiscount = {
+      value: null,
+      percentage: null,
+      endDate: null
+    }
+
+    const isStartedDiscount = (new Date({% if rp_meta.discount_start_date %}'{{ rp_meta.discount_start_date }}'{% endif %}) - new Date()) < 0;
+    const isEndedDiscount = (new Date({% if rp_meta.discount_end_date %}'{{ rp_meta.discount_end_date }}'{% endif %}) - new Date()) < 0;
+
+    if (isStartedDiscount && !isEndedDiscount) {
+      window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].productDiscount.value = Number('{{ related_product.price | divided_by: 100.0 }}') * Number('{{ rp_meta.discount_percentage | divided_by: 100.0 }}');
+      window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].productDiscount.percentage = Number('{{ rp_meta.discount_percentage }}');
+      window.relatedProductsConfig.productsMeta['{{ related_product.id }}'].productDiscount.endDate = '{{ rp_meta.discount_end_date | date: '%m/%d/%Y' }}';
+    }
+  {% endfor %}
+
+
+  const hasDiscount = Boolean({{ p_meta.discount_percentage }});
+
+  window.productDiscount = {
+    value: null,
+    percentage: null,
+    endDate: null
+  };
+
+  if (hasDiscount) {
+    const isStartedDiscount = (new Date('{{ p_meta.discount_start_date }}') - new Date()) < 0;
+    const isEndedDiscount = (new Date('{{ p_meta.discount_end_date }}') - new Date()) < 0;
+
+    if (isStartedDiscount && !isEndedDiscount) {
+      window.productDiscount.value = Number('{{ product.price | divided_by: 100.0 }}') * Number('{{ p_meta.discount_percentage | divided_by: 100.0 }}');
+      window.productDiscount.percentage = Number('{{ p_meta.discount_percentage }}');
+      window.productDiscount.endDate = '{{ p_meta.discount_end_date | date: '%m/%d/%Y' }}';
+    }
+  }
+</script>

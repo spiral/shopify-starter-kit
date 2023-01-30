@@ -1,0 +1,15 @@
+<style>
+  {% render 'page.stocklist.css' %}
+</style>
+
+<div
+  class="page-stocklist"
+  data-template="page.stocklist"
+>
+  <div class="page-stocklist__title">
+    {{ page.title }}
+  </div>
+
+  {% section 'page-stocklist-hero' %}
+  {% section 'page-stocklist-accordion' %}
+</div>

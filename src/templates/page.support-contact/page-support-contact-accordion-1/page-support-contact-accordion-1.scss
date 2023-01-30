@@ -1,0 +1,15 @@
+.page-support-contact-accordion-1 {
+  @include page-support-space();
+}
+
+.page-support-contact-accordion-1__container {
+  @include page-support-contact-accordion__container();
+}
+
+.page-support-contact-accordion-1__title {
+  @include page-support-contact-accordion__title();
+}
+
+.page-support-contact-accordion-1__list {
+  @include page-support-contact-accordion__list();
+}

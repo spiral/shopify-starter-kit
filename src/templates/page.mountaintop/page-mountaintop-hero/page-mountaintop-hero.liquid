@@ -1,0 +1,210 @@
+<section
+  class="page-mountaintop-hero"
+  data-section="page-mountaintop-hero"
+>
+  <div class="page-mountaintop-hero__video">
+    {%
+      render 'media' with
+      video_url: section.settings.video_url
+      video_mobile_url: section.settings.video_url_mobile,
+      cover_image: section.settings.video_cover
+      cover_image_mobile: section.settings.video_cover_mobile,
+      main_video_attrs: 'loop autoplay muted playsinline',
+      mobile_video_attrs: 'loop autoplay muted playsinline',
+      video_type: 'mp4'
+    %}
+  </div>
+
+  <div class="page-mountaintop-hero__details">
+    <div class="page-mountaintop-hero__details-top-wr">
+      <div class="page-mountaintop-hero__details-top">
+        <div class="page-mountaintop-hero__details-conversation">
+          <h5 class="page-mountaintop-hero__details-conversation-title">
+            Mountaintop
+          </h5>
+          Conversations
+          <br>
+          <br>
+          +
+        </div>
+
+        <div class="page-mountaintop-hero__details-featuring">
+          <h5 class="page-mountaintop-hero__details-featuring-title">
+            Featuring
+            <br>
+          </h5>
+
+          <ul class="page-mountaintop-hero__details-featuring-list">
+            <li class="page-mountaintop-hero__details-featuring-item">
+              WES felix / allyson felix
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Hillary Clinton
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Adam Grant
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Stacey Abrams
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Christy Turlington Burns
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Melody Ehsani
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Candace Parker
+            </li>
+
+            <li class="page-mountaintop-hero__details-featuring-item">
+              Mellody Hobson
+            </li>
+          </ul>
+        </div>
+
+        <div class="page-mountaintop-hero__details-act">
+          act&nbsp;01
+          <br>
+          SS&nbsp;22
+        </div>
+      </div>
+
+      <div class="page-mountaintop-hero__details-act-mobile">
+        <div class="page-mountaintop-hero__details-act-mobile-text">
+          act&nbsp;01
+        </div>
+
+        <div class="page-mountaintop-hero__details-act-mobile-text">
+          SS&nbsp;22
+        </div>
+      </div>
+    </div>
+
+    <div class="page-mountaintop-hero__details-bottom">
+      <div class="page-mountaintop-hero__details-logo">
+        <div class="page-mountaintop-hero__details-logo-in">
+          {%
+            render 'lazy-image' with
+            image: section.settings.logo
+          %}
+        </div>
+      </div>
+
+      {% if section.settings.text != blank %}
+        <p class="page-mountaintop-hero__details-text">
+          {{ section.settings.text | newline_to_br }}
+        </p>
+      {% endif %}
+
+      <div class="page-mountaintop-hero__details-platform">
+        <h4 class="page-mountaintop-hero__details-platform-title">
+          Listen on:
+        </h4>
+
+        <ul class="page-mountaintop-hero__details-platform-list">
+          {% for block in section.blocks %}
+            <li
+              class="page-mountaintop-hero__details-platform-item"
+              style="width: {{ block.settings.size }}px;"
+            >
+              <a
+                href="{{ block.settings.url }}"
+                class="page-mountaintop-hero__details-platform-item-link"
+                {% if block.settings.is_link_new_tab %}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="open {{ block.settings.title }} in new window"
+                {% endif %}
+              >
+                {%
+                  render 'lazy-image' with
+                  image: block.settings.image
+                %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mountaintop Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "video_cover",
+      "label": "Video cover"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video url link"
+    },
+    {
+      "type": "url",
+      "id": "video_url_mobile",
+      "label": "Video url link (Mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_cover_mobile",
+      "label": "Mobile hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Saysh Mountiantop Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Details text",
+      "default": "Hosted by Allyson and Wes Felix, Saysh co-founders, Mountaintop Conversations celebrates the stories and experiences of leaders across politics, entrepreneurship, and culture. Each guest has scaled their own personal mountaintop, and hopes to light the path for others to scale new heights themselves."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Platform",
+      "type": "platform",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Platform name"
+        },
+        {
+          "type": "number",
+          "id": "size",
+          "label": "Platform logo width"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Platform logo"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Platform direct link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_link_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

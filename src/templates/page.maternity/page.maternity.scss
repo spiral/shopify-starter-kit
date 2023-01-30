@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-maternity-hero/page-maternity-hero';
+@import './page-maternity-policy/page-maternity-policy';
+@import './page-maternity-bigtext/page-maternity-bigtext';
+@import './page-maternity-steps/page-maternity-steps';
+@import './page-maternity-media/page-maternity-media';
+@import './page-maternity-faq/page-maternity-faq';
+
+//snippets
+@import "../../snippets/accordion/accordion";
+@import "../../snippets/media/media";
+
+
+.page-maternity {
+  display: block;
+}
+

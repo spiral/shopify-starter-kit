@@ -1,0 +1,73 @@
+{% if section.settings.url != blank %}
+  {% capture _tag_inner_open %}
+    <a class="page-mountaintop-media__in"
+       href="{{ section.settings.url }}"
+       {% if section.settings.url_new_tab %}
+         target="_blank"
+         rel="noopener noreferrer"
+       {% endif %}
+    >
+  {% endcapture %}
+  {% assign _tag_inner_close = "</a>" %}
+{% else %}
+  {% assign _tag_inner_open = "<div class='page-mountaintop-media__in'>" %}
+  {% assign _tag_inner_close = "</div>" %}
+{% endif %}
+
+<section class="page-mountaintop-media"
+         data-section="page-mountaintop-media"
+>
+
+  {{ _tag_inner_open }}
+    {% render 'media' with
+      video_iframe_url: section.settings.vimeo_link,
+      video_mobile_url: section.settings.vimeo_link_mobile,
+      cover_image: section.settings.image,
+      cover_image_mobile: section.settings.image_mobile,
+      mobile_video_attrs: 'controls playsinline'
+    %}
+  {{ _tag_inner_close }}
+</section>
+
+
+{% schema %}
+  {
+    "name": "Mountaintop Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Section Link URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "url_new_tab",
+        "label": "Open link in new tab"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)"
+      },
+      {
+        "type": "video_url",
+        "id": "vimeo_link",
+        "label": "Vimeo Link",
+        "info": "Placing a Vimeo video link will replace hero images",
+        "accept": [
+          "vimeo"
+        ]
+      },
+      {
+        "type": "url",
+        "id": "vimeo_link_mobile",
+        "label": "Video Direct Link (Mobile)"
+      }
+    ]
+  }
+{% endschema %}

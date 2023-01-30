@@ -1,0 +1,225 @@
+<script id="CartTemplate"
+        type="text/template"
+>
+{% raw %}
+  <form action="/cart" method="post" novalidate class="ajaxcart">
+
+    <div class="ajaxcart__disclaimer">
+      {{{disclaimer_2}}}
+    </div>
+
+    <div class="ajaxcart__inner">
+      {{#items}}
+
+      <div class="ajaxcart__product"
+           data-line="{{line}}"
+      >
+        <div class="ajaxcart__product-view">
+          <a href="{{url}}"
+             class="ajaxcart__product-image"
+          >
+
+            <img src="{{img}}"
+                 class="lazyload"
+                 alt="{{name}}"
+            >
+
+          </a>
+        </div>
+
+        <div class="ajaxcart__product-information">
+          <div class="ajaxcart__product-details">
+            <h1 class="ajaxcart__product-title">
+
+              <a href="{{url}}">
+                {{name}}
+              </a>
+
+            </h1>
+
+            {{#if size}}
+              <span class="ajaxcart__product-variant">
+                Size
+
+                <b>
+                  {{{size}}}
+                </b>
+
+              </span>
+            {{/if}}
+
+            {{#if color}}
+              <span class="ajaxcart__product-variant">
+                Color
+
+                <b>
+                  {{{color}}}
+                </b>
+
+              </span>
+            {{/if}}
+
+            {{#if design}}
+              <span class="ajaxcart__product-variant">
+                Design
+
+                <b>
+                  {{{design}}}
+                </b>
+
+              </span>
+            {{/if}}
+
+            <span class="ajaxcart__product-variant">
+              Quantity
+
+              <b>
+                {{{itemQty}}}
+              </b>
+
+            </span>
+
+            <div class="ajaxcart__product-price">
+              {{#if discountsApplied}}
+              <span class="ajaxcart__product-price-old">
+                {{{originalLinePrice}}}
+              </span>
+
+              <br>
+
+              <span class="ajaxcart__product-price-new">
+                {{{linePrice}}}
+              </span>
+
+              {{else}}
+
+              <span>
+                {{{linePrice}}}
+              </span>
+              {{/if}}
+            </div>
+
+            <div class="ajaxcart__product-btns">
+              <a href="{{../editItemsUrl}}"
+                 class="ajaxcart__product-btn"
+              >
+                Edit
+              </a>
+
+              <button type="button"
+                      class="ajaxcart__product-btn"
+                      data-remove-line
+                      data-line="{{line}}"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/items}}
+    </div>
+    <div class="ajaxcart__footer">
+      <div class="ajaxcart__disclaimer">
+        {{{disclaimer_1}}}
+      </div>
+
+      <div class="ajaxcart__subtotal">
+        <div class="ajaxcart__subtotal-text">
+          Estimated Total
+        </div>
+
+        <div class="ajaxcart__subtotal-text">
+          {{{totalPrice}}}
+        </div>
+      </div>
+      <button type="submit"
+              class="btn ajaxcart__checkout"
+              name="checkout"
+      >
+        Checkout
+      </button>
+    </div>
+  </form>
+{% endraw %}
+</script>
+<script id="AjaxQty" type="text/template">
+{% raw %}
+  <div class="ajaxcart__qty">
+    <button type="button"
+            class="ajaxcart__qty-adjust ajaxcart__qty--minus"
+            data-id="{{key}}"
+            data-qty="{{itemMinus}}"
+    >
+
+      <span>
+        &minus;
+      </span>
+    </button>
+
+    <input type="text"
+           class="ajaxcart__qty-num"
+           value="{{itemQty}}"
+           min="0"
+           data-id="{{key}}"
+           aria-label="quantity"
+           pattern="[0-9]*"
+    >
+
+    <button type="button"
+            class="ajaxcart__qty-adjust ajaxcart__qty--plus"
+            data-id="{{key}}"
+            data-qty="{{itemAdd}}"
+    >
+
+      <span>
+        &plus;
+      </span>
+
+    </button>
+  </div>
+{% endraw %}
+</script>
+
+<script id="JsQty"
+        type="text/template"
+>
+{% raw %}
+  <div class="js-qty">
+    <button type="button"
+            class="js-qty__adjust js-qty__adjust--minus"
+            data-key="{{key}}"
+            data-qty="{{itemMinus}}"
+    >
+
+      <span>
+        &minus;
+      </span>
+
+    </button>
+
+    <input type="text"
+           class="js-qty__num"
+           value="{{itemQty}}"
+           min="1"
+           data-key="{{key}}"
+           aria-label="quantity"
+           pattern="[0-9]*"
+           name="{{inputName}}"
+           id="{{inputId}}"
+    >
+
+    <button type="button"
+            class="js-qty__adjust js-qty__adjust--plus"
+            data-key="{{key}}"
+            data-qty="{{itemAdd}}"
+    >
+
+      <span>
+        &plus;
+      </span>
+
+    </button>
+  </div>
+{% endraw %}
+</script>

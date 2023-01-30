@@ -1,0 +1,78 @@
+<section
+  class="product-author"
+  data-section="product-author"
+>
+  <div class="product-author__container">
+    <div class="product-author__content">
+      <div class="product-author__content-text">
+        {{ section.settings.text }}
+      </div>
+
+      <div class="product-author__signature">
+        {%
+          render 'lazy-image' with
+          image: section.settings.image_signature
+        %}
+      </div>
+
+      <span class="product-author__content-text product-author__content-text--name">
+        {{ section.settings.name }}
+      </span>
+    </div>
+
+    <div class="product-author__media">
+      <div class="product-author__media-main">
+        {%
+          render 'lazy-image' with
+          image: section.settings.image_author
+        %}
+      </div>
+
+      <div class="product-author__media-item">
+        {%
+          render 'lazy-image' with
+          image: section.settings.image
+        %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Author",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Add describtion"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_author",
+      "label": "Add image author"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_signature",
+      "label": "Add signature"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Add author name"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Author",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

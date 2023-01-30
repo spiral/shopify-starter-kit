@@ -1,0 +1,68 @@
+<section
+  class="homepage-conversations"
+  data-section="homepage-conversations"
+>
+  <div class="homepage-conversations__content">
+    <div class="homepage-conversations__subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+
+    <h2 class="homepage-conversations__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <p class="homepage-conversations__text">
+      {{ section.settings.text }}
+    </p>
+
+    <a
+      class="homepage-conversations__button"
+      href="{{ section.settings.link_url }}"
+    >
+      {{ section.settings.link_text }}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Conversations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Season 01"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Mountaintop Conversations"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Hosted by Allyson and Wes Felix, Saysh co-founders, Mountaintop Conversations celebrates the stories and experiences of leaders across politics, entrepreneurship, and culture. Each guest has scaled their own personal mountaintop, and hopes to light the path for others to scale new heights themselves."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage-conversations",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

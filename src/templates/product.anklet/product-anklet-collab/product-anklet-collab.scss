@@ -1,0 +1,140 @@
+.product-anklet-collab {
+  padding: 0;
+}
+
+.product-anklet-collab__in {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-anklet-collab__content {
+  margin: 0 auto;
+  max-width: 860px;
+  padding: spacing() * 4 spacing();
+  text-align: center;
+
+  @include media-query($small-down) {
+    padding: spacing() * 2.5 spacing() * 1.5;
+  }
+}
+
+.product-anklet-collab__subtitle {
+  @include title-h6();
+
+  margin-bottom: 38px;
+  margin-top: 0;
+
+  @include media-query($small-down) {
+    margin-bottom: 20px;
+  }
+}
+
+.product-anklet-collab__title {
+  @include title-h4();
+
+  margin-bottom: 30px;
+  margin-top: 0;
+
+  @include media-query($small-down) {
+    @include title-h5();
+
+    margin-bottom: 16px;
+    padding: 0 spacing();
+  }
+}
+
+.product-anklet-collab__text {
+  @include text-content();
+
+  margin: 0 auto;
+  max-width: 700px;
+
+  @include media-query($small-down) {
+    margin-bottom: 20px;
+  }
+}
+
+.product-anklet-collab__image {
+  display: flex;
+  padding: 0 spacing() * 2;
+  width: 100%;
+
+  @include media-query($small-down) {
+    display: none;
+    padding: 0;
+  }
+
+  > div {
+    min-height: 420px;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.product-anklet-collab__image--mobile {
+  display: none;
+  max-height: 600px;
+  overflow: hidden;
+
+  @include media-query($small-down) {
+    display: flex;
+  }
+
+  img {
+    max-height: 600px;
+  }
+}
+
+.product-anklet-collab__blocks-wr {
+  margin: 0 auto;
+  max-width: $grid-widescreen;
+  padding: 0 spacing() * 5;
+  width: 100%;
+
+  @include media-query($small-down) {
+    padding: 0;
+  }
+}
+
+.product-anklet-collab__blocks {
+  display: flex;
+  margin: 0 0 spacing() * 5;
+  padding: 0;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    margin: 0 0 spacing() * 2.5;
+    overflow: auto;
+    width: 100%;
+  }
+}
+
+.product-anklet-collab__blocks-in {
+  @include f-row(15px);
+
+  justify-content: center;
+
+  @include media-query($small-down) {
+    @include f-row(14px);
+
+    margin-right: 0;
+    overflow: auto;
+    width: 155%;
+  }
+}
+
+.product-anklet-collab__block {
+  @include f-col(1/3, 15px);
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 14px);
+
+    padding-right: 0;
+  }
+}
+
+.product-anklet-collab__block-image {
+  width: 100%;
+}

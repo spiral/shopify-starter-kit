@@ -1,0 +1,48 @@
+<section
+  class="page-support-contact-accordion-1"
+  data-section="page-support-contact-accordion-1"
+>
+  <div class="page-support-contact-accordion-1__container">
+    <h2 class="page-support-contact-accordion-1__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="page-support-contact-accordion-1__list">
+      {%
+        render 'accordion' with
+        blocks: section.blocks
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Panel",
+      "type": "panel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

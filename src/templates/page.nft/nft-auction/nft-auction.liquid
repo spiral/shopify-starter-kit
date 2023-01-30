@@ -1,0 +1,144 @@
+<section
+  class="nft-auction"
+  data-section="nft-auction"
+>
+  <div class="nft-auction__in">
+    <div class="nft-auction__row">
+      <div class="nft-auction__col">
+        <div class="nft-auction__control">
+          <div class="nft-auction__control-title">
+            The Saysh <br>
+            0.07 NFT
+          </div>
+
+          <div class="nft-auction__control-info">
+            <div class="nft-auction__control-info-small">Current Bid</div>
+
+            <div class="nft-auction__control-info-price">
+              <span class="nft-auction__control-price-display"></span> ETH
+            </div>
+
+            <div class="nft-auction__control-info-tip"></div>
+          </div>
+
+          <input class="nft-auction__control-auction-bid">
+
+          <div class="nft-auction__control-auction-error"></div>
+
+          <button class="nft-auction__control-action">Place bid</button>
+
+          <div class="nft-auction__control-link-wr">
+            <a
+              href="{{ section.settings.faq_link }}"
+              class="nft-auction__control-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ section.settings.faq_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nft-auction__col">
+        <div class="nft-auction__timer">
+          <div class="nft-auction__timer-tip">Auction ends in</div>
+
+          <div class="nft-auction__timer-data">
+            <div class="nft-auction__timer-data-time-wr">
+              <span class="nft-auction__timer-data-time">
+                <span class="nft-auction__timer-days">00</span>
+                <div class="nft-auction__timer-data-time-divide">:</div>
+              </span>
+              <div class="nft-auction__timer-data-tips">Days</div>
+            </div>
+
+            <div class="nft-auction__timer-data-time-wr">
+              <span class="nft-auction__timer-data-time">
+                <span class="nft-auction__timer-hours">00</span>
+                <div class="nft-auction__timer-data-time-divide">:</div>
+              </span>
+              <div class="nft-auction__timer-data-tips">Hours</div>
+            </div>
+
+            <div class="nft-auction__timer-data-time-wr">
+              <span class="nft-auction__timer-data-time">
+                <span class="nft-auction__timer-minutes">00</span>
+                <div class="nft-auction__timer-data-time-divide">&nbsp;</div>
+              </span>
+              <div class="nft-auction__timer-data-tips">Minutes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-auction__timer">
+          <strong>Update:</strong>&nbsp; This is Saysh's first venture into the
+          world of NFTs, and we're learning as we go. We've extended the close
+          of the auction to 7pm ET November 12th, to make sure we're maximizing
+          the impact we can create for the Power of She Fund and women athletes.
+          Thanks for all the support and feedback to-date.
+        </div>
+
+        <div class="nft-auction__timer-text">
+          <div class="nft-auction__timer-text-left">
+            <div class="nft-auction__timer-text-left-title">
+              <span> Saysh 0.07 Spike </span>
+
+              2021
+            </div>
+
+            <div><span>ARTIST:&nbsp;</span>MMM Studio</div>
+          </div>
+
+          <div class="nft-auction__timer-text-right">
+            <p>The digital artwork was created by MMM studio.</p>
+            <p>Non-fungible token ERC-721</p>
+            <p>Token ID: 0</p>
+            <p>Animated artwork</p>
+            <p>MOV: 497.92 MB (522,111,620 bytes), 2145x2160px, HD, 00:11</p>
+            <p>Minted on October 12, 2021, ed. 1/1.</p>
+            <p>
+              Smart contract address: 0xef49e8557bdea753a31b32b50447ec86f290cc95
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nft-auction__data">
+      <div class="nft-auction__data-col">
+        <div class="nft-auction__data-title">Bid History</div>
+
+        <div class="nft-auction__data-lines-wr">
+          <div class="nft-auction__data-lines">
+            <div class="nft-auction__data-line nft-auction__data-line--head">
+              <span>Price</span>
+              <span>USD Price</span>
+              <span data-expiration>Time Placed</span>
+              <span>From</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ntf Auction section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq_text",
+      "label": "FAQ Link text",
+      "default": "Have questions? Check out our FAQ"
+    },
+    {
+      "type": "url",
+      "id": "faq_link",
+      "label": "FAQ Link"
+    }
+  ]
+}
+{% endschema %}

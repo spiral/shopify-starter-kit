@@ -1,0 +1,20 @@
+.page-support-contact-accordion-2 {
+  @include page-support-space();
+}
+
+.page-support-contact-accordion-2__container {
+  @include page-support-contact-accordion__container();
+
+  @include media-query($medium-up) {
+    padding-bottom: 120px;
+  }
+}
+
+.page-support-contact-accordion-2__title {
+  @include page-support-contact-accordion__title();
+  @include page-support-wrap();
+}
+
+.page-support-contact-accordion-2__list {
+  @include page-support-contact-accordion__list();
+}

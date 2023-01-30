@@ -1,0 +1,181 @@
+<div
+  class="login"
+  data-template="customers/register"
+>
+  <div class="login__title-wr">
+    <h1 class="login__title">Account Register</h1>
+  </div>
+
+  <div class="login__container">
+    <div class="login__header">
+      <div class="login__header-tabs">
+        <a
+          class="login__header-tab"
+          href="{{ shop.secure_url }}/account/login"
+          data-active="false"
+        >
+          Sign In
+        </a>
+
+        <a
+          class="login__header-tab"
+          href="{{ shop.secure_url }}/account/register"
+          data-active="true"
+        >
+          Join Us
+        </a>
+      </div>
+    </div>
+
+    <div class="login__login">
+      {% form 'create_customer', class: 'login__form' %}
+        {% if form.errors %}
+          <div class="login__form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+          data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+        >
+          <input
+            type="text"
+            name="customer[first_name]"
+            placeholder="{{ 'customer.register.first_name' | t }}"
+            autofocus
+            data-field
+            {% if form.first_name %}
+              value="{{ form.first_name }}"
+            {% endif %}
+          >
+
+          <span>
+            {{ 'customer.register.first_name' | t }}
+          </span>
+        </label>
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+        >
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="LastName"
+            placeholder="{{ 'customer.register.last_name' | t }}"
+            data-field
+            {% if form.last_name %}
+              value="{{ form.last_name }}"
+            {% endif %}
+          >
+
+          <span>
+            {{ 'customer.register.last_name' | t }}
+          </span>
+        </label>
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-email-error="Email is invalid"
+          data-required-error="Required"
+        >
+          <input
+            type="email"
+            name="customer[email]"
+            placeholder="{{ 'customer.register.email' | t }}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            value="{% if form.email %}{{ form.email }}{% endif %}"
+            data-field
+          >
+
+          <span>
+            {{ 'customer.register.email' | t }}
+          </span>
+        </label>
+
+        <label
+          class="login__form-label"
+          data-control
+          data-error
+          data-required-error="Required"
+          data-control-custom-rules="Password does not meet minimal requirements."
+        >
+          <input
+            type="password"
+            name="customer[password]"
+            placeholder="{{ 'customer.register.password' | t }}"
+            data-field
+          >
+
+          <span>
+            {{ 'customer.register.password' | t }}
+          </span>
+
+          <button type="button">
+            <span class="visually-hidden"> Show/Hide password button </span>
+          </button>
+
+          <div data-error=""></div>
+
+          <div data-form-custom-rules>
+            <span
+              data-form-custom-rule
+              data-form-custom-rule-pattern="/^(?=.*).{8,}$/"
+            >
+              Minimum of 8 characters
+            </span>
+
+            <span
+              data-form-custom-rule
+              data-form-custom-rule-pattern="/^(?=.*[A-Z])/"
+            >
+              1 uppercase letter
+            </span>
+
+            <span
+              data-form-custom-rule
+              data-form-custom-rule-pattern="/^(?=.*[a-z])/"
+            >
+              1 lowercase letter
+            </span>
+
+            <span
+              data-form-custom-rule
+              data-form-custom-rule-pattern="/^(?=.*\d)/"
+            >
+              1 number
+            </span>
+          </div>
+        </label>
+
+        <button
+          type="submit"
+          class="login__form-button"
+        >
+          Register
+        </button>
+
+        <div class="login__form-link-wr">
+          <a
+            class="login__form-link"
+            href="{{ shop.secure_url }}/account/login"
+          >
+            Back to login
+          </a>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

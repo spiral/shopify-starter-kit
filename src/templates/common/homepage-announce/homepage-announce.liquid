@@ -1,0 +1,56 @@
+<section class="homepage-announce">
+  {% if section.settings.title != blank %}
+    <h2 class="homepage-announce__title">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% if section.settings.text != blank %}
+    <div class="homepage-announce__text">
+      {{ section.settings.text }}
+    </div>
+  {% endif %}
+
+  {% if section.settings.button_text != blank %}
+    <a
+      class="btn homepage-announce__btn"
+      href="{{ section.settings.button_link }}"
+    >
+      {{ section.settings.button_text }}
+    </a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Announce",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Body Text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announce",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

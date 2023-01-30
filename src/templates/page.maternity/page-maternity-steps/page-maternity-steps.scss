@@ -1,0 +1,92 @@
+.page-maternity-steps {
+  display: block;
+}
+
+.page-maternity-steps__in {
+  margin: auto;
+  max-width: 1040px;
+  padding: $maternity-space-mobile-big 16px;
+
+  @include media-query($medium-up) {
+    padding: $maternity-space-desktop-big 20px;
+  }
+}
+
+.page-maternity-steps__title {
+  @include title-h4();
+
+  margin: 0 0 50px 0;
+  text-align: center;
+
+  @include media-query($medium-up) {
+    margin-bottom: 75px;
+  }
+}
+
+.page-maternity-steps__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  @include media-query($medium-up) {
+    justify-content: flex-start;
+  }
+}
+
+.page-maternity-steps__list-item {
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 200px;
+  width: auto;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-query($small-up) {
+    max-width: 100%;
+    width: 60%;
+  }
+
+  @include media-query($medium-up) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 27px;
+    padding-right: 27px;
+    width: 50%;
+  }
+
+  @include media-query($large-up) {
+    margin-bottom: 0;
+    width: 25%;
+  }
+}
+
+.page-maternity-steps__list-num {
+  @include title-h2();
+
+  margin: 0 0 20px 0;
+  text-align: center;
+
+  @include media-query($large-up) {
+    @include title-h1();
+  }
+}
+
+.page-maternity-steps__list-text {
+  @include text-content();
+
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    @include link(inherit);
+  }
+}

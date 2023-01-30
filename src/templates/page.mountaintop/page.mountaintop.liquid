@@ -1,0 +1,16 @@
+<style>
+  {% render 'page.mountaintop.css' %}
+</style>
+
+<div
+  class="page-mountaintop"
+  data-template="page.mountaintop"
+>
+  {% section 'page-mountaintop-hero' %}
+
+  {% section 'page-mountaintop-media' %}
+
+  {% section 'page-mountaintop-podcast' %}
+</div>
+
+{{ 'page.mountaintop.js' | asset_url | script_tag }}

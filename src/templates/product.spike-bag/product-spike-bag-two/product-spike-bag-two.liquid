@@ -1,0 +1,122 @@
+<section
+  class="product-spike-bag-two"
+  data-section="product-spike-bag-two"
+>
+  <div class="product-spike-bag-two__top">
+    <div class="product-spike-bag-two__top-title">
+      {{ section.settings.title }}
+    </div>
+
+    <div class="product-spike-bag-two__top-images-wr">
+      <div class="product-spike-bag-two__top-images">
+        {% if section.settings.top_image_1 %}
+          <div class="product-spike-bag-two__top-image">
+            {% render 'lazy-image', image: section.settings.top_image_1 %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.top_image_2 %}
+          <div class="product-spike-bag-two__top-image">
+            {% render 'lazy-image', image: section.settings.top_image_2 %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.top_description != blank %}
+      <div class="product-spike-bag-two__top-description">
+        {{ section.settings.top_description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-spike-bag-two__cover">
+    {%
+      render 'image-parallax' with
+      image: section.settings.cover,
+      height: 0.7
+    %}
+  </div>
+
+  <div class="product-spike-bag-two__bottom">
+    <div class="product-spike-bag-two__bottom-images">
+      {%
+        render 'scrolled-gallery' with
+        image_1: section.settings.bottom_image_1,
+        image_2: section.settings.bottom_image_2,
+        image_3: section.settings.bottom_image_3,
+        limit: 3
+      %}
+    </div>
+
+    {% if section.settings.bottom_description != blank %}
+      <div class="product-spike-bag-two__bottom-description">
+        {{ section.settings.bottom_description }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spike Section Two",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "02"
+    },
+    {
+      "id": "top_image_1",
+      "type": "image_picker",
+      "label": "Top Image 1"
+    },
+    {
+      "id": "top_image_2",
+      "type": "image_picker",
+      "label": "Top Image 2"
+    },
+    {
+      "id": "top_description",
+      "type": "textarea",
+      "label": "Top Description",
+      "default": "The bag itself features pleats across the whole design that drape elegantly, whether worn on one shoulder or across the body. Draw-string fastening stays true to the traditional spike bag, but here the string is replaced with a high quality braided leather cable which doubles as the strap for the bag. The braided leather cables include a patterned, cushioned suede shoulder pad, for additional comfort and a more luxurious wear."
+    },
+    {
+      "id": "cover",
+      "type": "image_picker",
+      "label": "Parallax Cover"
+    },
+    {
+      "type": "header",
+      "content": "Bottom"
+    },
+    {
+      "id": "bottom_image_1",
+      "type": "image_picker",
+      "label": "Bottom Image 1"
+    },
+    {
+      "id": "bottom_image_2",
+      "type": "image_picker",
+      "label": "Bottom Image 2"
+    },
+    {
+      "id": "bottom_image_3",
+      "type": "image_picker",
+      "label": "Bottom Image 3"
+    },
+    {
+      "id": "bottom_description",
+      "type": "textarea",
+      "label": "Bottom Description",
+      "default": "The bag is constructed of three layers of materials, two of them a highly durable ripstop (a nod to the hardiness of spike bags), and the last layer a golden foil mesh - a reference to Allyson’s final race, and final gold medal in Tokyo. The result of which is a bag that is impossibly light, weighing just XXkg, that’s well suited to athletic pursuits, and everyday life alike."
+    }
+  ]
+}
+{% endschema %}

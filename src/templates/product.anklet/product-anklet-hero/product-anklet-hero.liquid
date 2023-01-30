@@ -1,0 +1,44 @@
+<section
+  class="product-anklet-hero"
+  data-section="product-anklet-hero"
+>
+  <div class="product-anklet-hero__in">
+    <div class="product-anklet-hero__title-wr">
+      <div class="product-anklet-hero__title">
+        {{ section.settings.title }}
+      </div>
+    </div>
+
+    <div class="product-anklet-hero__bg">
+      {% render 'lazy-image', image: section.settings.back_image %}
+    </div>
+
+    <div class="product-anklet-hero__bg product-anklet-hero__bg--mobile">
+      {% render 'lazy-image', image: section.settings.back_image_mobile %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Anklet Hero",
+  "settings": [
+    {
+      "id": "back_image",
+      "type": "image_picker",
+      "label": "Back Image"
+    },
+    {
+      "id": "back_image_mobile",
+      "type": "image_picker",
+      "label": "Back Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Anklets By:Saysh, give the everyday a little extra."
+    }
+  ]
+}
+{% endschema %}

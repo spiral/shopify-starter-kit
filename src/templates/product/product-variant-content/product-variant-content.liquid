@@ -1,0 +1,127 @@
+{% if product %}
+  <section
+    class="product-variant-content"
+    data-section="product-variant-content"
+  >
+    {% for block in section.blocks %}
+      <div
+        class="product-variant-content__variant"
+        data-variant-ids="{{ block.settings.options_string }}"
+        data-variant-id-active
+        {% if block.settings.options_string == section.settings.default_options_string %}
+          data-variant-id-default
+        {% endif %}
+      >
+        <div class="product-variant-content__variant-header">
+          <div class="product-variant-content__variant-header-subtitle">
+            {{ block.settings.subtitle }}
+          </div>
+
+          <div class="product-variant-content__variant-header-title">
+            {{ block.settings.title }}
+          </div>
+
+          <div class="product-variant-content__variant-header-text">
+            {{ block.settings.text }}
+          </div>
+        </div>
+
+        <div class="product-variant-content__variant-images">
+          <div class="product-variant-content__variant-image">
+            {%
+              render 'lazy-image' with
+              image: block.settings.image_1,
+              alt: 'Product Variant Image'
+            %}
+          </div>
+
+          <div class="product-variant-content__variant-image">
+            {%
+              render 'lazy-image' with
+              image: block.settings.image_2,
+              alt: 'Product Variant Image'
+            %}
+          </div>
+        </div>
+
+        {% if block.settings.button_link != blank and block.settings.button_text != blank %}
+          <div class="product-variant-content__variant-button-wr">
+            <a
+              class="product-variant-content__variant-button"
+              href="{{ block.settings.button_link | replace: shop.url, shop.secure_url }}"
+            >
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Variant Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "default_options_string",
+      "label": "Default option in format (Name: Value)"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Product Variant",
+      "type": "variant",
+      "settings": [
+        {
+          "type": "text",
+          "id": "options_string",
+          "label": "Variants options in format (Name: Value, Name2: Value2)"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Variant subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Variant title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Variant text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Variant Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Variant Image 2"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Variant Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Variant Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variant Content",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

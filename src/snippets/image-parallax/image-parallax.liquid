@@ -1,0 +1,23 @@
+<div
+  class="image-parallax"
+  data-snippet="image-parallax"
+>
+  {% assign height = height | default: 1 %}
+
+  {% if height > 0 and height <= 1 %}
+    {% assign _content_height = height | times: 100 | append: 'vh' %}
+  {% elsif height > 1 %}
+    {% assign _content_height = height | append: 'px' %}
+  {% endif %}
+
+  {%
+    render 'lazy-image' with
+    image: image,
+    img_classes: 'image-parallax__image'
+  %}
+
+  <div
+    class="image-parallax__content"
+    style="height: {{ _content_height }}"
+  ></div>
+</div>

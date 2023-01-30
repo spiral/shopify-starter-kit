@@ -1,0 +1,81 @@
+.account__newsletter {
+  display: block;
+}
+
+.account__newsletter-header {
+  padding-bottom: 34px;
+  padding-top: 54px;
+
+  @include media-query($small-down) {
+    padding-top: 30px;
+  }
+}
+
+.account__newsletter-header-title {
+  @include text-title-1();
+
+  margin: 0 0 14px;
+
+  @include media-query($small-down) {
+    @include text-title-2();
+  }
+}
+
+.account__newsletter-header-text {
+  @include text-content();
+}
+
+.account__newsletter-form {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  [data-newsletter-status] {
+    display: none;
+  }
+
+  &[data-newsletter-from-status="true"] [data-newsletter-status='true'] {
+    display: block;
+  }
+
+  &[data-newsletter-from-status="false"] [data-newsletter-status='false'] {
+    display: block;
+  }
+}
+
+.account__newsletter-form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.account__newsletter-form-content-title {
+  @include text-title-3();
+
+  margin-bottom: 12px;
+}
+
+.account__newsletter-form-content-text {
+  @include text-content();
+
+  margin-bottom: 16px;
+  margin-right: 20px;
+
+  @include media-query($small-down) {
+    margin-right: 0;
+  }
+
+  b {
+    font-weight: 500;
+  }
+}
+
+.account__newsletter-form-button-wr {
+  display: block;
+}
+
+.account__newsletter-form-button {
+  @include button-transparent();
+
+  padding: 20px 62px;
+}

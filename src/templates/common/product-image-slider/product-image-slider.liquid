@@ -1,0 +1,69 @@
+<section
+  class="product-image-slider"
+  data-section="product-image-slider"
+>
+  <div class="product-image-slider__header">
+    <div class="product-image-slider__header-subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+
+    <div class="product-image-slider__header-title">
+      {{ section.settings.title }}
+    </div>
+  </div>
+
+  <div class="product-image-slider__scrolled-gallery">
+    {%
+      render 'scrolled-gallery' with
+      image_1: section.settings.image_1,
+      image_2: section.settings.image_2,
+      image_3: section.settings.image_3,
+      image_4: section.settings.image_4,
+      limit: 4
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Image Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Image Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

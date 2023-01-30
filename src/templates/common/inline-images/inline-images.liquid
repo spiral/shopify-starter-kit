@@ -1,0 +1,100 @@
+{% if section.settings.is_visible_on_desktop %}
+  {% assign desktop_mode = 'inline-images--desktop' %}
+{% else %}
+  {% assign desktop_mode = '' %}
+{% endif %}
+
+{% if section.settings.is_visible_on_mobile %}
+  {% assign mobile_mode = 'inline-images--mobile' %}
+{% else %}
+  {% assign mobile_mode = '' %}
+{% endif %}
+
+<section
+  class="inline-images {{ mobile_mode }} {{ desktop_mode }}"
+  data-section="inline-images"
+>
+  <div class="inline-images__images">
+    <div class="inline-images__image">
+      {% render 'lazy-image', image: section.settings.slide_1 %}
+    </div>
+
+    {% if section.settings.slide_2 %}
+      <div class="inline-images__image">
+        {% render 'lazy-image', image: section.settings.slide_2 %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.slide_3 %}
+      <div class="inline-images__image">
+        {% render 'lazy-image', image: section.settings.slide_3 %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div
+    class="inline-images__slider splide"
+    data-inline-images-slider
+  >
+    <div class="inline-images__slider-track splide__track">
+      <ul class="inline-images__slider-list splide__list">
+        <li class="inline-images__image splide__slide">
+          {% render 'lazy-image', image: section.settings.slide_1 %}
+        </li>
+
+        {% if section.settings.slide_2 %}
+          <li class="inline-images__image splide__slide">
+            {% render 'lazy-image', image: section.settings.slide_2 %}
+          </li>
+        {% endif %}
+
+        {% if section.settings.slide_3 %}
+          <li class="inline-images__image splide__slide">
+            {% render 'lazy-image', image: section.settings.slide_3 %}
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inline Images",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "slide_1",
+      "label": "Slide Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2",
+      "label": "Slide Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3",
+      "label": "Slide Image 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_visible_on_mobile",
+      "label": "Visible on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "is_visible_on_desktop",
+      "label": "Visible on desktop",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inline Images",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

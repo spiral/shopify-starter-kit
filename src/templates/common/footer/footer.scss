@@ -1,0 +1,12 @@
+@import '../../../snippets/footer-content/footer-content';
+
+
+.footer {
+  background: $colorGray2;
+  border: none;
+  padding: spacing() * 2.4 spacing();
+
+  @include media-query($medium-up) {
+    padding: spacing() * 3.2;
+  }
+}

@@ -1,0 +1,105 @@
+{% if section.settings.url != blank %}
+  <a href="{{ section.settings.url }}"
+     {% if section.settings.url_new_tab %}
+       target="_blank"
+       rel="noopener noreferrer"
+     {% endif %}
+  >
+{% endif %}
+
+<section class="homepage-hero">
+  {% if section.settings.vimeo_link != blank %}
+    <div class="homepage-hero__video homepage-hero__video--desktop">
+      <div class='homepage-hero__embed-container'>
+        <iframe src='{{ section.settings.vimeo_link }}'
+                webkitAllowFullScreen
+                mozallowfullscreen
+                allowFullScreen
+        ></iframe>
+      </div>
+    </div>
+
+    {% if section.settings.vimeo_link_mobile != blank %}
+      <video class="homepage-hero__video homepage-hero__video--mobile"
+             height="400"
+             poster="{{ section.settings.vimeo_poster_mobile | img_url: 'master' }}"
+             controls
+             playsinline
+      >
+        <source src="{{ section.settings.vimeo_link_mobile }}"
+                type="video/mp4"
+        >
+        Your browser does not support the video tag.
+      </video>
+    {% endif %}
+  {% else %}
+    {% if section.settings.image %}
+      <div class="homepage-hero__image homepage-hero__video--desktop">
+        {% render 'lazy-image', image: section.settings.image %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.image_mobile %}
+      <div class="homepage-hero__image homepage-hero__video--mobile">
+        {% render 'lazy-image', image: section.settings.image_mobile %}
+      </div>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% if section.settings.url != blank %}
+  </a>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Hero URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "url_new_tab",
+        "label": "Open link in new tab"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)"
+      },
+      {
+        "type": "video_url",
+        "id": "vimeo_link",
+        "label": "Vimeo Link",
+        "info": "Placing a Vimeo video link will replace hero images",
+        "accept": [
+          "vimeo"
+        ]
+      },
+      {
+        "type": "url",
+        "id": "vimeo_link_mobile",
+        "label": "Vimeo Link (Mobile)"
+      },
+      {
+        "type": "image_picker",
+        "id": "vimeo_poster_mobile",
+        "label": "Vimeo Poster (Mobile)"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

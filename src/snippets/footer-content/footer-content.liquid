@@ -1,0 +1,82 @@
+<div
+  class="footer-content"
+  data-snippet="footer-content"
+>
+  <div class="footer-content__nav">
+    <div class="footer-content__nav-logo">
+      {% render 'lazy-image', image: logo %}
+    </div>
+
+    <div class="footer-content__nav-content">
+      <div class="footer-content__nav-content-in">
+        <ul class="footer-content__nav-lists">
+          {% for link in nav_links %}
+            <li class="footer-content__nav-list">
+              {% if link.url != "/" %}
+                <h3 class="footer-content__nav-list-title">
+                  <a
+                    class="footer-content__nav-link footer-content__nav-link--title"
+                    href="{{ link.url }}"
+                    {% if link.url contains "//" %}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    {% endif %}
+                  >
+                    {{ link.title }}
+                  </a>
+                </h3>
+              {% else %}
+                <h3 class="footer-content__nav-list-title">
+                  {{ link.title }}
+                </h3>
+              {% endif %}
+
+              <ul class="footer-content__nav-list-links">
+                {% for child_link in link.links %}
+                  <li class="footer-content__nav-list-link">
+                    <a
+                      class="footer-content__nav-link"
+                      href="{{ child_link.url }}"
+                      {% if child_link.url contains "//" %}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      {% endif %}
+                    >
+                      {{ child_link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-content__info">
+    <h3 class="footer-content__title">
+      {{ compliance_title }}
+    </h3>
+
+    <div class="footer-content__text">
+      {{ compliance_text | newline_to_br }}
+    </div>
+
+    <div class="footer-content__newsletter">
+      <h3 class="footer-content__title">
+        {{ form_label }}
+      </h3>
+
+      {% render 'newsletter-form' %}
+    </div>
+
+    <div class="footer-content__social">
+      {% render 'social-sharing' %}
+    </div>
+  </div>
+
+  <span class="footer-content__signature">
+    {{ copyright }}
+  </span>
+</div>

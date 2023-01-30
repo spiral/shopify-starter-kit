@@ -1,0 +1,21 @@
+{% if section.settings.info != blank %}
+  <section class="cookie-bar" js-cookie-bar>
+    <div class="cookie-bar__info">{{ section.settings.info }}</div>
+    <button type="button" class="cookie-bar__button" js-close>
+      {% render 'icon-close' %}
+    </button>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Cookie Bar",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "info",
+        "label": "Info"
+      }
+    ]
+  }
+{% endschema %}

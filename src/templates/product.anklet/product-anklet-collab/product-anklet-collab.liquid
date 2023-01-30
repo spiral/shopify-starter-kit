@@ -1,0 +1,115 @@
+<section
+  class="product-anklet-collab"
+  data-section="product-anklet-collab"
+>
+  <div class="product-anklet-collab__in">
+    <div class="product-anklet-collab__content">
+      <span class="product-anklet-collab__subtitle">
+        {{ section.settings.subtitle }}
+      </span>
+
+      <h2 class="product-anklet-collab__title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="product-anklet-collab__text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+
+    <div class="product-anklet-collab__blocks-wr">
+      <div class="product-anklet-collab__blocks">
+        <div class="product-anklet-collab__blocks-in">
+          {% if section.settings.image_1 %}
+            <div class="product-anklet-collab__block">
+              <div class="product-anklet-collab__block-image">
+                {% render 'lazy-image', image: section.settings.image_1 %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.image_2 %}
+            <div class="product-anklet-collab__block">
+              <div class="product-anklet-collab__block-image">
+                {% render 'lazy-image', image: section.settings.image_2 %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.image_3 %}
+            <div class="product-anklet-collab__block">
+              <div class="product-anklet-collab__block-image">
+                {% render 'lazy-image', image: section.settings.image_3 %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="product-anklet-collab__image">
+      {%
+        render 'lazy-image' with
+        image: section.settings.image_hero
+      %}
+    </div>
+
+    <div class="product-anklet-collab__image product-anklet-collab__image--mobile">
+      {%
+        render 'lazy-image' with
+        image: section.settings.image_hero_mobile
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Anklet Collab",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "01"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Introducing the first installment of our collaboration series - the Saysh Anklets."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text content",
+      "default": "For these three designs we partnered with Simone The Label, run by Sydney Simone, to create thoughtful accessories for the everyday, and for that special day, with the intention of making the wearer feel more herself."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_hero",
+      "label": "Shot image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_hero_mobile",
+      "label": "Shot image mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Section image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Section image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Section image 3"
+    }
+  ]
+}
+{% endschema %}

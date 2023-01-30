@@ -1,0 +1,83 @@
+<section class="homepage-split">
+  {% if section.settings.image %}
+    <img
+      class="homepage-split__image"
+      src="{{ section.settings.image | img_url: 'master' }}"
+    >
+  {% endif %}
+
+  {% if section.settings.image_mobile %}
+    <div class="homepage-split__image--mobile">
+      {% render 'lazy-image', image: section.settings.image_mobile %}
+    </div>
+  {% endif %}
+
+  <div class="homepage-split__contents">
+    {% if section.settings.title != blank %}
+      <h2 class="homepage-split__title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="homepage-split__description">
+        <p>
+          {{ section.settings.description }}
+        </p>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_text != blank %}
+      <a
+        class="btn btn--white homepage-split__btn"
+        href="{{ section.settings.button_link }}"
+      >
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Square",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Square",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

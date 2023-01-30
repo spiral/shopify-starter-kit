@@ -1,0 +1,74 @@
+.product-anklet-hero {
+  font-family: font-family(body);
+  font-weight: 400;
+}
+
+.product-anklet-hero__in {
+  display: flex;
+  position: relative;
+}
+
+.product-anklet-hero__bg {
+  position: relative;
+  width: 100%;
+  z-index: -1;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.product-anklet-hero__bg--mobile {
+  display: none;
+  max-height: 550px;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+
+  img {
+    max-height: 550px;
+    object-fit: cover;
+  }
+}
+
+.product-anklet-hero__title-wr {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  right: 5%;
+  top: 0;
+  z-index: 0;
+
+  @include media-query($small-down) {
+    align-items: start;
+    left: 0;
+    right: 0;
+  }
+}
+
+.product-anklet-hero__title {
+  font-family: font-family(header);
+  font-size: 72px;
+  line-height: 1;
+  max-width: 660px;
+  padding: 0 spacing() * 2;
+  text-align: center;
+
+  @include media-query($medium-down) {
+    font-size: 50px;
+    max-width: 500px;
+  }
+
+  @include media-query($small-down) {
+    font-size: 32px;
+    margin-top: 70px;
+  }
+
+  @include media-query($xs) {
+    margin-top: 50px;
+  }
+}

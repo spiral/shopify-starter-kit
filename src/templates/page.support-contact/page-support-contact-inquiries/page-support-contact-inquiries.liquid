@@ -1,0 +1,655 @@
+{% assign form_submit_url = 'https://hook.us1.make.com/sqtozow4bbvwdnnumw5vvclek781567d' %}
+{% assign form_file_upload_submit_url = 'https://hook.us1.make.com/ityjtj2lzlabv8yjyoqtkn1n23lur7hq' %}
+
+<section
+  class="page-support-contact-inquiries"
+  data-section="page-support-contact-inquiries"
+>
+  <div class="page-support-contact-inquiries__container">
+    <h2 class="page-support-contact-inquiries__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div
+      class="page-support-contact-inquiries__forms-wr"
+      data-support-contact-inquiries-forms
+    >
+      <label class="page-support-contact-inquiries__form-label">
+        <select
+          data-field
+          data-form-select
+          required
+        >
+          <option
+            disabled
+            selected
+            hidden
+          >
+            What do you need help with?
+          </option>
+
+          <option value="general">General Inquiries</option>
+
+          <option value="product">Product Inquiries</option>
+
+          <option value="press">Press Inquiries</option>
+
+          <option value="wholesale">Wholesale Inquiries</option>
+
+          <option value="careers">Careers Inquiries</option>
+        </select>
+
+        <span> Topic </span>
+      </label>
+
+      <form
+        class="page-support-contact-inquiries__form"
+        id="general"
+        data-hidden="true"
+        data-submit-url="{{ form_submit_url }}"
+      >
+        <input
+          type="hidden"
+          name="trap"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="type"
+          value="general"
+          readonly
+          data-field
+        >
+
+        <fieldset class="page-support-contact-inquiries__form-fieldset">
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your First name"
+              name="first_name"
+              data-field
+            >
+
+            <span> First name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your Last name"
+              name="last_name"
+              data-field
+            >
+
+            <span> Last name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-email-error
+          >
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              name="email"
+              data-field
+            >
+
+            <span> Email Address* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <textarea
+              placeholder="User input"
+              data-field
+              name="message"
+            ></textarea>
+
+            <span> Message* </span>
+          </label>
+        </fieldset>
+
+        <button
+          class="page-support-contact-inquiries__form-btn"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <form
+        class="page-support-contact-inquiries__form"
+        id="product"
+        data-hidden="true"
+        data-submit-url="{{ form_submit_url }}"
+      >
+        <input
+          type="hidden"
+          name="trap"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="type"
+          value="product"
+          readonly
+          data-field
+        >
+
+        <fieldset class="page-support-contact-inquiries__form-fieldset">
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your First name"
+              name="first_name"
+              data-field
+            >
+
+            <span> First name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your Last name"
+              name="last_name"
+              data-field
+            >
+
+            <span> Last name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-email-error
+            data-required-error="Required"
+          >
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              name="email"
+              data-field
+            >
+
+            <span> Email Address* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-error
+            data-required-error="Required"
+            data-control
+          >
+            <select
+              data-field
+              name="product"
+              required
+            >
+              <option
+                selected
+                disabled
+                hidden
+              ></option>
+
+              {% for product in collections.all.products %}
+                {% if product.available and product.type != 'Test' %}
+                  <option
+                    value="{{ product.title }}"
+                    data-select-item
+                  >
+                    {% if product.metafields.store.title_option %}
+                      {{ product.metafields.store.title_option }}
+                    {% else %}
+                      {{ product.title }}
+                    {% endif %}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+
+            <span> Select Product* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <textarea
+              placeholder="User input"
+              data-field
+              name="message"
+            ></textarea>
+
+            <span> Message* </span>
+          </label>
+        </fieldset>
+
+        <button
+          class="page-support-contact-inquiries__form-btn"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <form
+        class="page-support-contact-inquiries__form"
+        id="press"
+        data-hidden="true"
+        data-submit-url="{{ form_submit_url }}"
+      >
+        <input
+          type="hidden"
+          name="trap"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="type"
+          value="press"
+          readonly
+          data-field
+        >
+
+        <fieldset class="page-support-contact-inquiries__form-fieldset">
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your First name"
+              name="first_name"
+              data-field
+            >
+
+            <span> First name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your Last name"
+              name="last_name"
+              data-field
+            >
+
+            <span> Last name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-email-error
+            data-required-error="Required"
+          >
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              name="email"
+              data-field
+            >
+
+            <span> Email Address* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <input
+              type="text"
+              placeholder="Your Company"
+              name="company"
+              data-field
+            >
+
+            <span> Company* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <textarea
+              placeholder="User input"
+              data-field
+              name="message"
+            ></textarea>
+
+            <span> Message* </span>
+          </label>
+        </fieldset>
+
+        <button
+          class="page-support-contact-inquiries__form-btn"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <form
+        class="page-support-contact-inquiries__form"
+        id="wholesale"
+        data-hidden="true"
+        data-submit-url="{{ form_submit_url }}"
+      >
+        <input
+          type="hidden"
+          name="trap"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="type"
+          value="wholesale"
+          readonly
+          data-field
+        >
+
+        <fieldset class="page-support-contact-inquiries__form-fieldset">
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your First name"
+              name="first_name"
+              data-field
+            >
+
+            <span> First name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your Last name"
+              name="last_name"
+              data-field
+            >
+
+            <span> Last name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-email-error
+          >
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              name="email"
+              data-field
+            >
+
+            <span> Email Address* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <input
+              type="text"
+              placeholder="Your Company"
+              name="company"
+              data-field
+            >
+
+            <span> Company* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <textarea
+              placeholder="User input"
+              data-field
+              name="message"
+            ></textarea>
+
+            <span> Message* </span>
+          </label>
+        </fieldset>
+
+        <button
+          class="page-support-contact-inquiries__form-btn"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <form
+        class="page-support-contact-inquiries__form"
+        id="careers"
+        data-hidden="true"
+        data-submit-url="{{ form_file_upload_submit_url }}"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="hidden"
+          name="trap"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="type"
+          value="careers"
+          readonly
+          data-field
+        >
+
+        <fieldset class="page-support-contact-inquiries__form-fieldset">
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your First name"
+              name="first_name"
+              data-field
+            >
+
+            <span> First name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+            data-spec-symbol-error="Valid characters includes A-z, 0-9, ' and -"
+          >
+            <input
+              type="text"
+              placeholder="Your Last name"
+              name="last_name"
+              data-field
+            >
+
+            <span> Last name* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-email-error
+            data-required-error="Required"
+          >
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              name="email"
+              data-field
+            >
+
+            <span> Email Address* </span>
+          </label>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-required-error="Required"
+          >
+            <textarea
+              placeholder="User input"
+              data-field
+              name="message"
+            ></textarea>
+
+            <span> Message* </span>
+          </label>
+
+          <div class="page-support-contact-inquiries__form-upload-label">
+            Upload Attachment
+          </div>
+
+          <div class="
+              page-support-contact-inquiries__form-upload-label
+              page-support-contact-inquiries__form-upload-label--sm
+            ">
+            Only .pdf file. 2mb max file size
+          </div>
+
+          <label
+            class="page-support-contact-inquiries__form-label"
+            data-control
+            data-error
+            data-support-contact-inquiries-file-control
+            data-max-size-error="Max size exceeded. 2mb max file size"
+            data-max-count-error="Max number of files exceeded. Max 3 files at the time"
+            data-file-type-error="Only .pdf files is available"
+          >
+            <span> Add or drop files here </span>
+
+            <input
+              type="file"
+              name="files[]"
+              accept="application/pdf"
+              data-drop-file="false"
+            >
+
+            <div data-support-contact-inquiries-file-control-message></div>
+          </label>
+        </fieldset>
+
+        <button
+          class="page-support-contact-inquiries__form-btn"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <div
+        class="page-support-contact-inquiries__form-status-wr"
+        data-page-support-contact-inquiries-form-success
+      >
+        <div class="page-support-contact-inquiries__form-status">
+          {{ section.settings.successful_message }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Support Inquiries",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "successful_message",
+      "label": "Form successful message",
+      "default": "Thank you. Your message has been sent."
+    }
+  ]
+}
+{% endschema %}

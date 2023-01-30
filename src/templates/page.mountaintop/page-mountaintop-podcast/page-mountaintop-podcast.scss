@@ -1,0 +1,168 @@
+$_bg_color-to: #dacec1;
+$_bg_color-from: #9bb4ca;
+$_header_height: 150px;
+
+.page-mountaintop-podcast {
+  background: linear-gradient(180deg, $_bg_color-from 0%, $_bg_color-to 100%);
+  color: $colorWhite;
+  display: block;
+  padding: 70px 60px;
+
+  @include media-query($small-down) {
+    padding: 36px 20px;
+  }
+}
+
+.page-mountaintop-podcast__content {
+  @include f-row(60px);
+
+  @include media-query($small-down) {
+    @include f-row(0);
+  }
+}
+
+.page-mountaintop-podcast__podcast {
+  @include f-col(5/11, 60px);
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+  }
+}
+
+.page-mountaintop-podcast__podcast-head {
+  border-bottom: 1px solid $colorWhite;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  min-height: $_header_height;
+
+  @include media-query($small-down) {
+    min-height: auto;
+  }
+}
+
+.page-mountaintop-podcast__podcast-head-week {
+  @include text-content($colorWhite);
+
+  margin-bottom: 30px;
+
+  @include media-query($small-down) {
+    margin-bottom: 12px;
+  }
+}
+
+.page-mountaintop-podcast__podcast-head-date {
+  @include text-content-base(60px, $colorWhite);
+
+  margin-bottom: 0;
+
+  @include media-query($medium-down) {
+    margin-bottom: 10px;
+  }
+}
+
+.page-mountaintop-podcast__podcast-cover-wr {
+  margin-bottom: 65px;
+  position: relative;
+
+  @include media-query($medium-down) {
+    margin-bottom: 16px;
+  }
+}
+
+.page-mountaintop-podcast__podcast-cover {
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &[src] {
+    opacity: 1;
+  }
+}
+
+.page-mountaintop-podcast__podcast-data {
+  @include text-content($colorWhite);
+
+  margin-bottom: 30px;
+
+  @include media-query($small-down) {
+    margin-bottom: 60px;
+  }
+}
+
+.page-mountaintop-podcast__podcast-data-sep {
+  display: inline-block;
+  margin: 0 30px;
+}
+
+.page-mountaintop-podcast__schedule {
+  @include f-col(6/11, 60px);
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+  }
+}
+
+.page-mountaintop-podcast__schedule-head {
+  @include text-content($colorWhite);
+
+  border-bottom: 1px solid $colorWhite;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  min-height: $_header_height;
+  padding-bottom: 0;
+
+  @include media-query($small-down) {
+    margin-bottom: 40px;
+    min-height: auto;
+    padding-bottom: 20px;
+  }
+}
+
+.page-mountaintop-podcast__schedule-blocks {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-mountaintop-podcast__schedule-block {
+  @include f-row(24px);
+
+  margin-bottom: 30px;
+
+  @include media-query($small-down) {
+    @include f-row(12px);
+
+    margin-bottom: 40px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page-mountaintop-podcast__schedule-block-date {
+  @include text-title-2($colorWhite);
+  @include f-col(1/3, 24px);
+
+  margin: 0;
+
+  @include media-query($small-down) {
+    @include f-col(1/3, 12px);
+  }
+}
+
+.page-mountaintop-podcast__schedule-block-guests {
+  @include f-col(2/3, 24px);
+  @include text-title-3($colorWhite);
+
+  margin: 0;
+
+  @include media-query($small-down) {
+    @include f-col(2/3, 12px);
+  }
+}

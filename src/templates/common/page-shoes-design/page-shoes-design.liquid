@@ -1,0 +1,74 @@
+<section
+  class="page-shoes-design"
+  data-section="page-shoes-design"
+>
+  <div class="page-shoes-design__in">
+    <div class="page-shoes-design__title">
+      {{ section.settings.title }}
+    </div>
+
+    <div class="page-shoes-design__image">
+      {% render 'lazy-image', image: section.settings.image %}
+    </div>
+
+    <div class="page-shoes-design__image page-shoes-design__image--mobile">
+      {% render 'lazy-image', image: section.settings.image_mobile %}
+    </div>
+
+    <div class="page-shoes-design__items">
+      {% for block in section.blocks %}
+        <div class="page-shoes-design__item">
+          <div class="page-shoes-design__item-title">
+            {{ block.settings.title }}
+          </div>
+
+          <div class="page-shoes-design__item-text">
+            {{ block.settings.text }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shoes Design",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What does Designed for Women Mean?"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Shoe Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Shoe Image mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Shoes Design block",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+<section
+  class="product-spike-bag-reveal"
+  data-section="product-spike-bag-reveal"
+>
+  <div class="product-spike-bag-reveal__in">
+    {% if section.settings.title != blank %}
+      <div
+        class="product-spike-bag-reveal__title product-spike-bag-reveal__title--mobile"
+        data-product-spike-bag-reveal-scrolled-text
+      >
+        {{- section.settings.title | newline_to_br -}}
+      </div>
+    {% endif %}
+
+    <div class="product-spike-bag-reveal__row">
+      <div class="product-spike-bag-reveal__col">
+        <div class="product-spike-bag-reveal__content">
+          {% if section.settings.title != blank %}
+            <div
+              class="product-spike-bag-reveal__title"
+              data-product-spike-bag-reveal-scrolled-text
+            >
+              {{- section.settings.title | newline_to_br -}}
+            </div>
+          {% endif %}
+
+          {% if section.settings.text != blank %}
+            <div class="product-spike-bag-reveal__text">
+              {{ section.settings.text }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="product-spike-bag-reveal__col product-spike-bag-reveal__col--large">
+        <div class="product-spike-bag-reveal__images">
+          <div class="product-spike-bag-reveal__image">
+            {% render 'lazy-image', image: section.settings.image_main %}
+          </div>
+
+          <div class="product-spike-bag-reveal__image-small">
+            {% render 'lazy-image', image: section.settings.image_small %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-spike-bag-reveal__cover">
+    {%
+      render 'image-parallax' with
+      image: section.settings.cover,
+      height: 0.7
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spike Section Reveal",
+  "settings": [
+    {
+      "id": "title",
+      "type": "textarea",
+      "label": "Title",
+      "default": "A Slow Reveal"
+    },
+    {
+      "id": "text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "The design of the Saysh Spike Bag reveals itself slowly. The closer the viewer glimpses the bag, the more an illustration is uncovered, through the interplay of opaque and translucent materials."
+    },
+    {
+      "id": "image_main",
+      "type": "image_picker",
+      "label": "Main image"
+    },
+    {
+      "id": "image_small",
+      "type": "image_picker",
+      "label": "Small image"
+    },
+    {
+      "id": "cover",
+      "type": "image_picker",
+      "label": "Parallax cover"
+    }
+  ]
+}
+{% endschema %}

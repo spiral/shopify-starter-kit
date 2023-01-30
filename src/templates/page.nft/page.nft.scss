@@ -1,0 +1,31 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './nft-hero/nft-hero';
+@import './nft-preview/nft-preview';
+@import './nft-auction/nft-auction';
+@import './nft-paragraphs/nft-paragraphs';
+
+// Snippets
+@import "../../snippets/site-overlay/site-overlay";
+
+
+.page-container {
+  background-color: rgba(16, 24, 34, 1);
+  overflow: hidden;
+}
+
+.site-header__wrapper {
+  background: transparent;
+  transition: none;
+}
+
+.header__padding {
+  padding: 0 !important;
+}
+

@@ -1,0 +1,75 @@
+<div id="more-info-drawer"
+     class="drawer drawer--more-info more-info__drawer"
+>
+  <div class="more-info__container">
+    <header class="more-info__header">
+      <div class="ajaxcart__header-text 
+                  ajaxcart__header-text--title"
+      >
+        <button class="ajaxcart__close"
+                data-drawer-close
+        >
+          {% render 'icon-close' %}
+        </button>
+
+        {{ section.settings.title }}
+      </div>
+    </header>
+
+    <div class="more-info__blocks">
+      {% for block in section.blocks %}
+        <div class="more-info__block">
+          <button class="more-info__block-button"
+                  aria-expanded="false"
+                  aria-controls="panel-{{ section.id }}-{{ block.id }}"
+                  js-accordion-header
+          >
+            <h3 class="more-info__block-question">
+              {{ block.settings.heading }}
+            </h3>
+          </button>
+
+          <div id="panel-{{ section.id }}-{{ block.id }}"
+               class="more-info__block-answer rte"
+               aria-hidden="true"
+               js-accordion-content
+          >
+            {{ block.settings.contents }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "More Info Saysh One",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "More Info"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Accordion panel",
+        "type": "accordion-panel",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "html",
+            "id": "contents",
+            "label": "Contents"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

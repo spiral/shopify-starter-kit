@@ -1,0 +1,25 @@
+{% comment %}
+  HTML attributes for lazyloading background images
+  @param {object} image - Background image object
+  @param {boolean} is_file - Determines if image if a file_img_url type
+  @param {string} img_classes - Additional CSS classes for image
+{% endcomment %}
+{% if image != blank %}
+  {% unless is_file %}
+    class="lazyload background-box {% if img_classes %}{{ img_classes }}{% endif %}"
+    data-bgset="{% render 'bgset', image: image %}"
+    data-sizes="auto"
+    data-parent-fit="cover"
+    style="background-image: url({{ image | img_url: '300x300' }}); {{additional_styles}}"
+    data-expand="100"
+  {% else %}
+    class="lazyload background-box {% if img_classes %}{{ img_classes }}{% endif %}"
+    data-bgset="{{ image | file_img_url: 'master' }} {{ image.width }}w {{ image.height }}h"
+    data-sizes="auto"
+    data-parent-fit="cover"
+    style="background-image: url({{ image | file_img_url: '300x300' }}); {{additional_styles}}"
+    data-expand="100"
+  {% endunless %}
+{% else %}
+  class="{% if img_classes %}{{ img_classes }}{% endif %}"
+{% endif %}

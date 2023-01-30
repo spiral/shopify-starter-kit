@@ -1,0 +1,86 @@
+.homepage-split {
+  @include display-flexbox();
+  @include flex-direction(column);
+
+  color: $colorWhite;
+  padding: spacing();
+
+  @include media-query($tablet) {
+    @include flex-direction(row);
+
+    padding: 0;
+  }
+}
+
+.homepage-split__image {
+  display: none;
+
+  @include media-query($tablet) {
+    background-color: $grey;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    object-fit: cover;
+    width: 50%;
+  }
+}
+
+.homepage-split__image--mobile {
+  width: 100%;
+
+  @include media-query($tablet) {
+    display: none;
+  }
+}
+
+.homepage-split__contents {
+  background: $blue;
+  padding: spacing() * 2;
+  text-align: center;
+
+  @include media-query($tablet) {
+    @include display-flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+
+    width: 50%;
+  }
+
+  @include media-query($large-up) {
+    padding: spacing() * 4.5 spacing() * 4;
+  }
+}
+
+.homepage-split__title {
+  font-size: rem(60px);
+  line-height: 0.9;
+  margin: 0;
+
+  @include media-query($desktop) {
+    font-size: rem(90px);
+  }
+
+  @include media-query($super-widescreen) {
+    font-size: rem(120px);
+  }
+}
+
+.homepage-split__description {
+  font-weight: 400;
+  padding: 2.5rem 1.5rem 0;
+
+  @include media-query($desktop) {
+    padding: 2.5rem 3rem;
+  }
+}
+
+.homepage-split__btn {
+  margin: spacing() * 2.5 auto 3rem;
+  max-width: 12.875rem;
+
+  @include media-query($desktop) {
+    margin: 0 auto;
+    max-width: 16.875rem;
+  }
+}

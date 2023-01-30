@@ -1,0 +1,150 @@
+.product-spike-bag-one {
+  @include container();
+
+  // NOTE: remove focus from data-product-spike-bag-one-main-images and rest elements in section
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.product-spike-bag-one__main {
+  @include f-row(25px);
+
+  margin-bottom: 100px;
+
+  @include media-query($medium-down) {
+    @include f-row(0);
+  }
+
+  @include media-query($small-down) {
+    margin-bottom: 30px;
+  }
+}
+
+.product-spike-bag-one__main-images-wr {
+  @include f-col(7/10, 12px);
+
+  margin-bottom: 0;
+
+  @include media-query($medium-down) {
+    @include f-col(1, 0);
+
+    margin-bottom: 50px;
+  }
+}
+
+.product-spike-bag-one__main-images {
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+
+  > .ratio-box {
+    pointer-events: none;
+  }
+
+  > .ratio-box:not(:first-child) {
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 1s all ease-in-out;
+    z-index: $zIndexNormal;
+  }
+
+  &[data-product-spike-bag-one-main-images='hovered'] > .ratio-box:not(:first-child) {
+    opacity: 1;
+  }
+}
+
+
+.product-spike-bag-one__main-content {
+  @include f-col(3/10, 12px);
+
+  @include media-query($medium-down) {
+    @include f-col(1, 0);
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
+
+.product-spike-bag-one__main-content-title {
+  @include title-h6();
+
+  margin-bottom: 50px;
+}
+
+.product-spike-bag-one__main-content-text-wr {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+
+  @include media-query($medium-down) {
+    margin-left: 25%;
+    margin-top: 0;
+  }
+}
+
+.product-spike-bag-one__main-content-text {
+  @include text-content();
+
+  display: flex;
+  margin-top: auto;
+}
+
+.product-spike-bag-one__main-content-author {
+  @include text-content();
+
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-bottom: -14px;
+  margin-top: 50px;
+  position: relative;
+
+  @include media-query($medium-down) {
+    display: none;
+  }
+}
+
+.product-spike-bag-one__main-content-author-name {
+  margin-right: 15px;
+  width: 150px;
+}
+
+.product-spike-bag-one__main-content-author-sign {
+  left: 0;
+  position: relative;
+  width: 76px;
+
+  @include media-query($medium-down) {
+    left: -120px;
+    position: absolute;
+  }
+}
+
+.product-spike-bag-one__images {
+  @include f-row(8px);
+
+  @include media-query($small-down) {
+    @include f-row(6px);
+  }
+}
+
+.product-spike-bag-one__image {
+  @include f-col(1/4, 8px);
+
+  margin-top: 0;
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 6px);
+
+    margin-top: 12px;
+  }
+}

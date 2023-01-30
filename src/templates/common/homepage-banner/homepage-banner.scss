@@ -1,0 +1,128 @@
+.homepage-banner {
+  display: block;
+  padding-bottom: 20px;
+  position: relative;
+
+  @include media-query($medium-up) {
+    padding-bottom: 0;
+  }
+}
+
+.homepage-banner__media-mobile {
+  display: block;
+
+  @include media-query($medium-up) {
+    display: none;
+  }
+}
+
+.homepage-banner__media-desktop {
+  display: none;
+
+  @include media-query($medium-up) {
+    display: block;
+  }
+}
+
+.homepage-banner__content {
+  position: static;
+
+  @include media-query($medium-up) {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.homepage-banner__content-in {
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: auto;
+  max-width: 1012px;
+  padding: 30px 16px 0;
+
+  @include media-query($medium-up) {
+    justify-content: flex-start;
+    padding: 3% 40px 0 25px;
+  }
+
+  @include media-query($large-up) {
+    justify-content: center;
+    padding-top: 10%;
+    padding-top: 0;
+  }
+}
+
+.homepage-banner__content--desktop-text-white {
+  color: $colorText;
+
+  @include media-query($medium-up) {
+    color: $colorWhite;
+  }
+}
+
+.homepage-banner__content--desktop-center {
+  align-items: flex-start;
+  text-align: left;
+
+  @include media-query($medium-up) {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.homepage-banner__content--desktop-right {
+  align-items: flex-start;
+  text-align: left;
+
+  @include media-query($medium-up) {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.homepage-banner__content-title {
+  @include title-h4(inherit);
+
+  margin: 0 0 20px 0;
+  max-width: none;
+
+  @include media-query($medium-up) {
+    @include title-h3(inherit);
+  }
+}
+
+.homepage-banner__content-text {
+  @include text-content(inherit);
+
+  margin-bottom: 50px;
+  width: 100%;
+
+  @include media-query($medium-up) {
+    margin-bottom: 20px;
+    max-width: 390px;
+  }
+
+  @include media-query($large-up) {
+    margin-bottom: 56px;
+  }
+}
+
+.homepage-banner__content-btn {
+  @include button-transparent();
+
+  width: 100%;
+
+  @include media-query($small-up) {
+    width: auto;
+  }
+
+  @include media-query($medium-up) {
+    @include button();
+  }
+}

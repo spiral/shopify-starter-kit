@@ -1,0 +1,322 @@
+.page-mountaintop-hero {
+  display: block;
+  overflow-x: hidden;
+}
+
+.page-mountaintop-hero__video {
+  display: block;
+
+  .media__item--video {
+    max-height: none;
+    min-height: 56.2vw;
+
+    @include media-query($small-down) {
+      max-height: 650px;
+      min-height: auto;
+    }
+  }
+}
+
+.page-mountaintop-hero__details {
+  padding: 0 60px;
+  position: relative;
+
+  @include media-query($small-down) {
+    padding: 0 20px;
+  }
+}
+
+.page-mountaintop-hero__details-top-wr {
+  border: 1px solid $colorWhite;
+  border-left-width: 0;
+  border-right-width: 0;
+  bottom: 100%;
+  color: $colorWhite;
+  left: 60px;
+  margin-bottom: 35px;
+  position: absolute;
+  right: 60px;
+
+  @include media-query($medium-down) {
+    border-bottom: 1px solid $colorText;
+    border-top: none;
+    color: $colorText;
+    left: auto;
+    margin-bottom: 0;
+    position: relative;
+    right: auto;
+  }
+}
+
+.page-mountaintop-hero__details-top {
+  @include f-row(60px);
+  @include text-content($colorWhite);
+
+  color: $colorWhite;
+  font-weight: normal;
+  line-height: 1;
+  padding: 38px 0 10px;
+  text-transform: uppercase;
+
+  @include media-query($medium-down) {
+    @include f-row(20px);
+    @include text-content($colorText);
+
+    color: $colorText;
+    padding-bottom: 38px;
+  }
+
+  @include media-query($small-down) {
+    @include f-row(10px);
+
+    padding: 30px 0;
+  }
+}
+
+.page-mountaintop-hero__details-conversation {
+  @include f-col(1/5, 60px);
+  @include text-content($colorWhite);
+
+  @include media-query($medium-down) {
+    @include f-col(1/4, 20px);
+    @include text-content($colorText);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 10px);
+  }
+}
+
+.page-mountaintop-hero__details-conversation-title {
+  @include text-title-3($colorWhite);
+
+  margin-bottom: 0;
+  margin-top: 0;
+
+  @include media-query($medium-down) {
+    @include text-title-3($colorText);
+  }
+}
+
+.page-mountaintop-hero__details-featuring {
+  @include f-col(3/5, 60px);
+  @include text-content($colorWhite);
+
+  @include media-query($medium-down) {
+    @include f-col(5/8, 20px);
+    @include text-content($colorText);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 10px);
+  }
+}
+
+$_line-height: 14px * 1.2; // 14px = text-title-3() font-size
+
+.page-mountaintop-hero__details-featuring-title {
+  @include text-title-3($colorWhite);
+
+  margin-bottom: $_line-height;
+  margin-top: 0;
+
+  @include media-query($medium-down) {
+    @include text-title-3($colorText);
+  }
+}
+
+.page-mountaintop-hero__details-featuring-list {
+  @include clear-list();
+
+  display: flex;
+  flex-direction: column; // NOTE: need to keep order
+  flex-wrap: wrap;
+  height: ($_line-height * 3) + 1px; // NOTE: 3 line of items. Need to keep order
+
+  @include media-query($large-down) {
+    height: ($_line-height * 5) + 1px;
+  }
+
+  @include media-query($small-down) {
+    height: auto;
+  }
+}
+
+.page-mountaintop-hero__details-featuring-item {
+  @include clear-list-item();
+  @include text-content($colorWhite);
+
+  padding-right: 20px;
+  text-transform: uppercase;
+  width: 33%;
+
+  @include media-query($large-down) {
+    width: 50%;
+  }
+
+  @include media-query($medium-down) {
+    @include text-content($colorText);
+  }
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.page-mountaintop-hero__details-act {
+  @include f-col(1/5, 60px);
+  @include text-content($colorWhite);
+
+  text-align: right;
+
+  @include media-query($medium-down) {
+    @include f-col(1/8, 20px);
+    @include text-content($colorText);
+  }
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.page-mountaintop-hero__details-act-mobile {
+  display: none;
+  padding-bottom: 10px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    display: flex;
+  }
+}
+
+.page-mountaintop-hero__details-act-mobile-text {
+  color: $colorDisabled;
+  float: left;
+  font-size: 8px;
+  line-height: 1;
+  text-transform: uppercase;
+  width: 50%;
+
+  &:last-child {
+    padding-left: 10px;
+  }
+}
+
+.page-mountaintop-hero__details-bottom {
+  @include f-row(60px);
+
+  padding-bottom: 100px;
+  padding-top: 100px;
+
+  @include media-query($medium-down) {
+    @include f-row(20px);
+
+    padding-top: 50px;
+  }
+
+  @include media-query($small-down) {
+    padding-bottom: 60px;
+    padding-top: 0;
+  }
+}
+
+.page-mountaintop-hero__details-logo {
+  @include f-col(1/4, 60px);
+
+  @include media-query($medium-down) {
+    @include f-col(1/4, 20px);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 20px);
+  }
+}
+
+.page-mountaintop-hero__details-logo-in {
+  max-width: 200px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin: 80px auto;
+    opacity: 0.5;
+  }
+}
+
+.page-mountaintop-hero__details-text {
+  @include f-col(3/4, 60px);
+  @include text-content($colorText);
+
+  margin: 0;
+  max-width: 660px;
+
+  @include media-query($medium-down) {
+    @include f-col(3/4, 20px);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 20px);
+
+    margin: 0 auto;
+    max-width: none;
+  }
+}
+
+.page-mountaintop-hero__details-platform {
+  @include f-col(3/4, 60px);
+
+  margin-bottom: 10px;
+  margin-left: 25%;
+  margin-top: 112px;
+
+  @include media-query($medium-down) {
+    @include f-col(3/4, 20px);
+  }
+
+  @include media-query($small-down) {
+    @include f-col(1, 20px);
+
+    margin-left: 0;
+    margin-top: 40px;
+  }
+}
+
+.page-mountaintop-hero__details-platform-title {
+  @include text-title-3($colorText);
+
+  display: block;
+  margin-bottom: 12px;
+  margin-top: 0;
+
+  @include media-query($small-down) {
+    margin-bottom: 10px;
+  }
+}
+
+.page-mountaintop-hero__details-platform-list {
+  @include clear-list();
+
+  align-items: center;
+  display: flex;
+  justify-content: start;
+}
+
+.page-mountaintop-hero__details-platform-item {
+  @include clear-list-item();
+
+  display: block;
+  height: 50px;
+  margin-right: 50px;
+  position: relative;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin-right: 30px;
+  }
+}
+
+.page-mountaintop-hero__details-platform-item-link {
+  align-items: flex-end;
+  display: flex;
+  height: 100%;
+  text-decoration: none;
+}

@@ -1,0 +1,408 @@
+{% if product %}
+  <section
+    class="product-look-book"
+    data-section="product-look-book"
+  >
+    <div class="product-look-book__header">
+      <div class="product-look-book__header-subtitle">
+        {{ section.settings.subtitle }}
+      </div>
+
+      <div class="product-look-book__header-title">
+        {{ section.settings.title }}
+      </div>
+    </div>
+
+    <div class="product-look-book__variants">
+      {% for block in section.blocks %}
+        <div
+          class="product-look-book__variant"
+          data-variant-ids="{{ block.settings.options_string }}"
+          data-variant-id-active
+          {% if block.settings.options_string == section.settings.default_options_string %}
+            data-variant-id-default
+          {% endif %}
+        >
+          <div class="product-look-book__variant-in">
+            <div
+              class="product-look-book__variant-slider-wr splide"
+              data-product-lookbook-slider
+              data-product-lookbook-block-id="{{ block.id }}"
+            >
+              <div class="product-look-book__variant-slider splide__track">
+                <ul class="product-look-book__variant-slider-slides splide__list">
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_1_alt = block.settings.image_1_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_1, alt: image_1_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_2_alt = block.settings.image_2_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_2, alt: image_2_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_3_alt = block.settings.image_3_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_3, alt: image_3_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_4_alt = block.settings.image_4_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_4, alt: image_4_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_5_alt = block.settings.image_5_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_5, alt: image_5_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_6_alt = block.settings.image_6_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_6, alt: image_6_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_7_alt = block.settings.image_7_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_7, alt: image_7_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_8_alt = block.settings.image_8_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_8, alt: image_8_alt %}
+                  </li>
+
+                  <li class="product-look-book__variant-slider-slide splide__slide">
+                    {% assign image_9_alt = block.settings.image_9_alt | append: ' cover' %}
+
+                    {% render 'lazy-image', image: block.settings.image_9, alt: image_9_alt %}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              class="product-look-book__variant-thumbnails"
+              data-product-lookbook-block-id="{{ block.id }}"
+            >
+              {% for i in (1..9) %}
+                {%- assign _url_key = 'image_' | append: i -%}
+                {%- assign _alt_key = 'image_' | append: i | append: '_alt' -%}
+                {%- assign _url_mobile_key = 'image_' | append: i | append: '_mobile' %}
+                {%- assign _alt_mobile_key = 'image_' | appemd: i | append: '_alt_mobile' -%}
+
+                <div class="product-look-book__variant-thumbnail">
+                  <div class="product-look-book__variant-thumbnail-text">
+                    0{{ i }}
+                  </div>
+
+                  <div
+                    class="product-look-book__variant-thumbnail-image"
+                    data-product-lookbook-thumbnail-index="{{ forloop.index0 }}"
+                  >
+                    {%
+                      render 'lazy-image' with
+                      image: block.settings[_url_key],
+                      alt: block.settings[_alt_key]
+                    %}
+                  </div>
+
+                  <div
+                    class="product-look-book__variant-thumbnail-image product-look-book__variant-thumbnail-image--mobile"
+                    data-product-lookbook-thumbnail-index="{{ forloop.index0 }}"
+                  >
+                    {%
+                      render 'lazy-image' with
+                      image: block.settings[_url_mobile_key],
+                      alt: block.settings[_alt_mobile_key]
+                    %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if block.settings.button_url != blank and block.settings.button_text != blank %}
+            <div class="product-look-book__variant-button-wr">
+              <a
+                class="product-look-book__variant-button"
+                href="{{ block.settings.button_url | replace: shop.url, shop.secure_url }}"
+              >
+                {{ block.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Lookbook",
+  "settings": [
+    {
+      "type": "text",
+      "id": "default_options_string",
+      "label": "Default variant option in format (Name: Value)"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Lookbook Variant Content",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "options_string",
+          "label": "Variants options in format (Name: Value, Name2: Value2)"
+        },
+        {
+          "type": "header",
+          "content": "CTA button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button url link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "header",
+          "content": "Cover and desktop thumbnails"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "image_1_alt",
+          "label": "Image 1 alt text",
+          "default": "Saysh two style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "image_2_alt",
+          "label": "Image 2 alt text",
+          "default": "Allyson Felix shoe company"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "text",
+          "id": "image_3_alt",
+          "label": "Image 3 alt text",
+          "default": "Saysh reviews"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "text",
+          "id": "image_4_alt",
+          "label": "Image 4 alt text",
+          "default": "Saysh Two style look"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "text",
+          "id": "image_5_alt",
+          "label": "Image 5 alt text",
+          "default": "Women wear"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "text",
+          "id": "image_6_alt",
+          "label": "Image 6 alt text",
+          "default": "Saysh Team"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7",
+          "label": "Image 7"
+        },
+        {
+          "type": "text",
+          "id": "image_7_alt",
+          "label": "Image 7 alt text",
+          "default": "Saysh products"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8",
+          "label": "Image 8"
+        },
+        {
+          "type": "text",
+          "id": "image_8_alt",
+          "label": "Image 8 alt text",
+          "default": "Allyson Felix shoes"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_9",
+          "label": "Image 9"
+        },
+        {
+          "type": "text",
+          "id": "image_9_alt",
+          "label": "Image 9 alt text",
+          "default": "Allyson Felix company"
+        },
+        {
+          "type": "header",
+          "content": "Mobile thumbnails"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1_mobile",
+          "label": "Image 1 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_1_mobile_alt",
+          "label": "Image 1 mobile alt text",
+          "default": "Allyson Felix"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2_mobile",
+          "label": "Image 2 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_2_mobile_alt",
+          "label": "Image 2 mobile alt text",
+          "default": "Allyson Felix style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3_mobile",
+          "label": "Image 3 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_3_mobile_alt",
+          "label": "Image 3 mobile alt text",
+          "default": "Allyson Felix wear"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4_mobile",
+          "label": "Image 4 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_4_mobile_alt",
+          "label": "Image 4 mobile alt text",
+          "default": "Look style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5_mobile",
+          "label": "Image 5 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_5_mobile_alt",
+          "label": "Image 5 mobile alt text",
+          "default": "Saysh Look"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6_mobile",
+          "label": "Image 6 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_6_mobile_alt",
+          "label": "Image 6 mobile alt text",
+          "default": "by Saysh"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7_mobile",
+          "label": "Image 7 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_7_mobile_alt",
+          "label": "Image 7 mobile alt text",
+          "default": "womens sneakers"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8_mobile",
+          "label": "Image 8 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_8_mobile_alt",
+          "label": "Image 8 mobile alt text",
+          "default": "womens style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_9_mobile",
+          "label": "Image 9 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_9_mobile_alt",
+          "label": "Image 9 mobile alt text",
+          "default": "Allyson Fellix"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Lookbook",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

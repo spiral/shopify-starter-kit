@@ -1,0 +1,137 @@
+.page-stocklist-accordion {
+  display: block;
+
+  @include media-query($small-down) {
+    padding: 0 16px;
+  }
+}
+
+.page-stocklist-accordion__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: auto;
+  max-width: rem($grid-widescreen);
+  padding-bottom: 46px;
+  padding-top: 10px;
+
+  @include media-query($small-down) {
+    display: block;
+    padding-bottom: 38px;
+    padding-top: 0;
+  }
+}
+
+.page-stocklist-accordion__title {
+  @include text-title-1();
+
+  margin: 0 auto 0 64px;
+
+  @include media-query($small-down) {
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+}
+
+.page-stocklist-accordion__list {
+  padding-right: 178px;
+  width: 57%;
+
+  @include media-query($small-down) {
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+.page-stocklist-accordion__item {
+  margin-bottom: 26px;
+
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-query($small-down) {
+    margin-bottom: 20px;
+  }
+}
+
+.page-stocklist-accordion__item-button {
+  @include button-reset-styles();
+
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+
+  &[aria-expanded="true"] {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.page-stocklist-accordion__item-button-title {
+  @include text-content();
+
+  font-size: 16px;
+  margin: 0;
+  padding-right: 10px;
+}
+
+.page-stocklist-accordion__item-button-symbols {
+  display: block;
+}
+
+.page-stocklist-accordion__item-button-minus {
+  @include text-content();
+
+  display: none;
+  text-align: center;
+  width: 20px;
+
+  [aria-expanded="true"] & {
+    display: block;
+  }
+}
+
+.page-stocklist-accordion__item-button-plus {
+  @include text-content();
+
+  display: block;
+  text-align: center;
+  width: 20px;
+
+  [aria-expanded="true"] & {
+    display: none;
+  }
+}
+
+.page-stocklist-accordion__item-description {
+  @include text-content($colorMuted);
+
+  margin-top: 10px;
+  padding-right: 30px;
+
+  @include media-query($small-down) {
+    margin-top: 4px;
+  }
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+
+  p {
+    margin: 0 0 10px 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    @include link(inherit);
+  }
+}

@@ -1,0 +1,525 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{% comment %} *** calculate visible variant image *** {% endcomment %}
+
+{% assign options_string = '' %}
+
+{% for option_key in product.options %}
+  {% assign options_string = options_string | append: option_key | append: ': ' | append: current_variant.options[forloop.index0] | append: ' | ' %}
+{% endfor %}
+
+{%- assign variant_image_src = '' -%}
+{%- assign variant_image_mobile_src = '' -%}
+
+{%- assign options_string_list = options_string | split: ' | ' -%}
+
+{% for options_string_item in options_string_list %}
+  {% for item in product.media %}
+    {% unless item.alt contains 'GREAT_QUALITY' %}
+      {% if item.alt contains options_string_item or item.alt contains 'PRODUCT' %}
+        {% if item.alt contains 'MOBILE' %}
+          {% if variant_image_mobile_src == blank %}
+            {%- assign variant_image_mobile_src = item.src | img_url: '828x1036' -%}
+          {% endif %}
+        {% else %}
+          {% if variant_image_src == blank %}
+            {%- assign variant_image_src = item.src | img_url: '1418x1500' -%}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+{% endfor %}
+
+{%- assign product_meta = product.metafields.store -%}
+{%- assign variant_meta = current_variant.metafields.store -%}
+
+<div
+  class="product-base"
+  data-snippet="product-base"
+>
+  <div
+    class="product-base__in"
+    :data-variant-id="activeVariant.id"
+    :data-loaded
+  >
+    <div
+      class="product-base__popup"
+      :class="{ 'product-base__popup--open': isOpenPopup }"
+    >
+      <div
+        class="product-base__popup-background"
+        @click="togglePopup(false)"
+      ></div>
+
+      <div class="product-base__popup-content">
+        <div
+          class="product-base__popup-slider splide"
+          data-product-base-popup
+        >
+          <div class="product-base__popup-slider-track splide__track">
+            <ul class="product-base__popup-slider-list splide__list">
+              <li
+                class="product-base__popup-slider-item splide__slide"
+                v-for="image in variantPopupNormalizedImages"
+              >
+                <img
+                  :src="image.src"
+                  :alt='activeVariant.title + " sku:" + image.alt'
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <button
+          class="product-base__popup-close"
+          @click="togglePopup(false)"
+        >
+          <span class="visually-hidden">Close popup</span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="product-base__preview"
+      :class="{ 'product-base__preview--hidden': isOpenPopup }"
+    >
+      <div
+        class="product-base__preview-simple"
+        v-if="variantImages.length == 1"
+        :key="variantImages[0].src"
+      >
+        {% if variant_image_src != blank %}
+          <img
+            class="product-base__preview-simple-image"
+            :alt="variantImages[0].alt"
+            alt="Product image"
+            :src="variantImages[0].src"
+            src="{{ variant_image_src }}"
+          >
+        {% endif %}
+
+        {% if variant_image_mobile_src != blank %}
+          <img
+            class="product-base__preview-simple-image product-base__preview-simple-image--mobile"
+            :alt="variantImages[0].alt"
+            alt="Product image"
+            :src="variantImages[0].src"
+            src="{{ variant_image_mobile_src }}"
+          >
+        {% endif %}
+      </div>
+
+      <div
+        class="product-base__slider"
+        v-if="variantImages.length > 1"
+      >
+        <div
+          class="product-base__slider-carousel splide"
+          data-product-base-slider
+        >
+          <div class="product-base__slider-track splide__track">
+            <ul class="product-base__slider-list splide__list">
+              <li
+                class="product-base__slider-image splide__slide"
+                v-for="image in variantImages"
+              >
+                <img
+                  :src="image.src"
+                  :alt='activeVariant.title + " sku:" + image.alt'
+                >
+              </li>
+            </ul>
+          </div>
+
+          <button
+            class="product-base__slider-image-icon"
+            v-if="hasPopupImages"
+            @click="togglePopup()"
+          >
+            <span class="visually-hidden">Open large image</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-base__product-wr">
+      <div class="product-base__product">
+        <div class="product-base__product-main">
+          <h1
+            class="product-base__product-title"
+            v-html="activeVariant.title"
+          >
+            {% if variant_meta.title %}
+              {{ variant_meta.title }}
+            {% elsif product_meta.title %}
+              {{ product_meta.title }}
+            {% else %}
+              {{ product.title }}
+            {% endif %}
+          </h1>
+
+          {% if variant_meta.description != blank %}
+            {% assign _description = variant_meta.description %}
+          {% elsif product_meta.description != blank %}
+            {% assign _description = product_meta.description %}
+          {% elsif product_meta.is_visible_description == true %}
+            {% assign _description = product.description %}
+          {% else %}
+            {% assign _description = '' %}
+          {% endif %}
+
+          {% if _description != blank %}
+            <div
+              class="product-base__product-description"
+              v-html="activeVariant.description"
+            >
+              {{ _description | newline_to_br }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="product-base__product-blocks">
+          {% for block in blocks %}
+            {% if block.type == '@app' %}
+              <div class="product-base__product-block">
+                {% render block %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if _description != blank %}
+          <div class="product-base__product-sep"></div>
+        {% endif %}
+
+        <form
+          class="product-base__product-form"
+          @submit="formSubmit"
+          method="post"
+          accept-charset="UTF-8"
+          enctype="multipart/form-data"
+          data-product-form=""
+          data-product-handle="stainless-steel-frying-pan"
+        >
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <input
+            type="hidden"
+            name="id"
+            :value="activeVariant.id"
+            value="{{ current_variant.id }}"
+          >
+
+          {% assign default_product_option = product.options | first %}
+
+          {% if default_product_option != 'Title' %}
+            <div class="product-base__product-options">
+              <div
+                class="product-base__product-option"
+                v-for="(key, index) in optionsKeyOrder"
+              >
+                <div
+                  class="product-base__product-option-in"
+                  v-if="isColoredOptionsGroup(key)"
+                  :class="{'product-base__product-option-in--custom': isCustomOptionsGroup(key)}"
+                >
+                  <div class="product-base__product-option-title">
+                    <div
+                      class="product-base__product-option-title-head"
+                      v-html="key"
+                    >
+                      {{ default_product_option }}
+                    </div>
+
+                    &nbsp;
+
+                    <span
+                      class="product-base__product-option-title-value"
+                      v-html="makeOptionsGroupValue(key)"
+                    ></span>
+
+                    <button
+                      class="product-base__product-option-title-size-guide"
+                      data-drawer-open-size-guide
+                      v-if="isVisibleSizeGuide(index)"
+                    >
+                      Size Guide
+                    </button>
+                  </div>
+
+                  <div class="product-base__product-option-colors">
+                    <button
+                      v-for="value in variantOptions[key]"
+                      class="product-base__product-option-color"
+                      :class='
+                        [
+                          {"product-base__product-option-color--active": value === variantOptionsActive[normalizeKey(key)]},
+                          {"product-base__product-option-color--sold-out": isSoldOutOption(key, value) },
+                          {"product-base__product-option-color--custom": isCustomOption(key, value) },
+                        ]
+                      '
+                      :style="
+                        {
+                          'border-color': calcOptionColor(value)
+                        }
+                      "
+                      :title="makeOptionTitle(key, value)"
+                      type="button"
+                      @click="changeOption(key, value)"
+                      :disabled="isUnavailableOption(key, value)"
+                    >
+                      <div
+                        class="product-base__product-option-color-bg"
+                        :style="{ 'background': calcOptionColor(value) }"
+                      ></div>
+
+                      <span
+                        class="visually-hidden"
+                        v-html="makeOptionDisplayValue(key, value)"
+                      ></span>
+
+                      <span
+                        class="product-base__product-option-color-slash"
+                        v-if="isSoldOutOption(key, value)"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="product-base__product-option-in"
+                  v-if="isSizeOptionsGroup(key)"
+                >
+                  <div class="product-base__product-option-sizes">
+                    <div
+                      v-for="value in variantOptions[key]"
+                      class="product-base__product-option-size-wr"
+                    >
+                      <button
+                        class="product-base__product-option-size"
+                        :class='
+                          [
+                            {"product-base__product-option-size--active": value === variantOptionsActive[key] },
+                            {"product-base__product-option-size--sold-out": isSoldOutOption(key, value) },
+                          ]
+                        '
+                        :disabled="isUnavailableOption(key, value)"
+                        :title="makeOptionTitle(key, value)"
+                        type="button"
+                        @click="changeOption(key, value)"
+                      >
+                        <span v-html="makeOptionDisplayValue(key, value)">
+                          {{ current_variant.option1 }}
+                        </span>
+
+                        <span
+                          class="product-base__product-option-size-slash"
+                          v-if="isUnavailableOption(key, value)"
+                        ></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="product-base__product-option-in"
+                  v-if="isRegularOptionsGroup(key)"
+                >
+                  <div class="product-base__product-option-title">
+                    <div
+                      class="product-base__product-option-title-head"
+                      v-html="key"
+                    >
+                      {{ product.options | first }}
+                    </div>
+
+                    <button
+                      class="product-base__product-option-title-size-guide"
+                      data-drawer-open-size-guide
+                      v-if="isVisibleSizeGuide(index)"
+                    >
+                      Size
+                    </button>
+                  </div>
+
+                  <div class="product-base__product-option-values">
+                    <div
+                      class="product-base__product-option-value-wr"
+                      v-for="value in variantOptions[key]"
+                    >
+                      <button
+                        class="product-base__product-option-value"
+                        :class='
+                          [
+                            {"product-base__product-option-value--active": value === variantOptionsActive[key] },
+                            {"product-base__product-option-value--sold-out": isSoldOutOption(key, value) },
+                          ]
+                        '
+                        :title="makeOptionTitle(key, value)"
+                        v-html="makeOptionDisplayValue(key, value)"
+                        @click="changeOption(key, value)"
+                        :disabled="isUnavailableOption(key, value)"
+                        type="button"
+                      >
+                        {{ current_variant.option1 }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="product-base__product-button-wr">
+            <button
+              class="product-base__product-button"
+              :disabled="!isAvailableVariant(activeVariant)"
+              type="submit"
+            >
+              <span v-if="isAvailableVariant(activeVariant)">
+                Add to your cart —
+                <span
+                  class="product-base__product-button-price"
+                  :class='{"product-base__product-button-price--old": priceDiscount }'
+                  v-html="priceOriginal"
+                ></span
+                >&nbsp;
+
+                <span
+                  v-if="priceDiscount"
+                  class="product-base__product-button-price product-base__product-button-price--new"
+                  v-html="priceDiscount"
+                ></span>
+              </span>
+
+              <span
+                class="product-base__product-button-price"
+                v-if="!isAvailableVariant(activeVariant)"
+              >
+                Sold Out
+              </span>
+            </button>
+
+            <p
+              class="product-base__product-button-discount"
+              v-if="textDiscount"
+              v-html="textDiscount"
+            ></p>
+          </div>
+        </form>
+
+        <a
+          class="product-base__product-klaviyo-trigger klaviyo-bis-trigger"
+          href="#"
+          v-if="!isAvailableVariant(activeVariant)"
+          @click="subscribeNotifyMeEvent()"
+        >
+          Notify Me When Available
+        </a>
+
+        <div
+          class="product-base__product-klarna"
+          v-for="variant in variants"
+          :class='{ "product-base__product-klarna--hidden": activeVariant.id != variant.id }'
+          :data-id="variant.id"
+          :data-active-id="activeVariant.id"
+        >
+          <klarna-placement
+            data-key="credit-promotion-auto-size"
+            data-locale="en-US"
+            :data-purchase-amount="variant.price"
+          ></klarna-placement>
+
+          <div class="product-base__sep"></div>
+        </div>
+
+        {% assign _detaiils = '' %}
+
+        {% if variant_meta.details %}
+          {% assign _detaiils = variant_meta.details %}
+        {% elsif product_meta.details %}
+          {% assign _detaiils = product_meta.details %}
+        {% endif %}
+
+        {% if _detaiils != blank %}
+          <div class="product-base__product-details">
+            <div class="product-base__product-details-title">
+              Product Details
+            </div>
+
+            <div
+              class="product-base__product-details-title-text"
+              v-html="activeVariant.details"
+            >
+              {{ _detaiils | newline_to_br }}
+            </div>
+          </div>
+
+          <div class="product-base__sep product-base__sep--muted"></div>
+        {% endif %}
+
+        {% if product_meta.shipping_information %}
+          <div
+            class="product-base__product-shipping-info"
+            data-location="US"
+            data-location-active="false"
+          >
+            {{ product_meta.shipping_information | newline_to_br }}
+          </div>
+        {% endif %}
+
+        {% if product_meta.shipping_information_canada %}
+          <div
+            class="product-base__product-shipping-info"
+            data-location="CA"
+            data-location-active="false"
+          >
+            {{ product_meta.shipping_information_canada | newline_to_br }}
+          </div>
+        {% endif %}
+
+        <div class="product-base__product-info">
+          {% if product_meta.pre_order_text %}
+            <div
+              class="product-base__product-info-title"
+              v-html="activeVariant.preOrderText"
+            >
+              {{ product_meta.pre_order_text }}
+            </div>
+          {% endif %}
+
+          {% if product_meta.is_read_more_type_2 == true or product_meta.is_read_more_type_2 == false %}
+            <div class="product-base__product-info-more-wr">
+              <button
+                class="product-base__product-info-more"
+                type="button"
+                {% if product_meta.is_read_more_type_2 == true %}
+                  data-drawer-open-more-info-new
+                {% elsif product_meta.is_read_more_type_2 == false %}
+                  data-drawer-open-more-info
+                {% endif %}
+              >
+                More Information
+              </button>
+            </div>
+          {% endif %}
+
+          <div class="product-base__product-info-favorite">
+            <!-- include 'wishlist-button-product' with: '{{ product.id }}' -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% unless product == empty %}
+  <script
+    type="application/json"
+    data-product-json
+  >
+    {{ product | json }}
+  </script>
+{% endunless %}

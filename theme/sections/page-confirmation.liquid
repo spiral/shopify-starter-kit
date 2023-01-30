@@ -1,0 +1,71 @@
+<section class="confirmation">
+  {% if section.settings.image %}
+    <div class="confirmation__image desktop">
+      {% render 'lazy-image', image: section.settings.image %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.image_mobile %}
+    <div class="confirmation__image mobile">
+      {% render 'lazy-image', image: section.settings.image_mobile %}
+    </div>
+  {% endif %}
+
+  <div class="confirmation__overlay">
+    <h1 class="confirmation__title">{{ section.settings.title }}</h1>
+    <p class="confirmation__text">{{ section.settings.text }}</p>
+
+    {% if section.settings.link_text != blank %}
+      <a class="confirmation__link" href="{{ section.settings.link_url }}"
+        {% if section.settings.open_link_new_tab %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}>
+          {{ section.settings.link_text }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Subscription Confirm Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "open_link_new_tab",
+        "label": "Open link in new tab"
+      }
+    ]
+  }
+{% endschema %}

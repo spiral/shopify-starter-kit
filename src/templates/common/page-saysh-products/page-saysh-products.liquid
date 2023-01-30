@@ -1,0 +1,63 @@
+<section
+  class="page-saysh-products"
+  data-section="page-saysh-products"
+>
+  <div class="page-saysh-products__items">
+    {% for block in section.blocks %}
+      <div class="page-saysh-products__item">
+        <div class="page-saysh-products__item-image">
+          {% render 'lazy-image', image: block.settings.image %}
+        </div>
+
+        <div class="page-saysh-products__item-image page-saysh-products__item-image--mobile">
+          {% render 'lazy-image', image: block.settings.image_mobile %}
+        </div>
+
+        {% if block.settings.button_url != blank and block.settings.button_text != blank %}
+          <a
+            class="page-saysh-products__item-button"
+            href="{{ block.settings.button_url }}"
+          >
+            {{ block.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Saysh Products",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Products",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image mobile"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button url link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

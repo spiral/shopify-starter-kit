@@ -1,0 +1,125 @@
+{% if section.settings.is_white_desktop_text %}
+  {% assign setting_color_mod = 'homepage-banner__content--desktop-text-white' %}
+{% else %}
+  {% assign setting_color_mod = '' %}
+{% endif %}
+
+{% if section.settings.horisontal_alignment == 'left' %}
+  {% assign setting_align_mod = '' %}
+{% elsif section.settings.horisontal_alignment == 'center' %}
+  {% assign setting_align_mod = 'homepage-banner__content--desktop-center' %}
+{% elsif section.settings.horisontal_alignment == 'right' %}
+  {% assign setting_align_mod = 'homepage-banner__content--desktop-right' %}
+{% endif %}
+
+<section
+  class="homepage-banner"
+  data-section="homepage-banner"
+>
+  <div class="homepage-banner__in">
+    <div class="homepage-banner__media">
+      <div class="homepage-banner__media-desktop">
+        {% render 'lazy-image', image: section.settings.image_desktop %}
+      </div>
+
+      <div class="homepage-banner__media-mobile">
+        {% render 'lazy-image', image: section.settings.image_mobile %}
+      </div>
+    </div>
+
+    <div class="homepage-banner__content">
+      <div class="
+          homepage-banner__content-in
+          {{ setting_color_mod }}
+          {{ setting_align_mod }}
+        ">
+        <h2 class="homepage-banner__content-title">
+          {{ section.settings.title }}
+        </h2>
+
+        <div class="homepage-banner__content-text">
+          {{ section.settings.text }}
+        </div>
+
+        <a
+          class="homepage-banner__content-btn"
+          href="{{ section.settings.link_url }}"
+        >
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_white_desktop_text",
+      "label": "White text"
+    },
+    {
+      "type": "select",
+      "id": "horisontal_alignment",
+      "label": "Horizintal text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left text align"
+        },
+        {
+          "value": "center",
+          "label": "Center text align"
+        },
+        {
+          "value": "right",
+          "label": "Right text align"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Step into Spring"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The Saysh One lifestyle sneaker is now back in stock, in black and white."
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link url"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage-banner",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

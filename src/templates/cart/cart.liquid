@@ -1,0 +1,188 @@
+<style>
+  {% render 'cart.css' %}
+</style>
+
+<div
+  class="cart"
+  data-template="cart"
+  data-section-type="cart-page"
+>
+  {% if cart.item_count > 0 %}
+    <form
+      class="cart__form"
+      action="{{ shop.secure_url }}/cart"
+      method="post"
+      novalidate
+    >
+      <div class="cart__main">
+        <div class="cart__header">
+          <h2 class="cart__title">My Bag</h2>
+
+          <p class="cart__count">
+            <span class="cart__count-number">
+              {{ cart.item_count }}
+            </span>
+
+            Items
+          </p>
+        </div>
+
+        <div class="cart__products">
+          {% for item in cart.items %}
+            {% assign itemHandleFirst = item.product.handle | split: '-' | first %}
+
+            <div
+              class="cart-product"
+              data-line="{{ item.key }}"
+            >
+              <a
+                href="{{ item.product.url }}"
+                class="cart-product__image"
+              >
+                {% if item.image %}
+                  {% render 'lazy-image', image: item.image %}
+                {% elsif item.product.featured_image %}
+                  {% render 'lazy-image', image: item.product.featured_image %}
+                {% endif %}
+              </a>
+
+              <div class="cart-product__info">
+                <div class="cart-product__info-block">
+                  <span class="cart-product__title">
+                    {{ item.product.title }}
+                  </span>
+
+                  {% if item.line_price != item.original_line_price %}
+                    {% assign is_discounted_product = true %}
+                  {% else %}
+                    {% assign is_discounted_product = false %}
+                  {% endif %}
+
+                  {% if is_discounted_product == true %}
+                    <div class="cart-product__option">
+                      <span class="cart-product__option-price cart-product__option-price--old">
+                        {{
+                          item.original_line_price
+                          | money_with_currency
+                          | remove: '.00'
+                        }}
+                      </span>
+
+                      <span class="cart-product__option-price cart-product__option-price--new">
+                        &nbsp;
+                        {{-
+                          item.line_price
+                          | money_with_currency
+                          | remove: '.00'
+                        }}
+                      </span>
+                    </div>
+                  {% elsif item.product.type != 'Gift Cards' %}
+                    <div class="cart-product__option">
+                      <span class="cart-product__option-price">
+                        {{
+                          item.line_price
+                          | money_with_currency
+                          | remove: '.00'
+                        }}
+                      </span>
+                    </div>
+                  {% endif %}
+
+                  {% for option in item.options_with_values %}
+                    <div class="cart-product__option">
+                      {{ option.name }}:
+                      <b>
+                        {%- if option.name == 'Value' -%}
+                          {{-
+                            item.price
+                            | money_with_currency
+                            | remove: '.00'
+                          -}}
+                        {%- else -%}
+                          {{- option.value -}}
+                        {%- endif -%}
+                      </b>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="cart-product__info-block">
+                  <div class="cart-product__qty">
+                    <input
+                      type="number"
+                      name="updates[]"
+                      class="ajaxcart__qty-num"
+                      data-key="{{ item.key }}"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      aria-label="{{ 'cart.general.item_quantity' | t }}"
+                      js-input
+                    >
+                  </div>
+
+                  <a
+                    class="cart-product__remove"
+                    href="{{ shop.secure_url }}/cart/change?line={{ forloop.index }}&quantity=0"
+                    data-cart-remove-item-key="{{ item.key }}"
+                  >
+                    Remove
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-footer__block">
+          <div class="cart-footer__block-item">
+            {{ settings.disclaimer_1 }}
+          </div>
+
+          <div class="cart-footer__block-item">
+            {{ settings.disclaimer_2_cart }}
+          </div>
+        </div>
+
+        <div class="cart-footer__block">
+          <div class="cart-footer__total">
+            <span class="cart-footer__total-text"> Total </span>
+
+            <span
+              class="cart-footer__total-price"
+              js-total
+            >
+              {{ cart.total_price | money_without_trailing_zeros }}
+            </span>
+          </div>
+        </div>
+
+        <div class="cart-footer__block">
+          <div class="cart-footer__buttons">
+            <button
+              type="submit"
+              name="update"
+              class="cart__button"
+            >
+              Update Cart
+            </button>
+
+            <button
+              type="submit"
+              class="cart__button"
+              name="checkout"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="cart__main">Your cart is currently empty.</div>
+  {% endif %}
+</div>
+
+{{ 'cart.js' | asset_url | script_tag }}

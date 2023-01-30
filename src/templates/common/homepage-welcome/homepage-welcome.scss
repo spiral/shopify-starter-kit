@@ -1,0 +1,114 @@
+.homepage-welcome {
+  background: $colorWhite;
+  padding: spacing() * 5 spacing() * 3;
+  position: relative;
+  text-align: center;
+
+  @include media-query($small-down) {
+    padding: spacing() * 2.5 spacing() * 1;
+  }
+
+  &::before {
+    border-bottom: 2px solid $lightgrey;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 0;
+    left: 60px;
+    position: absolute;
+    right: 60px;
+
+    @include media-query($small-down) {
+      display: none;
+    }
+  }
+}
+
+.homepage-welcome__in {
+  display: flex;
+  flex-direction: row;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+  }
+}
+
+.homepage-welcome__images-wr {
+  align-items: center;
+  display: flex;
+  width: calc(100% * 3 / 5);
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.homepage-welcome__images {
+  @include f-row(13px);
+
+  margin-bottom: 0;
+
+  @include media-query($small-down) {
+    @include f-row(5px);
+
+    margin-bottom: spacing() * 2.5;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.homepage-welcome__image {
+  @include f-col(1/2, 13px);
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 5px);
+  }
+}
+
+.homepage-welcome__content {
+  margin: auto;
+  max-width: 360px;
+  padding-left: spacing() * 3;
+  text-align: center;
+  width: calc(100% * 2 / 5);
+
+  @include media-query($small-down) {
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
+.homepage-welcome__content-title {
+  font-family: font-family(header);
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: spacing();
+
+  @include media-query($medium-down) {
+    font-size: 44px;
+    margin-bottom: spacing() * 0.75;
+  }
+}
+
+.homepage-welcome__content-text {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0 auto;
+
+  @include media-query($small-down) {
+    line-height: 1.4;
+    max-width: 80%;
+  }
+}
+
+.homepage-welcome__content-control {
+  @include button-transparent();
+
+  margin-top: spacing() * 2;
+  text-align: center;
+}

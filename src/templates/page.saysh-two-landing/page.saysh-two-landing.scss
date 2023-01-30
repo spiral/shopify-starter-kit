@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-saysh-two-landing-hero/page-saysh-two-landing-hero';
+
+
+.page-saysh-two-landing {
+  display: block;
+}

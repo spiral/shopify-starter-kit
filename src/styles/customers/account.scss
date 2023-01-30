@@ -1,0 +1,108 @@
+.account__home {
+  display: block;
+  margin-top: 48px;
+}
+
+.account__home-buttons {
+  column-gap: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 80px;
+  margin-top: 80px;
+
+  @include media-query($medium-down) {
+    column-gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 48px;
+    margin-top: 32px;
+    padding: 0;
+    row-gap: 16px;
+  }
+}
+
+.account__home-button {
+  @include text-title-2();
+
+  align-items: center;
+  border: 1px solid $colorText;
+  display: flex;
+  height: 134px;
+  justify-content: center;
+  text-decoration: unset;
+
+  &:last-child {
+    display: none;
+  }
+}
+
+.account__home-button-text {
+  @include text-title-2();
+
+  text-align: center;
+  text-decoration: unset;
+
+  @include media-query($small-down) {
+    @include text-title-3();
+
+    line-height: 1.4;
+  }
+}
+
+.account__home-header {
+  @include text-title-3();
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.account__home-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 638px;
+  row-gap: 26px;
+}
+
+.account__home-form-label {
+  @include form-field();
+
+  pointer-events: none;
+}
+
+.account__home-password-recover {
+  margin-top: 48px;
+  max-width: 638px;
+}
+
+.account__home-password-recover-header {
+  @include text-title-3();
+
+  margin-bottom: 28px;
+}
+
+.account__home-password-recover-button {
+  @include button-transparent();
+
+  padding: 20px 62px;
+}
+
+.account__home-password-recover-status-wr {
+  display: block;
+}
+
+.account__home-password-recover-status {
+  @include form-message($colorSuccess);
+
+  display: none;
+  margin-top: 80px;
+
+  @include media-query($small-down) {
+    margin-top: 32px;
+  }
+
+  [data-account-password-recover-success="true"] > & {
+    display: block;
+    max-width: 638px;
+    width: 100%;
+  }
+}

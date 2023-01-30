@@ -1,0 +1,51 @@
+{% if section.settings.is_visible_on_desktop %}
+  {% assign desktop_mode = 'separator--desktop' %}
+{% else %}
+  {% assign desktop_mode = '' %}
+{% endif %}
+
+{% if section.settings.is_visible_on_mobile %}
+  {% assign mobile_mode = 'separator--mobile' %}
+{% else %}
+  {% assign mobile_mode = '' %}
+{% endif %}
+
+<section
+  class="separator {{ desktop_mode }} {{ mobile_mode }}"
+  data-section="separator"
+>
+  {% if section.settings.is_large %}
+    <div class="separator__line"></div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "──────────",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_large",
+      "label": "Large Separator"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_visible_on_mobile",
+      "label": "Visible on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "is_visible_on_desktop",
+      "label": "Visible on desktop",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "──────────",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

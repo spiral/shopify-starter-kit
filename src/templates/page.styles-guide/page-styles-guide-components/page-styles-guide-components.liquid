@@ -1,0 +1,721 @@
+<section class="page-styles-guide-components"
+         data-section="page-styles-guide-components"
+>
+  <div class="page-styles-guide-components__container">
+    <div class="page-styles-guide-components__item">
+      <h2 class="page-styles-guide-components-title"> 
+        <span> Components: </span> Buttons
+      </h2>
+
+      <div class="page-styles-guide-components__item-description">
+        We have 2 type for buttons. 
+
+        <ul>
+          <li>
+            Use for button 1 - @include  button-transparent();
+          </li>
+
+          <li>
+            Use for button 2 - @include  button();
+          </li>
+        </ul>
+
+        <p>
+          Button disable - disabled state for button 1 and button 2
+        </p>
+      </div>
+
+      <div class="page-styles-guide-components-buttons">
+        <button class="page-styles-guide-components-buttons-transparent"> 
+          Button 1
+        </button>
+
+        <button class="page-styles-guide-components-buttons-fill"> 
+          Button 2
+        </button>
+
+        <button disabled class="page-styles-guide-components-buttons-transparent"> 
+          Button disable 
+        </button>
+      </div>
+    </div>
+
+    <div class="page-styles-guide-components__item">
+      <h2 class="page-styles-guide-components-title"> 
+        <span> Components: </span> Text links
+      </h2>
+
+      <div class="page-styles-guide-components__item-description">
+        We have 2 type for links. 
+        <ul>
+          <li>
+            Use for link 1 - @include link-text();
+          </li>
+
+          <li>
+            Use for link 2 - @include link-sm();
+           <i> ( Include mixin link-base(12px) - font size = 12px ) </i>
+          </li>
+
+          <li>
+            Use for link 3 - @include link();
+            <i>( Include mixin link-base(14px) - font size = 14px ) </i>
+          </li>
+        </ul>
+      </div>
+
+      <ul class="page-styles-guide-components-links">
+        <li class="page-styles-guide-components-links__item">
+          <a class="page-styles-guide-components-links__link-text" 
+             href="#"
+          > 
+            Link 1 
+          </a>
+        </li>
+
+        <li class="page-styles-guide-components-links__item">
+          <a class="page-styles-guide-components-links__link-underline-sm" 
+             href="#"
+          > 
+            Link 2
+          </a>
+        </li>
+        
+        <li class="page-styles-guide-components-links__item">
+          <a class="page-styles-guide-components-links__link-underline" 
+             href="#"
+          > 
+            Link 3
+          </a>
+        </li>
+      </ul>
+
+      <div class="page-styles-guide-components-links">
+        <p class="page-styles-guide-components-links__description">
+          Examples with using links in the text
+        </p>
+
+        <ul class="page-styles-guide-components-links__list">
+          <li class="page-styles-guide-components-links__item">
+            <div class="page-styles-guide-components-links__text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#"> It is link </a> etiam eu turpis molestie, dictum est a, mattis tellus. 
+            </div>
+          </li>
+  
+          <li class="page-styles-guide-components-links__item">
+            <div class="page-styles-guide-components-links__text-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#"> It is link </a> etiam eu turpis molestie, dictum est a, mattis tellus. 
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-styles-guide-components__item">
+      <h2 class="page-styles-guide-components-title"> 
+        <span> Components: </span> Forms
+      </h2>
+
+      <div class="page-styles-guide-components__item-description">
+        Form elements have a specific structure: 
+        <pre>
+          < label  data-control
+                   data-error
+                   data-required-error=''
+                   data-validation-styles
+          >
+            < input type="" 
+                    placeholder=""
+                    name=""
+                    data-field 
+            >
+
+            < span >
+              Text similar to placeholder
+            < /span >
+          < /label >
+        </pre>
+
+        <p>
+          Use the following mixins to style elements form:
+        </p>
+          <ul>
+            <li>
+              @include form-field (); 
+            </li>
+
+            <li>
+              @include form-control-checkbox ();
+            </li>
+
+            <li>
+              @include form-control-radio ();
+            </li>
+          </ul> 
+
+          <p>
+            *All mixines are called in the 'label' tag
+          </p>
+      </div>
+
+      <form class="page-styles-guide-components__form"
+            data-hidden='true'
+      >
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Text field
+          </h3>
+
+          <h4>
+            Regualar state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <input type="text"
+                   placeholder="Text"
+                   name="text"
+                   data-field
+            >
+
+            <span>
+              Text 
+            </span>
+          </label>
+
+          <h4>
+            Error state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+                 data-validation-styles="error"
+          >
+            <input type="text"
+                   placeholder="Text"
+                   name="text"
+                   data-field
+            >
+
+            <span>
+              Text
+            </span>
+          </label>
+
+          <h4>
+            Success state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+                 data-validation-styles="success"
+          >
+            <input type="text"
+                   placeholder="Text"
+                   name="text"
+                   data-field
+            >
+
+            <span>
+              Text
+            </span>
+          </label>
+
+          <h4> 
+            Disabled state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <input type="text"
+                   placeholder="Text"
+                   name="Text"
+                   data-field
+                   disabled
+            >
+
+            <span>
+              Text
+            </span>
+          </label>
+
+          <h4>
+            Readonly state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <input type="text"
+                    placeholder="Text"
+                    name="Text"
+                    data-field
+                    readonly
+            >
+
+            <span>
+              Text
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Select field with default meaning
+          </h3>
+
+          <h4>
+            Regualar state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label">
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              >
+                Select defautl item
+              </option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Error state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-validation-styles="error"
+          >
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              >
+                Select defautl item
+              </option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Success state
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                data-validation-styles="success"   
+          >
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              >
+                Select defautl item
+              </option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Disabled state
+          </h4>
+ 
+          <label class="page-styles-guide-components__form-label">
+            <select data-field
+                    data-form-select
+                    required
+                    disabled
+            >
+              <option disabled
+                      selected
+                      hidden
+              >
+                Select defautl item
+              </option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Select field without default meaning
+          </h3>
+
+          <h4>
+            Regualar state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label">
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              ></option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Error state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-validation-styles="error"
+          >
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              ></option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Success state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                data-validation-styles="success"   
+          >
+            <select data-field
+                    data-form-select
+                    required
+            >
+              <option disabled
+                      selected
+                      hidden
+              ></option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+
+          <h4>
+            Disabled state
+          </h4>
+ 
+          <label class="page-styles-guide-components__form-label">
+            <select data-field
+                    data-form-select
+                    required
+                    disabled
+            >
+              <option disabled
+                      selected
+                      hidden
+              ></option>
+    
+              <option value="Item 1">
+                Item 1
+              </option>
+    
+              <option value="Item 2">
+                Item 2
+              </option>
+    
+              <option value="Item 3">
+                Item 3
+              </option>
+            </select>
+    
+            <span>
+              Topic
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Textarea field
+          </h3>
+
+          <h4>
+            Regualar state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <textarea placeholder="Message"
+                      data-field
+                      name="Message"
+            ></textarea>
+
+            <span>
+              Message
+            </span>
+          </label>  
+          
+          <h4>
+            Error state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+                 data-validation-styles="error"   
+          >
+            <textarea placeholder="Message"
+                      data-field
+                      name="Message"
+            ></textarea>
+
+            <span>
+              Message
+            </span>
+          </label>   
+          
+          <h4>
+            Success state 
+          </h4>
+          
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+                 data-validation-styles="success"   
+          >
+            <textarea placeholder="Message"
+                      data-field
+                      name="Message"
+            ></textarea>
+
+            <span>
+              Message
+            </span>
+          </label>   
+
+          <h4>
+            Disabled state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <textarea placeholder="Message"
+                      data-field
+                      name="Message"
+                      disabled
+            ></textarea>
+
+            <span>
+              Message
+            </span>
+          </label> 
+
+          <h4>
+            Readonly state 
+          </h4>
+
+          <label class="page-styles-guide-components__form-label"
+                 data-control
+                 data-error
+          >
+            <textarea placeholder="Message"
+                      data-field
+                      name="Message"
+                      readonly
+            ></textarea>
+
+            <span>
+              Message
+            </span>
+          </label> 
+        </fieldset>
+
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Checkbox field
+          </h3>
+
+          <label class="page-styles-guide-components__form-checkbox">
+           <input type="checkbox"
+                  name="checkbox"
+                  data-field
+            >
+
+            <span>
+              Checkbox example
+            </span>
+          </label>
+
+          <label class="page-styles-guide-components__form-checkbox">
+            <input type="checkbox"
+                   name="checkbox"
+                   data-field
+                   disabled
+             >
+ 
+             <span>
+               Checkbox disabled
+             </span>
+           </label>
+        </fieldset>
+
+        <fieldset class="page-styles-guide-components__form-fieldset">
+          <h3>
+            Radio field
+          </h3>
+          <label class="page-styles-guide-components__form-radio__label">
+            <input type="radio" 
+                   name="radio" 
+                   value="1"
+                   checked
+            >
+
+            <span>Radio button checked</span>
+          </label>
+
+          <label class="page-styles-guide-components__form-radio__label">
+            <input type="radio" 
+                   name="radio" 
+                   value="2"
+            >
+
+            <span>Radio button unchecked</span>
+          </label>
+
+          <label class="page-styles-guide-components__form-radio__label">
+            <input type="radio" 
+                    name="radio" 
+                    value="3"
+                    disabled
+            >
+
+            <span>Radio button disabled</span>
+          </label>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
+

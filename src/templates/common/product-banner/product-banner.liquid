@@ -1,0 +1,107 @@
+<style>
+  .product-banner__title {
+    font-size: {{section.settings.font_size_mobile}}px;
+  }
+
+  @media (min-width: 768px) {
+    .product-banner__title {
+      font-size: {{section.settings.font_size_desktop}}px;
+    }
+  }
+</style>
+
+{% if section.settings.is_reverse_order %}
+  {% assign modify = 'product-banner__body--reverse' %}
+{% else %}
+  {% assign modify = '' %}
+{% endif %}
+
+<section
+  class="product-banner"
+  data-section="product-banner"
+>
+  <div class="product-banner__head">
+    <span class="product-banner__head-text">
+      {{ section.settings.product_num }}
+    </span>
+
+    <span class="product-banner__head-text">
+      {{ section.settings.product_type }}
+    </span>
+  </div>
+
+  <div class="product-banner__body {{ modify }}">
+    <div class="product-banner__content">
+      <h2 class="product-banner__title">
+        {{ section.settings.title | newline_to_br }}
+      </h2>
+    </div>
+
+    <div class="product-banner__media">
+      {%
+        render 'lazy-image' with
+        image: section.settings.image
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Banner",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "product_num",
+      "label": "Product number"
+    },
+    {
+      "type": "text",
+      "id": "product_type",
+      "label": "Product type"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add image"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "min": 20,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (mobile)",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "is_reverse_order",
+      "label": "reverse order on mobile",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

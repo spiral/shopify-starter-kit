@@ -1,0 +1,117 @@
+.homepage-collective-events {
+  display: block;
+}
+
+.homepage-collective-events__in {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: $grid-desktop;
+  padding: spacing() * 5;
+
+  @include media-query($small-down) {
+    padding: 0;
+  }
+}
+
+.homepage-collective-events__content {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 spacing() * 2.5;
+  text-align: center;
+
+  @include media-query($small-down) {
+    margin-top: spacing() * 2.5;
+    max-width: 600px;
+    padding: 0 spacing() * 1.5;
+  }
+}
+
+.homepage-collective-events__title {
+  font-family: font-family(header);
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: spacing() * 1.75;
+
+  @include media-query($small-down) {
+    font-size: 44px;
+    margin-bottom: spacing();
+  }
+}
+
+.homepage-collective-events__text {
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0 auto spacing() * 2;
+  max-width: 420px;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing() * 2.5;
+    max-width: 90%;
+  }
+}
+
+.homepage-collective-events__images-wr {
+  display: flex;
+  order: 0;
+
+  @include media-query($small-down) {
+    order: -1;
+  }
+}
+
+.homepage-collective-events__images {
+  @include f-row(spacing() / 2);
+
+  display: flex;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.homepage-collective-events__image {
+  @include f-col(1/3, spacing() / 2);
+
+  @include media-query($small-down) {
+    @include f-col(1, 0);
+
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.homepage-collective-events__slider {
+  display: none;
+  width: 100%;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.homepage-collective-events__control-wr {
+  display: flex;
+  justify-content: center;
+  margin: spacing() * 2.5 auto 0;
+  padding: 0 spacing() * 1.5;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing() * 3;
+    margin-top: 0;
+  }
+}
+
+.homepage-collective-events__control {
+  @include button-transparent();
+
+  text-align: center;
+}
+

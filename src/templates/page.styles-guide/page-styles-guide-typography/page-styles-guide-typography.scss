@@ -1,0 +1,110 @@
+.page-styles-guide-typography {
+  display: block;
+}
+
+.page-styles-guide-typography__container {
+  margin: auto;
+  max-width: 1300px;
+}
+
+.page-styles-guide-typography__item {
+  padding: 30px;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.page-styles-guide-typography__description {
+  border: 1px solid rgb(213, 52, 52);
+  margin-bottom: 20px;
+  padding: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+
+  ul,
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.page-styles-guide-typography__title {
+  @include text-title-1($colorMuted);
+
+  text-align: center;
+
+  span {
+    color: rgb(213, 52, 52);
+    font-weight: 600;
+  }
+}
+
+.page-styles-guide-typography__content {
+  h1 {
+    @include title-h1();
+  }
+
+  h2 {
+    @include title-h2();
+  }
+
+  h3 {
+    @include title-h3();
+  }
+
+  h4 {
+    @include title-h4();
+  }
+
+  h5 {
+    @include title-h5();
+  }
+
+  h6 {
+    @include title-h6();
+  }
+}
+
+.page-styles-guide-typography__text {
+  span {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.page-styles-guide-typography__text-title-1 {
+  @include text-title-1();
+}
+
+.page-styles-guide-typography__text-title-2 {
+  @include text-title-2();
+}
+
+.page-styles-guide-typography__text-title-3 {
+  @include text-title-3();
+}
+
+.page-styles-guide-typography__text-title-4 {
+  @include text-title-4();
+}
+
+.page-styles-guide-typography__text-normal {
+  @include text-content();
+}
+
+.page-styles-guide-typography__text-sm {
+  @include text-content-sm();
+}
+

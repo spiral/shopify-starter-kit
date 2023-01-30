@@ -1,0 +1,152 @@
+@import "../../../snippets/image-parallax/image-parallax";
+
+.product-spike-bag-reveal {
+  display: block;
+  margin-top: -15px;
+
+  @include media-query($small-down) {
+    margin-top: 0;
+  }
+}
+
+.product-spike-bag-reveal__in {
+  @include container();
+
+  margin-bottom: 100px;
+
+  @include media-query($small-down) {
+    margin-bottom: 50px;
+  }
+}
+
+.product-spike-bag-reveal__row {
+  @include f-row(34px, "false");
+
+  @include media-query($small-down) {
+    @include f-row(10px);
+
+    flex-direction: column-reverse;
+  }
+}
+
+.product-spike-bag-reveal__col {
+  @include f-col(1/3, 34px);
+
+  justify-content: center;
+
+  @include media-query($small-down) {
+    @include f-col(1, 10px);
+  }
+}
+
+.product-spike-bag-reveal__col--large {
+  @include f-col(2/3, 34px);
+
+  @include media-query($small-down) {
+    @include f-col(1, 10px);
+  }
+}
+
+.product-spike-bag-reveal__content {
+  margin: -25% auto 0;
+  max-width: 320px;
+
+  @include media-query($small-down) {
+    margin-top: 50px;
+  }
+}
+
+.product-spike-bag-reveal__title {
+  @include title-h2();
+
+  margin-bottom: 36px;
+  overflow: hidden;
+  text-align: center;
+
+  @include media-query($large-down) {
+    @include title-base(80px);
+  }
+
+  @include media-query($medium-down) {
+    @include title-h3();
+  }
+
+  @include media-query($small-down) {
+    display: none;
+  }
+
+  &[data-product-spike-bag-reveal-scrolled-text] { // NOTE: only section usages. Need to move in common styles
+    [data-scrolled-text] {
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-image: linear-gradient(to bottom, $colorText 50%, transparent 50%);
+      background-position: 100% 100%;
+      background-size: 100% 200%;
+      color: $colorText;
+      overflow: hidden;
+      text-decoration: none;
+      -webkit-text-fill-color: transparent;
+      transition: background-position 0.75s ease-in-out;
+    }
+
+    [data-scrolled-text='visible'] {
+      background-position: 100% 0;
+    }
+  }
+}
+
+
+.product-spike-bag-reveal__title--mobile {
+  display: none;
+  margin-bottom: 40px;
+  margin-top: -40px;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.product-spike-bag-reveal__text {
+  @include text-content();
+
+  text-align: center;
+}
+
+.product-spike-bag-reveal__images {
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+
+  @include media-query($small-down) {
+    max-width: 80%;
+  }
+
+  @media only screen and (max-width: #{breakpoint(500px)}) {
+    max-width: 100%;
+  }
+}
+
+.product-spike-bag-reveal__image {
+  display: flex;
+  margin-left: auto;
+  max-width: 500px;
+  width: 70%;
+}
+
+.product-spike-bag-reveal__image-small {
+  max-width: 320px;
+  position: absolute;
+  top: 50%;
+  transform: translate(5%, -50%);
+  width: 46%; // NOTE: hardcoded by design
+}
+
+.product-spike-bag-reveal__cover {
+  display: block;
+  overflow: hidden;
+
+  > .image-parallax .image-parallax__image {
+    object-position: 50% 15% !important;
+  }
+}

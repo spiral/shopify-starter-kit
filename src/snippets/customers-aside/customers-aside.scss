@@ -1,0 +1,33 @@
+.customers-aside {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.customers-aside__title {
+  @include text-title-1();
+
+  margin: 0;
+  width: 100%;
+}
+
+.customers-aside__links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 120px;
+  row-gap: 16px;
+}
+
+.customers-aside__link {
+  @include link-text();
+
+  font-size: 18px;
+
+  @include media-query($small-down) {
+    min-width: fit-content;
+  }
+}
+
+.customers-aside__link--active {
+  font-weight: 500;
+}

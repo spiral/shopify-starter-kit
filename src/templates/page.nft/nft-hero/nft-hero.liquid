@@ -1,0 +1,59 @@
+<section class="nft_hero">
+  <div {%
+      render 'lazy-background-image' with
+      image: section.settings.back_image,
+      img_classes: 'nft_hero__in',
+    %}>
+    <div class="nft_hero__caption">
+      <h1 class="nft_hero__caption-header">Own A Record Breaking NFT</h1>
+    </div>
+
+    <div class="nft_hero__front-img video-mask">
+      <video
+        poster="{{ 'mask.png' | asset_url }}"
+        loop
+        autoplay
+        muted
+        playsinline
+        data-video-with-overlay
+      >
+        <source
+          src="https://player.vimeo.com/external/629532501.hd.mp4?s=5d4f60961a827a89f5b79a0fc7ea7f90bca61034&profile_id=174"
+          type="video/mp4"
+        >
+      </video>
+    </div>
+  </div>
+
+  <div class="nft_hero__bottom-text">
+    Saysh invites you to own a true piece of sporting history, to support
+    sporting futures.
+    <br>
+    <br>
+    To celebrate Allyson Felix’s record breaking performance at the Summer Games
+    in Tokyo, Saysh commissioned a one of one digital artwork, minted as a Non
+    Fungible Token (NFT), and offers it at auction, alongside a pair of Olympic
+    race-worn custom spikes, also one of one, designed for and worn by Allyson
+    Felix.
+  </div>
+
+  {% render 'site-overlay' %}
+</section>
+
+{% schema %}
+{
+  "name": "NFT top",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Back image"
+    },
+    {
+      "type": "image_picker",
+      "id": "front_image",
+      "label": "Front image"
+    }
+  ]
+}
+{% endschema %}

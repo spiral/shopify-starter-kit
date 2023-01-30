@@ -1,0 +1,130 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Slate",
+    "theme_version": "0.11.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https:\/\/shopify.github.io\/slate\/",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/slate"
+  },
+  {
+    "name": "Base Settings",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "site_logo",
+        "label": "Site Logo"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "disclaimer_1",
+        "label": "Disclaimer 1",
+        "default": "Shipping & taxes calculated at checkout"
+      },
+      {
+        "type": "text",
+        "id": "disclaimer_2_cart",
+        "label": "Disclaimer 2",
+        "default": "We are currently experiencing a delay in shipping due to impacts from Covid-19. We appreciate your patience at this time"
+      },
+      {
+        "type": "text",
+        "id": "disclaimer_2",
+        "label": "Disclaimer 2 for cart sidebar",
+        "default": "We are currently experiencing a delay in shipping due to impacts from Covid-19. We appreciate your patience at this time"
+      }
+    ]
+  },
+  {
+    "name" : "Account Settings",
+    "settings": [
+      {
+        "type": "url",
+        "id": "return_link",
+        "label": "Order return link"
+      },
+      {
+        "type": "link_list",
+        "id": "account_linklist",
+        "label": "Account navigation"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Navigator",
+    "settings": [
+      {
+        "type": "text",
+        "id": "copyright",
+        "label": "Mobile Nav Copyright Text"
+      }
+    ]
+  }
+]

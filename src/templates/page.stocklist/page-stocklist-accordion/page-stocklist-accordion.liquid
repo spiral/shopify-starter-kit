@@ -1,0 +1,217 @@
+<section
+  class="page-stocklist-accordion"
+  data-section="page-stocklist-accordion"
+>
+  {% for block in section.blocks %}
+    <div class="page-stocklist-accordion__container">
+      <div class="page-stocklist-accordion__title">
+        {{ block.settings.title }}
+      </div>
+
+      <div class="page-stocklist-accordion__list">
+        {% for i  in (1..10) %}
+          {% assign city_id = 'city_' | append: i %}
+          {% assign description_id = 'description_' | append: i %}
+
+          {% if block.settings[city_id] != blank %}
+            <div class="page-stocklist-accordion__item">
+              <button
+                class="page-stocklist-accordion__item-button"
+                aria-expanded="false"
+                aria-controls="accordion-{{ block.id }}-{{ i }}"
+                js-accordion-header
+              >
+                <div class="page-stocklist-accordion__item-button-title">
+                  {{ block.settings[city_id] }}
+                </div>
+
+                <div class="page-stocklist-accordion__item-button-symbols">
+                  <span class="page-stocklist-accordion__item-button-plus"
+                    >+</span
+                  >
+                  <span class="page-stocklist-accordion__item-button-minus"
+                    >-</span
+                  >
+                </div>
+              </button>
+
+              <div
+                class="page-stocklist-accordion__item-description"
+                id="accordion-{{ block.id }}-{{ i }}"
+                aria-hidden="true"
+                js-accordion-content
+              >
+                {{ block.settings[description_id] }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Stocklist Accordion",
+  "blocks": [
+    {
+      "name": "Accordion List",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "State"
+        },
+        {
+          "type": "header",
+          "content": "List 1"
+        },
+        {
+          "type": "text",
+          "id": "city_1",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_1",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 2"
+        },
+        {
+          "type": "text",
+          "id": "city_2",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_2",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 3"
+        },
+        {
+          "type": "text",
+          "id": "city_3",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_3",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 4"
+        },
+        {
+          "type": "text",
+          "id": "city_4",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_4",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 5"
+        },
+        {
+          "type": "text",
+          "id": "city_5",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_5",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 6"
+        },
+        {
+          "type": "text",
+          "id": "city_6",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_6",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 7"
+        },
+        {
+          "type": "text",
+          "id": "city_7",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_7",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 8"
+        },
+        {
+          "type": "text",
+          "id": "city_8",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_8",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 9"
+        },
+        {
+          "type": "text",
+          "id": "city_9",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_9",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "List 10"
+        },
+        {
+          "type": "text",
+          "id": "city_10",
+          "label": "City"
+        },
+        {
+          "type": "richtext",
+          "id": "description_10",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion List",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

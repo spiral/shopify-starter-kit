@@ -1,0 +1,59 @@
+<section
+  class="page-support-contact-information"
+  data-section="page-support-contact-information"
+>
+  <div class="page-support-contact-information__in">
+    <div class="page-support-contact-information__labels">
+      <div class="page-support-contact-information__titles">
+        <h2 class="page-support-contact-information__title">
+          {{ section.settings.title }}
+        </h2>
+
+        <h3 class="page-support-contact-information__title">
+          {{ section.settings.second_title }}
+        </h3>
+      </div>
+
+      <div class="page-support-contact-information__media">
+        {%
+          render 'lazy-image' with
+          image: section.settings.image
+        %}
+      </div>
+    </div>
+
+    <div class="page-support-contact-information__content">
+      <div class="page-support-contact-information__content-text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Information",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "second_title",
+      "label": "Second title"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "image"
+    }
+  ]
+}
+{% endschema %}

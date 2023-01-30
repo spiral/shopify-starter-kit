@@ -1,0 +1,46 @@
+@import "../../../snippets/media/media";
+
+.homepage-video-hero {
+  display: block;
+}
+
+.homepage-video-hero__in {
+  display: block;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include media-query($small-down) {
+    position: initial;
+  }
+}
+
+.homepage-video-hero__button-wr {
+  display: flex;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+
+  @include media-query($small-down) {
+    position: initial;
+  }
+}
+
+.homepage-video-hero__button {
+  @include button-transparent();
+
+  background-color: $colorWhite;
+  max-height: 60px;
+  padding-left: 62px;
+  padding-right: 62px;
+  position: relative;
+
+  @include media-query($small-down) {
+    margin: 34px 16px 0;
+    position: initial;
+    width: 100%;
+  }
+}

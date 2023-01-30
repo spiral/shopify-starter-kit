@@ -1,0 +1,77 @@
+<div
+  class="social-sharing"
+  data-snippet="social-sharing"
+>
+  <div class="social-sharing__container">
+    {% if settings.social_instagram_link != blank %}
+      <a
+        class="social-sharing__link"
+        target="_blank"
+        href="{{ settings.social_instagram_link }}"
+      >
+        {% render 'icon-instagram' %}
+
+        <span
+          aria-hidden="true"
+          class="visually-hidden"
+        >
+          Instagram
+        </span>
+      </a>
+    {% endif %}
+
+    {% if settings.social_youtube_link != blank %}
+      <a
+        class="social-sharing__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="{{ settings.social_youtube_link }}"
+      >
+        {% render 'icon-youtube' %}
+
+        <span
+          class="visually-hidden"
+          aria-hidden="true"
+        >
+          Youtube
+        </span>
+      </a>
+    {% endif %}
+
+    {% if settings.social_twitter_link != blank %}
+      <a
+        class="social-sharing__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="{{ settings.social_twitter_link }}"
+      >
+        {% render 'icon-twitter' %}
+
+        <span
+          class="visually-hidden"
+          aria-hidden="true"
+        >
+          Twitter
+        </span>
+      </a>
+    {% endif %}
+
+    {% if settings.social_facebook_link != blank %}
+      <a
+        class="social-sharing__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="{{ settings.social_facebook_link }}"
+      >
+        {% render 'icon-facebook' %}
+
+        <span
+          class="visually-hidden"
+          aria-hidden="true"
+        >
+          Facebook
+        </span>
+      </a>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-support-terms-hero/page-support-terms-hero';
+@import './page-support-terms-info/page-support-terms-info';
+
+
+.page-support-terms {
+  display: block;
+}

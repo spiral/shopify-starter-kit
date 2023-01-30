@@ -1,0 +1,53 @@
+{% if section.settings.title != blank %}
+  <section class="faq-accordion">
+    <h1 class="faq-accordion__title">{{ section.settings.title }}</h1>
+
+    <div class="faq-panels">
+      {% for block in section.blocks %}
+        <div class="faq-panel">
+          <button class="faq-panel__trigger" aria-expanded="false" aria-controls="faq-{{ section.id }}-{{ block.id }}" js-accordion-header>
+            <p class="faq-panel__question">{{ block.settings.question }}</p>
+            <div class="faq-panel__symbols">
+              <span class="faq-panel__plus">+</span>
+              <span class="faq-panel__minus">–</span>
+            </div>
+          </button>
+          <div id="faq-{{ section.id }}-{{ block.id }}" class="faq-panel__answer rte" aria-hidden="true" js-accordion-content>
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Accordion",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Panel",
+        "type": "panel",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question"
+          },
+          {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

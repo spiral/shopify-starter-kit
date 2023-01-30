@@ -1,0 +1,48 @@
+<footer
+  class="footer"
+  data-section="footer"
+>
+  {%
+    render 'footer-content' with
+    nav_links: linklists[section.settings.footer_linklist].links,
+    compliance_title: section.settings.footer_compliance_title,
+    compliance_text: section.settings.footer_compliance_text,
+    logo: section.settings.logo_image,
+    form_label: section.settings.form_label,
+    copyright: settings.copyright
+  %}
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_compliance_title",
+      "label": "Footer compliance title "
+    },
+    {
+      "type": "richtext",
+      "id": "footer_compliance_text",
+      "label": "Footer compliance text "
+    },
+    {
+      "id": "logo_image",
+      "type": "image_picker",
+      "label": "Add logo image"
+    },
+    {
+      "type": "text",
+      "id": "form_label",
+      "label": "Footer form label "
+    },
+    {
+      "type": "link_list",
+      "id": "footer_linklist",
+      "label": "Footer Menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

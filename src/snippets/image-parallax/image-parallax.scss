@@ -1,0 +1,26 @@
+.image-parallax {
+  display: block;
+
+  > .ratio-box {
+    padding: 0 !important;
+    position: relative;
+    z-index: 0;
+  }
+}
+
+.image-parallax__image {
+  /* support for plugin https://github.com/bfred-it/object-fit-images */
+  font-family: 'object-fit: cover;', serif;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.image-parallax__content {
+  overflow: hidden;
+  z-index: $zIndexNormal;
+}

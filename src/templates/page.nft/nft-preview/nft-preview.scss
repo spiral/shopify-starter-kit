@@ -1,0 +1,307 @@
+.nft_preview {
+  background-color: $colorWhite;
+  position: relative;
+  z-index: $zIndexNormal;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    padding: 300px 0 0;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding: 50% 0 0;
+  }
+}
+
+.nft_preview__in {
+  padding: 160px 0 0;
+  width: 100%;
+}
+
+.nft_preview__description {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: 0 140px 0;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    align-items: center;
+    flex-direction: column-reverse;
+    margin: -15% auto 0;
+    max-width: 690px;
+    padding: 0 spacing(extra-loose) 0;
+  }
+}
+
+.nft_preview__description-caption {
+  margin: 0 0 0 auto;
+  max-width: 780px;
+  padding: 0 spacing(extra-loose) 0 0;
+  width: 55%;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.nft_preview__description-caption-header {
+  @include title-h2($colorWhite);
+
+  margin: 0 auto 80px 0;
+  max-width: 500px;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin: 50px 0 40px;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include title-h3($colorWhite);
+
+    max-width: 330px;
+  }
+}
+
+.nft_preview__description-caption-text {
+  @include text-content($colorWhite);
+
+  padding-right: 5em;
+}
+
+.nft_preview__description-img {
+  padding-top: 70px;
+  width: 45%;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin: -310px auto 0;
+    padding-top: 0;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    width: calc(100% + 15px);
+  }
+}
+
+.nft_preview__story {
+  margin: 27.5rem auto 0;
+  max-width: 1920px;
+
+  @media only screen and (max-width: #{breakpoint(1840px)}) {
+    margin: 600px auto 0;
+  }
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    margin: 0 auto;
+  }
+}
+
+.nft_preview__story-caption {
+  display: flex;
+  justify-content: space-between;
+  left: -1em;
+  margin: 0 auto;
+  max-width: 1920px;
+  position: relative;
+  width: calc(100% + 1em);
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.nft_preview__story-caption-text {
+  @include title-base(280px, $colorWhite);
+
+  white-space: nowrap;
+
+  @media only screen and (max-width: #{breakpoint(1840px)}) {
+    @include title-base(220px, $colorWhite);
+  }
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    @include title-base(200px, $colorWhite);
+
+    order: 2;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    @include title-base(140px, $colorWhite);
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include title-base(80px, $colorWhite);
+  }
+}
+
+.nft_preview__story-caption-image {
+  left: 5%;
+  opacity: 1;
+  position: absolute;
+  top: -760px;
+  transition: 0.2s all ease;
+  width: 70rem;
+
+  @media only screen and (max-width: #{breakpoint(1840px)}) {
+    left: 5%;
+    top: -720px;
+    width: 1000px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(1640px)}) {
+    left: 7%;
+    top: -680px;
+    width: 800px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(1460px)}) {
+    left: 12%;
+    top: -410px;
+    width: 600px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    left: unset;
+    margin: 0 20%;
+    max-width: 55%;
+    order: 1;
+    position: relative;
+    top: -50px;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    margin: 0 10%;
+    max-width: 100%;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    margin: 0;
+  }
+}
+
+.nft_preview__story-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 200px 0 0;
+  position: relative;
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    padding: 140px 0 0;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin: 0 0 -100px;
+    padding: 40px 0 0;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    margin: 0 0 -60px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-small, -1px)}) {
+    margin: 0 0 -30px;
+  }
+
+  & + & {
+    padding-top: 0;
+    transform: translate(0, 220px);
+
+    @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+      transform: translate(0, 160px);
+    }
+
+    @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+      margin: 0;
+      transform: translate(0, 100px);
+    }
+
+    @media only screen and (max-width: #{breakpoint($grid-small, -1px)}) {
+      margin: 0;
+      transform: translate(0, 50px);
+    }
+  }
+}
+
+.nft_preview__story-col {
+  @include text-content($colorWhite);
+
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-right: 60px;
+  max-width: 38.125rem;
+  width: calc(100% * 0.5 - (140px * 2));
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin-left: 40px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+  }
+}
+
+.nft_preview__story-image-small {
+  margin-top: 60px;
+  width: 5.25rem;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    margin-top: 0;
+    position: absolute;
+    top: 20%;
+    transform: translate(-60%, 0);
+    width: 60px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    transform: translate(-50%, 0);
+    width: 42px;
+  }
+}
+
+.nft_preview__story-image-large {
+  left: -40%;
+  position: relative;
+  width: 40.75rem;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    left: unset;
+    margin: 0 0 0 auto;
+    width: 80%;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    margin: 0 auto;
+  }
+}
+
+.nft_preview__clouds {
+  overflow: hidden;
+  position: absolute;
+  transform: translate(0, -41%);
+  width: 100%;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    transform: translate(0, -30%);
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    transform: translate(0, -43%);
+  }
+
+  img {
+    min-width: 100%;
+
+    @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+      min-width: 115%;
+      transform: translate(-12%, 0);
+    }
+
+    @media only screen and (max-width: #{breakpoint($grid-small, -1px)}) {
+      min-width: 165%;
+      transform: translate(-32%, 0);
+    }
+  }
+}

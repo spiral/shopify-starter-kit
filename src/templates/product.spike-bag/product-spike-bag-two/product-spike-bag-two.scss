@@ -1,0 +1,120 @@
+@import '../../../snippets/scrolled-gallery/scrolled-gallery';
+
+.product-spike-bag-two {
+  display: block;
+}
+
+.product-spike-bag-two__top {
+  @include container();
+}
+
+.product-spike-bag-two__top-title {
+  @include title-h6();
+
+  margin-bottom: 100px;
+  margin-top: -4px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    margin-bottom: 50px;
+  }
+}
+
+.product-spike-bag-two__top-images-wr {
+  margin-left: 16.666%;
+  margin-right: 16.666%;
+
+  @include media-query($small-down) {
+    margin: 0;
+  }
+}
+
+.product-spike-bag-two__top-images {
+  @include f-row(16px);
+
+  margin-bottom: 50px;
+
+  @include media-query($small-down) {
+    @include f-row(6px);
+  }
+}
+
+.product-spike-bag-two__top-image {
+  @include f-col(1/2, 16px);
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 6px);
+  }
+}
+
+.product-spike-bag-two__top-description {
+  @include text-content();
+
+  margin: 0 auto;
+  max-width: 470px;
+  text-align: center;
+}
+
+.product-spike-bag-two__cover {
+  margin: 100px 0;
+  overflow: hidden;
+
+  @include media-query($small-down) {
+    margin: 50px 0;
+  }
+
+  > .image-parallax .image-parallax__image {
+    object-position: 50% 40% !important;
+
+    @include media-query($small-down) {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+.product-spike-bag-two__bottom {
+  @include container();
+
+  @include media-query($small-down) {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.product-spike-bag-two__bottom-images {
+  .scrolled-gallery__block {
+    width: 30%;
+
+    &:nth-child(2) {
+      width: 40%;
+    }
+  }
+
+  @include media-query($small-down) {
+    .scrolled-gallery__block {
+      width: 33.33%;
+
+      &:nth-child(2) {
+        width: 33.33%;
+      }
+    }
+  }
+}
+
+.product-spike-bag-two__bottom-description {
+  @include text-content();
+
+  margin-left: 30%;
+  margin-top: 24px;
+  max-width: none;
+  padding: 0 8px;
+  text-align: center;
+  width: 40%;
+
+  @include media-query($small-down) {
+    margin: 50px auto 0;
+    max-width: 350px;
+    padding: 0;
+    width: 100%;
+  }
+}

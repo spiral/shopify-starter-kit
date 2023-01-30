@@ -1,0 +1,228 @@
+<div
+  class="account"
+  data-template="customers/order"
+>
+  <div class="account__aside">
+    {% render 'customers-aside' %}
+  </div>
+
+  <section class="account__body">
+    {% render 'customers-header', title: 'Order Details', back_link_url: '/pages/order-history' %}
+
+    <div class="account__order">
+      <div class="account__order-header">
+        <a
+          class="account__order-header-back"
+          href="{{ shop.secure_url }}/pages/order-history"
+        >
+          {% render 'icon-arrow' %}
+        </a>
+
+        <h1 class="account__order-header-title">Order Details</h1>
+      </div>
+
+      <div class="account__order-info">
+        <div class="account__order-info-block">
+          <div class="account__order-info-block-line">Order Information</div>
+        </div>
+
+        <div class="account__order-info-block">
+          <p class="account__order-info-block-line">
+            Order Date:&nbsp;
+
+            <span class="account__order-info-block-line-detail">
+              {{ order.created_at | date: '%m/%d/%Y' }}
+            </span>
+          </p>
+
+          <p class="account__order-info-block-line">
+            Order Number:&nbsp;
+
+            <span class="account__order-info-block-line-detail">
+              {{ order.order_number }}
+            </span>
+          </p>
+
+          {% assign trackingProductInfo = order.line_items | first %}
+
+          <p class="account__order-info-block-line">
+            Shipping Method:&nbsp;
+
+            <span class="account__order-info-block-line-detail">
+              {{ trackingProductInfo.fulfillment.tracking_company }}
+            </span>
+          </p>
+
+          <p class="account__order-info-block-line">
+            Tracking Number:&nbsp;
+
+            <span class="account__order-info-block-line-detail">
+              {{ trackingProductInfo.fulfillment.tracking_number }}
+            </span>
+          </p>
+
+          <div class="account__order-info-links">
+            <a
+              href="{{ trackingProductInfo.fulfillment.tracking_url }}"
+              class="account__order-info-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Track your order
+            </a>
+
+            <a
+              href="{{ settings.return_link }}"
+              class="account__order-info-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Start a Return
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="account__order-addresses">
+        {% for address in customer.addresses %}
+          {% if address.id == customer.default_address.id %}
+            <div class="account__order-address">
+              <p class="account__order-address-title">Shipping Address</p>
+
+              <p class="account__order-address-name">
+                {{ address.name }}
+              </p>
+
+              {% if address.street != blank %}
+                <p class="account__order-address-detail">
+                  {{ address.street -}}
+                  {%- if address.city != blank %}, {% endif %}
+                </p>
+              {% endif %}
+
+              <p class="account__order-address-detail">
+                {{ address.city -}}
+                {%- if address.province != blank and address.city != blank -%}
+                  ,
+                {% endif %}
+                {{ address.province -}}
+                {%- if address.zip != blank %}, {% endif %}
+              </p>
+
+              <p class="account__order-address-detail">
+                {{ address.zip }}
+              </p>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        <div class="account__order-address">
+          <p class="account__order-address-title">Billing Address</p>
+
+          <p class="account__order-address-name">
+            {{ order.billing_address.name }}
+          </p>
+
+          {% if order.billing_address.street %}
+            <p class="account__order-address-detail">
+              {{ order.billing_address.street }},
+            </p>
+          {% endif %}
+
+          <p class="account__order-address-detail">
+            {{ order.billing_address.city }},
+            {{ order.billing_address.province }},
+          </p>
+
+          <p class="account__order-address-detail">
+            {{ order.billing_address.zip }}
+          </p>
+        </div>
+      </div>
+
+      <div class="account__order-products">
+        <p class="account__order-products-title">Details</p>
+
+        {% for line_item in order.line_items %}
+          <div class="account__order-product">
+            <div class="account__order-product-block">
+              <div class="account__order-product-image">
+                {% render 'lazy-image', image: line_item.image %}
+              </div>
+            </div>
+
+            <div class="account__order-product-block">
+              <div class="account__order-product-block-in">
+                <p class="account__order-product-title">
+                  {{ line_item.title | split: '-' | first }}
+                </p>
+
+                {% for option in line_item.options_with_values %}
+                  <p class="account__order-product-detail">
+                    {{ option.name }}&nbsp;
+
+                    <span class="account__order-product-detail-value">
+                      {{ option.value }}
+                    </span>
+                  </p>
+                {% endfor %}
+
+                <p class="account__order-product-detail">
+                  Quantity&nbsp;
+
+                  <span class="account__order-product-detail-value">
+                    {{ line_item.quantity }}
+                  </span>
+                </p>
+
+                <p class="account__order-product-price">
+                  {{ line_item.price | money }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="account__order-total">
+          <div class="account__order-total-details">
+            <p class="account__order-total-detail">Total products</p>
+
+            <p class="account__order-total-detail">
+              {{ order.total_net_amount | money_without_currency }}
+              {{ shop.currency }}
+            </p>
+          </div>
+
+          <div class="account__order-total-details">
+            <p class="account__order-total-detail">Shipping rates</p>
+
+            <p class="account__order-total-detail">
+              {{ order.shipping_price | money_without_currency }}
+              {{ shop.currency }}
+            </p>
+          </div>
+
+          <div class="account__order-total-details">
+            <p class="account__order-total-detail">Tax</p>
+
+            <p class="account__order-total-detail">
+              {{ order.tax_price | money_without_currency }}
+              {{ shop.currency }}
+            </p>
+          </div>
+
+          <div class="account__order-total-details">
+            <p class="account__order-total-detail">Total</p>
+
+            <p class="account__order-total-detail">
+              {{ order.total_price | money_without_currency }}
+              {{ shop.currency }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

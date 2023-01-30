@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-mountaintop-hero/page-mountaintop-hero';
+@import './page-mountaintop-media/page-mountaintop-media';
+@import './page-mountaintop-podcast/page-mountaintop-podcast';
+
+
+.page-mountaintop {
+  display: block;
+}

@@ -1,0 +1,84 @@
+.nft_hero {
+  background-color: $colorWhite;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.nft_hero__in {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media only screen and (max-width: #{breakpoint($grid-small, -1px)}) {
+    background-size: 265%;
+  }
+}
+
+.nft_hero__front-img {
+  display: flex;
+  height: 814px;
+  justify-content: center;
+  margin: 0 0 -230px;
+  max-width: 680px;
+  width: 100%;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    height: 438px;
+    width: 370px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(390px)}) {
+    height: 100%;
+    width: 100%;
+  }
+
+  video {
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+
+    @media only screen and (max-width: #{breakpoint(390px)}) {
+      max-height: 430px;
+    }
+  }
+}
+
+.nft_hero__caption {
+  margin: 200px 0 50px;
+  text-align: center;
+  width: 100%;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    margin: 65px 0 45px;
+  }
+}
+
+.nft_hero__caption-header {
+  @include title-h2($colorWhite);
+
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 0;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include title-h5($colorWhite);
+
+    max-width: 350px;
+    padding: 0 49px;
+  }
+}
+
+.nft_hero__bottom-text {
+  @include text-content();
+
+  margin: 17.5rem auto 0;
+  max-width: 40.625rem;
+  padding: 0 0 100px;
+  text-align: center;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    margin: 270px auto 0;
+    padding: 0 spacing(extra-loose) 70px;
+  }
+}

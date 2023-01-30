@@ -1,0 +1,80 @@
+<section
+  class="page-image-banner"
+  data-section="page-image-banner"
+>
+  <div class="page-image-banner__in">
+    <div class="page-image-banner__media">
+      <div class="page-image-banner__media-desktop">
+        {% render 'lazy-image', image: section.settings.image_desktop %}
+      </div>
+
+      <div class="page-image-banner__media-mobile">
+        {% render 'lazy-image', image: section.settings.image_mobile %}
+      </div>
+    </div>
+
+    <div class="page-image-banner__content">
+      <div class="page-image-banner__content-in">
+        <div class="page-image-banner__content-group">
+          <h2 class="page-image-banner__content-title">
+            {{ section.settings.title }}
+          </h2>
+
+          <div class="page-image-banner__content-text">
+            {{ section.settings.text }}
+          </div>
+
+          {% if section.settings.link_url != blank and section.settings.link_text != blank %}
+            <a
+              class="page-image-banner__content-btn"
+              href="{{ section.settings.link_url | replace: shop.url, shop.secure_url }}"
+            >
+              {{ section.settings.link_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Image Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover the Only Sneaker That Grows with You"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The design of the Saysh One is sculpted to fit the shape and form of the female foot, with a single heel piece and a snug lacing system, producing an elegant, graceful silhouette that’s both supporting and comforting."
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link url"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

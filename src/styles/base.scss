@@ -1,0 +1,53 @@
+body {
+  @include text-content();
+
+  &[data-disable-scroll] {
+    height: 100vh;
+    height: -webkit-fill-available;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+  }
+}
+
+h1 {
+  @include title-h1();
+}
+
+h2 {
+  @include title-h2();
+}
+
+h3 {
+  @include title-h3();
+}
+
+h4 {
+  @include title-h4();
+}
+
+h5 {
+  @include title-h5();
+}
+
+h6 {
+  @include title-h6();
+}
+
+a {
+  @include link-base(inherit, inherit);
+}
+
+select {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+a,
+button,
+input[type="submit"] {
+  cursor: pointer;
+}

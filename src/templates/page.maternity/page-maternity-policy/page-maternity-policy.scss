@@ -1,0 +1,132 @@
+.page-maternity-policy {
+  border-top: 2px solid $colorText;
+  display: block;
+  margin-left: 16px;
+  margin-right: 16px;
+  padding: $maternity-space-mobile 0;
+
+  @include media-query($medium-up) {
+    margin-left: 80px;
+    margin-right: 80px;
+    padding-bottom: $maternity-space-desktop;
+    padding-top: $maternity-space-desktop;
+  }
+}
+
+.page-maternity-policy__in {
+  display: flex;
+  flex-direction: column;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    margin: auto;
+    max-width: 1132px;
+  }
+}
+
+.page-maternity-policy__media {
+  width: 100%;
+
+  @include media-query($medium-up) {
+    margin-top: 0;
+    width: 41%;
+  }
+}
+
+.page-maternity-policy__text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: $maternity-space-mobile;
+  width: 100%;
+
+  @include media-query($medium-up) {
+    margin-left: 36px;
+    margin-top: 0;
+    width: 59%;
+  }
+}
+
+.page-maternity-policy__text-title {
+  font-family: font-family(header);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 30px;
+  padding-bottom: 0;
+
+  @include media-query($medium-up) {
+    font-size: 60px;
+    margin-bottom: auto;
+    max-width: 400px;
+    padding-bottom: 40px;
+  }
+}
+
+.page-maternity-policy__text-col {
+  display: none;
+  width: 100%;
+
+  &--mobile {
+    display: block;
+  }
+
+  @include media-query($medium-up) {
+    display: block;
+    width: 47%;
+
+    &--mobile {
+      display: none;
+    }
+  }
+
+  a {
+    @include link(inherit);
+  }
+}
+
+.page-maternity-policy__text-description {
+  @include text-content();
+
+  display: block;
+  padding-right: 8px;
+
+  @include media-query($medium-up) {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 0;
+  }
+
+  p {
+    line-height: 1.4;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.page-maternity-policy__media-desktop {
+  display: none;
+
+  @include media-query($medium-up) {
+    display: block;
+  }
+}
+
+.page-maternity-policy__text-sign {
+  @include text-content();
+
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-maternity-policy__media-mobile {
+  display: block;
+
+  @include media-query($medium-up) {
+    display: none;
+  }
+}
+

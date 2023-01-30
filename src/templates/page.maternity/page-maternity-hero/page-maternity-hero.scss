@@ -1,0 +1,73 @@
+.page-maternity-hero {
+  display: block;
+}
+
+.page-maternity-hero__in {
+  display: flex;
+  flex-direction: column;
+
+  @include media-query($medium-up) {
+    flex-direction: row;
+    padding-bottom: $maternity-space-desktop;
+  }
+}
+
+.page-maternity-hero__media {
+  width: 100%;
+
+  @include media-query($medium-up) {
+    width: 50%;
+  }
+}
+
+.page-maternity-hero__text {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $maternity-space-desktop  60px;
+  width: 100%;
+
+  @include media-query($medium-up) {
+    padding-left: 112px;
+    padding-right: 112px;
+    width: 50%;
+  }
+}
+
+.page-maternity-hero__text-title {
+  @include title-h3();
+
+  margin: 0;
+  text-align: center;
+
+  @include media-query($large-up) {
+    @include title-h2();
+  }
+}
+
+.page-maternity-hero__text-subtitle {
+  margin: 8px 0 24px;
+  text-align: center;
+}
+
+.page-maternity-hero__text-description {
+  text-align: center;
+}
+
+.page-maternity-hero__media-desktop {
+  display: none;
+
+  @include media-query($medium-up) {
+    display: block;
+  }
+}
+
+.page-maternity-hero__media-mobile {
+  display: block;
+
+  @include media-query($medium-up) {
+    display: none;
+  }
+}
+

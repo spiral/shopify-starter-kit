@@ -1,0 +1,162 @@
+<section class="nft_paragraphs">
+  <div {%
+      render 'lazy-background-image' with
+      image: section.settings.back_image,
+      img_classes: 'nft_paragraphs__background',
+    %}>
+    <div class="nft_paragraphs__in">
+      <div class="nft_paragraphs__row">
+        <div class="nft_paragraphs__col">
+          <div class="nft_paragraphs__item">
+            <div
+              class="nft_paragraphs__item-logo"
+              style="max-width: 203px"
+            >
+              {%
+                render 'lazy-image' with
+                image: section.settings.logo_1,
+              %}
+            </div>
+
+            <div class="nft_paragraphs__item-text">
+              Saysh is a community-centered lifestyle brand for and by women.
+              Saysh was founded by Allyson, and her brother Wes Felix. Saysh’s
+              first commercially available product, the Saysh One sneaker,
+              launched this summer and sold out in weeks. New colorways,
+              sneakers, and products will be dropping in 2022.
+              <a
+                href="https://bysaysh.com"
+                style="text-transform:unset;"
+                >The Saysh Collective</a
+              >
+              is available online at bysaysh.com, with the Home of Saysh
+              community and retail space opening October 2021 in LA’s The
+              Platform.
+            </div>
+          </div>
+        </div>
+
+        <div class="nft_paragraphs__col">
+          <div class="nft_paragraphs__item">
+            <div
+              class="nft_paragraphs__item-logo"
+              style="max-width: 200px"
+            >
+              {%
+                render 'lazy-image' with
+                image: section.settings.logo_2,
+              %}
+            </div>
+
+            <div class="nft_paragraphs__item-text">
+              Since 1985, Saatchi Gallery has presented contemporary art
+              exhibitions showcasing the work of emerging artists. Exhibitions
+              which drew upon the collection of Charles Saatchi led to Saatchi
+              Gallery becoming a recognized authority in contemporary art
+              globally. The Gallery acquired a strong reputation for introducing
+              artists who would later gain worldwide recognition. In 2019,
+              Saatchi Gallery became a registered charity and begun a new
+              chapter in its history.
+            </div>
+          </div>
+        </div>
+
+        <div class="nft_paragraphs__col">
+          <div class="nft_paragraphs__item">
+            <div class="
+                nft_paragraphs__item-logo
+                nft_paragraphs__item-logo--mobile-large
+              ">
+              {%
+                render 'lazy-image' with
+                image: section.settings.logo_3,
+              %}
+            </div>
+
+            <div class="nft_paragraphs__item-text">
+              The Power of She Fund will elevate girls and women to reach new
+              heights on the playing field, in the studio, in the community, at
+              work and at home. With the Child Care Grant, Athleta and WSF
+              continue their work to support individuals and communities of
+              women to reach their limitless potential by providing resources
+              that enable mom-athletes to compete without barriers.
+            </div>
+          </div>
+        </div>
+
+        <div class="nft_paragraphs__col">
+          <div class="nft_paragraphs__item">
+            <div
+              class="
+                nft_paragraphs__item-logo
+                nft_paragraphs__item-logo--mobile-small
+              "
+              style="max-width: 214px"
+            >
+              {%
+                render 'lazy-image' with
+                image: section.settings.logo_4,
+              %}
+            </div>
+
+            <div class="nft_paragraphs__item-text">
+              Established in Hong Kong in 2019, MMM Studio houses a collective
+              of non-conforming creatives who specialize in animation, branding,
+              and design. MMM strives to break the constraints of tradition and
+              upset the tired status quo in the entertainment industry, with a
+              daring approach to creative collaboration alongside the world’s
+              greatest artists, musicians, and athletes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nft_paragraphs__copy">
+    Powered by <span class="nft_paragraphs__copy-image"></span>
+  </div>
+
+  <img
+    class="lazyload nft_paragraphs__bottom-mobile-img"
+    data-src="{{ section.settings.back_mobile_image | img_url : 'master' }}"
+  >
+</section>
+
+{% schema %}
+{
+  "name": "NFT paragraphs",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Back image"
+    },
+    {
+      "type": "image_picker",
+      "id": "back_mobile_image",
+      "label": "Back mobile image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_1",
+      "label": "Logo 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_2",
+      "label": "Logo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_3",
+      "label": "Logo 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_4",
+      "label": "Logo 4"
+    }
+  ]
+}
+{% endschema %}

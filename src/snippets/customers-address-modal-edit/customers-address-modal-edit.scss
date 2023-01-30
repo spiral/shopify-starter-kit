@@ -1,0 +1,76 @@
+.customers-address-modal-edit {
+  background-color: $colorWhite;
+  height: fit-content;
+  max-width: 430px;
+  padding: 48px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    max-width: unset;
+  }
+}
+
+.customers-address-modal-edit__header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.customers-address-modal-edit__header-cancel {
+  align-self: flex-end;
+  background-color: unset;
+  border: none;
+  height: 16px;
+  margin-bottom: 40px;
+  padding: 0;
+  width: 16px;
+
+  .icon-close {
+    height: inherit;
+    width: inherit;
+  }
+}
+
+.customers-address-modal-edit__header-title {
+  @include text-title-1();
+
+  margin: 0;
+}
+
+.customers-address-modal-edit__body {
+  display: block;
+}
+
+.customers-address-modal-edit__body-inputs {
+  column-gap: 24px;
+  display: flex;
+}
+
+.customers-address-modal-edit__body-label {
+  @include form-field();
+
+  margin-bottom: 24px;
+}
+
+.customers-address-modal-edit__body-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.customers-address-modal-edit__body-button {
+  @include button-transparent();
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .icon-arrow {
+    height: 16px;
+    width: 16px;
+  }
+
+  span {
+    display: flex;
+  }
+}

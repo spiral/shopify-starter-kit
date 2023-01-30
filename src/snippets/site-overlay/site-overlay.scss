@@ -1,0 +1,55 @@
+.site-overlay {
+  background: $colorWhite;
+  bottom: 0;
+  display: none;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.2s ease-in-out;
+  width: 100%;
+  z-index: $zIndexNormal;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+
+  &[data-site-overlay="active"] {
+    display: block;
+    opacity: 0.9;
+  }
+
+  [data-disable-scroll] & {
+    background: $colorBlack;
+    opacity: 1;
+    z-index: $zIndexModal - 1;
+
+    video {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.site-overlay__close {
+  align-items: center;
+  background: $colorWhite;
+  border: none;
+  border-radius: 50%;
+  display: none;
+  font-size: 24px;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  visibility: hidden;
+  z-index: $zIndexModal;
+
+  body[data-disable-scroll] & {
+    display: flex;
+    visibility: visible;
+  }
+}

@@ -1,0 +1,170 @@
+<div class="drawer drawer--left">
+  <nav
+    class="mobile-nav-drawer"
+    data-section="mobile-nav-drawer"
+    id="mobile-nav-drawer"
+  >
+    <div class="mobile-nav-drawer__in">
+      <div
+        class="mobile-nav-drawer__blocks"
+        data-mobile-nav-drawer-type="main"
+      >
+        <div class="mobile-nav-drawer__block mobile-nav-drawer__block--main">
+          <div class="mobile-nav-drawer__header">
+            <div class="mobile-nav-drawer__header-title">MENU</div>
+          </div>
+
+          {% for link in linklists[section.settings.linklist].links %}
+            <button
+              class="mobile-nav-drawer__link"
+              data-mobile-nav-drawer-link-id="{{ forloop.index0 }}"
+              data-mobile-nav-drawer-link
+            >
+              {{ link.title }}
+            </button>
+          {% else %}
+            <a
+              class="mobile-nav-drawer__link"
+              href="{{ link.url }}"
+              {% if link.url contains "//" %}
+                target="_blank"
+                rel="noopener noreferrer"
+              {% endif %}
+            >
+              {{ link.title }}
+            </a>
+          {% endfor %}
+        </div>
+
+        {% for link in linklists[section.settings.linklist].links %}
+          {% if link.links.size > 0 %}
+            <div
+              class="mobile-nav-drawer__block mobile-nav-drawer__block--step"
+              data-mobile-nav-drawer-link-id="{{ forloop.index0 }}"
+              data-mobile-nav-drawer-step
+            >
+              <div class="mobile-nav-drawer__header">
+                <button
+                  class="mobile-nav-drawer__header-back"
+                  data-mobile-nav-drawer-home
+                >
+                  <span class="visually-hidden">Back to main menu</span>
+                </button>
+
+                <div class="mobile-nav-drawer__header-title">
+                  {{ link.title }}
+                </div>
+              </div>
+
+              {% for child_link in link.links %}
+                <a
+                  class="mobile-nav-drawer__link"
+                  href="{{ child_link.url }}"
+                  {% if child_link.url contains "//" %}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  {% endif %}
+                >
+                  {{ child_link.title }}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if section.settings.account_linklist.links.size > 0 %}
+          <div
+            class="mobile-nav-drawer__block mobile-nav-drawer__block--step"
+            data-mobile-nav-drawer-link-id="account"
+            data-mobile-nav-drawer-step
+          >
+            <div class="mobile-nav-drawer__header">
+              <button
+                class="mobile-nav-drawer__header-back"
+                data-mobile-nav-drawer-home
+              >
+                <span class="visually-hidden">Back to main menu</span>
+              </button>
+
+              <div class="mobile-nav-drawer__header-title">ACCOUNT</div>
+            </div>
+
+            {% for link in section.settings.account_linklist.links %}
+              {% if link.url contains '/logout' and customer == blank %}
+                {% continue %}
+              {% endif %}
+
+              <a
+                class="mobile-nav-drawer__link"
+                href="{{ link.url }}"
+                {% if link.url contains "//" %}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                {% endif %}
+              >
+                {{ link.title }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="mobile-nav-drawer__footer">
+        {%
+          render 'footer-content' with
+          nav_links: section.settings.footer_linklist.links,
+          compliance_title: section.settings.footer_compliance_title,
+          compliance_text: section.settings.footer_compliance_text,
+          logo: section.settings.logo_image,
+          form_label: section.settings.form_label,
+          copyright: settings.copyright
+        %}
+      </div>
+    </div>
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Mobile Nav",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "linklist",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "account_linklist",
+      "label": "Account Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_linklist",
+      "label": "Footer Menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_compliance_title",
+      "label": "Footer compliance title "
+    },
+    {
+      "type": "richtext",
+      "id": "footer_compliance_text",
+      "label": "Footer compliance text "
+    },
+    {
+      "id": "logo_image",
+      "type": "image_picker",
+      "label": "Add logo image"
+    },
+    {
+      "type": "text",
+      "id": "form_label",
+      "label": "Footer form label "
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,16 @@
+<div
+  class="account"
+  data-template="page.wishlist"
+>
+  <div class="account__aside">
+    {% render 'customers-aside' %}
+  </div>
+
+  <section class="account__body">
+    {% render 'customers-header', title: 'Favorites' %}
+
+    <!-- include 'wishlist-collection' -->
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

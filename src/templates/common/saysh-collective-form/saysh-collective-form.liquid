@@ -1,0 +1,60 @@
+<section
+  class="saysh-collective-form"
+  data-section="saysh-collective-form"
+>
+  <div class="saysh-collective-form__in">
+    <div class="saysh-collective-form__image">
+      {%
+        render 'lazy-image' with
+        image: section.settings.image,
+        padding_top: 0
+      %}
+    </div>
+
+    <div class="saysh-collective-form__content">
+      <a href="#" name="signup"></a>
+      <div class="saysh-collective-form__subtitle">
+        {{ section.settings.subtitle }}
+      </div>
+
+      <h2 class="saysh-collective-form__title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="saysh-collective-form__form">
+        {% render 'saysh-collective-klaviyo-form' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Saysh Collective From",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Title",
+      "default": "Spring 2022"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Saysh Collective"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collective Form",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

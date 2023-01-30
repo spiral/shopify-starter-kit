@@ -1,0 +1,64 @@
+<section
+  class="page-maternity-hero"
+  data-section="page-maternity-hero"
+>
+  <div class="page-maternity-hero__in">
+    <div class="page-maternity-hero__media">
+      <div class="page-maternity-hero__media-desktop">
+        {% render 'lazy-image', image: section.settings.hero_image_desktop %}
+      </div>
+
+      <div class="page-maternity-hero__media-mobile">
+        {% render 'lazy-image', image: section.settings.hero_image_mobile %}
+      </div>
+    </div>
+
+    <div class="page-maternity-hero__text">
+      <h2 class="page-maternity-hero__text-title">
+        {{ section.settings.hero_title }}
+      </h2>
+
+      <h4 class="page-maternity-hero__text-subtitle">
+        {{ section.settings.hero_subtitle }}
+      </h4>
+
+      <p class="page-maternity-hero__text-description">
+        {{ section.settings.hero_description }}
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Maternity Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Title",
+      "default": "EQUALITY OVER ANTIQUITY"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_desktop",
+      "label": "Hero image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero image mobile"
+    }
+  ]
+}
+{% endschema %}

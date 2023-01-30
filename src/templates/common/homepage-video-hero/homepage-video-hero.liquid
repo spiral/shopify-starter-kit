@@ -1,0 +1,156 @@
+{% comment %}
+  TODO: need to replace tag styles to class modifiers
+{% endcomment %}
+<style>
+  @media screen and (min-width: 768px) {
+    {% if section.settings.button_location == 'bottom_left' %}
+      .homepage-video-hero__button {
+        bottom: 164px;
+        margin-left: 64px;
+      }
+    {% elsif section.settings.button_location == 'bottom_right' %}
+      .homepage-video-hero__button-wr {
+        justify-content: flex-end;
+      }
+
+      .homepage-video-hero__button {
+        bottom: 164px;
+        margin-right: 64px;
+      }
+    {% elsif section.settings.button_location == 'center' %}
+      .homepage-video-hero__button-wr {
+        justify-content: center;
+      }
+
+      .homepage-video-hero__button {
+        bottom: 55%;
+      }
+    {% elsif section.settings.button_location == 'top_right' %}
+      .homepage-video-hero__button-wr {
+        justify-content: flex-end;
+      }
+
+      .homepage-video-hero__button {
+        bottom: 95%;
+        margin-right: 64px;
+      }
+    {% elsif section.settings.button_location == 'top_left' %}
+      .homepage-video-hero__button {
+        bottom: 95%;
+        margin-left: 64px;
+      }
+    {% endif %}
+  }
+</style>
+
+<section
+  class="homepage-video-hero"
+  data-section="homepage-video-hero"
+>
+  <div
+    class="homepage-video-hero__in"
+    data-media-wrapper
+  >
+    {%
+      render 'media' with
+      video_url: section.settings.video_src
+      video_mobile_url: section.settings.video_src_mobile,
+      cover_image: section.settings.image
+      cover_image_mobile: section.settings.image_mobile,
+      main_video_attrs: section.settings.video_attrs,
+      mobile_video_attrs: section.settings.video_attrs,
+      video_type: 'mp4'
+    %}
+
+    {% if section.settings.button_link != blank and section.settings.button_text != blank %}
+      <div class="homepage-video-hero__button-wr">
+        <a
+          class="homepage-video-hero__button"
+          href="{{ section.settings.button_link | replace: shop.url, shop.secure_url }}"
+        >
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Video Player",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (Mobile)"
+    },
+    {
+      "type": "url",
+      "id": "video_src",
+      "label": "Video Link"
+    },
+    {
+      "type": "url",
+      "id": "video_src_mobile",
+      "label": "Video Link (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "video_attrs",
+      "label": "Video player attributes"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button url link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "radio",
+      "id": "button_location",
+      "label": "Button location",
+      "options": [
+        {
+          "value": "bottom_left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom_right",
+          "label": "Bottom right"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top_left",
+          "label": "Top left"
+        },
+        {
+          "value": "top_right",
+          "label": "Top right"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Video Player",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

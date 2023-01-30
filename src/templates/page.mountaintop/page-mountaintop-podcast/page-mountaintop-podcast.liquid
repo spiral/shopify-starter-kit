@@ -1,0 +1,139 @@
+<section class="page-mountaintop-podcast"
+         data-section="page-mountaintop-podcast"
+         data-page-mountaintop-podcast-rss='{{ section.settings.rss_link }}'
+>
+  <div class='page-mountaintop-podcast__in'>
+    <div class='page-mountaintop-podcast__content'>
+      <div class='page-mountaintop-podcast__podcast'
+      >
+        <div class='page-mountaintop-podcast__podcast-head'>
+          <div class='page-mountaintop-podcast__podcast-head-week'>
+            This week
+          </div>
+
+          <div class='page-mountaintop-podcast__podcast-head-date'
+               data-page-mountaintop-podcast-date
+          >
+            &nbsp;
+          </div>
+        </div>
+
+        {% if section.settings.cover_url != blank %}
+          {% capture _cover_wrapper_tag_open %}
+            <a class="page-mountaintop-podcast__podcast-cover-wr"
+               href="{{ section.settings.cover_url }}"
+              {% if section.settings.cover_url_is_new_tab %}
+                target="_blank"
+                rel="noopener noreferrer"
+              {% endif %}
+            >
+          {% endcapture %}
+          {% assign _cover_wrapper_tag_close = '</a>' %}
+
+        {% else %}
+          {% assign _cover_wrapper_tag_open = '<div class="page-mountaintop-podcast__podcast-cover-wr">' %}
+          {% assign _cover_wrapper_tag_close = '</div>' %}
+        {% endif %}
+
+        {{ _cover_wrapper_tag_open }}
+          {% render 'lazy-image' with
+            image: section.settings.cover_placeholder
+          %}
+
+          <img class='page-mountaintop-podcast__podcast-cover'
+               data-page-mountaintop-podcast-image
+          >
+        {{ _cover_wrapper_tag_close }}
+
+        <div class='page-mountaintop-podcast__podcast-data'>
+          <span data-page-mountaintop-podcast-episode>
+            EP. 0
+          </span>
+
+          <span class="page-mountaintop-podcast__podcast-data-sep">
+            |
+          </span>
+
+          <span data-page-mountaintop-podcast-duration>
+            0 min
+          </span>
+        </div>
+      </div>
+
+      <div class='page-mountaintop-podcast__schedule'>
+        <div class='page-mountaintop-podcast__schedule-head'>
+          {{ section.settings.schedule_title | newline_to_br }}
+        </div>
+
+        <div class='page-mountaintop-podcast__schedule-blocks'>
+          {% for block in section.blocks %}
+            <div class='page-mountaintop-podcast__schedule-block'>
+              <h4 class='page-mountaintop-podcast__schedule-block-date'>
+                {{ block.settings.title | newline_to_br }}
+              </h4>
+
+              <p class='page-mountaintop-podcast__schedule-block-guests'>
+                {{ block.settings.schedule_guests | newline_to_br }}
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Page Mountaintop Podcast",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "schedule_title",
+        "label": "Schedule Title",
+        "default": "EST GMT-5 Podcast Schedule"
+      },
+      {
+        "type": "url",
+        "id": "rss_link",
+        "label": "Rss link"
+      },
+      {
+        "type": "image_picker",
+        "id": "cover_placeholder",
+        "label": "Podcast cover placeholder"
+      },
+      {
+        "type": "url",
+        "id": "cover_url",
+        "label": "Podcast cover link url"
+      },
+      {
+        "type": "checkbox",
+        "id": "cover_url_is_new_tab",
+        "label": "Open link in new tab",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Schedule Item",
+        "type": "schedule",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Schedule Date"
+          },
+          {
+            "type": "textarea",
+            "id": "schedule_guests",
+            "label": "Schedule Guest"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

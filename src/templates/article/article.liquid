@@ -1,0 +1,133 @@
+<style>
+  {% render 'article.css' %}
+</style>
+
+{% assign article_meta = article.metafields.store %}
+{% assign articles =  blog.articles | sort: 'published_at' | reverse %}
+{% assign related_articles = '' | split: '' %}
+
+{% for article_item in articles %}
+  {% if article_item != article %}
+    {% for tag in article.tags %}
+      {% if article_item.tags contains tag %}
+        {% comment %} filter 'sort' add value inside of an array {% endcomment %}
+        {% assign related_article = article_item | sort %}
+
+        {% assign related_articles = related_articles | concat: related_article %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<div
+  class="article"
+  data-template="article"
+>
+  <header class="article__header">
+    <div class="article__header-in">
+      <span class="article__header-author">
+        Written by {{ article.author }}
+      </span>
+
+      <h1 class="article__header-title">
+        {{ article.title }}
+      </h1>
+
+      {% if article_meta.time_to_read != blank %}
+        <div class="article__header-time">
+          Read Time ~ {{ article_meta.time_to_read }}
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="article__media">
+    {% render 'lazy-image', image: article.image %}
+  </div>
+
+  <div class="article__content">
+    {{
+      article.content
+      | replace: '<p><span>**TEXT**</span></p>',
+        '<section class="article__content-text">'
+      | replace: '<p>**TEXT**</p>', '<section class="article__content-text">'
+      | replace: '**TEXT**', '<section class="article__content-text">'
+      | replace: '<p><span>**COLUMNS**</span></p>',
+        '<section class="article__content-columns">'
+      | replace: '<p>**COLUMNS**</p>',
+        '<section class="article__content-columns">'
+      | replace: '**COLUMNS**', '<section class="article__content-columns">'
+      | replace: '<p><span>**COLUMNS-IMAGES**</span></p>',
+        '<section class="article__content-columns article__content-columns--images">'
+      | replace: '<p>**COLUMNS-IMAGES**</p>',
+        '<section class="article__content-columns article__content-columns--images">'
+      | replace: '**COLUMNS-IMAGES**',
+        '<section class="article__content-columns article__content-columns--images">'
+      | replace: '<p><span>**COLUMNS-TEXT**</span></p>',
+        '<section class="article__content-columns-text">'
+      | replace: '<p>**COLUMNS-TEXT**</p>',
+        '<section class="article__content-columns-text">'
+      | replace: '**COLUMNS-TEXT**',
+        '<section class="article__content-columns-text">'
+      | replace: '<p><span>**TITLE**</span></p>',
+        '<section class="article__content-title">'
+      | replace: '<p>**TITLE**</p>', '<section class="article__content-title">'
+      | replace: '**TITLE**', '<section class="article__content-title">'
+      | replace: '<p><span>**END**</span></p>', '</section>'
+      | replace: '<p>**END**</p>', '</section>'
+      | replace: '**END**', '</section>'
+      | replace: shop.url, shop.secure_url
+    }}
+  </div>
+
+  {% if related_articles.size > 0 %}
+    <footer class="article__footer">
+      <div class="article__footer-in">
+        <h2 class="article__footer-title">Related Stories</h2>
+
+        <ul class="article__footer-stories">
+          {% for related_article in related_articles | limit: 5 %}
+            <li class="article__footer-story">
+              <a
+                class="article__footer-story-link"
+                href="{{ related_article.url }}"
+              >
+                <div class="article__footer-story-media">
+                  {%
+                    render 'lazy-image',
+                    image: related_article.image,
+                    padding_top: '133',
+                    img_classes: 'article__footer-story-media-img'
+                  %}
+                </div>
+
+                <div class="
+                    article__footer-story-media
+                    article__footer-story-media--mobile
+                  ">
+                  {%
+                    render 'lazy-image',
+                    image: related_article.image,
+                    padding_top: '99',
+                    img_classes: 'article__footer-story-media-img'
+                  %}
+                </div>
+
+                <div class="article__footer-story-content">
+                  <h3 class="article__footer-story-content-title">
+                    {{ related_article.title }}
+                  </h3>
+
+                  <div class="article__footer-story-content-link">
+                    Read More
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </footer>
+  {% endif %}
+</div>

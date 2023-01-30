@@ -1,0 +1,14 @@
+.product-spike-bag-details {
+  @include text-content-sm();
+
+  margin: 100px auto 0;
+  max-width: 650px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    border-top: 1px solid $colorDisabled;
+    margin: 0 spacing() * 1.5;
+    padding-top: 10px;
+    text-align: left;
+  }
+}

@@ -1,0 +1,66 @@
+<section
+  class="page-image-with-text"
+  data-section="page-image-with-text"
+>
+  <div class="page-image-with-text__in">
+    <div class="page-image-with-text__media">
+      <div class="page-image-with-text__media-desktop">
+        {% render 'lazy-image', image: section.settings.hero_image_desktop %}
+      </div>
+
+      <div class="page-image-with-text__media-mobile">
+        {% render 'lazy-image', image: section.settings.hero_image_mobile %}
+      </div>
+    </div>
+
+    <div class="page-image-with-text__text">
+      <span class="page-image-with-text__text-sign">
+        {{ section.settings.sign }}
+      </span>
+
+      <h2 class="page-image-with-text__text-title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="page-image-with-text__text-description">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sign",
+      "label": "Sign",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Saysh was built for mothers everywhere."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text for desktop col 1",
+      "default": "<p>At Saysh, we support women. Our founder, Allyson Felix, has been a vocal activist for women’s rights. Her brand is here to create the first sneaker in the world that was designed using a woman’s foot as the model. The front is wider, the heel more narrow, and we included lots features to make sure our shoe complements your lifestyle.</p> <p>Most of all we have a innovative Maternity Returns Policy, which is our promise to all the moms and moms-to-be out there.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_desktop",
+      "label": "Hero image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero image mobile"
+    }
+  ]
+}
+{% endschema %}

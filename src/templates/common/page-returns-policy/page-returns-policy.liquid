@@ -1,0 +1,94 @@
+<section
+  class="page-returns-policy"
+  data-section="page-returns-policy"
+>
+  <div class="page-returns-policy__in">
+    <div class="page-returns-policy__header">
+      <div class="page-returns-policy__header-title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="page-returns-policy__header-text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+
+    <div class="page-returns-policy__items">
+      {% for block in section.blocks %}
+        <div class="page-returns-policy__item">
+          <div class="page-returns-policy__item-title">
+            {{ block.settings.title }}
+          </div>
+
+          <div class="page-returns-policy__item-text">
+            {{ block.settings.text }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.image != blank %}
+      <img
+        class="page-returns-policy__image"
+        src="{{ section.settings.image | img_url: 'master' }}"
+        alt="{{ section.settings.image.alt }}"
+      >
+    {% endif %}
+
+    {% if section.settings.image_mobile != blank %}
+      <img
+        class="page-returns-policy__image page-returns-policy__image--mobile"
+        src="{{ section.settings.image_mobile | img_url: 'master' }}"
+        alt="{{ section.settings.image_mobile.alt }}"
+      >
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Returns policy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Maternity Returns Policy"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>When women become pregnant, their shoe size often increases by half a size — or more. And the change tends to be permanent. That can make for an uncomfortable nine month term.</p> <p>Women have shouldered the cost of that discomfort for too long.</p> <p>Saysh was founded in response to inequality in the world of athletics.</p> <p>But you don’t have to be a seven-time Olympic champion, like our founder Allyson Felix, to feel the persistent legacy of inequality women deal with today.</p> <p>That’s why, for every Saysh One customer that becomes an expectant mother, you can contact us directly at maternity.returns@saysh.com, and we’ll send you a free, fresh pair of Saysh One sneakers in your new size.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Background image mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Option",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

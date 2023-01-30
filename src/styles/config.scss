@@ -1,0 +1,324 @@
+@function strip-units($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function breakpoint($value, $adjustment: 0) {
+  $adjusted-value: em($adjustment);
+
+  // Reduces chances to have a style void
+  // between two media queries
+  // See https://github.com/sass-mq/sass-mq/issues/6
+  @if ($adjustment == -1px) {
+    $adjusted-value: -0.01em;
+  }
+
+  @else if ($adjustment == 1px) {
+    $adjusted-value: 0.01em;
+  }
+
+  $adjusted-value: em($value) + $adjusted-value;
+
+  @return $adjusted-value;
+}
+
+/// Returns the value in ems for a given pixel value. Note that this
+/// only works for elements that have had no font-size changes.
+/// @param {Number} $pxval - The pixel value to be converted.
+/// @return {Number} The converted value in ems.
+
+@function em($pxval, $base: 16px) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+
+  @return ($pxval / $base) * 1em;
+}
+
+/// Returns the value in rem for a given pixel value.
+/// @param {Number} $pxval - The pixel value to be converted.
+/// @return {Number} The converted value in rem.
+
+@function rem($pxval) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+
+  @return ($pxval / 16) * 1rem;
+}
+
+@function get-list-value($list, $key) {
+  $value: null;
+
+  @each $pair in $list {
+    @if $key == nth($pair, 1) {
+      $value: nth($pair, 2);
+    }
+  }
+
+  @return $value;
+}
+
+/// Get color with specified opacity
+/// @param {Color} $color - Base color.
+/// @param {Number} $opacity - The opacity to apply.
+/// @return {Color} - The modified color
+
+@function color($color, $opacity: 1) {
+  @if $opacity != 1 {
+    @return transparentize($color, 1 - $opacity);
+  }
+
+  @else {
+    @return $color;
+  }
+}
+
+/* ================ Mixins ================ */
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  // sass-lint:disable
+  *zoom: 1;
+}
+
+/* ============================================================================
+  Prefix mixin for generating vendor prefixes.
+  Based on https://github.com/thoughtbot/bourbon/blob/v4-stable/app/assets/stylesheets/addons/_prefixer.scss
+
+  Usage:
+    // Input:
+    .element {
+      @include prefix(transform, scale(1), ms webkit spec);
+    }
+
+    // Output:
+    .element {
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+============================================================================== */
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      -webkit-#{$property}: $value;
+    }
+
+    @else if $prefix == moz {
+      -moz-#{$property}: $value;
+    }
+
+    @else if $prefix == ms {
+      -ms-#{$property}: $value;
+    }
+
+    @else if $prefix == o {
+      -o-#{$property}: $value;
+    }
+
+    @else if $prefix == spec {
+      #{$property}: $value;
+    }
+
+    @else {
+      @warn 'Unrecognized prefix: #{$prefix}';
+    }
+  }
+}
+
+/* ================ Media Query Mixin ================ */
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+
+  @if $breakpoint-found == false {
+    @warn 'Breakpoint "#{$media-query}" does not exist';
+  }
+}
+
+/* ================ Responsive Show/Hide Helper ================ */
+@mixin responsive-display-helper($breakpoint: '') {
+  // sass-lint:disable no-important
+  .#{$breakpoint}show {
+    display: block !important;
+  }
+
+  .#{$breakpoint}hide {
+    display: none !important;
+  }
+}
+
+
+/* ================ Responsive Text Alignment Helper ================ */
+@mixin responsive-text-align-helper($breakpoint: '') {
+  // sass-lint:disable no-important
+  .#{$breakpoint}text-left {
+    text-align: left !important;
+  }
+
+  .#{$breakpoint}text-right {
+    text-align: right !important;
+  }
+
+  .#{$breakpoint}text-center {
+    text-align: center !important;
+  }
+}
+
+@mixin visually-hidden() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  // sass-lint:disable no-important
+  position: absolute !important;
+  width: 1px;
+}
+
+@mixin visually-shown($position: inherit) {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: auto;
+  // sass-lint:disable no-important
+  position: $position !important;
+  width: auto;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-ms-input-placeholder { /* stylelint-disable-line no-descending-specificity */
+    @content;
+  }
+}
+
+@mixin transform($transform) {
+  @include prefix(transform, $transform, ms webkit spec);
+}
+
+/* ================ Flexbox ================ */
+// TODO: need to remove unnecessary flexbox mixins
+@mixin display-flexbox() {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin display-inline-flexbox() {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-wrap($value: nowrap) {
+  @include prefix(flex-wrap, $value, webkit moz ms spec);
+}
+
+@mixin flex-direction($value) {
+  @include prefix(flex-direction, $value, webkit moz ms spec);
+}
+
+@mixin align-items($value: stretch) {
+  $alt-value: $value;
+
+  @if $value == 'flex-start' {
+    $alt-value: start;
+  }
+
+  @else if $value == 'flex-end' {
+    $alt-value: end;
+  }
+
+  // sass-lint:disable no-misspelled-properties
+  -ms-flex-align: $alt-value;
+
+  @include prefix(align-items, $value, webkit moz ms o spec);
+}
+
+@mixin flex($value) {
+  @include prefix(flex, $value, webkit moz ms spec);
+}
+
+@mixin flex-basis($width: auto) {
+  // sass-lint:disable no-misspelled-properties
+  -ms-flex-preferred-size: $width;
+
+  @include prefix(flex-basis, $width, webkit moz spec);
+}
+
+@mixin align-self($align: auto) {
+  // sass-lint:disable no-misspelled-properties
+  -ms-flex-item-align: $align;
+
+  @include prefix(align-self, $align, webkit spec);
+}
+
+@mixin align-content($align: center) {
+  @include prefix(align-content, $align, webkit ms spec);
+}
+
+@mixin justify-content($justify: flex-start) {
+  @include prefix(justify-content, $justify, webkit ms spec);
+}
+
+
+/* ================ Typography Tools ================ */
+@function font-family($type: body) {
+  $fetched-value: get-list-value($font-family-data, $type);
+
+  @if type-of($fetched-value) == string {
+    @return $fetched-value, Arial, sans-serif;
+  }
+}
+
+/* ================ Spacing ================ */
+@function spacing($type: base) {
+  $fetched-value: get-list-value($spacing-data, $type);
+
+  @if type-of($fetched-value) == number {
+    @return rem($fetched-value);
+  }
+}
+
+@function normalize-value ($val, $unit: 'px') {
+  @if $val == 0 {
+    @return #{$val}#{$unit};
+  }
+
+  @else {
+    @return $val;
+  }
+}

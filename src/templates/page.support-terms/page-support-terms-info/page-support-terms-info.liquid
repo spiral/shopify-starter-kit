@@ -1,0 +1,63 @@
+<section
+  class="page-support-terms-info"
+  data-section="page-support-terms-info"
+>
+  {% for block in section.blocks %}
+    <div
+      class="page-support-terms-info__item-wr"
+      id="{{ block.settings.id }}"
+    >
+      <div class="page-support-terms-info__item">
+        <div class="page-support-terms-info__item-titles">
+          <h3 class="page-support-terms-info__item-title">
+            {{ block.settings.title }}
+          </h3>
+
+          <h2 class="page-support-terms-info__item-title">
+            {{ block.settings.title_2 }}
+          </h2>
+        </div>
+
+        <div class="page-support-terms-info__item-content">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Page Support Terms Info",
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "Types",
+      "settings": [
+        {
+          "type": "text",
+          "id": "id",
+          "label": "Id for block"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Section 01"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title 2",
+          "default": "Online Stores"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

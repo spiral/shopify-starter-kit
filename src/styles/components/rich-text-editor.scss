@@ -1,0 +1,134 @@
+.rte {
+  a {
+    @include link(inherit);
+  }
+
+  h1 {
+    @include title-h2();
+  }
+
+  h2 {
+    @include title-h3();
+
+    margin: spacing() 0;
+
+    @include media-query($tablet) {
+      margin: spacing() * 1.5 0;
+    }
+  }
+
+  h3 {
+    @include title-h4();
+
+    margin: spacing() 0;
+
+    @include media-query($tablet) {
+      margin: spacing() * 1.25 0;
+    }
+  }
+
+  h4 {
+    @include title-h5();
+  }
+
+  h5 {
+    @include text-title-1();
+  }
+
+  h6 {
+    @include text-title-2();
+  }
+
+  strong,
+  b {
+    @include text-title-3();
+  }
+
+  p {
+    @include text-content();
+
+    margin: 0 0 spacing();
+  }
+
+  img {
+    height: auto;
+  }
+
+  table {
+    table-layout: fixed;
+  }
+
+  ul,
+  ol {
+    margin: spacing() / 2 0 spacing() spacing() / 2;
+  }
+
+  // Match the styles from RTE nested lists
+  ul {
+    list-style: disc outside;
+
+    ul {
+      list-style: circle outside;
+
+      ul {
+        list-style: square outside;
+      }
+    }
+  }
+
+  ul li {
+    @include text-content();
+
+    margin-bottom: spacing() / 4;
+  }
+
+  ol li {
+    @include text-content();
+
+    margin-bottom: spacing();
+  }
+}
+
+.text-center.rte,
+.text-center .rte {
+  ul,
+  ol {
+    list-style-position: inside;
+    margin-left: 0;
+  }
+}
+// allow table to scroll for tables in the RTE since we don't know
+// how many columns they will contain. Class added by JS.
+// sass-lint:disable no-misspelled-properties
+.rte-table {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// This class is wrapped around YouTube/Vimeo embeds in the RTE
+// to make them responsive and prevent layout breaking
+.rte__video-wrapper {
+  height: 0;
+  height: auto;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// This class is wrapped around tables in the RTE
+// to prevent layout breaking with a scrollable parent
+.rte__table-wrapper {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

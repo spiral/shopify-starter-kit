@@ -1,0 +1,145 @@
+.homepage-hero-favorite {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.homepage-hero-favorite__in {
+  position: relative;
+  z-index: 0;
+}
+
+.homepage-hero-favorite__images {
+  width: 50%;
+  z-index: 0;
+
+  @include media-query($small-down) {
+    width: 100%;
+  }
+}
+
+.homepage-hero-favorite__bg {
+  max-height: 700px;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+
+  @include media-query($small-down) {
+    display: none;
+    max-height: 500px;
+  }
+
+  img {
+    max-height: 700px;
+    object-fit: cover;
+
+    @include media-query($small-down) {
+      max-height: 500px;
+    }
+  }
+}
+
+.homepage-hero-favorite__bg--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+
+.homepage-hero-favorite__content-wr {
+  align-items: center;
+  align-self: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  right: 5%;
+  text-align: center;
+  top: 0;
+  z-index: 0;
+
+  @include media-query($small-down) {
+    align-items: start;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+.homepage-hero-favorite__content {
+  margin: auto auto auto;
+  max-width: 500px;
+  padding: spacing() 0;
+
+  @include media-query($small-down) {
+    margin: 50px auto 0;
+    max-width: 310px;
+    padding: 0;
+  }
+}
+
+.homepage-hero-favorite__content-subtitle {
+  font-size: 14px;
+  margin-bottom: spacing() * 2;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing();
+  }
+}
+
+.homepage-hero-favorite__content-title {
+  font-family: font-family(header);
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 1;
+
+  @include media-query($medium-down) {
+    font-size: 55px;
+  }
+
+  @include media-query($small-down) {
+    font-size: 44px;
+    line-height: 50px;
+  }
+}
+
+.homepage-hero-favorite__control {
+  @include button-transparent();
+
+  display: inline-block;
+  margin: spacing() * 2.5 auto 0;
+  text-align: center;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.homepage-hero-favorite__control--mobile {
+  display: none;
+  margin: spacing() * 2.5 auto;
+  position: relative;
+  z-index: $zIndexNormal;
+
+  @include media-query($small-down) {
+    display: inline-block;
+  }
+}
+
+.homepage-hero-favorite__control--white {
+  @include button ();
+}
+
+.homepage-hero-favorite__control--fill-white {
+  @include button ();
+}

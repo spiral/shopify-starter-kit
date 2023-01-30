@@ -1,0 +1,124 @@
+$page-returns-policy-bg: #9eb9d4;
+
+.page-returns-policy {
+  display: block;
+}
+
+.page-returns-policy__in {
+  background-color: $page-returns-policy-bg;
+  padding: 150px 0 100px;
+  position: relative;
+
+  @include media-query($small-down) {
+    padding: 50px 16px 114px;
+  }
+}
+
+.page-returns-policy__header {
+  border-bottom: 1px solid $colorBlack;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1090px;
+  padding-bottom: 40px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    padding-bottom: 38px;
+  }
+}
+
+.page-returns-policy__header-title {
+  @include title-h3();
+
+  max-width: 524px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    @include title-h4();
+
+    margin-bottom: 40px;
+    max-width: 290px;
+  }
+}
+
+.page-returns-policy__header-text {
+  display: block;
+  max-width: 526px;
+  width: 100%;
+
+  @include media-query($small-down) {
+    max-width: unset;
+  }
+}
+
+.page-returns-policy__items {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1090px;
+  padding: 60px 0 30px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  @include media-query($small-down) {
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0 0;
+    row-gap: 30px;
+  }
+}
+
+.page-returns-policy__item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 186px;
+  width: 100%;
+}
+
+.page-returns-policy__item-title {
+  @include title-h1();
+
+  margin-bottom: 20px;
+
+  @include media-query($small-down) {
+    @include title-h3();
+  }
+}
+
+.page-returns-policy__item-text {
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    @include link();
+  }
+}
+
+.page-returns-policy__image {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  width: 200px;
+
+  @include media-query($small-down) {
+    display: none;
+    width: 100%;
+  }
+}
+
+.page-returns-policy__image--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}

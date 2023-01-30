@@ -1,0 +1,49 @@
+<section
+  class="page-about-us-video-hero"
+  data-section="page-about-us-video-hero"
+>
+  {%
+    render 'media',
+    video_url: section.settings.video_url,
+    video_mobile_url: section.settings.video_url_mobile,
+    cover_image: section.settings.cover_image,
+    cover_image_mobile: section.settings.cover_image_mobile,
+    main_video_attrs: section.settings.video_attrs,
+    mobile_video_attrs: section.settings.video_attrs,
+    video_type: 'mp4'
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "Video Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_mobile",
+      "label": "Cover image mobile"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video url link"
+    },
+    {
+      "type": "url",
+      "id": "video_url_mobile",
+      "label": "Mobile video url link"
+    },
+    {
+      "type": "text",
+      "id": "video_attrs",
+      "label": "Video player attributes",
+      "default": "controls controlsList='nodownload'"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+<div
+  class="accordion"
+  data-snippet="accordion"
+>
+  <div class="accordion__list">
+    {% for block in blocks %}
+      <div class="accordion__item">
+        <button
+          class="accordion__btn"
+          aria-expanded="false"
+          aria-controls="faq-{{ section.id }}-{{ block.id }}"
+          js-accordion-header
+        >
+          <p class="accordion__question">
+            {{ block.settings.title }}
+          </p>
+
+          <div class="accordion__symbols">
+            <span class="accordion__plus">+</span>
+
+            <span class="accordion__minus">–</span>
+          </div>
+        </button>
+
+        <div
+          class="accordion__answer"
+          id="accordion-{{ section.id }}-{{ block.id }}"
+          aria-hidden="true"
+          js-accordion-content
+        >
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

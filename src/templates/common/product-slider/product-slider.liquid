@@ -1,0 +1,65 @@
+<section
+  class="product-slider"
+  data-section="product-slider"
+>
+  <div class="product-slider__container">
+    <div class="product-slider__text">
+      <span class="product-slider__text-item">
+        {{ section.settings.title_1 }}
+      </span>
+
+      <span class="product-slider__text-item">
+        {{ section.settings.title_2 }}
+      </span>
+    </div>
+
+    <div class="product-slider__images">
+      {%
+        render 'scrolled-gallery' with
+        image_1: section.settings.image_1,
+        image_2: section.settings.image_2,
+        image_3: section.settings.image_3
+        limit: 3
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title item 1"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title item 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Slide Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Slide Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Slide Image 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

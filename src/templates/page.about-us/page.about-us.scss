@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-about-us-video-hero/page-about-us-video-hero';
+@import './page-about-us-story/page-about-us-story';
+
+.page-about-us {
+  display: block;
+}

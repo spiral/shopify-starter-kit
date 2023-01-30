@@ -1,0 +1,35 @@
+{% comment %}
+  Template for lazyloading images
+  @param {object} image - Image object
+  @param {object} padding_top - Image object
+  @param {boolean} is_file - Determines if image if a file_img_url type
+  @param {string} img_id - Image identifier
+  @param {string} img_classes - Additional CSS classes for image
+  @param {string} attr - Additional HTML attributes
+{% endcomment %}
+{% unless is_file %}
+  {%- assign img_url = image | img_url: '300x300' -%}
+  {%- assign data_src_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  <div class="ratio-box" style="padding-top:{% if padding_top != blank%}{{padding_top}}%{% else %}{% unless image == blank %}{{ 1 | divided_by: image.aspect_ratio | times: 100}}%{% else %}100%{% endunless %}{% endif %};">
+    <img {% if image_id %}id="{{ img_id }}"{% endif %}
+         class="lazyload {% if img_classes %} {{ img_classes }}{% endif %}"
+         src="{{ img_url }}"
+         data-src="{{ data_src_url }}"
+         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+         data-aspectratio="{{ image.aspect_ratio }}"
+         data-sizes="auto"
+         {% if attr %}{{ attr }}{% endif %}
+         {% if alt %}alt="{{alt}}"{% else %}alt="{{ image.alt }}"{% endif %}>
+  </div>
+{% else %}
+  {%- assign img_url = image | file_img_url: '300x300' -%}
+  {%- assign data_src_url = image | file_img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  <img {% if image_id %}id="{{ img_id }}"{% endif %}
+       class="lazyload {% if img_classes %} {{ img_classes }}{% endif %}"
+       src="{{ img_url }}"
+       data-src="{{ data_src_url }}"
+       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+       data-sizes="auto"
+       {% if attr %}{{ attr }}{% endif %}
+       {% if alt %}alt="{{alt}}"{% else %}alt="{{ image.alt }}"{% endif %}>
+{% endunless %}

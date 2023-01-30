@@ -1,0 +1,102 @@
+{% if video_mobile_url == blank and cover_image_mobile == blank %}
+  {% assign is_visible_desktop_for_all = true %}
+{% else %}
+  {% assign is_visible_desktop_for_all = false %}
+{% endif %}
+
+{% if video_url == blank and video_iframe_url == blank and cover_image == blank %}
+  {% assign is_visible_mobile_for_all = true %}
+{% else %}
+  {% assign is_visible_mobile_for_all = false %}
+{% endif %}
+
+<div
+  class="media"
+  data-snippet="media"
+>
+  {% if video_iframe_url != blank %}
+    <div class="
+        media__item
+        {% if is_visible_desktop_for_all == true %}
+          media__item--visible
+        {% endif %}
+      ">
+      <div class="media__item-vimeo">
+        <iframe
+          src="{{ video_iframe_url }}"
+          webkitAllowFullScreen
+          mozallowfullscreen
+          allowFullScreen
+        ></iframe>
+      </div>
+    </div>
+  {% elsif video_url != blank %}
+    <video
+      class="
+        media__item media__item--video
+        {% if is_visible_desktop_for_all == true %}
+          media__item--visible
+        {% endif %}
+      "
+      poster="{{ cover_image | img_url: 'master' }}"
+      {% if main_video_attrs != blank %}
+        {{ main_video_attrs }}
+      {% endif %}
+    >
+      <source
+        src="{{ video_url }}"
+        type="video/mp4"
+      >
+
+      Your browser does not support the video tag.
+    </video>
+  {% elsif cover_image != blank %}
+    <div class="
+        media__item
+        {% if is_visible_desktop_for_all == true %}
+          media__item--visible
+        {% endif %}
+      ">
+      {%
+        render 'lazy-image' with
+        image: cover_image
+      %}
+    </div>
+  {% endif %}
+
+  {% if video_mobile_url != blank %}
+    <video
+      class="
+        media__item media__item--video media__item--mobile
+        {% if is_visible_mobile_for_all == true %}
+          media__item--visible
+        {% endif %}
+      "
+      poster="{{ cover_image_mobile | img_url: 'master' }}"
+      {% if mobile_video_attrs != blank %}
+        {{ mobile_video_attrs }}
+      {% endif %}
+    >
+      <source
+        src="{{ video_mobile_url }}"
+        {% if video_type %}
+          type="video/{{ video_type }}"
+        {% endif %}
+      >
+
+      Your browser does not support the video tag.
+    </video>
+  {% elsif cover_image_mobile != blank %}
+    <div class="
+        media__item media__item--mobile
+        {% if is_visible_mobile_for_all == true %}
+          media__item--visible
+        {% endif %}
+      ">
+      {%
+        render 'lazy-image' with
+        image: cover_image_mobile
+      %}
+    </div>
+  {% endif %}
+</div>

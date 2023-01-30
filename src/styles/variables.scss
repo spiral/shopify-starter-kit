@@ -1,0 +1,129 @@
+/* ================ Color Variables ================ */
+// TODO: need to remove old styles
+$whiteShade1: #f9f9f9;
+$whiteShade2: #e9e9e9;
+$grey: #c4c4c4;
+$muted: #bdbdbd;
+$lightgrey: #dbdbdb;
+$blue: #9bb4ca;
+$error: #ff4545;
+
+/* ================ NEW DESIGN SYSTEM ================ */
+
+$colorWhite: #fff;
+$colorBlack: #000;
+
+$colorBg: #eeede9;
+
+$colorBlueHover: #6c96c1;
+$colorBlueActive: #59799a;
+
+$colorSuccess: #008a17;
+$colorError: #e60000;
+
+$colorPriceDiscount: #9c0000;
+
+$colorText: #434343;
+$colorMuted: #767676;
+$colorDisabled: #bdbdbd;
+$colorGray1: #e5e5e5;
+$colorGray2: #fcfcfc;
+
+$sizeControl: 60px;
+$sizeControlIcon: 16px;
+
+/* ================ end new design system ================ */
+
+/* ================ Typography Variables ================ */
+$font-family-data: (
+  'body' 'SuisseIntl',
+  'header' 'Voyage'
+);
+
+/* ============================================================================
+  Grid Breakpoints and Class Names
+    - Do not change the variable names
+============================================================================== */
+$grid-small: 480px;
+$grid-medium: 768px;
+$grid-large: 1024px;
+$grid-desktop: 1280px;
+$grid-widescreen: 1440px;
+$grid-super-widescreen: 1441px;
+$width-site: 1280px;
+
+$xs: 'xs';                        // 0 ~ 479
+$small-up: 'small-up';            // 480 ~ ...
+$small: 'small';                  // 480 ~ 767
+$small-down: 'small-down';        // 0 ~ 767
+$medium-up: 'medium-up';          // 768 ~ ...
+$medium: 'medium';                // 768 ~ 1024
+$medium-down: 'medium-down';      // 0 ~ 1023
+$large-up: 'large-up';            // 1024 ~ ...
+$large: 'large';                  // 1024 ~ 1279
+$large-down: 'large-down';        // 0 ~ 1279
+$medium-large: 'medium-large';    // 768 ~ 1279
+$widescreen: 'widescreen';        // 1440 ~ ...
+$super-widescreen: 'super-widescreen'; // 1441 ~
+$desktop: 'desktop';              // 1024 ~ ...
+$desktop-up: "desktop-up";        // 1280 ~ ...
+$tablet: 'medium-up';
+$landscape: 'landscape';
+
+// The `$breakpoints` list is used to build our media queries.
+// You can use these in the media-query mixin.
+
+$breakpoints: (
+  $xs '(max-width: #{breakpoint($grid-small, -1px)})',
+  $small-up '(min-width: #{breakpoint($grid-small)})',
+  $small '(min-width: #{breakpoint($grid-small)}) and (max-width: #{breakpoint($grid-medium, -1px)})',
+  $small-down '(max-width: #{breakpoint($grid-medium, -1px)})',
+  $medium-up '(min-width: #{breakpoint($grid-medium)})',
+  $medium '(min-width: #{breakpoint($grid-medium)}) and (max-width: #{breakpoint($grid-large)})',
+  $medium-down '(max-width: #{breakpoint($grid-large)})',
+  $large-up '(min-width: #{breakpoint($grid-large)})',
+  $large '(min-width: #{breakpoint($grid-large, 1px)}) and (max-width: #{breakpoint($grid-widescreen, -1px)})',
+  $large-down '(max-width: #{breakpoint($grid-desktop, -1px)})',
+  $medium-large '(min-width: #{breakpoint($grid-medium)}) and (max-width: #{breakpoint($grid-widescreen, -1px)})',
+  $desktop '(min-width: #{breakpoint($grid-large, 1px)})',
+  $desktop-up "(min-width: #{breakpoint($grid-desktop)})",
+  $widescreen '(min-width: #{breakpoint($grid-widescreen)})',
+  $super-widescreen '(min-width: #{breakpoint($grid-super-widescreen)})',
+  $landscape '(orientation: landscape)'
+);
+
+/* ================ Spacing Variables ================ */
+$spacing-unit: 20px;
+
+$spacing-data: (
+  'super-tight' round($spacing-unit*0.25),
+  'extra-tight' round($spacing-unit*0.5),
+  'tight' round($spacing-unit*0.75),
+  'base' $spacing-unit,
+  'loose' round($spacing-unit*1.5),
+  'extra-loose' $spacing-unit*2
+);
+
+/* ================ Z-Index ================ */
+$zIndexNormal: 1;
+$zIndexMedium: 5;
+$zIndexLarge: 9;
+$zIndexMenu: 99;
+$zIndexSidebar: 999;
+$zIndexModal: 1999;
+$zIndexMax: 9999;
+
+/* ================ header ================ */
+$header_height: 90px;
+$header_height_mobile: 105px;
+
+/* ================= maternity ================ */
+$maternity-space-mobile: 50px;
+$maternity-space-desktop: 100px;
+
+$maternity-space-mobile-big: 150px;
+$maternity-space-desktop-big: 200px;
+
+/* ================= support ================ */
+$page-support-container-width: 1380px;
+

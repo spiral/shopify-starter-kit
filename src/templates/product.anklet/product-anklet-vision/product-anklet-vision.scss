@@ -1,0 +1,123 @@
+.product-anklet-vision {
+  margin: 0 auto;
+  max-width: $grid-widescreen;
+  padding: spacing() * 5;
+
+  @include media-query($small-down) {
+    padding: spacing() * 2.5 0 spacing() * 1.5;
+  }
+}
+
+.product-anklet-vision__in {
+  display: block;
+}
+
+.product-anklet-vision__subtitle {
+  @include title-h6();
+
+  margin-bottom: 40px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    padding: 0 spacing() * 1.5;
+  }
+}
+
+.product-anklet-vision__title {
+  @include title-h4();
+
+  margin: 0 auto 20px;
+  max-width: 540px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    @include title-h5();
+
+    margin-bottom: 22px;
+    padding: 0 spacing() * 1.5;
+  }
+}
+
+.product-anklet-vision__text {
+  @include text-content();
+
+  margin: 0 auto;
+  max-width: 320px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    padding: 0 spacing() * 1.5;
+  }
+}
+
+.product-anklet-vision__blocks-wr {
+  display: flex;
+  margin: spacing() * 5 0 spacing() * 2.5;
+  padding: 0;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    margin: spacing() * 2.5 0;
+    overflow: auto;
+    width: 100%;
+  }
+}
+
+.product-anklet-vision__blocks {
+  @include f-row(15px);
+
+  justify-content: center;
+
+  @include media-query($small-down) {
+    @include f-row(14px);
+
+    margin-right: 0;
+    overflow: auto;
+    width: 155%;
+  }
+}
+
+.product-anklet-vision__block {
+  @include f-col(1/3, 15px);
+
+  @include media-query($small-down) {
+    @include f-col(1/2, 14px);
+
+    padding-right: 0;
+  }
+}
+
+.product-anklet-vision__block-image {
+  width: 100%;
+}
+
+
+.product-anklet-vision__description {
+  @include f-row(15px);
+
+  justify-content: center;
+
+  @include media-query($small-down) {
+    display: block;
+    margin: 0;
+    padding-left: 56px;
+    padding-right: 56px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.product-anklet-vision__description-item {
+  @include f-col(1/3, 15px);
+  @include text-content();
+
+  margin-bottom: 20px;
+
+  @include media-query($small-down) {
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+<div
+  class="account"
+  data-template="customers/addresses"
+>
+  <div class="account__aside">
+    {% render 'customers-aside' %}
+  </div>
+
+  <section class="account__body">
+    {% render 'customers-header', title: 'Address Book' %}
+
+    <div class="account__addresses">
+      <div class="account__addresses-header">
+        Shipping Addresses
+
+        <button
+          class="account__addresses-header-control"
+          data-modal-open="customers-address-modal-new"
+        >
+          Add New Address
+        </button>
+      </div>
+
+      <div class="account__addresses-list">
+        {% if customer.addresses.size != 0 %}
+          {% for address in customer.addresses %}
+            <div class="account__addresses-item">
+              <p>
+                <span class="account__addresses-item-name">
+                  {{ address.name }}
+                </span>
+
+                {% if customer.default_address == address %}
+                  <span class="account__addresses-item-name--default">
+                    (Default)
+                  </span>
+                {% endif %}
+              </p>
+
+              <p>
+                {% if address.street != blank %}
+                  <span>
+                    {{ address.street -}}
+                    {%- if address.city != blank %},{% endif %}
+                  </span>
+
+                  <br>
+                {% endif %}
+
+                {% if address.city != blank %}
+                  <span>
+                    {{ address.city -}}
+                    {%- if address.province != blank %},{% endif %}
+                  </span>
+                {% endif %}
+
+                {% if address.province != blank %}
+                  <span>
+                    {{ address.province -}}
+                    {%- if address.zip != blank %},{% endif %}
+                  </span>
+                {% endif %}
+
+                {% if address.zip != blank %}
+                  <br>
+
+                  <span>
+                    {{ address.zip }}
+                  </span>
+                {% endif %}
+              </p>
+
+              <div class="account__addresses-item-buttons">
+                <button
+                  class="account__addresses-item-button"
+                  type="button"
+                  data-modal-open="address-modal-{{ address.id }}"
+                >
+                  Edit
+                </button>
+
+                <button
+                  class="account__addresses-item-button"
+                  type="button"
+                  data-form-id="{{ address.id }}"
+                  data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
+                  data-address-delete
+                >
+                  Remove
+                </button>
+
+                {% if customer.default_address != address %}
+                  {% form 'customer_address', address, class: 'account__addresses-item-form' %}
+                    <input
+                      type="hidden"
+                      id="address_default_address_{{ address.id }}"
+                      name="address[default]"
+                      value="1"
+                    >
+
+                    <button
+                      class="account__addresses-item-button"
+                      type="submit"
+                      data-form-id="{{ address.id }}"
+                    >
+                      <span> Make Default </span>
+                    </button>
+                  {% endform %}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="account__addresses-list-placeholder">
+            You have not set up this type of address yet.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

@@ -1,0 +1,32 @@
+.separator {
+  display: none;
+  padding: spacing() * 5 spacing() * 3 0;
+
+  @include media-query($small-down) {
+    padding: spacing() * 2.5 spacing() * 1 0;
+  }
+}
+
+.separator--desktop {
+  @include media-query($medium-up) {
+    display: block;
+  }
+}
+
+.separator--mobile {
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.separator__line {
+  background: $lightgrey;
+  height: 1px;
+  margin-bottom: spacing() * 5;
+  position: relative;
+  width: 100%;
+
+  @include media-query($small-down) {
+    margin-bottom: spacing() * 2.5;
+  }
+}

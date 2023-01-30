@@ -1,0 +1,208 @@
+<style>
+  [data-modal='address-modal-{{ address.id }}'] {
+    display: none;
+  }
+
+  [data-modals-layer-id="address-modal-{{ address.id }}"] [data-modal='address-modal-{{ address.id }}'] {
+    display: block;
+  }
+</style>
+
+<div
+  class="customers-address-modal-edit"
+  data-snippet="customers-address-modal-edit"
+  data-modal="address-modal-{{ address.id }}"
+>
+  <header class="customers-address-modal-edit__header">
+    <button
+      type="button"
+      class="customers-address-modal-edit__header-cancel"
+      data-modal-close="address-modal-{{ address.id }}"
+    >
+      {% render 'icon-close' %}
+    </button>
+
+    <h2 class="customers-address-modal-edit__header-title">Edit Address</h2>
+  </header>
+
+  <div class="customers-address-modal-edit__body">
+    {% form 'customer_address', address, data-form-id: form.id %}
+      <div class="customers-address-modal-edit__body-inputs">
+        <label class="customers-address-modal-edit__body-label">
+          <input
+            type="text"
+            class="customers-address-modal-edit__body-input"
+            name="address[first_name]"
+            value="{{ form.first_name }}"
+            autocapitalize="words"
+            placeholder="{{ 'customer.addresses.first_name' | t }}"
+          >
+
+          <span>
+            {{ 'customer.addresses.first_name' | t }}
+          </span>
+        </label>
+
+        <label class="customers-address-modal-edit__body-label">
+          <input
+            type="text"
+            class="customers-address-modal-edit__body-input"
+            name="address[last_name]"
+            placeholder="{{ 'customer.addresses.last_name' | t }}"
+            value="{{ form.last_name }}"
+            autocapitalize="words"
+          >
+
+          <span>
+            {{ 'customer.addresses.last_name' | t }}
+          </span>
+        </label>
+      </div>
+
+      <label class="customers-address-modal-edit__body-label">
+        <input
+          type="text"
+          class="customers-address-modal-edit__body-input"
+          name="address[address1]"
+          value="{{ form.address1 }}"
+          autocapitalize="words"
+          placeholder="{{ 'customer.addresses.address1' | t }}"
+        >
+
+        <span>
+          {{ 'customer.addresses.address1' | t }}
+        </span>
+      </label>
+
+      <label class="customers-address-modal-edit__body-label">
+        <input
+          type="text"
+          class="customers-address-modal-edit__body-input"
+          placeholder="{{ 'customer.addresses.address2' | t }}"
+          name="address[address2]"
+          value="{{ form.address2 }}"
+          autocapitalize="words"
+        >
+
+        <span>
+          {{ 'customer.addresses.address2' | t }}
+        </span>
+      </label>
+
+      <label class="customers-address-modal-edit__body-label">
+        <input
+          type="text"
+          class="customers-address-modal-edit__body-input"
+          placeholder="{{ 'customer.addresses.city' | t }}"
+          name="address[city]"
+          value="{{ form.city }}"
+          autocapitalize="words"
+        >
+
+        <span>
+          <span
+            data-adapt-for="AddressCountry_{{ form.id }}"
+            data-adapt-value="0"
+          >
+            {{- 'customer.addresses.city' | t -}}
+          </span>
+
+          <span
+            data-adapt-for="AddressCountry_{{ form.id }}"
+            data-adapt-value="1"
+          >
+            {{- 'customer.addresses.municipality' | t -}}
+          </span>
+        </span>
+      </label>
+
+      <label class="customers-address-modal-edit__body-label">
+        <select
+          class="customers-address-modal-edit__body-input"
+          name="address[country]"
+          id="AddressCountry_{{ form.id }}"
+          data-form-id="{{ form.id }}"
+          data-default="{{ form.country }}"
+        >
+          {{ country_option_tags }}
+        </select>
+
+        <span>
+          {{ 'customer.addresses.country' | t }}
+        </span>
+      </label>
+
+      <div id="AddressProvinceContainer_{{ form.id }}">
+        <label class="customers-address-modal-edit__body-label">
+          <!--
+            NOTE: options will be added by Shopify method, wrong accessibility might be caused
+          -->
+          <select
+            class="customers-address-modal-edit__body-input"
+            name="address[province]"
+            data-form-id="{{ form.id }}"
+            id="AddressProvince_{{ form.id }}"
+            data-default="{{ form.province }}"
+            data-address-province-option
+          ></select>
+
+          <span>
+            <span
+              data-adapt-for="AddressCountry_{{ form.id }}"
+              data-adapt-value="0"
+            >
+              {{- 'customer.addresses.state' | t -}}
+            </span>
+
+            <span
+              data-adapt-for="AddressCountry_{{ form.id }}"
+              data-adapt-value="1"
+            >
+              {{- 'customer.addresses.province' | t -}}
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <label class="customers-address-modal-edit__body-label">
+        <input
+          type="text"
+          class="customers-address-modal-edit__body-input"
+          placeholder=" {{ 'customer.addresses.zip' | t }}"
+          name="address[zip]"
+          value="{{ form.zip }}"
+          autocapitalize="characters"
+        >
+
+        <span>
+          <span
+            data-adapt-for="AddressCountry_{{ form.id }}"
+            data-adapt-value="0"
+          >
+            {{- 'customer.addresses.zip' | t -}}
+          </span>
+
+          <span
+            data-adapt-for="AddressCountry_{{ form.id }}"
+            data-adapt-value="1"
+          >
+            {{- 'customer.addresses.postal_code' | t -}}
+          </span>
+        </span>
+      </label>
+
+      <div class="customers-address-modal-edit__body-buttons">
+        <button
+          type="submit"
+          class="customers-address-modal-edit__body-button"
+        >
+          Save
+
+          <span>
+            {% render 'icon-arrow' %}
+          </span>
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</div>

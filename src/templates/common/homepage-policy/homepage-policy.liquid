@@ -1,0 +1,90 @@
+<section
+  class="homepage-policy"
+  data-section="homepage-policy"
+>
+  <div class="homepage-policy__in">
+    <div class="homepage-policy__media">
+      <div class="homepage-policy__media-desktop">
+        {% render 'lazy-image', image: section.settings.image_desktop %}
+      </div>
+
+      <div class="homepage-policy__media-mobile">
+        {% render 'lazy-image', image: section.settings.image_mobile %}
+      </div>
+    </div>
+
+    <div class="homepage-policy__content">
+      <span class="homepage-policy__content-capture">
+        {{ section.settings.capture }}
+      </span>
+
+      <h2 class="homepage-policy__content-title">
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="homepage-policy__content-text">
+        {{ section.settings.text }}
+      </div>
+
+      <a
+        class="homepage-policy__content-btn"
+        href="{{ section.settings.link_url }}"
+      >
+        {{ section.settings.link_text }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Policy",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    },
+    {
+      "type": "text",
+      "id": "capture",
+      "label": "Capture",
+      "default": "Saysh Maternity Returns Policy"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Equality Over Antiquity"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Our Saysh Maternity Returns Policy is a healthy break from the past, to create a more equitable future."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Text for link",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Url for link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage-policy",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

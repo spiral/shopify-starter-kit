@@ -1,0 +1,70 @@
+@import '../../styles/vendors';
+@import '../../styles/index';
+@import './header/header';
+@import './footer/footer';
+@import './sign-up-form/sign-up-form';
+@import './separator/separator';
+@import './inline-images/inline-images';
+@import './homepage-announce/homepage-announce';
+@import './homepage-hero/homepage-hero';
+@import './homepage-split/homepage-split';
+@import './homepage-newsletter/homepage-newsletter';
+@import './homepage-welcome/homepage-welcome';
+@import './homepage-hero-favorite/homepage-hero-favorite';
+@import './homepage-collective-events/homepage-collective-events';
+@import './home-hero-spike-bag/home-hero-spike-bag';
+@import './homepage-banner/homepage-banner';
+@import './homepage-policy/homepage-policy';
+@import './homepage-podcasts/homepage-podcasts';
+@import './homepage-conversations/homepage-conversations';
+@import './media-link/media-link';
+@import './saysh-collective-form/saysh-collective-form';
+@import './saysh-fresh-wave-form/saysh-fresh-wave-form.scss';
+@import './restock/restock';
+@import './mobile-nav-drawer/mobile-nav-drawer';
+@import './product-author/product-author';
+@import './product-slider/product-slider';
+@import './product-banner/product-banner';
+@import './product-picture/product-picture';
+@import './product-cart/product-cart';
+@import './product-video/product-video';
+@import './product-image-slider/product-image-slider';
+@import './homepage-lookbook/homepage-lookbook';
+@import './homepage-products/homepage-products';
+@import './homepage-video-hero/homepage-video-hero';
+@import './page-image-with-text/page-image-with-text';
+@import './page-returns-policy/page-returns-policy';
+@import './page-shoes-design/page-shoes-design';
+@import './page-saysh-products/page-saysh-products';
+@import './page-image-banner/page-image-banner';
+
+// Utils
+@import '../../scripts/utils/modals/modals.scss';
+
+// Snippets
+@import '../../snippets/newsletter-form/newsletter-form';
+@import '../../snippets/social-sharing/social-sharing';
+@import '../../snippets/customers-address-modal-new/customers-address-modal-new';
+@import '../../snippets/customers-address-modal-edit/customers-address-modal-edit';
+
+.template-index {
+  .media:first-child .media__item--video {
+    max-height: none;
+    min-height: 56.2vw;
+
+    @include media-query($small-down) {
+      max-height: 650px;
+      min-height: auto;
+    }
+  }
+}
+
+#MainContent {
+  overflow-y: hidden;
+  padding-top: 0;
+  width: 100%;
+
+  @include media-query($large-down) {
+    padding-top: $header_height_mobile;
+  }
+}

@@ -1,0 +1,119 @@
+<section
+  class="homepage-collective-events"
+  data-section="homepage-collective-events"
+>
+  <div class="homepage-collective-events__in">
+    <div class="homepage-collective-events__content">
+      <div class="homepage-collective-events__title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="homepage-collective-events__text">
+        {{ section.settings.text }}
+      </div>
+    </div>
+
+    <div class="homepage-collective-events__images-wr">
+      <div class="homepage-collective-events__images">
+        <div class="homepage-collective-events__image">
+          {% render 'lazy-image', image: section.settings.slide_1 %}
+        </div>
+
+        <div class="homepage-collective-events__image">
+          {% render 'lazy-image', image: section.settings.slide_2 %}
+        </div>
+
+        <div class="homepage-collective-events__image">
+          {% render 'lazy-image', image: section.settings.slide_3 %}
+        </div>
+      </div>
+
+      <div
+        class="homepage-collective-events__slider splide"
+        data-homepage-collective-events-slider
+      >
+        <div class="homepage-collective-events__slider-in splide__track">
+          <ul class="homepage-collective-events__slider-list splide__list">
+            <li class="homepage-collective-events__image splide__slide">
+              {% render 'lazy-image', image: section.settings.slide_1 %}
+            </li>
+
+            <li class="homepage-collective-events__image splide__slide">
+              {% render 'lazy-image', image: section.settings.slide_2 %}
+            </li>
+
+            <li class="homepage-collective-events__image splide__slide">
+              {% render 'lazy-image', image: section.settings.slide_3 %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homepage-collective-events__control-wr">
+      <a
+        class="homepage-collective-events__control"
+        href="{{ section.settings.link_url }}"
+        {% if section.settings.is_link_new_tab %}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="open {{ section.settings.link_text }} in new window"
+        {% endif %}
+      >
+        {{ section.settings.link_text }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Collective Events",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Saysh Collective Events"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text content",
+      "default": "Come experience all we have going on at our new Home. Join our member-only events, starting to schedule through FW 2021."
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1",
+      "label": "Slide Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2",
+      "label": "Slide Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3",
+      "label": "Slide Image 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "id": "link_url",
+      "type": "url",
+      "label": "Link Url"
+    },
+    {
+      "id": "link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

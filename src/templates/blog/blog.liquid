@@ -1,0 +1,161 @@
+<style>
+  {% render 'blog.css' %}
+</style>
+
+{% assign articles = blog.articles | sort: 'published_at' | reverse %}
+{% assign saysh_articles = '' | split: '' %}
+{% assign editor_picks_articles = '' | split: '' %}
+
+{% for article_item in articles %}
+  {% if article_item.tags contains 'Saysh Stories' %}
+    {% comment %} filter 'sort' add value inside of an array {% endcomment %}
+    {% assign saysh_article = article_item | sort %}
+
+    {% assign saysh_articles = saysh_articles | concat: saysh_article %}
+  {% endif %}
+
+  {% if article_item.tags contains 'Editor’s Picks' %}
+    {% comment %} filter 'sort' add value inside of an array {% endcomment %}
+    {% assign editor_picks_article = article_item | sort %}
+
+    {% assign editor_picks_articles = editor_picks_articles | concat: editor_picks_article %}
+  {% endif %}
+{% endfor %}
+
+<div
+  class="blog"
+  data-template="blog"
+>
+  <section class="blog__hero">
+    <div class="blog__hero-in">
+      {% assign editor_picks_article = editor_picks_articles | first %}
+      <div class="blog__hero-content">
+        <span class="blog__hero-content-subtitle"> Editor’s Picks </span>
+
+        <h2 class="blog__hero-content-title">
+          <a
+            class="blog__hero-content-title-link"
+            href="{{ editor_picks_article.url }}"
+          >
+            {{ editor_picks_article.title }}
+          </a>
+        </h2>
+      </div>
+
+      <div class="blog__hero-media">
+        <a
+          class="blog__hero-media-link"
+          href="{{ editor_picks_article.url }}"
+        >
+          {% render 'lazy-image', image: editor_picks_article.image %}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog__stories">
+    <div class="blog__stories-in">
+      <div class="blog__stories-header">
+        <h2 class="blog__stories-header-title">Saysh Stories</h2>
+
+        <span class="blog__stories-header-sign">+</span>
+      </div>
+
+      <ul class="blog__stories-list">
+        {% for article in saysh_articles limit: 4 %}
+          <li class="blog__stories-list-article">
+            <a
+              class="blog__stories-list-article-link"
+              href="{{ article.url }}"
+            >
+              <div class="blog__stories-list-media">
+                {% render 'lazy-image', image: article.image, padding_top: '133' %}
+              </div>
+
+              <div class="
+                  blog__stories-list-media
+                  blog__stories-list-media--mobile
+                ">
+                {% render 'lazy-image', image: article.image, padding_top: '100' %}
+              </div>
+
+              <div class="blog__stories-content-text">
+                <h3 class="blog__stories-content-title">
+                  {{ article.title }}
+                </h3>
+
+                <div class="blog__stories-content-link">Read More</div>
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="blog__filters">
+    <div class="blog__filters-in">
+      <div class="blog__filters-header">
+        <h2 class="blog__filters-header-title">All Stories</h2>
+
+        <div class="blog__filters-header-categories">
+          <button
+            class="blog__filters-header-category"
+            data-url-stored-filter-menu
+            data-tags
+          >
+            All
+          </button>
+
+          {% for tag in blog.all_tags %}
+            {% if tag != 'Editor’s Picks' %}
+              <button
+                class="blog__filters-header-category"
+                data-url-stored-filter-menu
+                data-tags="{{ tag | replace: ' ', '_' }}"
+              >
+                {{ tag }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <ul class="blog__filters-articles">
+        {% for article in articles %}
+          <li
+            class="blog__filters-article"
+            data-url-stored-filter-target
+            data-tags="{{  article.tags | join: ',' | replace: ' ', '_' }}"
+          >
+            <a
+              class="blog__filters-article-link"
+              href="{{ article.url }}"
+            >
+              <div class="blog__filters-article-media">
+                {% render 'lazy-image', image: article.image, padding_top: '133' %}
+              </div>
+
+              <div class="
+                  blog__filters-article-media
+                  blog__filters-article-media--mobile
+                ">
+                {% render 'lazy-image', image: article.image, padding_top: '100' %}
+              </div>
+
+              <div class="blog__filters-article-content">
+                <h3 class="blog__filters-article-content-title">
+                  {{ article.title }}
+                </h3>
+
+                <div class="blog__filters-article-content-link">Read More</div>
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</div>
+
+{{ 'blog.js' | asset_url | script_tag }}

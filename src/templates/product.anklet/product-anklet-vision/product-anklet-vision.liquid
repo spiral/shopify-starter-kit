@@ -1,0 +1,115 @@
+<section
+  class="product-anklet-vision"
+  data-section="product-anklet-vision"
+>
+  <div class="product-anklet-vision__in">
+    {% if section.settings.subtitle != blank %}
+      <div class="product-anklet-vision__subtitle">
+        {{ section.settings.subtitle }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.title != blank %}
+      <div class="product-anklet-vision__title">
+        {{ section.settings.title }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="product-anklet-vision__text">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+    <div class="product-anklet-vision__blocks-wr">
+      <div class="product-anklet-vision__blocks">
+        {% if section.settings.image_1 %}
+          <div class="product-anklet-vision__block">
+            <div class="product-anklet-vision__block-image">
+              {% render 'lazy-image', image: section.settings.image_1 %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.image_2 %}
+          <div class="product-anklet-vision__block">
+            <div class="product-anklet-vision__block-image">
+              {% render 'lazy-image', image: section.settings.image_2 %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.image_3 %}
+          <div class="product-anklet-vision__block">
+            <div class="product-anklet-vision__block-image">
+              {% render 'lazy-image', image: section.settings.image_3 %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="product-anklet-vision__description">
+      <div class="product-anklet-vision__description-item">
+        {{ section.settings.description_col1 | newline_to_br }}
+      </div>
+
+      <div class="product-anklet-vision__description-item">
+        {{ section.settings.description_col2 | newline_to_br }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Anklet Vision",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "03"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Taking the Saysh design language and applying her own vision to the products."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text content",
+      "default": "Sydney designed three pieces - the Green Glass, the Classic Tennis, and the Diamond Logo."
+    },
+    {
+      "type": "textarea",
+      "id": "description_col1",
+      "label": "Bottom Description 1",
+      "default": "Taking the Saysh design language and applying her own vision to the products, Sydney designed two pieces - the Green Glass and the Diamond Logo. Both pieces elegantly accompany each other, and can be stacked, worn solo, dressed up with or dressed down. "
+    },
+    {
+      "type": "textarea",
+      "id": "description_col2",
+      "label": "Bottom Description 2",
+      "default": "Naturally, these pieces are intentionally designed to cater to an athletic lifestyle, being tarnish-resistant and hypoallergenic, meaning these anklets will neither fade nor irritate the skin if it comes into contact with perspiration or water. "
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Section image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Section image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Section image 3"
+    }
+  ]
+}
+{% endschema %}

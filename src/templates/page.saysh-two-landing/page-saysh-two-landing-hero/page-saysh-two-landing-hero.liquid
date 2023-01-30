@@ -1,0 +1,58 @@
+<section
+  class="page-saysh-two-landing-hero"
+  data-section="page-saysh-two-landing-hero"
+>
+  <div class="page-saysh-two-landing-hero__media">
+    {% render 'lazy-image', image: section.settings.image_desktop %}
+  </div>
+
+  <div class="page-saysh-two-landing-hero__media page-saysh-two-landing-hero__media--mobile">
+    {% render 'lazy-image', image: section.settings.image_mobile %}
+  </div>
+
+  <div class="page-saysh-two-landing-hero__content">
+    <div class="page-saysh-two-landing-hero__content-in">
+      <h1 class="page-saysh-two-landing-hero__content-title">
+        {{ section.settings.title }}
+      </h1>
+
+      <p class="page-saysh-two-landing-hero__content-text">
+        {{ section.settings.text }}
+      </p>
+
+      <div class="page-saysh-two-landing-hero__content-form">
+        {% render 'saysh-two-landing-klaviyo-form' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Saysh Two Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Saysh Two Launching Very Soon"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Sign up to be notified when Saysh Two, and other special accessories, are released, very, very soon."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,61 @@
+<style>
+  {% render 'collection.css' %}
+</style>
+
+<div
+  class="collection"
+  data-template="collection"
+>
+  <div class="collection__header">
+    <div class="collection__header-title">
+      {{ collection.title }}
+    </div>
+
+    <div class="collection__header-description">
+      {{ collection.description }}
+    </div>
+  </div>
+
+  <div class="collection__list">
+    {% for product in collection.products %}
+      {% assign product_variant = product.variants | first %}
+      {% assign color_values = product.metafields.store.color_values %}
+      {% assign hidden_colors = product.metafields.store.custom_options.value['_hide'] | strip %}
+      {% assign color_option_position = 'option' | append: product.options_by_name['Color'].position %}
+
+      <div class="collection__item">
+        <div class="collection__item-image">
+          {%
+            render 'lazy-image' with
+            image: product_variant.featured_media.preview_image,
+            alt: product_variant.featured_media.alt
+          %}
+        </div>
+
+        <div class="collection__item-variants">
+          {% for option in product.options_by_name['Color'].values %}
+            {% assign option_string = option | prepend: 'Color: ' %}
+            {% unless hidden_colors contains option_string %}
+              {% assign related_variant = product.variants | where: color_option_position, option | first %}
+
+              <a
+                class="collection__item-variant"
+                style="background:{{ color_values.value[option] }}"
+                href="{{ related_variant.url }}"
+              >
+                <span class="visually-hidden">{{ option }}</span>
+              </a>
+            {% endunless %}
+          {% endfor %}
+        </div>
+
+        <a
+          class="collection__item-button"
+          href="{{ product.url }}"
+        >
+          {{ product.title }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,83 @@
+{% capture _content %}
+  {%
+    render 'media' with
+    video_url: section.settings.video_src
+    video_mobile_url: section.settings.video_src_mobile,
+    cover_image: section.settings.image
+    cover_image_mobile: section.settings.image_mobile,
+    main_video_attrs: section.settings.video_attrs,
+    mobile_video_attrs: section.settings.video_attrs,
+    video_type: 'mp4'
+  %}
+{% endcapture %}
+
+<section
+  class="medial-link"
+  data-section="medial-link"
+>
+  {% if section.settings.url != blank %}
+    <a
+      class="medial-link__in"
+      href="{{ section.settings.url }}"
+      {% if section.settings.url_new_tab %}
+        target="_blank"
+        rel="noopener noreferrer"
+      {% endif %}
+    >
+      {{ _content }}
+    </a>
+  {% else %}
+    <div class="medial-link__in">
+      {{ _content }}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Media-link",
+  "settings": [
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Section link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "url_new_tab",
+      "label": "Open link in new tab"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (Mobile)"
+    },
+    {
+      "type": "url",
+      "id": "video_src",
+      "label": "Video Link"
+    },
+    {
+      "type": "url",
+      "id": "video_src_mobile",
+      "label": "Video Link (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "video_attrs",
+      "label": "Video player attributes"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media-Link",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

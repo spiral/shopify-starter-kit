@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "image-with-text": {
+      "type": "page-image-with-text",
+      "settings": {}
+    },
+    "maternity-returns-policy": {
+      "type": "page-returns-policy",
+      "settings": {}
+    },
+    "shoes-design": {
+       "type": "page-shoes-design",
+      "settings": {}
+    },
+    "saysh-products": {
+      "type": "page-saysh-products",
+      "settings": {}
+    },
+    "banner": {
+      "type": "page-image-banner",
+      "settings": {}
+    }
+  },
+  "order": [
+    "banner",
+    "image-with-text",
+    "maternity-returns-policy",
+    "shoes-design",
+    "saysh-products"
+  ]
+}

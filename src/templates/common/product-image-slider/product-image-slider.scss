@@ -1,0 +1,61 @@
+@import '../../../snippets/scrolled-gallery/scrolled-gallery';
+
+.product-image-slider {
+  margin: 20px 0 0;
+
+  @include media-query($small-down) {
+    margin: 0;
+    padding: 2px 0 0;
+  }
+}
+
+.product-image-slider__header {
+  text-align: center;
+
+  @include media-query($small-down) {
+    margin: auto;
+    max-width: 244px;
+  }
+}
+
+.product-image-slider__header-subtitle {
+  @include text-title-3();
+}
+
+.product-image-slider__header-title {
+  @include title-h3();
+
+  margin-top: 10px;
+
+  @include media-query($small-down) {
+    @include title-h4();
+
+    margin-top: 30px;
+  }
+}
+
+.product-image-slider__scrolled-gallery {
+  margin: 100px 105px;
+
+  @include media-query($small-down) {
+    margin: 52px 0;
+  }
+
+  .scrolled-gallery__blocks {
+    flex-wrap: nowrap;
+
+    @include media-query($small-down) {
+      padding: 0 16px 0 22px;
+    }
+  }
+
+  .scrolled-gallery__block {
+    @include media-query($small-down) {
+      .scrolled-gallery__block {
+        @include f-col(1/4, 12px);
+
+        padding-right: 0;
+      }
+    }
+  }
+}

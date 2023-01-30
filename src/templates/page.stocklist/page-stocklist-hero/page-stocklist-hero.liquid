@@ -1,0 +1,36 @@
+<section
+  class="page-stocklist-hero"
+  data-section="page-stocklist-hero"
+>
+  <div class="page-stocklist-hero__image">
+    {%
+      render 'lazy-image',
+      image: section.settings.image
+    %}
+  </div>
+
+  <div class="page-stocklist-hero__image page-stocklist-hero__image--mobile">
+    {%
+      render 'lazy-image',
+      image: section.settings.image_mobile
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stocklist Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    }
+  ]
+}
+{% endschema %}

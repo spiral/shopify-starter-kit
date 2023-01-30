@@ -1,0 +1,30 @@
+<a href="{{ product.url | within: collection }}">
+  {% if product.featured_image != blank %}
+    {% include 'lazy-image', image: product.featured_image %}
+  {% endif %}
+
+  <p>{{ product.title }}</p>
+</a>
+
+<p>
+  {% if product.compare_at_price > product.price %}
+
+    {% if product.price_varies %}
+      {%- assign sale_price = product.price | money -%}
+      {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+    {% else %}
+      {{ 'products.product.on_sale' | t }}
+      {{ product.price | money }}
+    {% endif %}
+
+  {% else %}
+
+    {% if product.price_varies %}
+      {%- assign price = product.price | money -%}
+      {{ 'products.product.from_text_html' | t: price: price }}
+    {% else %}
+      {{ product.price | money }}
+    {% endif %}
+
+  {% endif %}
+</p>

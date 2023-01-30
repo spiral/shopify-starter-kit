@@ -1,0 +1,27 @@
+@charset 'UTF-8';
+
+// Settings
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// Sections
+@import './page-stocklist-hero/page-stocklist-hero';
+@import './page-stocklist-accordion/page-stocklist-accordion';
+
+.page-stocklist {
+  display: block;
+}
+
+.page-stocklist__title {
+  @include title-h3();
+
+  margin-top: 70px;
+  text-align: center;
+
+  @include media-query($small-down) {
+    @include title-h4();
+
+    margin-top: 24px;
+  }
+}

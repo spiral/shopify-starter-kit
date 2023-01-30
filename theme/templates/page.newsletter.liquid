@@ -1,0 +1,75 @@
+<div
+  class="account"
+  data-template="page.newsletter"
+>
+  <div class="account__aside">
+    {% render "customers-aside" %}
+  </div>
+
+  <section class="account__body">
+    {% render "customers-header", title: "Newsletter & Settings" %}
+
+    <div class="account__newsletter">
+      <div class="account__newsletter-header">
+        <h2 class="account__newsletter-header-title">
+          {{ shop.name }} Newsletter
+        </h2>
+
+        <div class="account__newsletter-header-text">
+          Sign up for product updates, community events, and all things
+          {{ shop.name }}.
+        </div>
+      </div>
+
+      <form
+        class="account__newsletter-form"
+        id="newsletter-subscription-form"
+        data-submit-url="https://hook.us1.make.com/ofy4658s2iwargmz89qvoa5gutsad1kd"
+        data-newsletter-from-status="{{ customer.accepts_marketing }}"
+      >
+        <input
+          type="hidden"
+          name="customer_id"
+          value="{{ customer.id }}"
+          data-field
+        >
+
+        <input
+          type="hidden"
+          name="accepts_marketing"
+          value="{% if customer.accepts_marketing %}false{% else %}true{% endif %}"
+          data-field
+        >
+
+        <div class="account__newsletter-form-content">
+          <div class="account__newsletter-form-content-title">Email</div>
+
+          <span class="account__newsletter-form-content-text">
+            <span data-newsletter-status="true">
+              You are currently receiving the {{ shop.name }} newsletter at
+              <b>{{ customer.email }}</b>.
+            </span>
+
+            <span data-newsletter-status="false">
+              Connect your email <b>{{ customer.email }}</b> to receive updates
+              from {{ shop.name }}.
+            </span>
+          </span>
+        </div>
+
+        <div class="account__newsletter-form-button-wr">
+          <button
+            class="account__newsletter-form-button"
+            type="submit"
+          >
+            <span data-newsletter-status="true"> Disconnect </span>
+
+            <span data-newsletter-status="false"> Connect </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+{{ 'customers.js' | asset_url | script_tag }}

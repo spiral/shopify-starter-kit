@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<head>
+  <script src="https://cdn.yottaa.com/rapid.rum.min.js?key=su_ysPleJHtruw"></script>
+
+  <script>Yo.configure('https://qoe-1.yottaa.net/api/v1/configure.rapid.js?key=su_ysPleJHtruw');</script>
+  <script async src="https://www.googleoptimize.com/optimize.js?id=OPT-NPC6R63"></script>
+  <script type="text/javascript" src="https://www.images-home.com/image.js"></script>
+
+  <!-- // NOTE: Redirects set -->
+  {% if canonical_url == 'https://saysh.com/collections' %}
+    <meta http-equiv="refresh" content="0; url='https://saysh.com/products/saysh-one" />
+  {% endif %}
+
+  <script>
+    const SHOPIFY_REDIRECT_FROM = 'SHOPIFY_REDIRECT_FROM'; // NOTE: utils/constanst.js
+
+    if (window.location.href.includes('/account/login') && window.sessionStorage.getItem(SHOPIFY_REDIRECT_FROM)) {
+      window.location.assign('/account')
+    }
+
+    if(window.localStorage.getItem(SHOPIFY_REDIRECT_FROM) && !window.location.href.includes(window.localStorage.getItem(SHOPIFY_REDIRECT_FROM))) {
+        window.location.assign(`${window.localStorage.getItem(SHOPIFY_REDIRECT_FROM)}${window.location.pathname}`);
+
+        window.localStorage.removeItem(SHOPIFY_REDIRECT_FROM);
+    }
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon"
+          href="{{ settings.favicon | img_url: '32x32' }}"
+          type="image/png"
+    >
+  {% endif %}
+
+  {% capture seo_title %}
+    {{ page_title }}
+    {% if current_tags %}
+      {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {% endif %}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  {% endcapture %}
+  <title>{{ seo_title }}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% render 'social-meta-tags' %}
+  {% render 'css-variables' %}
+
+  {{ 'common.css' | asset_url | stylesheet_tag }}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+      },
+      settings: {
+        disclaimer_1: '{{ settings.disclaimer_1 }}',
+        disclaimer_2: '{{ settings.disclaimer_2 }}',
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+
+  {% if template.directory == 'customers' %}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+
+  <script src="{{ 'helpers.js' | asset_url }}" defer="defer"></script>
+
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+  {% if template.name == 'gift_card' %}
+    <script src="{{ 'gift_card.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {{ content_for_header }}
+
+  {% if settings.app_wk_enabled %}
+    {% render 'appmate-wishlist-king' %}
+  {% endif %}
+
+  <!-- NOTE: logged_in and register events moved before initialisation (SEO request) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    <!-- Get the event name in order to track GA register event -->
+    {% if customer != blank and customer.id != blank %}
+      const EVENT_STORAGE_KEY = 'TRACKING_EVENT'; // NOTE: global constant EVENT_STORAGE_KEY
+      const localStorageItem = window.localStorage ? window.localStorage.getItem(EVENT_STORAGE_KEY) : null;
+
+      if (localStorageItem === 'register') { // NOTE: global constant EVENT_STORAGE_VALUES.REGISTER
+          window.dataLayer.push({
+          event: 'register', // NOTE: GoogleAnalytics.EVENTS.REGISTER
+          user_id: '{{ customer.id }}',
+        });
+      }
+
+      if(localStorageItem === 'login') { // NOTE: global constant EVENT_STORAGE_VALUES.LOGIN
+        window.dataLayer.push({
+          event: 'login', // NOTE: GoogleAnalytics.EVENTS.LOGIN
+          user_id: '{{ customer.id }}',
+        });
+      }
+
+      console.info(`dataLayer last event: ${
+        JSON.stringify(window.dataLayer[window.dataLayer.length - 1])
+      }`);
+
+      window.localStorage.removeItem(EVENT_STORAGE_KEY);
+
+      window.dataLayer.push({
+        event: 'logged_in',  // NOTE: GoogleAnalytics.EVENTS.LOGGED_IN
+        user_id: '{{ customer.id }}',
+      });
+
+      console.info(`dataLayer last event: ${
+        JSON.stringify(window.dataLayer[window.dataLayer.length - 1])
+      }`);
+    {% endif %}
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Ads -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=AW-327969422"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-327969422');
+  </script>
+
+  <!--- NOTE:  Get user location -->
+  <script>
+      fetch('/browsing_context_suggestions.json')
+          .then((response) => response.json())
+          .then((data) => {
+              const countryCode = data.detected_values.country.handle;
+              const activeCountryViews = document.querySelectorAll(`[data-location='${countryCode}'`);
+
+              activeCountryViews.forEach((activeCountryView) => {
+                  activeCountryView.setAttribute('data-location-active', 'true');
+              })
+          })
+          .catch((error) => {
+              console.error(error);
+          });
+  </script>
+</head>
+
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+  <script>window.KlarnaThemeGlobals={};{%case template.name%} {%when"product"%} {% if product.first_available_variant.price %}window.KlarnaThemeGlobals.data_purchase_amount = {{ product.first_available_variant.price }};{% endif %}window.KlarnaThemeGlobals.productVariants={{product.variants|json}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%when"cart"%} window.KlarnaThemeGlobals.data_purchase_amount={{cart.total_price}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%endcase%}</script>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSJ75ZD"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a class="in-page-link visually-hidden skip-link"
+     href="#MainContent"
+  >
+    {{ 'general.accessibility.skip_to_content' | t }}
+  </a>
+
+  {% render 'cart-drawer' %}
+  {% section 'size-guide' %}
+  {% section 'more-info-drawer' %}
+  {% section 'more-info-drawer-new' %}
+  {% section 'mobile-nav-drawer' %}
+
+  <div id="page-container"
+       class="page-container drawer-page-content"
+  >
+    {% section 'header' %}
+
+    <main role="main"
+          id="MainContent"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'cookie-bar' %}
+    {% section 'footer' %}
+  </div>
+
+  <div data-modals-layout>
+    <div data-modals-layer-id>
+      {% if template.name == 'addresses' %}
+        {% include 'customers-address-modal-new' %}
+
+        {% for customer_address in customer.addresses %}
+          {% include 'customers-address-modal-edit', address: customer_address %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% render 'handlebars-templates' %}
+
+  {{ 'common.js' | asset_url | script_tag }}
+
+  <script type="text/javascript"
+          async
+          src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WntgUE"
+  ></script>
+
+  <script type="text/javascript"
+          src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"
+  ></script>
+
+  <script
+    async
+    src="https://na-library.klarnaservices.com/lib.js"
+    data-client-id="e0c43c94-279b-5ac4-8048-b0f4ddaf44f0"
+  ></script>
+
+  <script>
+    window.KlarnaOnsiteService = window.KlarnaOnsiteService || [];
+    window.Klarna.OnsiteMessaging.refresh();
+  </script>
+
+  <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+
+  <script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "WntgUE",
+      platform: "shopify"
+    });
+    klaviyo.enable("backinstock",{
+      trigger: {
+        product_page_text: "Notify Me When Available",
+        product_page_class: "product__atc btn",
+        product_page_text_align: "center",
+        product_page_margin: "0 auto 30px",
+        replace_anchor: false
+      },
+      modal: {
+        headline: "{product_name}",
+        body_content: "Register to receive a notification when this item comes back in stock.",
+        email_field_label: "Email",
+        button_label: "Notify me when available",
+        subscription_success_label: "You're in! We'll let you know when it's back.",
+        footer_content: '',
+        additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
+        drop_background_color: "#000",
+        background_color: "#fff",
+        text_color: "#222",
+        button_text_color: "#fff",
+        button_background_color: "#9BB4CA",
+        close_button_color: "#ccc",
+        error_background_color: "#fcd6d7",
+        error_text_color: "#C72E2F",
+        success_background_color: "#d3efcd",
+        success_text_color: "#1B9500"
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+    heap.load("1120819029");
+    var customerEmail = '{{ customer.email }}' || '{{ checkout.email }}';
+    var customerId = '{{ customer.id }}';
+    heap.identify(customerEmail);
+    heap.addUserProperties({'Name': '{{ customer.name }}','email': customerEmail,'CustomerID':'{{ customer.id }}','TotalSpent':'{{ customer.total_spent }}'});
+  </script>
+
+  {% render 'stamped-review-app' %}
+</body>
+</html>

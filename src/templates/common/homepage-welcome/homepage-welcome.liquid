@@ -1,0 +1,89 @@
+<section
+  class="homepage-welcome"
+  data-section="homepage-welcome"
+>
+  <div class="homepage-welcome__in">
+    <div class="homepage-welcome__images-wr">
+      <div class="homepage-welcome__images">
+        <div class="homepage-welcome__image">
+          {% render 'lazy-image', image: section.settings.image_1 %}
+        </div>
+
+        <div class="homepage-welcome__image">
+          {% render 'lazy-image', image: section.settings.image_2 %}
+        </div>
+      </div>
+    </div>
+
+    <div class="homepage-welcome__content">
+      <div class="homepage-welcome__content-title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="homepage-welcome__content-text">
+        {{ section.settings.text }}
+      </div>
+
+      {% if section.settings.link_url and section.settings.link_text %}
+        <a
+          class="homepage-welcome__content-control"
+          href="{{ section.settings.link_url }}"
+          {% if section.settings.is_link_new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="open {{ section.settings.link_text }} in new window"
+          {% endif %}
+        >
+          {{ section.settings.link_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Welcome",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Welcome Home."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text Content",
+      "default": "We’re So Glad You’re Here. We’re proud to introduce the Home of Saysh – a space created for our Collective to meet and experience our brand."
+    },
+    {
+      "type": "checkbox",
+      "id": "is_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Button text",
+      "default": "Visit Us"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "First Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second Image"
+    }
+  ]
+}
+{% endschema %}

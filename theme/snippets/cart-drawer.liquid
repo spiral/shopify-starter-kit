@@ -1,0 +1,28 @@
+<div id="ajax-cart-drawer"
+     class="ajaxcart__drawer drawer drawer--right"
+>
+  <div class="ajaxcart__container">
+    <header class="ajaxcart__header">
+      <div class="ajaxcart__header-text ajaxcart__header-text--title">
+        My bag
+        <span class="ajaxcart__header-text"
+              js-cart-count
+        ></span>
+      </div>
+
+      <button class="ajaxcart__close"
+              data-drawer-close
+      >
+        {% render 'icon-close' %}
+      </button>
+    </header>
+
+    <div class="ajaxcart__content"
+         id="CartContainer"
+    >
+      <div class="ajaxcart__loading">
+        Loading...
+      </div>
+    </div>
+  </div>
+</div>

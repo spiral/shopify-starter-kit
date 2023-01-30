@@ -1,0 +1,126 @@
+@import "account";
+@import "addresses";
+@import "order";
+@import "order-history";
+@import "wishlist";
+@import "newsletter";
+@import "../../snippets/customers-aside/customers-aside";
+@import "../../snippets/customers-header/customers-header";
+
+.account {
+  align-items: flex-start;
+  background: $colorWhite;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: $grid-widescreen;
+  padding: 80px 64px;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+    overflow-x: hidden;
+    padding: 32px 16px 48px;
+  }
+}
+
+.account__aside {
+  display: flex;
+  padding-bottom: 120px;
+  width: 30%;
+
+  @include media-query($small-down) {
+    display: none;
+  }
+}
+
+.account__aside-title {
+  @include text-title-1();
+
+  margin: 0;
+  width: 100%;
+}
+
+.account__body {
+  width: 70%;
+
+  @include media-query($small-down) {
+    border-top: 0;
+    margin: 0;
+    padding-top: 0;
+    width: 100%;
+  }
+}
+
+/*** reset password page ***/
+
+.reset-password__in {
+  margin: 148px auto 194px;
+  max-width: 414px;
+
+  @include media-query($small-down) {
+    margin: 0;
+    max-width: unset;
+    padding: 34px 16px 106px;
+  }
+}
+
+.reset-password__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reset-password__form-title {
+  @include title-h3();
+
+  margin: auto auto 92px;
+  text-align: center;
+  text-transform: capitalize;
+
+  @include media-query($small-down) {
+    margin: 0 0 84px;
+    max-width: unset;
+    text-align: unset;
+  }
+}
+
+.reset-password__form-text {
+  @include text-title-2();
+}
+
+.reset-password__form-errors {
+  @include form-message($colorError);
+
+  padding: 20px;
+}
+
+.reset-password__form-labels {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.reset-password__form-label {
+  @include form-field();
+}
+
+.reset-password__form-button-wr {
+  display: flex;
+  margin: 48px auto 0;
+  text-align: center;
+
+  @include media-query($small-down) {
+    margin-top: 40px;
+  }
+}
+
+.reset-password__form-button {
+  @include button-transparent();
+
+  margin: 0 auto;
+  max-width: 230px;
+
+  @include media-query($small-down) {
+    max-width: unset;
+    width: 100%;
+  }
+}

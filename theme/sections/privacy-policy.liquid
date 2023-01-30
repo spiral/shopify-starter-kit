@@ -1,0 +1,76 @@
+<section class="privacy" data-section-type="privacy-policy">
+  <div class="privacy__header">
+    <h1 class="privacy__title">{{ page.title }}</h1>
+  </div>
+
+  <div class="privacy__body">
+    <div class="privacy-menu">
+      <div class="privacy-menu__items">
+        {{ section.settings.menu_title }}
+
+        <ol>
+          {% for block in section.blocks %}
+            <li class="privacy-menu__list-item" data-index="{{ forloop.index0 }}" js-trigger>{{ block.settings.question }}</li>
+          {% endfor %}
+        </ol>
+
+        <p class="privacy-menu__disclaimer">
+          {{ section.settings.menu_disclaimer }}
+        </p>
+      </div>
+    </div>
+
+    <div class="privacy-main">
+      <p class="privacy-panel">{{ section.settings.main_disclaimer }}</p>
+
+      {% for block in section.blocks %}
+        <div class="privacy-panel" js-panel>
+          <p class="privacy-panel__question">{{ forloop.index }}. {{ block.settings.question }}</p>
+          <p class="privacy-panel__answer">{{ block.settings.answer }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Privacy Policy",
+    "settings": [
+      {
+        "type": "text",
+        "id": "menu_title",
+        "label": "Menu Title",
+        "default": "Content"
+      },
+      {
+        "type": "textarea",
+        "id": "menu_disclaimer",
+        "label": "Menu Disclaimer"
+      },
+      {
+        "type": "textarea",
+        "id": "main_disclaimer",
+        "label": "Main Disclaimer"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Question",
+        "type": "question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question"
+          },
+          {
+            "type": "textarea",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,486 @@
+//*** Form Elements Helpers ***//
+
+@mixin form-control-base () {
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0.5px solid transparent;
+  border-bottom-color: $colorDisabled;
+  color: $colorText;
+  font-family: font-family(body);
+  font-size: 16px;
+  font-weight: 300;
+  height: $sizeControl;
+  line-height: 20px;
+  margin: 0;
+  padding: 22px 0 8px;
+  position: relative;
+  transition: all ease-in-out 0.2s;
+  z-index: $zIndexNormal;
+
+  &:not([disabled]):not([readonly]):focus,
+  &:not([disabled]):not([readonly]):active {
+    border-bottom: 1px solid $colorBlueActive;
+    box-shadow: 0 1px 0 $colorBlueActive;
+    outline: none;
+  }
+
+  &:not([disabled]):not([readonly]):hover {
+    border-bottom: 1px solid $colorBlueHover;
+  }
+
+  &[disabled],
+  &[readonly] {
+    border-bottom: 0.5px solid $colorGray1;
+    color: $colorDisabled;
+  }
+}
+
+@mixin form-control-validation ($color) {
+  border-bottom: 0.5px solid $color;
+
+  &:not([disabled]):not([readonly]):focus,
+  &:not([disabled]):not([readonly]):active {
+    border-bottom: 1px solid $color;
+    box-shadow: 0 1px 0 $color;
+  }
+
+  &:not([disabled]):not([readonly]):hover {
+    border-bottom: 1px solid $color;
+  }
+
+  &[disabled],
+  &[readonly] {
+    border-bottom: 0.5px solid $colorGray1;
+  }
+}
+
+@mixin form-label () {
+  color: $colorMuted;
+  font-size: 16px;
+  left: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 20px;
+  transition: all ease-in-out 0.2s;
+  user-select: none;
+  z-index: $zIndexNormal;
+}
+
+@mixin form-label-active () {
+  font-size: 12px;
+  top: 8px;
+}
+
+@mixin form-error-text () {
+  color: $colorText;
+  font-family: font-family(body);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+// *** FORM ELEMENTS *** //
+
+// Input
+@mixin form-input () {
+  @include placeholder {
+    color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  @include form-control-base();
+
+  & + span {
+    @include form-label();
+  }
+
+  & + span + button {
+    // NOTE: for input with text-password switch
+    background-color: transparent;
+    background-image: var(--icon-eye-crossout);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $sizeControlIcon $sizeControlIcon;
+    border: none;
+    height: $sizeControlIcon;
+    position: absolute;
+    right: $sizeControl*0.5;
+    top: $sizeControl*0.5;
+    transform: translate(50%, -50%);
+    width: $sizeControlIcon;
+    z-index: 1;
+  }
+
+  &[disabled] + span {
+    color: $colorDisabled;
+  }
+
+  &:not(:placeholder-shown) + span,
+  &:not([disabled]):focus + span,
+  &:not([disabled]):active + span {
+    @include form-label-active();
+  }
+}
+
+@mixin form-input-validation ($color) {
+  @include form-control-validation($color);
+
+  &:not([disabled]) + span {
+    color: $color;
+  }
+}
+
+// Select
+
+@mixin form-select () {
+  @include form-control-base();
+
+  appearance: none;
+  background-color: transparent;
+  background-image: var(--icon-form-arrow);
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  background-size: $sizeControlIcon $sizeControlIcon;
+
+  & + span {
+    @include form-label();
+  }
+
+  &[disabled] + span {
+    color: $colorDisabled;
+  }
+
+  &:not(:invalid) + span,
+  &:not([disabled]):focus + span,
+  &:not([disabled]):active + span {
+    @include form-label-active();
+  }
+}
+
+@mixin form-select-validation ($color) {
+  @include form-control-validation($color);
+
+  &:not([disabled]) + span {
+    color: $color;
+  }
+}
+
+// Textarea
+
+@mixin form-textarea () {
+  @include placeholder {
+    color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  @include form-control-base();
+
+  background: transparent;
+  border: 0.5px solid $colorGray1;
+  margin: 0;
+  min-height: 254px;
+  padding: 40px 20px 20px;
+  resize: none;
+  width: 100%;
+
+  &:not([disabled]):not([readonly]):focus,
+  &:not([disabled]):not([readonly]):active {
+    border: 1px solid $colorBlueActive;
+    box-shadow: 0 0 0 1px $colorBlueActive inset;
+    outline: none;
+  }
+
+  &:not([disabled]):not([readonly]):hover {
+    border: 1px solid $colorBlueHover;
+  }
+
+  &[disabled] {
+    border: 0.5px solid $colorGray1;
+  }
+
+  & + span {
+    @include form-label();
+
+    background-color: $colorWhite;
+    left: 20px;
+    padding: 19px 0 4px 0;
+    position: absolute;
+    right: 20px;
+    top: 1px;
+  }
+
+  &[disabled] + span {
+    color: $colorDisabled;
+  }
+
+  &:not(:placeholder-shown) + span,
+  &:not([disabled]):focus + span,
+  &:not([disabled]):active + span {
+    @include form-label-active();
+
+    padding-top: 14px;
+    top: 2px;
+  }
+
+  &:not(:placeholder-shown):not(:focus):not(:active) + span {
+    @include form-label-active();
+
+    padding-top: 15px;
+    top: 1px;
+  }
+}
+
+@mixin form-textarea-validation ($color) {
+  border-color: $color;
+
+  &:not([disabled]):active,
+  &:not([disabled]):focus {
+    border: 1px solid $color;
+    box-shadow: 0 0 0 1px $color inset;
+  }
+
+  &:not([disabled]):not([readonly]):hover {
+    border: 1px solid $color;
+  }
+
+  &[disabled] {
+    border: 0.5px solid $colorGray1;
+    color: $colorDisabled;
+  }
+
+  &:not([disabled]) + span {
+    color: $color;
+  }
+}
+
+@mixin form-control-custom-rules () {
+  [data-form-custom-rules] {
+    display: none;
+    margin-top: 16px;
+    transition: height 0.1s ease;
+  }
+
+  [data-form-custom-rules='error'],
+  [data-form-custom-rules='success'] {
+    display: block;
+  }
+
+  [data-form-custom-rule] {
+    background-image: var(--icon-validation);
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: $colorMuted;
+    display: inline-block;
+    font-size: 11px;
+    margin-right: 4px;
+    padding-left: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  [data-form-custom-rule='success'] {
+    background-image: var(--icon-validation-green);
+    color: $colorText;
+  }
+}
+
+@mixin form-field () { // Form label
+  display: block;
+  position: relative;
+
+  div[data-error] {
+    @include form-error-text();
+  }
+
+  // Inputs
+  > input[type='text'],
+  > input[type='email'],
+  > input[type='tel'],
+  > input[type='number'] {
+    @include form-input();
+  }
+
+  > input[type='password'] {
+    @include form-input();
+
+    & + span + button {
+      background-image: var(--icon-eye);
+    }
+  }
+
+  &[data-validation-styles='success'] > input[type='text'],
+  &[data-validation-styles='success'] > input[type='email'],
+  &[data-validation-styles='success'] > input[type='number'],
+  &[data-validation-styles='success'] > input[type='tel'],
+  &[data-validation-styles='success'] > input[type='password'] {
+    @include form-input-validation($colorSuccess);
+  }
+
+  &[data-validation-styles='error'] > input[type='text'],
+  &[data-validation-styles='error'] > input[type='email'],
+  &[data-validation-styles='error'] > input[type='number'],
+  &[data-validation-styles='error'] > input[type='tel'],
+  &[data-validation-styles='error'] > input[type='password'] {
+    @include form-input-validation($colorError);
+  }
+
+  // Select
+  > select {
+    @include form-select();
+  }
+
+  &[data-validation-styles='success'] > select {
+    @include form-select-validation($colorSuccess);
+  }
+
+  &[data-validation-styles='error'] > select {
+    @include form-select-validation($colorError);
+  }
+
+  // Textarea
+  > textarea {
+    @include form-textarea();
+  }
+
+  > textarea + span + [data-error] {
+    padding-top: 0;
+  }
+
+  &[data-validation-styles='success'] > textarea {
+    @include form-textarea-validation($colorSuccess);
+  }
+
+  &[data-validation-styles='error'] > textarea {
+    @include form-textarea-validation($colorError);
+  }
+
+  // Custom validation
+  &[data-control-custom-rules] {
+    @include form-control-custom-rules();
+  }
+}
+
+@mixin form-message ($color) {
+  @include text-title-3($color);
+
+  background: $colorGray2;
+  border: 1px solid $colorGray1;
+  display: block;
+  padding: 40px 20px;
+}
+
+//Checkbox
+
+@mixin form-control-checkbox () {
+  //TODO: need to update controls structure according regular input and select
+  display: block;
+  position: relative;
+
+  span {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+
+    &::before {
+      border: 1px solid $colorText;
+      content: '';
+      display: inline-block;
+      height: 16px;
+      margin-right: 8px;
+      transition: border-width 0.2s ease, background-color 0.2s ease;
+      width: 16px;
+    }
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+
+    &:hover + span::before {
+      border: 2px solid $colorBlueHover;
+    }
+
+    &:checked + span::before {
+      background: var(--icon-checkbox-arrow) no-repeat center, $colorBlueActive;
+      border: 2px solid $colorBlueActive;
+    }
+
+    &:disabled + span::before {
+      background: var(--icon-checkbox-arrow) no-repeat center, $colorDisabled;
+      border: 2px solid $colorDisabled;
+      cursor: text;
+    }
+
+    &:disabled + span {
+      color: $colorDisabled;
+      cursor: text;
+    }
+  }
+}
+
+//Radio button
+
+@mixin form-control-radio () {
+  //TODO: need to update controls structure according regular input and select
+  input[type='radio'] {
+    display: none;
+  }
+
+  span {
+    cursor: pointer;
+    display: inline-block;
+    line-height: 18px;
+    margin-right: 0;
+    padding-left: 24px;
+    position: relative;
+    user-select: none;
+
+    &::before {
+      border: 1px solid $colorText;
+      border-radius: 50%;
+      bottom: 1px;
+      box-shadow: inset 0 0 0 2px $colorWhite;
+      content: '';
+      display: inline-block;
+      height: 16px;
+      left: 0;
+      position: absolute;
+      width: 16px;
+    }
+
+    &:hover::before {
+      border-color: $colorBlueHover;
+      border-width: 2px;
+    }
+  }
+
+  input {
+    &:checked + span::before {
+      background-color: $colorBlueActive;
+      border-color: $colorBlueActive;
+      border-width: 2px;
+    }
+
+    &:disabled + span::before {
+      background-color: $colorDisabled;
+      border-color: $colorDisabled;
+      border-width: 2px;
+      cursor: text;
+    }
+
+    &:disabled + span {
+      color: $colorDisabled;
+      cursor: text;
+    }
+  }
+}

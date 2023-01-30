@@ -1,0 +1,827 @@
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Style Settings */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+/* -- Wishlist button collection -- */
+$wk-button-collection-icon-color: currentColor;
+$wk-button-collection-backgrund-color: rgba(0,0,0,0);
+$wk-button-collection-icon-size: 16px;
+
+/* -- Wishlist button product -- */
+$wk-button-product-icon-color: currentColor;
+$wk-button-product-text-color: currentColor;
+$wk-button-product-icon-size: 16px;
+$wk-button-product-icon-padding: 0;
+
+/* -- Wishlist button wishlist page -- */
+$wk-button-wishlist-page-icon-color: currentColor;
+$wk-button-wishlist-page-backgrund-color: rgba(0,0,0,0);
+$wk-button-wishlist-page-icon-size: 18px;
+
+/* -- Clear wishlist button (on wishlist page) -- */
+$wk-button-wishlist-clear-background: #333;
+$wk-button-wishlist-clear-text-color: #fff;
+$wk-button-wishlist-clear-background-hover: #333;
+$wk-button-wishlist-clear-text-color-hover: #fff;
+
+/* -- Wishlist link (in header) -- */
+$wk-header-link-icon-color: currentColor;
+$wk-header-link-icon-color-hover: currentColor;
+$wk-header-link-icon-size: 15px;
+$wk-header-link-icon-padding: 0;
+
+/* -- Wishlist page -- */
+$wk-page-price-color: #555;
+$wk-page-title-color: #333;
+$wk-variant-form-background: rgba(255,255,255,0.95);
+$wk-add-to-cart-background: #333;
+$wk-add-to-cart-color: #fff;
+$wk-add-to-cart-background-hover: #333;
+$wk-add-to-cart-color-hover: #fff;
+
+/* -- Link Sharing --*/
+$link-sharing-color: #333;
+$copy-link-color: #fff;
+$copy-link-background: #999;
+
+/* -- Upsell Widget --*/
+$swiper-button-color: #999;
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Mixins */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+@mixin wk-hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin wk-clearfix {
+  clear: both;
+  overflow: hidden;
+}
+
+@mixin wk-icon($color: #000, $icon-size: 15px, $icon-padding: 5px) {
+  .wk-icon {
+    display: inline-block;
+    width: $icon-size;
+    height: $icon-size;
+    padding: $icon-padding;
+
+    svg {
+      overflow: visible;
+      width: 100%;
+      height: 100%;
+
+      path {
+        fill: $color;
+        stroke: $color;
+      }
+    }
+  }
+}
+
+@mixin wk-button($text-color: #000, $background-color: rgba(0,0,0,0)) {
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  line-height: normal;
+  cursor: pointer;
+  color: $text-color;
+  background: $background-color;
+
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  flex-direction: row;
+
+  &:focus {
+    outline:0;
+  }
+}
+
+@mixin wk-icon-button($color, $backgrund-color, $icon-size: 15px, $icon-padding: 5px) {
+  @include wk-button(#000, $backgrund-color);
+  @include wk-icon($color, $icon-size, $icon-padding);
+
+  .wk-label {
+    display: none;
+  }
+
+  {% if settings.app_wk_col_bg_shape == "square" %}
+    border-radius: 0;
+  {% elsif settings.app_wk_col_bg_shape == "circle" %}
+    border-radius: 50%;
+  {% elsif settings.app_wk_col_bg_shape == "none" %}
+    background: transparent;
+  {% endif %}
+
+  padding: 0;
+  margin: 0;
+}
+
+@mixin wk-text-button($icon-color, $text-color, $icon-size: 15px, $icon-padding: 5px) {
+  @include wk-button($text-color);
+  @include wk-icon($icon-color, $icon-size, $icon-padding);
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Buttons */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+.wk-disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.wk-col-item {
+  position: relative;
+}
+
+button.wk-button-collection {
+  @include wk-icon-button($wk-button-collection-icon-color, $wk-button-collection-backgrund-color, $wk-button-collection-icon-size);
+  display: inline-block;
+
+  position: absolute;
+  z-index: 1;
+
+  {% if settings.app_wk_col_bg_shape == "square" %}
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+  {% else %}
+    top: 5px;
+    right: 5px;
+    left: auto;
+    bottom: auto;
+  {% endif %}
+
+  line-height: 0;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  min-width: 0;
+
+  .wk-icon-label {
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+
+  .wk-icon {
+    display: inline-block;
+    padding: 0;
+    margin: 0 auto !important;
+  }
+
+  .wk-label {
+    /*display: inline-block;
+    color: #FFF;
+    font-size: 22px;
+    text-transform: lowercase;*/
+    display: none;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+* > button.wk-button-collection.wk-add-product {
+  opacity: 0;
+}
+
+*:hover > button.wk-button-collection {
+  opacity: 1;
+}
+
+button.wk-button-product {
+  @include wk-text-button($wk-button-product-icon-color, $wk-button-product-text-color, $wk-button-product-icon-size, $wk-button-product-icon-padding);
+
+  /* Icon and Text */
+  display: block;
+  margin: 0 0 20px 0 !important;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+
+  /* Icon ONLY */
+  /* background: #FFFFFF;
+  display: inline-block;
+  margin: 0 0 0 10px !important;
+  padding: 8px 12px !important;
+  width: auto;
+  border: 1px solid #333333;
+  border-radius: 0;
+  vertical-align: bottom;*/
+
+  .wk-icon {
+    display: inline-block;
+
+    margin: 0 5px 0 0;
+    padding: 0;
+
+    position: relative;
+    top: 2px;
+  }
+
+  .wk-label {
+    font-family: 'SuisseIntl';
+    text-decoration: underline;
+    color: #434343;
+    display: inline-block;
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 1.25;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+button.wk-button-wishlist-page {
+  @include wk-icon-button($wk-button-wishlist-page-icon-color, $wk-button-wishlist-page-backgrund-color, $wk-button-wishlist-page-icon-size);
+  display: inline-block;
+
+  &.wk-with-hover {
+    opacity: 0;
+  }
+
+  position: absolute;
+  z-index: 1;
+
+  {% if settings.app_wk_col_bg_shape == "square" %}
+    top: 8px;
+    right: 8px;
+    left: auto;
+    bottom: auto;
+  {% else %}
+    top: 5px;
+    right: 5px;
+    left: auto;
+    bottom: auto;
+  {% endif %}
+
+  line-height: 0;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  min-width: 0;
+
+  .wk-icon-label {
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+
+  .wk-icon {
+    display: inline-block;
+    padding: 0;
+    margin: 0 auto !important;
+  }
+
+  .wk-label {
+    /*display: inline-block;
+    color: #FFF;
+    font-size: 22px;
+    text-transform: lowercase;*/
+    display: none;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+*:hover > button.wk-button-wishlist-page {
+  opacity: 1;
+}
+
+button.wk-button-wishlist-clear {
+  @include wk-button($wk-button-wishlist-clear-text-color, $wk-button-wishlist-clear-background);
+
+  padding: 8px 12px;
+  text-align: center;
+  margin: 5px auto;
+  width: auto;
+  min-width: 0;
+  box-shadow: none;
+  border: none;
+  text-shadow: none;
+  text-transform: initial;
+  border-radius:0;
+  display: none;
+
+  &:hover {
+    background: $wk-button-wishlist-clear-background-hover;
+    color: $wk-button-wishlist-clear-text-color-hover;
+  }
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Wishlist Link in header / top bar */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+a.wk-link {
+  @include wk-icon($wk-header-link-icon-color, $wk-header-link-icon-size, $wk-header-link-icon-padding);
+
+  display: inline-block;
+  //margin: 0 10px 0 0;
+
+  .wk-icon svg path {
+    transition: 0.3s all;
+  }
+
+  &:hover {
+    .wk-icon svg path {
+      fill: $wk-header-link-icon-color-hover;
+      stroke: $wk-header-link-icon-color-hover;
+    }
+  }
+
+  .wk-icon {
+    width: $wk-header-link-icon-size;
+    height: $wk-header-link-icon-size;
+
+    margin: 0 5px 0 0;
+    padding: 0;
+  }
+
+  .wk-label {
+    //display: none;
+  }
+
+  .wk-count {
+    //display: none;
+  }
+
+  &.wk-empty {
+    .wk-count {
+      display: none;
+    }
+  }
+}
+
+.wk-variant-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+// use this for mixed aspect ratios
+/*
+.wk-content {
+  position: relative;
+  padding-top: 100%;
+  margin-bottom: 1em;
+}
+
+.wk-variant-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+*/
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Wishlist row (e.g. in cart) */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+.wk-wishlist-row {
+  position: relative;
+  padding: 0 15px;
+  margin-top: 2em;
+
+  .wk-item {
+    margin: 0;
+  }
+
+  .swiper-button-next.swiper-button-disabled,
+  .swiper-button-prev.swiper-button-disabled {
+    pointer-events: all;
+  }
+}
+
+.wk-wishlist-row-title {
+  //text-align: center;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Grid System */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+.wk-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.wk-span2 { width: 16.6666%; }
+.wk-span3 { width: 25%; }
+.wk-span4 { width: 33.3333%; }
+.wk-span6 { width: 50%; }
+.wk-span12 { width: 100%; }
+
+@media (max-width: 720px) {
+  .wk-span2 { width: 33.3333%; }
+  .wk-span3 { width: 50%; }
+  .wk-span4 { width: 50%; }
+  .wk-item-column { width: 50% !important; }
+}
+
+@media (max-width: 480px) {
+  .wk-span2 { width: 100%; }
+  .wk-span3 { width: 100%; }
+  .wk-span4 { width: 100%; }
+  .wk-span6 { width: 100%; }
+  .wk-row {
+    overflow-x: scroll;
+  }
+  .wk-item-column {
+    min-width: 80%;
+  }
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Wishlist Page */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+h1#wk-page-title {
+  display: block;
+  text-align: center;
+  margin: 0 0 25px 0;
+  padding: 0;
+  border: none;
+}
+
+.wk-wishlist-empty-note {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+p.wk-login-note {
+  text-align: center;
+  margin-bottom: 35px;
+  background: rgba(0,0,0,.02);
+  padding: 10px;
+  margin-bottom: 30px;
+  font-style: italic;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.wk-item {
+  position: relative;
+  text-align: center;
+
+  margin: 0 10px 30px 5px;
+
+  .wk-variant-link {
+    display: block;
+    float: none;
+    text-decoration: none;
+    color: $wk-page-title-color;
+    border: none;
+  }
+
+  .wk-price {
+    color: $wk-page-price-color;
+    border: none;
+  }
+
+  .wk-product-options {
+    border-bottom: none;
+
+    .selector-wrapper {
+      //display: block !important;
+    }
+
+    label {
+      display: block;
+      text-align: center;
+    }
+
+    select {
+      box-sizing: border-box;
+      display: block;
+      width: 100% !important;
+      border-radius: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .wk-purchase-section {
+    margin-top: 1em;
+  }
+}
+
+.wk-add-item-form {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+
+  background: $wk-variant-form-background;
+  padding: 10px;
+  opacity: 0;
+
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+
+  input.wk-add-to-cart {
+    box-sizing: content-box;
+    border: none;
+    margin: 0;
+    padding: 14px 24px;
+    color: $wk-add-to-cart-color;
+    background: $wk-add-to-cart-background;
+    color: $wk-add-to-cart-color;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    line-height: 1;
+    border-radius: 0;
+    text-transform: initial;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:hover {
+      background: $wk-add-to-cart-background-hover;
+      color: $wk-add-to-cart-color-hover;
+    }
+  }
+}
+
+/*
+.wk-item:hover {
+  .wk-add-item-form {
+    opacity: 1;
+  }
+}
+*/
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Share Buttons */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+h3#wk-share-head {
+  display: none;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 5px 0 7px 0;
+  padding: 0;
+  text-transform: uppercase;
+  border: none;
+}
+
+ul#wk-share-list {
+  display: none;
+  list-style: none;
+  width: 100%;
+  margin: 0 0 50px 0;
+  padding: 0;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin: 0;
+    padding: 0 5px;
+  }
+}
+
+#wk-share-link-text {
+  margin-top: -30px;
+  margin-bottom: 40px;
+  color: $link-sharing-color;
+  padding: 3px 10px;
+  display: none;
+  text-align: center;
+  font-size: .8em;
+  font-style: italic;
+
+  .wk-text {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wk-clipboard {
+    margin-left: 10px;
+    background: $copy-link-background;
+    border: none;
+    color: $copy-link-color;
+    padding: 4px 7px;
+    border-radius: 0px;
+    min-height: auto;
+    height: auto;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.wk-visible {
+    display: block;
+  }
+}
+
+.wk-button-share {
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.resp-sharing-button__link,
+.resp-sharing-button__icon {
+  display: inline-block;
+}
+
+.resp-sharing-button__link {
+  font-size: 12px;
+  text-decoration: none;
+  color: #fff;
+  margin: 0;
+  min-height: 0;
+  line-height: 1;
+}
+
+.resp-sharing-button {
+  transition: 25ms ease-out;
+  padding: 5px 8px 7px;
+}
+
+.resp-sharing-button__icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.resp-sharing-button span {
+  padding-left: 0.4em;
+  display:none;
+}
+
+/* Non solid icons get a stroke */
+.resp-sharing-button__icon {
+  stroke: #fff;
+  fill: none;
+
+  svg {
+    position: relative;
+    top: 2px;
+  }
+}
+
+/* Solid icons get a fill */
+.resp-sharing-button__icon--solid {
+  fill: #fff;
+  stroke: none;
+}
+
+.resp-sharing-button--facebook {
+  background-color: #333;
+}
+
+.resp-sharing-button--pinterest {
+  background-color: #333;
+}
+
+.resp-sharing-button--twitter {
+  background-color: #333;
+}
+
+.resp-sharing-button--link {
+  background-color: #333;
+}
+
+.resp-sharing-button--email {
+  background-color: #333;
+}
+
+.resp-sharing-button--whatsapp {
+  background-color: #333;
+}
+
+#wk-share-whatsapp {
+  display: none !important;
+}
+
+.resp-sharing-button--facebook:hover {
+  background-color: #3b5998;
+}
+
+.resp-sharing-button--pinterest:hover {
+  background-color: #bd081c;
+}
+
+.resp-sharing-button--twitter:hover {
+  background-color: #55acee;
+}
+
+.resp-sharing-button--link:hover {
+  background-color: #777;
+}
+
+.resp-sharing-button--email:hover {
+  background-color: #777;
+}
+
+.resp-sharing-button--whatsapp:hover {
+  background-color: #25D366;
+}
+
+.wk-touch {
+  .resp-sharing-button--facebook,
+  .resp-sharing-button--pinterest,
+  .resp-sharing-button--twitter,
+  .resp-sharing-button--email,
+  .resp-sharing-button--link,
+  .resp-sharing-button--whatsapp {
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  button.wk-button-collection,
+  button.wk-button-product,
+  button.wk-button-wishlist-page {
+    &.wk-add-product,
+    &.wk-remove-product,
+    &.wk-remove-item {
+      opacity: 1;
+    }
+  }
+
+  /*
+  .wk-add-item-form {
+    position: static;
+    opacity: 1;
+  }
+  */
+}
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Upsell Widget */
+/*////////////////////////////////////////////////////////////////////////////*/
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  left: -24px;
+  background: none;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    fill: $swiper-button-color;
+  }
+}
+
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  right: -24px;
+  background: none;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    fill: $swiper-button-color;
+  }
+}
+
+/*/////////////////////////////////////////////////////////////////////////////*/
+/* !Responsive Styles */
+/*////////////////////////////////////////////////////////////////////////////*/
+@media (max-width: 1024px) {
+  .wk-touch {
+    #wk-share-whatsapp {
+      display: inline-block !important;
+    }
+  }
+}

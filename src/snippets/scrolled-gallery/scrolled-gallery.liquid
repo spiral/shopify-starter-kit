@@ -1,0 +1,43 @@
+<div
+  class="scrolled-gallery"
+  data-snippet="scrolled-gallery"
+>
+  <div class="scrolled-gallery__in">
+    <div
+      class="scrolled-gallery__blocks"
+      style="width: calc({{ limit | default: 1 }}*{% if limit > 1 %}75%{% else %}100%{% endif %});"
+    >
+      {% if image_1 %}
+        <div class="scrolled-gallery__block">
+          <div class="scrolled-gallery__block-image">
+            {% render 'lazy-image', image: image_1 %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if image_2 %}
+        <div class="scrolled-gallery__block">
+          <div class="scrolled-gallery__block-image">
+            {% render 'lazy-image', image: image_2 %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if image_3 %}
+        <div class="scrolled-gallery__block">
+          <div class="scrolled-gallery__block-image">
+            {% render 'lazy-image', image: image_3 %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if image_4 %}
+        <div class="scrolled-gallery__block">
+          <div class="scrolled-gallery__block-image">
+            {% render 'lazy-image', image: image_4 %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

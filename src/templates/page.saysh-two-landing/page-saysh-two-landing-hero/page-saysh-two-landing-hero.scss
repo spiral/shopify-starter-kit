@@ -1,0 +1,73 @@
+.page-saysh-two-landing-hero {
+  display: flex;
+  justify-content: space-between;
+
+  @include media-query($small-down) {
+    flex-direction: column;
+  }
+}
+
+.page-saysh-two-landing-hero__media {
+  display: block;
+  width: 49%;
+
+  @include media-query($small-down) {
+    display: none;
+    width: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  & > .ratio-box {
+    height: 100%;
+  }
+}
+
+.page-saysh-two-landing-hero__media--mobile {
+  display: none;
+
+  @include media-query($small-down) {
+    display: block;
+  }
+}
+
+.page-saysh-two-landing-hero__content {
+  display: flex;
+  padding: 40px;
+  width: 51%;
+
+  @include media-query($small-down) {
+    padding: 50px 16px 70px;
+    width: 100%;
+  }
+}
+
+.page-saysh-two-landing-hero__content-in {
+  margin: auto;
+  max-width: 413px;
+  text-align: center;
+}
+
+.page-saysh-two-landing-hero__content-title {
+  @include title-h4();
+
+  margin: 0 0 24px 0;
+
+  @include media-query($small-down) {
+    margin-bottom: 18px;
+  }
+}
+
+.page-saysh-two-landing-hero__content-text {
+  margin-bottom: 34px;
+  padding-left: 43px;
+  padding-right: 43px;
+
+  @include media-query($small-down) {
+    margin-bottom: 48px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

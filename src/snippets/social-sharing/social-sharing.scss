@@ -1,0 +1,30 @@
+.social-sharing {
+  display: block;
+
+  svg {
+    height: 16px;
+    margin: 0 12px;
+    max-width: 16px;
+  }
+}
+
+.social-sharing__container {
+  @include display-flexbox();
+  @include align-items(center);
+
+  margin-left: -12px;
+}
+
+.social-sharing__link {
+  &:hover {
+    svg path {
+      fill: $colorBlueHover;
+    }
+  }
+
+  &:active {
+    svg path {
+      fill: $colorBlueActive;
+    }
+  }
+}

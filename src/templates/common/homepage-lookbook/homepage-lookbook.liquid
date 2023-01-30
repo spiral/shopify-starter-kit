@@ -1,0 +1,486 @@
+<section
+  class="homepage-lookbook splide"
+  data-section="homepage-lookbook"
+  data-homepage-lookbook-slider
+>
+  <div class="homepage-lookbook__variants-wr splide__track">
+    <ul class="homepage-lookbook__variants splide__list">
+      {% for block in section.blocks %}
+        <li class="homepage-lookbook__variant splide__slide">
+          <div class="homepage-lookbook__variant-in">
+            <a
+              class="homepage-lookbook__variant-image-wr"
+              href="{{ block.settings.big_image_url | replace: shop.url, shop.secure_url }}"
+            >
+              <div class="homepage-lookbook__variant-image">
+                {% assign big_image_alt = block.settings.big_image_alt | append: ' cover' %}
+
+                {% render 'lazy-image', image: block.settings.big_image, alt: big_image_alt %}
+              </div>
+
+              <div class="homepage-lookbook__variant-image homepage-lookbook__variant-image--mobile">
+                {% render 'lazy-image', image: block.settings.big_image_mobile, alt: block.settings.big_image_alt %}
+              </div>
+            </a>
+
+            <div class="homepage-lookbook__variant-thumbnails">
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">01</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_1_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_1, alt: block.settings.image_1_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_1_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_1_mobile, alt: block.settings.image_1_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">02</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_2_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_2, alt: block.settings.image_2_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_2_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_2_mobile, block.settings.image_2_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">03</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_3_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_3, alt: block.settings.image_3_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_3_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_3_mobile, alt: block.settings.image_3_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">04</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_4_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_4, alt: block.settings.image_4_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_4_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_4_mobile, alt: block.settings.image_4_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">05</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_5_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_5, alt: block.settings.image_5_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_5_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_5_mobile, alt: block.settings.image_5_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">06</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_6_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_6, alt: block.settings.image_6_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_6_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_6_mobile, alt: block.settings.image_6_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">07</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_7_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_7, alt: block.settings.image_7_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_7_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_7_mobile, alt: block.settings.image_7_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">08</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_8_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_8, alt: block.settings.image_8_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_8_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_8_mobile, alt: block.settings.image_8_mobile_alt %}
+                </a>
+              </div>
+
+              <div class="homepage-lookbook__variant-thumbnail">
+                <div class="homepage-lookbook__variant-thumbnail-text">09</div>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image"
+                  href="{{ block.settings.image_9_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_9, alt: block.settings.image_9_alt %}
+                </a>
+
+                <a
+                  class="homepage-lookbook__variant-thumbnail-image homepage-lookbook__variant-thumbnail-image--mobile"
+                  href="{{ block.settings.image_9_url | replace: shop.url, shop.secure_url }}"
+                >
+                  {% render 'lazy-image', image: block.settings.image_9_mobile, alt: block.settings.image_9_mobile_alt %}
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Lookbook",
+  "blocks": [
+    {
+      "name": "Lookbook Variant Content",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Covers and desktop thumbnails"
+        },
+        {
+          "type": "image_picker",
+          "id": "big_image",
+          "label": "Primary Image"
+        },
+        {
+          "type": "text",
+          "id": "big_image_alt",
+          "label": "Primary Image alt text",
+          "default": "Saysh two style"
+        },
+        {
+          "type": "image_picker",
+          "id": "big_image_mobile",
+          "label": "Primary image mobile"
+        },
+        {
+          "type": "url",
+          "id": "big_image_url",
+          "label": "Primary image url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "image_1_alt",
+          "label": "Image 1 alt text",
+          "default": "Saysh two wear"
+        },
+        {
+          "type": "url",
+          "id": "image_1_url",
+          "label": "Image 1 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "image_2_alt",
+          "label": "Image 2 alt text",
+          "default": "Allyson Felix shoe company"
+        },
+        {
+          "type": "url",
+          "id": "image_2_url",
+          "label": "Image 2 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "text",
+          "id": "image_3_alt",
+          "label": "Image 3 alt text",
+          "default": "Saysh reviews"
+        },
+        {
+          "type": "url",
+          "id": "image_3_url",
+          "label": "Image 3 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "text",
+          "id": "image_4_alt",
+          "label": "Image 4 alt text",
+          "default": "Saysh Two style look"
+        },
+        {
+          "type": "url",
+          "id": "image_4_url",
+          "label": "Image 4 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "text",
+          "id": "image_5_alt",
+          "label": "Image 5 alt text",
+          "default": "Women wear"
+        },
+        {
+          "type": "url",
+          "id": "image_5_url",
+          "label": "Image 5 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "text",
+          "id": "image_6_alt",
+          "label": "Image 6 alt text",
+          "default": "Saysh Team"
+        },
+        {
+          "type": "url",
+          "id": "image_6_url",
+          "label": "Image 6 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7",
+          "label": "Image 7"
+        },
+        {
+          "type": "text",
+          "id": "image_7_alt",
+          "label": "Image 7 alt text",
+          "default": "Saysh products"
+        },
+        {
+          "type": "url",
+          "id": "image_7_url",
+          "label": "Image 7 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8",
+          "label": "Image 8"
+        },
+        {
+          "type": "text",
+          "id": "image_8_alt",
+          "label": "Image 8 alt text",
+          "default": "Allyson Felix shoes"
+        },
+        {
+          "type": "url",
+          "id": "image_8_url",
+          "label": "Image 8 url link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_9",
+          "label": "Image 9"
+        },
+        {
+          "type": "text",
+          "id": "image_9_alt",
+          "label": "Image 9 alt text",
+          "default": "Allyson Felix company"
+        },
+        {
+          "type": "url",
+          "id": "image_9_url",
+          "label": "Image 9 url link"
+        },
+        {
+          "type": "header",
+          "content": "Mobile thumbnails"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1_mobile",
+          "label": "Image 1 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_1_mobile_alt",
+          "label": "Image 1 mobile alt text",
+          "default": "Allyson Felix"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2_mobile",
+          "label": "Image 2 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_2_mobile_alt",
+          "label": "Image 2 mobile alt text",
+          "default": "Allyson Felix style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3_mobile",
+          "label": "Image 3 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_3_mobile_alt",
+          "label": "Image 3 mobile alt text",
+          "default": "Allyson Felix wear"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4_mobile",
+          "label": "Image 4 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_4_mobile_alt",
+          "label": "Image 4 mobile alt text",
+          "default": "Look style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5_mobile",
+          "label": "Image 5 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_5_mobile_alt",
+          "label": "Image 5 mobile alt text",
+          "default": "Saysh Look"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6_mobile",
+          "label": "Image 6 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_6_mobile_alt",
+          "label": "Image 6 mobile alt text",
+          "default": "by Saysh"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7_mobile",
+          "label": "Image 7 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_7_mobile_alt",
+          "label": "Image 7 mobile alt text",
+          "default": "womens sneakers"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8_mobile",
+          "label": "Image 8 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_8_mobile_alt",
+          "label": "Image 8 mobile alt text",
+          "default": "womens style"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_9_mobile",
+          "label": "Image 9 thumbnail mobile"
+        },
+        {
+          "type": "text",
+          "id": "image_9_mobile_alt",
+          "label": "Image 9 mobile alt text",
+          "default": "Allyson Fellix"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Lookbook",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

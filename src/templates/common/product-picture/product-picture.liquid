@@ -1,0 +1,51 @@
+<section
+  class="product-picture"
+  data-section="product-picture"
+>
+  <div class="product-picture__desktop">
+    {%
+      render 'lazy-image' with
+      image: section.settings.image
+    %}
+  </div>
+
+  <div class="product-picture__mobile">
+    {%
+      render 'lazy-image' with
+      image: section.settings.image_mob
+    %}
+  </div>
+
+  <blockquote class="product-picture__quote">
+    {{ section.settings.quote }}
+  </blockquote>
+</section>
+
+{% schema %}
+{
+  "name": "Product Picture",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Add image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mob",
+      "label": "Add image for mobile"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Add quote"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Picture",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

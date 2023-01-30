@@ -1,0 +1,383 @@
+@import "form-mixins";
+
+$gridOffsets: spacing();
+
+@mixin f-row ($offsets: $gridOffsets, $wrap: "true") {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$offsets;
+  margin-right: -$offsets;
+  width: calc(#{$offsets} * 2 + 100%);
+
+  @if $offsets == 0 {
+    width: 100%;
+  }
+
+  @if $wrap == "false" {
+    flex-wrap: nowrap;
+  }
+}
+
+@mixin f-col ($ratio: 1, $offsets: $gridOffsets) {
+  display: flex;
+  flex-direction: column;
+  padding-left: $offsets;
+  padding-right: $offsets;
+  width: 100% * $ratio;
+}
+
+@mixin button-reset-styles() {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: inherit;
+  height: auto;
+  padding: 0;
+  text-decoration: none;
+  text-transform: inherit;
+  width: auto;
+}
+
+@mixin button-core ($color: $colorText, $borderColor: $colorText, $bgColor: transparent) {
+  @include prefix('user-select', 'none', moz ms webkit spec);
+  @include prefix(appearance, none, webkit moz spec);
+
+  background-color: $bgColor;
+  border: 1px solid $borderColor;
+  box-sizing: border-box;
+  color: $color;
+  display: inline-block;
+  font-family: font-family(body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  min-width: rem(200px);
+  padding: rem(18px);
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  transition: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+
+  @include media-query($medium-up) {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+
+  &:hover {
+    background-color: $colorBlueHover;
+    border-color: $colorBlueHover;
+    color: $colorWhite;
+  }
+
+  &:active {
+    background-color: $colorText;
+    border-color: $colorText;
+    color: $colorWhite;
+  }
+
+  &[disabled] {
+    background-color: $colorWhite;
+    border-color: $colorDisabled;
+    color: $colorDisabled;
+    pointer-events: none;
+  }
+}
+
+@mixin button () {
+  @include button-core($colorText, $colorWhite, $colorWhite);
+}
+
+@mixin button-transparent () {
+  @include button-core($colorText, $colorText, transparent);
+}
+
+@mixin separator ($color: $colorDisabled, $leftPad: 0, $rightPad: 0, $size: 1px) {
+  $_normalizedLeftPad: normalize-value($leftPad);
+  $_normalizedRightPad: normalize-value($rightPad);
+
+  background: $color;
+  display: block;
+  height: $size;
+  margin-left: $_normalizedLeftPad;
+  margin-right: $_normalizedRightPad;
+  padding: 0;
+  width: calc(100% - #{$_normalizedLeftPad} - #{$_normalizedRightPad});
+}
+
+@mixin container ($_width: $grid-desktop) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: $_width;
+  padding: 0 spacing() * 5;
+
+  @include media-query($small-down) {
+    padding: 0 spacing();
+  }
+}
+
+@mixin title-base ($fontSize, $color: $colorText) {
+  color: $color;
+  font-family: font-family(header);
+  font-size: $fontSize;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin title-h1 ($color: $colorText) {
+  @include title-base(120px, $color);
+}
+
+@mixin title-h2 ($color: $colorText) {
+  @include title-base(100px, $color);
+}
+
+@mixin title-h3 ($color: $colorText) {
+  @include title-base(60px, $color);
+}
+
+@mixin title-h4 ($color: $colorText) {
+  @include title-base(44px, $color);
+
+  line-height: 40px;
+}
+
+@mixin title-h5 ($color: $colorText) {
+  @include title-base(30px, $color);
+}
+
+@mixin title-h6 ($color: $colorText) {
+  @include title-base(24px, $color);
+
+  line-height: 21.6px;
+}
+
+@mixin text-title-base ($fontSize, $color: $colorText) {
+  color: $color;
+  font-family: font-family(body);
+  font-size: $fontSize;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+@mixin text-title-1 ($color: $colorText) {
+  @include text-title-base(25px, $color);
+
+  font-weight: 400;
+}
+
+@mixin text-title-2 ($color: $colorText) {
+  @include text-title-base(18px, $color);
+}
+
+@mixin text-title-3 ($color: $colorText) {
+  @include text-title-base(14px, $color);
+}
+
+@mixin text-title-4 ($color: $colorText) {
+  @include text-title-base(11px, $color);
+
+  font-weight: 400;
+}
+
+@mixin text-content-base ($fontSize, $color: $colorText) {
+  color: $color;
+  font-family: font-family(body);
+  font-size: $fontSize;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+@mixin text-content ($color: $colorText) {
+  @include text-content-base(14px, $color);
+}
+
+@mixin text-content-sm ($color: $colorText) {
+  @include text-content-base(12px, $color);
+}
+
+@mixin clear-list () {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin clear-list-item () {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin link-base ($fontSize, $color: $colorText) {
+  @include button-reset-styles();
+
+  color: $color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: font-family(body);
+  font-size: $fontSize;
+  font-weight: 300;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-decoration-color: $colorMuted;
+  text-decoration-thickness: 0.5px;
+
+  &:hover {
+    color: $color;
+    text-decoration-color: $colorBlueHover;
+    text-decoration-thickness: 1px;
+  }
+
+  &:active {
+    color: $color;
+    text-decoration-color: $colorBlueActive;
+    text-decoration-thickness: 1px;
+  }
+
+  &[disabled] {
+    color: $colorDisabled;
+    pointer-events: none;
+    text-decoration-color: $colorDisabled;
+  }
+}
+
+@mixin link ($color: $colorText) {
+  @include link-base(14px, $color);
+}
+
+@mixin link-sm ($color: $colorText) {
+  @include link-base(12px, $color);
+}
+
+@mixin link-text ($color: $colorText) {
+  color: $color;
+  font-family: font-family(body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: color 0.2s ease-in;
+
+  &:hover {
+    color: $colorBlueHover;
+  }
+
+  &:active {
+    color: $colorBlueActive;
+  }
+
+  &[disabled] {
+    color: $colorDisabled;
+    pointer-events: none;
+  }
+}
+
+@mixin link-nav-base ($color: $colorBlack) {
+  @include button-reset-styles();
+
+  color: $color;
+  font-family: font-family(body);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1;
+  text-decoration: none;
+}
+
+//NOTE: for support pages
+
+@mixin page-support-space () {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @include media-query($medium-up) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@mixin page-support-text () {
+  strong {
+    font-weight: 500;
+    line-height: 1.42;
+
+    &:first-child {
+      display: block;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+  }
+
+  ol {
+    line-height: 1.42;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 25px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ol.letters {
+    list-style-type: lower-alpha;
+  }
+
+  ul {
+    line-height: 1.42;
+    margin-bottom: 20px;
+    margin-top: -15px;
+    padding-left: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include media-query($medium-up) {
+      margin-top: -20px;
+      padding-left: 19px;
+    }
+  }
+
+  h4 {
+    @include text-title-4();
+
+    display: inline-block;
+    margin: 0;
+  }
+
+  p {
+    line-height: 1.42;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include media-query($medium-up) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .small-text {
+    font-size: 12px;
+  }
+}
+
+@mixin page-support-wrap () {
+  br {
+    display: none;
+
+    @include media-query($medium-up) {
+      display: inline;
+    }
+  }
+}
+
+@mixin modal-base ($width: 430px) {
+  background: $colorWhite;
+  max-width: $width;
+  padding: 48px;
+}

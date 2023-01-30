@@ -1,0 +1,71 @@
+<section
+  class="homepage-podcasts"
+  data-section="homepage-podcasts"
+>
+  <div
+    class="homepage-podcasts__slider splide"
+    data-homepage-podcasts-slider
+  >
+    <div class="homepage-podcasts__slider-track splide__track">
+      <ul class="
+          homepage-podcasts__slider-list
+          splide__list
+        ">
+        {% for block in section.blocks %}
+          <li class="homepage-podcasts__slider-slide splide__slide">
+            <a
+              class="homepage-podcasts__slider-link"
+              href="{{ block.settings.link_url }}"
+              {% if block.settings.link_url contains "//" %}
+                target="_blank"
+                rel="noopener noreferrer"
+              {% endif %}
+            >
+              {% render 'lazy-image', image: block.settings.slide, alt: block.settings.slide_alt %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Podcasts",
+  "blocks": [
+    {
+      "name": "Podcast",
+      "type": "init_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Label for block"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide",
+          "label": "Slide Image"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "link url"
+        },
+        {
+          "type": "text",
+          "id": "slide_alt",
+          "label": "Alt for slide image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage-podcasts",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

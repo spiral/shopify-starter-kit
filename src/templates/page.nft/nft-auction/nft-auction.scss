@@ -1,0 +1,392 @@
+.nft-auction {
+  background: $colorWhite;
+  padding-bottom: 45px;
+}
+
+.nft-auction__in {
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: 0 140px 0;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding: 0 spacing(extra-loose) 0;
+  }
+}
+
+.nft-auction__row {
+  @include f-row(80px);
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include f-row(spacing(extra-loose));
+  }
+}
+
+.nft-auction__col {
+  @include f-col(1/2, 80px);
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    @include f-col(1, 80px);
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include f-col(1, spacing(extra-loose));
+  }
+}
+
+.nft-auction__control {
+  padding-bottom: 0;
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    padding-bottom: 40px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding-bottom: 80px;
+  }
+}
+
+.nft-auction__control-title {
+  @include title-h1();
+
+  letter-spacing: 0;
+  text-align: left;
+
+  @media only screen and (max-width: #{breakpoint($grid-widescreen, -1px)}) {
+    @include title-h2();
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include title-h3();
+  }
+}
+
+.nft-auction__control-info {
+  line-height: 1;
+  padding-top: 120px;
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    padding-top: 50px;
+  }
+}
+
+.nft-auction__control-info-small {
+  @include text-title-2();
+
+  padding-bottom: 18px;
+}
+
+.nft-auction__control-info-price {
+  @include text-title-1();
+
+  border-top: 2px solid $colorGray1;
+  display: inline-block;
+  min-width: 280px;
+  padding: 20px 0 10px;
+  text-align: left;
+
+  span {
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    display: block;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding: 16px 0 6px;
+  }
+}
+
+.nft-auction__control-info-tip {
+  @include text-content-base(18px);
+
+  padding-bottom: 16px;
+  text-align: left;
+}
+
+.nft-auction__control-auction-bid {
+  @include text-title-2();
+
+  margin: 0;
+  max-width: 348px;
+  padding: 32px;
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    padding: 16px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(500px)}) {
+    max-width: none;
+  }
+}
+
+.nft-auction__control-auction-error {
+  color: #ca9b9b;
+  margin: 20px 0 30px;
+}
+
+.nft-auction__control-action {
+  @include button-transparent();
+}
+
+.nft-auction__control-link-wr {
+  max-width: 348px;
+  padding-top: 40px;
+
+  @media only screen and (max-width: #{breakpoint(500px)}) {
+    max-width: none;
+  }
+}
+
+.nft-auction__control-link {
+  @include link-sm();
+}
+
+.nft-auction__timer {
+  @include text-content();
+
+  border-bottom: 2px solid $colorGray1;
+  padding-bottom: 20px;
+  padding-top: 30px;
+  text-align: left;
+  width: 100%;
+
+  strong {
+    @include text-title-3();
+  }
+}
+
+.nft-auction__timer-tip {
+  @include text-title-2();
+}
+
+.nft-auction__timer-data {
+  display: flex;
+  margin-right: -5%;
+  margin-top: 40px;
+}
+
+.nft-auction__timer-data-time-wr {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.nft-auction__timer-data-time {
+  display: flex;
+  flex-direction: row;
+  font-family: "Poxel", monospace;
+  font-size: 140px;
+  justify-content: space-around;
+  line-height: 0.8;
+
+  @media only screen and (max-width: #{breakpoint(1600px, -1px)}) {
+    font-size: 100px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-widescreen, -1px)}) {
+    font-size: 90px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    font-size: 70px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    font-size: 140px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    font-size: 100px;
+  }
+
+  @media only screen and (max-width: #{breakpoint(450px, -1px)}) {
+    font-size: 70px;
+  }
+}
+
+.nft-auction__timer-data-time-divide {
+  display: inline-block;
+}
+
+.nft-auction__timer-data-tips {
+  @include text-content();
+
+  padding-top: 50px;
+  text-transform: uppercase;
+
+  @media only screen and (max-width: #{breakpoint($grid-desktop, -1px)}) {
+    padding-top: 40px;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding-top: 30px;
+  }
+}
+
+.nft-auction__timer-text {
+  @include f-row(40px);
+  @include text-content();
+
+  padding-top: 60px;
+  text-align: left;
+  word-wrap: break-word;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    padding-top: 30px;
+  }
+
+  b {
+    display: block;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: block;
+    float: none;
+  }
+
+  div {
+    margin-bottom: 1.5rem;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-large, -1px)}) {
+    b {
+      display: inline;
+    }
+
+    span {
+      float: left;
+      font-weight: normal;
+    }
+
+    div {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.nft-auction__timer-text-left {
+  @include f-col(1/2, 40px);
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    @include f-col(1, 40px);
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include f-col(1, 40px);
+  }
+}
+
+.nft-auction__timer-text-left-title {
+  @include text-content();
+
+  margin-bottom: 1.5rem;
+  text-align: left;
+  text-transform: uppercase;
+
+  span {
+    @include text-title-3();
+
+    display: block;
+    float: none;
+    margin-bottom: 0;
+    text-transform: unset;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    margin-bottom: 1rem;
+  }
+}
+
+.nft-auction__timer-text-right {
+  @include f-col(1/2, 40px);
+  @include text-content();
+
+  p {
+    margin-bottom: 1.6rem;
+  }
+
+  @media only screen and (max-width: #{breakpoint(1350px)}) {
+    @include f-col(1, 40px);
+  }
+}
+
+.nft-auction__data {
+  @include f-row(40px);
+
+  padding-top: 60px;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include f-row(40px);
+  }
+}
+
+.nft-auction__data-col {
+  @include f-col(1, 40px);
+
+  padding-bottom: 60px;
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    @include f-col(1, 40px);
+  }
+}
+
+.nft-auction__data-title {
+  @include text-title-2();
+
+  margin-bottom: 20px;
+}
+
+.nft-auction__data-lines-wr {
+  max-height: 480px;
+  overflow: auto;
+}
+
+.nft-auction__data-lines {
+  border-top: 1px solid $colorGray1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.nft-auction__data-line {
+  @include text-content();
+
+  align-items: center;
+  border-bottom: 1px solid $colorGray1;
+  display: flex;
+  min-height: 74px;
+
+  span {
+    flex: 1;
+    padding: 0 20px;
+  }
+
+  span:first-child {
+    padding-left: 0;
+  }
+
+  span:last-child {
+    padding-right: 0;
+  }
+
+  @media only screen and (max-width: #{breakpoint($grid-medium, -1px)}) {
+    [data-expiration] {
+      display: none;
+    }
+
+    span {
+      padding: 0 10px;
+    }
+  }
+
+  b {
+    @include text-title-3();
+  }
+}
+
+.nft-auction__data-line--head {
+  font-weight: normal;
+}
