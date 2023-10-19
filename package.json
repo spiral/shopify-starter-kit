@@ -90,7 +90,7 @@
     "webpack-cli": "^4.10.0",
     "webpack-remove-empty-scripts": "^1.0.1",
     "yeoman-generator": "^5.7.0",
-    "yo": "^4.3.0"
+    "yo": "^4.3.1"
   },
   "dependencies": {
     "@shopify/prettier-plugin-liquid": "^0.4.0",
